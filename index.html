@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIM Validering</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://app.connect.trimble.com/tc/static/apiclient.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>BIM Validering</h2>
+        <p class="subtitle">Validerer 0_Element</p>
+        
+        <button id="btn-validate" class="primary-btn">Valider valgte objekter</button>
+        
+        <div id="status-message" class="status hidden">Laster...</div>
+        
+        <div id="results-container" class="hidden">
+            <h3>Resultater</h3>
+            <ul id="results-list"></ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
