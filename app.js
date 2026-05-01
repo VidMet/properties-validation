@@ -1,48 +1,67 @@
 // Initialiser Trimble Connect API
 const WorkspaceAPI = window.WorkspaceAPI;
 
-// Vi bruker GitHub-URLen inntil vi vet at motoren virker 100%.
-// Når vi flytter til TC senere, bytter vi ut denne linjen med TC sin autorisasjons-kode.
-const RULES_URL = "0_Element.json"; 
-
 let validationRules = null;
 
-// Når siden lastes, prøv å hente JSON-reglene
+// ==========================================
+// 1. OPPSTART: Hent regler fra Trimble Connect
+// ==========================================
 document.addEventListener("DOMContentLoaded", async () => {
     const statusEl = document.getElementById("status-message");
     try {
         statusEl.classList.remove("hidden");
-        statusEl.innerText = "Laster regelverk...";
+        statusEl.innerText = "Kobler til Trimble Connect for å hente regler...";
         
-        // 1. Hent filen
-        const response = await fetch(RULES_URL);
+        // Spør Trimble om lov og finn ut hvilket prosjekt vi er i
+        const project = await WorkspaceAPI.project.getProject();
+        const token = await WorkspaceAPI.extension.getPermission('accesstoken');
         
-        // Sjekk om filen i det hele tatt finnes (404 Not Found)
-        if (!response.ok) {
-            throw new Error(`Finner ikke 0_Element.json (HTTP Status: ${response.status}). Sjekk at filen ligger i samme mappe på GitHub.`);
+        // Søk etter filen i prosjektet
+        const tcApiUrl = `https://${project.region}.connect.trimble.com/tc/api/2.0/projects/${project.id}/files?name=0_Element.json`;
+        
+        const searchResponse = await fetch(tcApiUrl, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!searchResponse.ok) throw new Error(`Klarte ikke søke i prosjektet (Status: ${searchResponse.status})`);
+
+        const searchResult = await searchResponse.json();
+
+        if (!searchResult || searchResult.length === 0) {
+            throw new Error("Fant ikke filen '0_Element.json' i prosjektet. Er du sikker på at den er lastet opp?");
         }
+
+        // Hent den nyeste versjonen av filen
+        const fileId = searchResult[0].id;
+        statusEl.innerText = "Laster ned 0_Element.json...";
+
+        const fileContentUrl = `https://${project.region}.connect.trimble.com/tc/api/2.0/files/${fileId}/content`;
+        const fileResponse = await fetch(fileContentUrl, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!fileResponse.ok) throw new Error("Fant filen, men fikk ikke tilgang til å lese innholdet.");
+
+        // Les filen og lagre reglene i minnet
+        validationRules = await fileResponse.json();
         
-        // 2. Prøv å lese den som JSON
-        try {
-            validationRules = await response.json();
-        } catch (jsonError) {
-            throw new Error("Skrivefeil i 0_Element.json. Åpne jsonlint.com for å finne det manglende kommaet eller parentesen.");
-        }
-        
-        statusEl.innerText = "Regler lastet inn! Klar til validering.";
+        statusEl.innerText = "Regler lastet inn fra TC! Klar til validering.";
         statusEl.style.color = "green";
-        setTimeout(() => statusEl.classList.add("hidden"), 3000);
+        setTimeout(() => statusEl.classList.add("hidden"), 4000);
         
     } catch (error) {
         statusEl.innerText = "Feil: " + error.message;
         statusEl.style.color = "red";
-        console.error("Oppstartsfeil:", error);
+        console.error("Oppstartsfeil mot TC API:", error);
     }
 });
 
-// Lytt etter klikk på "Valider"-knappen
+
+// ==========================================
+// 2. BRUKER-INTERAKSJON: Valider-knappen
+// ==========================================
 document.getElementById("btn-validate").addEventListener("click", async () => {
-    if (!validationRules) return alert("Reglene er ikke lastet inn. Sjekk feilmeldingen øverst.");
+    if (!validationRules) return alert("Reglene er ikke lastet inn. Vent litt eller sjekk feilmeldingen øverst.");
 
     const btn = document.getElementById("btn-validate");
     const resultsList = document.getElementById("results-list");
@@ -50,10 +69,10 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
     
     btn.disabled = true;
     btn.innerText = "Validerer...";
-    resultsList.innerHTML = ""; // Tøm gamle resultater
+    resultsList.innerHTML = ""; // Tømmer gamle resultater
 
     try {
-        // 1. Spør Trimble Connect hvilke objekter brukeren har markert
+        // Hent markerte objekter fra 3D-modellen
         const selection = await WorkspaceAPI.selection.getSelection();
         
         if (selection.length === 0) {
@@ -62,32 +81,28 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
             return;
         }
 
-        // 2. Hent egenskapene for de valgte objektene fra Trimble Connect
+        // Hent egenskapene (properties) til de markerte objektene
         const objectsData = await WorkspaceAPI.objects.getObjects(selection);
         
         let totalErrors = 0;
 
-        // 3. Gå gjennom hvert enkelt objekt og valider
+        // Gå gjennom hvert enkelt objekt
         objectsData.forEach(obj => {
-            // Konverter TC-egenskaper til et enklere "flat" format
             const props = flattenProperties(obj.properties);
-            
-            // Kjør logikken
             const errors = runValidation(props, validationRules.properties);
 
             if (errors.length > 0) {
                 totalErrors += errors.length;
                 errors.forEach(err => {
                     const li = document.createElement("li");
-                    // Viser en kort versjon av objektets ID
                     li.innerHTML = `<strong>Objekt: ${obj.id.substring(0,8)}...</strong><br>${err}`;
                     resultsList.appendChild(li);
                 });
                 
-                // Farg objektet RØDT i 3D-modellen hvis det har feil
+                // Farg objektet RØDT
                 WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 255, g: 0, b: 0, a: 255 } }]);
             } else {
-                // Farg objektet GRØNT i 3D-modellen hvis alt er OK
+                // Farg objektet GRØNT
                 WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 0, g: 255, b: 0, a: 255 } }]);
             }
         });
@@ -103,19 +118,23 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
 
     } catch (error) {
         console.error("Feil ved validering mot TC:", error);
-        alert("Klarte ikke å snakke med Trimble Connect. Sjekk konsollen (F12) for detaljer.");
+        alert("Klarte ikke å snakke med Trimble Connect. Sjekk konsollen (F12).");
     } finally {
         resetBtn(btn);
     }
 });
 
-// Hjelpefunksjon for å resette knappen
+
+// ==========================================
+// 3. HJELPEFUNKSJONER
+// ==========================================
+
 function resetBtn(btn) {
     btn.disabled = false;
     btn.innerText = "Valider valgte objekter";
 }
 
-// Hjelpefunksjon for å hente ut verdiene fra Trimble Connects komplekse datastruktur
+// Gjør om Trimble sitt avanserte egenskaps-format til en enkel liste vi kan lese
 function flattenProperties(tcProps) {
     let flat = {};
     if (!tcProps) return flat;
@@ -127,7 +146,10 @@ function flattenProperties(tcProps) {
     return flat;
 }
 
-// Selve Valideringsmotoren (Den som leser reglene og sammenligner med objektet)
+
+// ==========================================
+// 4. HJERNEN: Selve Valideringsmotoren
+// ==========================================
 function runValidation(objProps, rules) {
     let errors = [];
     const fag = objProps["Underdisiplinkode"];
@@ -135,16 +157,16 @@ function runValidation(objProps, rules) {
     for (const [propName, rule] of Object.entries(rules)) {
         const val = objProps[propName];
 
-        // 1. Sjekk Requirement (Er egenskapen påkrevd?)
-        if (rule.requirement === "required" && (!val || val.trim() === "")) {
+        // A) Sjekk Requirement (Påkrevd)
+        if (rule.requirement === "required" && (!val || val.toString().trim() === "")) {
             errors.push(`Mangler påkrevd egenskap: <b>${propName}</b>`);
             continue; 
         }
 
-        // Hvis den er valgfri og ikke fylt ut, trenger vi ikke sjekke formater
+        // Hopp over resten av sjekkene for denne egenskapen hvis den er valgfri og tom
         if (!val) continue; 
 
-        // 2. Sjekk Format (F.eks. Regex for Revisjon eller Objektkode)
+        // B) Sjekk Format (Regex / Dato / Tall)
         if (rule.format) {
             const regex = new RegExp(rule.format);
             if (!regex.test(val)) {
@@ -152,21 +174,23 @@ function runValidation(objProps, rules) {
             }
         }
 
-        // 3. Sjekk Allowed Values (Fagspesifikk og Nøstet logikk)
+        // C) Sjekk Tillatte Verdier og Avhengigheter
         if (rule.allowedValues) {
             if (Array.isArray(rule.allowedValues)) {
-                // Enkel liste-sjekk (f.eks. for Underdisiplin, der alle fag har samme liste)
+                // Enkel liste (f.eks. for Underdisiplin)
                 if (!rule.allowedValues.includes(val)) {
                     errors.push(`Ugyldig verdi for <b>${propName}</b>: '${val}'`);
                 }
             } else if (typeof rule.allowedValues === 'object' && fag) {
-                // Avansert sjekk for Objektklasse og Objekttype
+                // Avansert nøstet logikk (Fag -> Klasse -> Type)
+                
                 if (propName === "Objektklasse") {
                     const lovligeKlasser = rule.allowedValues[fag];
                     if (!lovligeKlasser || !lovligeKlasser.includes(val)) {
                         errors.push(`Objektklassen '${val}' er ikke tillatt for faget '${fag}'`);
                     }
-                } else if (propName === "Objekttype") {
+                } 
+                else if (propName === "Objekttype") {
                     const klasse = objProps["Objektklasse"];
                     const lovligeKlasser = rule.allowedValues[fag];
                     
