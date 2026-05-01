@@ -1,6 +1,6 @@
 let API = null;
 
-// 1. UMIDDELBAR HÅNDHILSING (Forhindrer Timeout!)
+// 1. UMIDDELBAR HÅNDHILSING
 document.addEventListener("DOMContentLoaded", async () => {
     const statusEl = document.getElementById("status-message");
     const btn = document.getElementById("btn-validate");
@@ -8,13 +8,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
         statusEl.innerText = "Håndhilser med Trimble...";
         
-        // Kobler til Trimble Connect med en gang!
         API = await window.TrimbleConnectWorkspace.connect(window.parent);
         
         statusEl.innerText = "✅ API Tilkoblet! Klar for test.";
         statusEl.style.color = "green";
         
-        // Skru på knappen
         btn.disabled = false;
         btn.innerText = "Kjør systemtest";
     } catch (e) {
@@ -38,11 +36,16 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
         statusEl.innerText = "Test 1: Sjekker markering...";
         statusEl.style.color = "black";
         
-        const selection = await API.selection.getSelection();
-        if (selection.length === 0) throw new Error("Marker et objekt først!");
+        // --- HER ER MAGIEN! Vi bruker API.viewer i det nye biblioteket ---
+        const selection = await API.viewer.getSelection();
         
-        statusEl.innerText = `✅ Test 1 OK (${selection.length} objekt valgt)`;
-        await new Promise(r => setTimeout(r, 1500)); // Vent litt så du rekker å lese
+        // Det nye API-et returnerer en litt annen struktur, så vi sjekker den trygt
+        const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
+        
+        if (!hasSelection) throw new Error("Marker et objekt i 3D først!");
+        
+        statusEl.innerText = `✅ Test 1 OK (Markering oppdaget)`;
+        await new Promise(r => setTimeout(r, 1500)); 
 
         statusEl.innerText = "Test 2: Henter prosjekt...";
         const project = await API.project.getProject();
