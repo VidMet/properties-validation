@@ -1,46 +1,65 @@
-const WorkspaceAPI = window.WorkspaceAPI;
+let API = null;
 
-document.addEventListener("DOMContentLoaded", () => {
+// 1. UMIDDELBAR HÅNDHILSING (Forhindrer Timeout!)
+document.addEventListener("DOMContentLoaded", async () => {
     const statusEl = document.getElementById("status-message");
-    statusEl.classList.remove("hidden");
-    statusEl.innerText = "Klar for systemtest!";
-    statusEl.style.color = "blue";
+    const btn = document.getElementById("btn-validate");
+    
+    try {
+        statusEl.innerText = "Håndhilser med Trimble...";
+        
+        // Kobler til Trimble Connect med en gang!
+        API = await window.TrimbleConnectWorkspace.connect(window.parent);
+        
+        statusEl.innerText = "✅ API Tilkoblet! Klar for test.";
+        statusEl.style.color = "green";
+        
+        // Skru på knappen
+        btn.disabled = false;
+        btn.innerText = "Kjør systemtest";
+    } catch (e) {
+        statusEl.innerText = "❌ Feil ved tilkobling: " + e.message;
+        statusEl.style.color = "red";
+    }
 });
 
+// 2. KJØR TESTENE NÅR DU KLIKKER
 document.getElementById("btn-validate").addEventListener("click", async () => {
     const statusEl = document.getElementById("status-message");
     const btn = document.getElementById("btn-validate");
     btn.disabled = true;
-    
+
+    if (!API) {
+        statusEl.innerText = "❌ API er ikke tilkoblet!";
+        return;
+    }
+
     try {
-        statusEl.innerText = "Test 1: Sjekker 3D-modellen...";
+        statusEl.innerText = "Test 1: Sjekker markering...";
         statusEl.style.color = "black";
         
-        const selection = await WorkspaceAPI.selection.getSelection();
-        if (selection.length === 0) {
-            throw new Error("Du må markere et objekt i modellen!");
-        }
-        statusEl.innerText = "✅ Test 1 OK: Fant " + selection.length + " markert(e) objekt(er)!";
+        const selection = await API.selection.getSelection();
+        if (selection.length === 0) throw new Error("Marker et objekt først!");
         
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        statusEl.innerText = `✅ Test 1 OK (${selection.length} objekt valgt)`;
+        await new Promise(r => setTimeout(r, 1500)); // Vent litt så du rekker å lese
 
-        statusEl.innerText = "Test 2: Spør om prosjekt-ID...";
-        const project = await WorkspaceAPI.project.getProject();
-        statusEl.innerText = "✅ Test 2 OK: Prosjekt-ID hentet!";
-        
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        statusEl.innerText = "Test 2: Henter prosjekt...";
+        const project = await API.project.getProject();
+        statusEl.innerText = `✅ Test 2 OK (Prosjekt-ID hentet)`;
+        await new Promise(r => setTimeout(r, 1500));
 
-        statusEl.innerText = "Test 3: Ber om Access Token...";
-        const token = await WorkspaceAPI.extension.getPermission('accesstoken');
-        statusEl.innerText = "✅ Test 3 OK: Alt fungerer! Vi har Token.";
+        statusEl.innerText = "Test 3: Henter Access Token...";
+        const token = await API.extension.getPermission('accesstoken');
+        statusEl.innerText = "✅ Test 3 OK! Alt fungerer perfekt.";
         statusEl.style.color = "green";
 
     } catch (error) {
-        statusEl.innerText = "❌ KRASJ! " + error.message;
+        statusEl.innerText = "❌ KRASJ: " + error.message;
         statusEl.style.color = "red";
         console.error(error);
     } finally {
         btn.disabled = false;
-        btn.innerText = "Kjør test på nytt";
+        btn.innerText = "Prøv igjen";
     }
 });
