@@ -13,7 +13,6 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
     btn.disabled = true;
     
     try {
-        // TEST 1: Klarer vi å se hva brukeren har markert?
         statusEl.innerText = "Test 1: Sjekker 3D-modellen...";
         statusEl.style.color = "black";
         
@@ -23,18 +22,15 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
         }
         statusEl.innerText = "✅ Test 1 OK: Fant " + selection.length + " markert(e) objekt(er)!";
         
-        // Venter 2 sekunder slik at du rekker å lese beskjeden
         await new Promise(resolve => setTimeout(resolve, 2000));
 
-        // TEST 2: Klarer vi å hente prosjektinformasjon?
         statusEl.innerText = "Test 2: Spør om prosjekt-ID...";
         const project = await WorkspaceAPI.project.getProject();
-        statusEl.innerText = "✅ Test 2 OK: Prosjekt-ID er hentet!";
+        statusEl.innerText = "✅ Test 2 OK: Prosjekt-ID hentet!";
         
         await new Promise(resolve => setTimeout(resolve, 2000));
 
-        // TEST 3: Klarer vi å hente Access Token?
-        statusEl.innerText = "Test 3: Ber om sikkerhetsnøkkel (Token)...";
+        statusEl.innerText = "Test 3: Ber om Access Token...";
         const token = await WorkspaceAPI.extension.getPermission('accesstoken');
         statusEl.innerText = "✅ Test 3 OK: Alt fungerer! Vi har Token.";
         statusEl.style.color = "green";
