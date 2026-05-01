@@ -1,13 +1,9 @@
-// Globale variabler
-let WorkspaceAPI = null;
+// Bruk det stabile API-et som lastes automatisk
+const WorkspaceAPI = window.WorkspaceAPI;
 let validationRules = null;
 
-// ==========================================
-// 1. OPPSTART: Bare vis at knappen er klar
-// ==========================================
+// 1. OPPSTART: Bare vis at utvidelsen er åpnet
 document.addEventListener("DOMContentLoaded", () => {
-    // Vi gjør INGENTING her som krever Trimble Connect.
-    // Vi bare sier at grensesnittet er lastet.
     const statusEl = document.getElementById("status-message");
     statusEl.classList.remove("hidden");
     statusEl.innerText = "Klar til validering!";
@@ -15,9 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => statusEl.classList.add("hidden"), 3000);
 });
 
-// ==========================================
-// 2. BRUKERHANDLING: Valider-knappen
-// ==========================================
+// 2. NÅR DU TRYKKER PÅ KNAPPEN
 document.getElementById("btn-validate").addEventListener("click", async () => {
     const btn = document.getElementById("btn-validate");
     const resultsList = document.getElementById("results-list");
@@ -27,23 +21,15 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
     btn.disabled = true;
     resultsList.innerHTML = ""; 
     statusEl.classList.remove("hidden");
+    statusEl.style.color = "#005f9e";
 
     try {
-        // --- DEL 1: KOBLE TIL TRIMBLE (Skjer kun første gang du trykker) ---
-        if (!WorkspaceAPI) {
-            btn.innerText = "Kobler til TC...";
-            statusEl.innerText = "Oppretter forbindelse til 3D-vieweren...";
-            statusEl.style.color = "#005f9e";
-            
-            // Nå vet vi at TC er ferdig lastet fordi brukeren har rukket å klikke
-            WorkspaceAPI = await window.TrimbleConnectWorkspace.connect(window.parent);
-        }
-
-        // --- DEL 2: HENT REGLER HVIS DE IKKE ALLEREDE ER LASTET ---
+        // --- DEL A: HENT REGLER FRA PROSJEKTET (Kun første gang) ---
         if (!validationRules) {
             btn.innerText = "Henter regler...";
             statusEl.innerText = "Ber om prosjekttilgang...";
 
+            // Nå bruker vi det stabile API-et til å hente prosjektinfo og nøkkel
             const project = await WorkspaceAPI.project.getProject();
             const token = await WorkspaceAPI.extension.getPermission('accesstoken');
 
@@ -54,12 +40,12 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
-            if (!searchResponse.ok) throw new Error("Kunne ikke søke i prosjektet.");
+            if (!searchResponse.ok) throw new Error(`Klarte ikke søke i prosjektet (Status: ${searchResponse.status})`);
 
             const searchResult = await searchResponse.json();
 
             if (!searchResult || searchResult.length === 0) {
-                throw new Error("Fant ikke '0_Element.json' i prosjektet. Er du sikker på at den er lastet opp?");
+                throw new Error("Fant ikke '0_Element.json' i prosjektet. Er du sikker på at den ligger der?");
             }
 
             statusEl.innerText = "Laster ned regler...";
@@ -70,7 +56,7 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
-            if (!fileResponse.ok) throw new Error("Fikk ikke tilgang til å lese filinnholdet.");
+            if (!fileResponse.ok) throw new Error("Fikk ikke lov til å lese innholdet i filen.");
 
             validationRules = await fileResponse.json();
             statusEl.innerText = "Regler lastet inn!";
@@ -78,13 +64,13 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
             setTimeout(() => statusEl.classList.add("hidden"), 2000);
         }
 
-        // --- DEL 3: UTFØR VALIDERBINGEN ---
+        // --- DEL B: UTFØR VALIDERBINGEN ---
         btn.innerText = "Validerer objekter...";
 
         const selection = await WorkspaceAPI.selection.getSelection();
         
         if (selection.length === 0) {
-            alert("Vennligst velg ett eller flere objekter i modellen.");
+            alert("Vennligst velg ett eller flere objekter i modellen før du validerer.");
             resetBtn(btn);
             return;
         }
@@ -103,8 +89,10 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
                     li.innerHTML = `<strong>Objekt: ${obj.id.substring(0,8)}...</strong><br>${err}`;
                     resultsList.appendChild(li);
                 });
+                // Farg objektet rødt
                 WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 255, g: 0, b: 0, a: 255 } }]);
             } else {
+                // Farg objektet grønt
                 WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 0, g: 255, b: 0, a: 255 } }]);
             }
         });
@@ -115,7 +103,7 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
         if (totalErrors === 0) {
             const li = document.createElement("li");
             li.className = "success";
-            li.innerText = "Alt i orden! Objektene følger reglene.";
+            li.innerText = "Alt i orden! Valgte objekter følger reglene.";
             resultsList.appendChild(li);
         }
 
@@ -124,14 +112,13 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
         statusEl.innerText = "Feil: " + error.message;
         statusEl.style.color = "red";
         statusEl.classList.remove("hidden");
+        alert("En feil oppstod: " + error.message);
     } finally {
         resetBtn(btn);
     }
 });
 
-// ==========================================
-// 3. HJELPEFUNKSJONER (Samme som før)
-// ==========================================
+// 3. HJELPEFUNKSJONER
 function resetBtn(btn) {
     btn.disabled = false;
     btn.innerText = "Valider valgte objekter";
