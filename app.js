@@ -1,24 +1,18 @@
 // Globale variabler
-let WorkspaceAPI;
+let WorkspaceAPI = null;
 let validationRules = null;
 
 // ==========================================
-// 1. OPPSTART: Bare koble til, ikke be om data
+// 1. OPPSTART: Bare vis at knappen er klar
 // ==========================================
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
+    // Vi gjør INGENTING her som krever Trimble Connect.
+    // Vi bare sier at grensesnittet er lastet.
     const statusEl = document.getElementById("status-message");
-    try {
-        // Bare etabler kommunikasjonslinjen
-        WorkspaceAPI = await window.TrimbleConnectWorkspace.connect(window.parent);
-        
-        statusEl.innerText = "Klar til validering!";
-        statusEl.style.color = "green";
-        setTimeout(() => statusEl.classList.add("hidden"), 3000);
-
-    } catch (error) {
-        statusEl.innerText = "Feil ved oppstart: " + error.message;
-        statusEl.style.color = "red";
-    }
+    statusEl.classList.remove("hidden");
+    statusEl.innerText = "Klar til validering!";
+    statusEl.style.color = "green";
+    setTimeout(() => statusEl.classList.add("hidden"), 3000);
 });
 
 // ==========================================
@@ -32,16 +26,24 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
     
     btn.disabled = true;
     resultsList.innerHTML = ""; 
+    statusEl.classList.remove("hidden");
 
     try {
-        // --- DEL A: HENT REGLER HVIS DE IKKE ALLEREDE ER LASTET ---
-        if (!validationRules) {
-            btn.innerText = "Henter regler fra TC...";
-            statusEl.classList.remove("hidden");
-            statusEl.innerText = "Ber om tilgang til prosjektet...";
+        // --- DEL 1: KOBLE TIL TRIMBLE (Skjer kun første gang du trykker) ---
+        if (!WorkspaceAPI) {
+            btn.innerText = "Kobler til TC...";
+            statusEl.innerText = "Oppretter forbindelse til 3D-vieweren...";
             statusEl.style.color = "#005f9e";
+            
+            // Nå vet vi at TC er ferdig lastet fordi brukeren har rukket å klikke
+            WorkspaceAPI = await window.TrimbleConnectWorkspace.connect(window.parent);
+        }
 
-            // Nå som brukeren har klikket, tillater TC dette:
+        // --- DEL 2: HENT REGLER HVIS DE IKKE ALLEREDE ER LASTET ---
+        if (!validationRules) {
+            btn.innerText = "Henter regler...";
+            statusEl.innerText = "Ber om prosjekttilgang...";
+
             const project = await WorkspaceAPI.project.getProject();
             const token = await WorkspaceAPI.extension.getPermission('accesstoken');
 
@@ -57,7 +59,7 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
             const searchResult = await searchResponse.json();
 
             if (!searchResult || searchResult.length === 0) {
-                throw new Error("Fant ikke '0_Element.json' i prosjektet.");
+                throw new Error("Fant ikke '0_Element.json' i prosjektet. Er du sikker på at den er lastet opp?");
             }
 
             statusEl.innerText = "Laster ned regler...";
@@ -73,11 +75,11 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
             validationRules = await fileResponse.json();
             statusEl.innerText = "Regler lastet inn!";
             statusEl.style.color = "green";
-            setTimeout(() => statusEl.classList.add("hidden"), 3000);
+            setTimeout(() => statusEl.classList.add("hidden"), 2000);
         }
 
-        // --- DEL B: UTFØR VALIDERBINGEN ---
-        btn.innerText = "Validerer...";
+        // --- DEL 3: UTFØR VALIDERBINGEN ---
+        btn.innerText = "Validerer objekter...";
 
         const selection = await WorkspaceAPI.selection.getSelection();
         
@@ -108,6 +110,7 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
         });
 
         resultsContainer.classList.remove("hidden");
+        statusEl.classList.add("hidden");
         
         if (totalErrors === 0) {
             const li = document.createElement("li");
@@ -118,7 +121,9 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
 
     } catch (error) {
         console.error("Valideringsfeil:", error);
-        alert("En feil oppstod: " + error.message);
+        statusEl.innerText = "Feil: " + error.message;
+        statusEl.style.color = "red";
+        statusEl.classList.remove("hidden");
     } finally {
         resetBtn(btn);
     }
