@@ -1,22 +1,39 @@
+let API = null;
 let validationRules = null;
 
-document.addEventListener("DOMContentLoaded", () => {
+// ==========================================
+// 1. OPPSTART: Omgår CORS-blokkeringen
+// ==========================================
+document.addEventListener("DOMContentLoaded", async () => {
     const statusEl = document.getElementById("status-message");
     statusEl.classList.remove("hidden");
-    statusEl.innerText = "Klar til validering!";
-    statusEl.style.color = "green";
-    setTimeout(() => statusEl.classList.add("hidden"), 3000);
+    statusEl.innerText = "Håndhilser med Trimble...";
+    statusEl.style.color = "blue";
+    
+    try {
+        // Det nye API-et åpner en sikker bro mellom GitHub og Trimble
+        API = await window.TrimbleConnectWorkspace.connect(window.parent);
+        
+        statusEl.innerText = "✅ Klar til validering!";
+        statusEl.style.color = "green";
+        setTimeout(() => statusEl.classList.add("hidden"), 3000);
+    } catch (e) {
+        statusEl.innerText = "❌ Feil ved oppstart: " + e.message;
+        statusEl.style.color = "red";
+    }
 });
 
+// ==========================================
+// 2. HOVEDFUNKSJON: VALIDER-KNAPPEN
+// ==========================================
 document.getElementById("btn-validate").addEventListener("click", async () => {
-    const WorkspaceAPI = window.WorkspaceAPI;
     const btn = document.getElementById("btn-validate");
     const resultsList = document.getElementById("results-list");
     const resultsContainer = document.getElementById("results-container");
     const statusEl = document.getElementById("status-message");
     
-    if (!WorkspaceAPI) {
-        alert("Trimble Connect API er ikke lastet i HTML-filen ennå!");
+    if (!API) {
+        alert("Trimble Connect API er ikke tilkoblet ennå! Vent noen sekunder.");
         return;
     }
 
@@ -25,19 +42,20 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
     statusEl.classList.remove("hidden");
 
     try {
-        // --- DEL A: HENT FIL FRA TRIMBLE CONNECT ---
+        // --- DEL A: HENT REGLER FRA TRIMBLE CONNECT ---
         if (!validationRules) {
-            btn.innerText = "Kobler til TC...";
+            btn.innerText = "Kobler til prosjektet...";
             statusEl.innerText = "Henter prosjektinformasjon...";
             statusEl.style.color = "blue";
 
-            const project = await WorkspaceAPI.project.getProject();
+            const project = await API.project.getProject();
             
             statusEl.innerText = "Ber om sikkerhetsnøkkel for å lese fil...";
-            // Henter "Token" for å bevise for Trimble at vi har lov til å laste ned
-            const token = await WorkspaceAPI.extension.getPermission('accesstoken');
+            // Henter Token. (NB: Hvis det timer ut her, sjekk om Trimble Connect 
+            // har en innstilling eller varsel som ber deg "Godkjenne" utvidelsen)
+            const token = await API.extension.getPermission('accesstoken');
             
-            statusEl.innerText = "Leter etter 0_Element.json i prosjektet...";
+            statusEl.innerText = "Leter etter 0_Element.json...";
             const tcApiUrl = `https://${project.region}.connect.trimble.com/tc/api/2.0/projects/${project.id}/files?name=0_Element.json`;
             
             const searchResponse = await fetch(tcApiUrl, {
@@ -49,7 +67,7 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
             const searchResult = await searchResponse.json();
 
             if (!searchResult || searchResult.length === 0) {
-                throw new Error("Fant ikke filen '0_Element.json' i Trimble Connect-prosjektet.");
+                throw new Error("Fant ikke filen '0_Element.json' i prosjektet.");
             }
 
             statusEl.innerText = "Laster ned fil...";
@@ -60,24 +78,33 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
-            if (!fileResponse.ok) throw new Error("Fant filen, men fikk ikke tilgang til innholdet.");
+            if (!fileResponse.ok) throw new Error("Fikk ikke tilgang til innholdet i filen.");
 
             validationRules = await fileResponse.json();
             statusEl.innerText = "Regler hentet fra Trimble Connect!";
             statusEl.style.color = "green";
+            
+            // Liten pause så du rekker å se at nedlastingen var vellykket
+            await new Promise(r => setTimeout(r, 1000));
         }
 
         // --- DEL B: VALIDER MODELLEN ---
         btn.innerText = "Validerer...";
         statusEl.innerText = "Leser 3D-modell...";
 
-        const selection = await WorkspaceAPI.selection.getSelection();
-        if (!selection || selection.length === 0) {
+        // Bruker kommandoen som var vellykket i "Test 1"
+        const selection = await API.selection.getSelection();
+        const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
+        
+        if (!hasSelection) {
             throw new Error("Du må markere ett eller flere objekter i 3D-visningen først.");
         }
 
-        const objectsData = await WorkspaceAPI.objects.getObjects(selection);
+        const objectsData = await API.objects.getObjects(selection);
         let totalErrors = 0;
+
+        // Tøm eventuelle tidligere farger før vi fargelegger på nytt
+        await API.viewer.setColors([{ objects: [], color: { r: 255, g: 255, b: 255, a: 255 } }]);
 
         objectsData.forEach(obj => {
             const props = flattenProperties(obj.properties);
@@ -90,9 +117,9 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
                     li.innerHTML = `<strong>Objekt: ${obj.id.substring(0,8)}...</strong><br>${err}`;
                     resultsList.appendChild(li);
                 });
-                WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 255, g: 0, b: 0, a: 255 } }]);
+                API.viewer.setColors([{ objects: [obj.id], color: { r: 255, g: 0, b: 0, a: 255 } }]);
             } else {
-                WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 0, g: 255, b: 0, a: 255 } }]);
+                API.viewer.setColors([{ objects: [obj.id], color: { r: 0, g: 255, b: 0, a: 255 } }]);
             }
         });
 
@@ -102,14 +129,14 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
         if (totalErrors === 0) {
             const li = document.createElement("li");
             li.className = "success";
-            li.innerText = "Suksess! Alle valgte objekter følger reglene.";
+            li.innerText = "Suksess! Alle valgte objekter følger reglene for 0_Element.";
             resultsList.appendChild(li);
         }
 
     } catch (error) {
         statusEl.innerText = "FEIL: " + error.message;
         statusEl.style.color = "red";
-        console.error(error);
+        console.error("Krasj:", error);
     } finally {
         resetBtn(btn);
     }
