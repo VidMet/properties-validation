@@ -17,18 +17,14 @@
         li { margin-bottom: 5px; }
         .success { color: green; list-style-type: none; margin-left: -20px; font-weight: bold;}
     </style>
-    
     <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
 </head>
 <body>
     <div class="container">
         <h2>BIM Validering</h2>
         <p class="subtitle">Validerer 0_Element</p>
-        
         <button id="btn-validate" class="primary-btn" disabled>Starter opp...</button>
-        
         <div id="status-message" class="status">Håndhilser med Trimble...</div>
-        
         <div id="results-container" class="hidden">
             <h3>Resultater</h3>
             <ul id="results-list"></ul>
@@ -50,7 +46,7 @@
                 btn.innerText = "Valider valgte objekter";
                 setTimeout(() => statusEl.classList.add("hidden"), 3000);
             } catch (e) {
-                statusEl.innerText = "❌ Feil: Kunne ikke koble til 3D-modell (" + e.message + ")";
+                statusEl.innerText = "❌ Feil: Kunne ikke koble til 3D-modell.";
                 statusEl.style.color = "red";
             }
         });
@@ -61,73 +57,67 @@
             const resultsContainer = document.getElementById("results-container");
             const statusEl = document.getElementById("status-message");
 
-            if (!API) {
-                alert("Kritisk feil: API-broen til Trimble Connect mangler.");
-                return;
-            }
-
             btn.disabled = true;
             resultsList.innerHTML = "";
             statusEl.classList.remove("hidden");
 
             try {
-                // --- DEL A: HENT FIL FRA TRIMBLE CONNECT ---
                 if (!validationRules) {
-                    btn.innerText = "Kobler til prosjektet...";
-                    statusEl.innerText = "Henter prosjektinformasjon...";
+                    statusEl.innerText = "Henter prosjektinfo...";
                     statusEl.style.color = "blue";
 
                     const project = await API.project.getProject();
+                    const token = await API.extension.requestPermission('accesstoken');
                     
-                    statusEl.innerText = "Ber om sikkerhetsnøkkel for å lese fil (dette kan ta opptil 10 sekunder)...";
-                    
-                    let token;
-                    try {
-                        if (API.extension.requestPermission) {
-                            token = await API.extension.requestPermission('accesstoken');
-                        } else {
-                            token = await API.extension.getPermission('accesstoken');
-                        }
-                    } catch (tokenError) {
-                        throw new Error("Trimble Connects sikkerhetsbrannmur blokkerer utvidelsen fra å laste ned filer. For å lese skjulte filer må utvidelsen registreres som en offisiell app med Client-ID hos Trimble.");
+                    // SMART REGION-SJEKK: Trimble bruker ofte 'prod' for USA og 'eu' for Europa
+                    let baseUrl = "app.connect.trimble.com"; // Standard/Global
+                    if (project.region === "eu") {
+                        baseUrl = "eu.connect.trimble.com";
+                    } else if (project.region === "asia") {
+                        baseUrl = "asia.connect.trimble.com";
                     }
 
-                    statusEl.innerText = "Leter etter 0_Element.json...";
-                    const tcApiUrl = `https://${project.region}.connect.trimble.com/tc/api/2.0/projects/${project.id}/files?name=0_Element.json`;
+                    statusEl.innerText = "Søker etter 0_Element.json...";
+                    const tcApiUrl = `https://${baseUrl}/tc/api/2.0/projects/${project.id}/files?name=0_Element.json`;
                     
                     const searchResponse = await fetch(tcApiUrl, {
-                        headers: { 'Authorization': `Bearer ${token}` }
+                        method: 'GET',
+                        headers: { 
+                            'Authorization': `Bearer ${token}`,
+                            'Accept': 'application/json'
+                        }
                     });
 
-                    if (!searchResponse.ok) throw new Error("Klarte ikke å søke i Trimble Connect.");
+                    if (!searchResponse.ok) throw new Error(`TC svarte med feilkode ${searchResponse.status}`);
+                    
                     const searchResult = await searchResponse.json();
                     if (!searchResult || searchResult.length === 0) throw new Error("Fant ikke filen '0_Element.json' i prosjektet.");
 
                     statusEl.innerText = "Laster ned reglene...";
                     const fileId = searchResult[0].id;
-                    const fileContentUrl = `https://${project.region}.connect.trimble.com/tc/api/2.0/files/${fileId}/content`;
+                    const fileContentUrl = `https://${baseUrl}/tc/api/2.0/files/${fileId}/content`;
+                    
                     const fileResponse = await fetch(fileContentUrl, {
+                        method: 'GET',
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
 
-                    if (!fileResponse.ok) throw new Error("Fant filen, men fikk ikke tilgang til innholdet.");
+                    if (!fileResponse.ok) throw new Error("Kunne ikke lese filinnholdet.");
                     validationRules = await fileResponse.json();
-                    statusEl.innerText = "Regler hentet fra Trimble Connect!";
+                    statusEl.innerText = "Regler lastet inn!";
                     statusEl.style.color = "green";
                 }
 
-                // --- DEL B: VALIDER MODELLEN ---
+                // --- VALIDERINGS-DELEN ---
                 btn.innerText = "Validerer...";
-                statusEl.innerText = "Leser 3D-modell...";
-
-                const selection = await API.selection.getSelection();
+                const selection = await API.viewer.getSelection();
                 const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
-                if (!hasSelection) throw new Error("Du må markere ett eller flere objekter i 3D-visningen først.");
+                
+                if (!hasSelection) throw new Error("Marker et objekt i 3D-visningen først!");
 
-                const objectsData = await API.objects.getObjects(selection);
+                // Vi må hente objektdata via WorkspaceAPI (den gamle metoden som fungerte her)
+                const objectsData = await window.WorkspaceAPI.objects.getObjects(selection);
                 let totalErrors = 0;
-
-                await API.viewer.setColors([{ objects: [], color: { r: 255, g: 255, b: 255, a: 255 } }]);
 
                 objectsData.forEach(obj => {
                     const props = flattenProperties(obj.properties);
@@ -137,22 +127,21 @@
                         totalErrors += errors.length;
                         errors.forEach(err => {
                             const li = document.createElement("li");
-                            li.innerHTML = `<strong>Objekt: ${obj.id.substring(0,8)}...</strong><br>${err}`;
+                            li.innerHTML = `<strong>Objekt: ${obj.id.substring(0,8)}</strong>: ${err}`;
                             resultsList.appendChild(li);
                         });
-                        API.viewer.setColors([{ objects: [obj.id], color: { r: 255, g: 0, b: 0, a: 255 } }]);
+                        window.WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 255, g: 0, b: 0, a: 255 } }]);
                     } else {
-                        API.viewer.setColors([{ objects: [obj.id], color: { r: 0, g: 255, b: 0, a: 255 } }]);
+                        window.WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 0, g: 255, b: 0, a: 255 } }]);
                     }
                 });
 
                 resultsContainer.classList.remove("hidden");
                 statusEl.classList.add("hidden");
-                
                 if (totalErrors === 0) {
                     const li = document.createElement("li");
                     li.className = "success";
-                    li.innerText = "Suksess! Alle valgte objekter følger reglene.";
+                    li.innerText = "Suksess! Objektene følger reglene.";
                     resultsList.appendChild(li);
                 }
 
@@ -166,14 +155,11 @@
             }
         });
 
-        // --- HJELPEFUNKSJONER ---
         function flattenProperties(tcProps) {
             let flat = {};
             if (!tcProps) return flat;
             tcProps.forEach(group => {
-                group.properties.forEach(p => {
-                    flat[p.name] = p.value;
-                });
+                group.properties.forEach(p => { flat[p.name] = p.value; });
             });
             return flat;
         }
@@ -189,22 +175,22 @@
                     if (ovr) req = ovr.requirement;
                 }
                 if (req === "required" && (!val || val.toString().trim() === "")) {
-                    errors.push(`Mangler påkrevd egenskap: <b>${propName}</b>`);
+                    errors.push(`Mangler <b>${propName}</b>`);
                     continue;
                 }
                 if (!val) continue;
                 if (rule.format && !(new RegExp(rule.format).test(val))) {
-                    errors.push(`Formatfeil på <b>${propName}</b>. Verdi: '${val}'`);
+                    errors.push(`Formatfeil på <b>${propName}</b>`);
                 }
                 if (rule.allowedValues) {
                     if (Array.isArray(rule.allowedValues)) {
-                        if (!rule.allowedValues.includes(val)) errors.push(`Ugyldig verdi: '${val}'`);
+                        if (!rule.allowedValues.includes(val)) errors.push(`Ugyldig verdi i <b>${propName}</b>`);
                     } else if (typeof rule.allowedValues === 'object' && fag) {
                         if (propName === "Objektklasse") {
-                            if (!rule.allowedValues[fag]?.includes(val)) errors.push(`Klasse '${val}' ugyldig for fag '${fag}'`);
+                            if (!rule.allowedValues[fag]?.includes(val)) errors.push(`Klasse '${val}' ugyldig for '${fag}'`);
                         } else if (propName === "Objekttype") {
                             const kl = objProps["Objektklasse"];
-                            if (!rule.allowedValues[fag]?.[kl]?.includes(val)) errors.push(`Type '${val}' ugyldig for klasse '${kl}'`);
+                            if (!rule.allowedValues[fag]?.[kl]?.includes(val)) errors.push(`Type '${val}' ugyldig for '${kl}'`);
                         }
                     }
                 }
