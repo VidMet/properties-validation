@@ -1,0 +1,298 @@
+{
+  "version": "1.0",
+  "properties": {
+    "Underdisiplinkode": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "allowedValues": ["ELE", "HYG", "IGG", "GMT", "GTK", "KNS", "PLA", "SRO", "SKO", "UTS", "TNL", "VAA", "HYD", "VEI",
+                        "LAN", "YTM", "AKU", "KLM", "CEE", "MIL", "GRE", "ADM", "BIM", "GIS", "HMS", "SHA"],
+      "crossReference": { 
+        "target": "PNS_Navn",
+        "validPairs": [
+          { "Underdisiplinkode": "ELE", "Underdisiplin": "Elektro"},
+          { "Underdisiplinkode": "HYG", "Underdisiplin": "Hydrogeologi"},
+          { "Underdisiplinkode": "IGG", "Underdisiplin": "Ingeniørgeologi"},
+          { "Underdisiplinkode": "GMT", "Underdisiplin": "Geomatikk"},
+          { "Underdisiplinkode": "GTK", "Underdisiplin": "Geoteknikk"},
+          { "Underdisiplinkode": "KNS", "Underdisiplin": "Konstruksjon"},
+          { "Underdisiplinkode": "PLA", "Underdisiplin": "Planfag"},
+          { "Underdisiplinkode": "SRO", "Underdisiplin": "Styring, regulering og overvåkning"},
+          { "Underdisiplinkode": "SKO", "Underdisiplin": "Skilt og Oppmerking"},
+          { "Underdisiplinkode": "UTS", "Underdisiplin": "Vegutstyr"},
+          { "Underdisiplinkode": "TNL", "Underdisiplin": "Tunnel"},
+          { "Underdisiplinkode": "VAA", "Underdisiplin": "Vann og Avløp"},
+          { "Underdisiplinkode": "HYD", "Underdisiplin": "Hydrologi"},
+          { "Underdisiplinkode": "VEI", "Underdisiplin": "Vei"},
+          { "Underdisiplinkode": "LAN", "Underdisiplin": "Landskap"},
+          { "Underdisiplinkode": "YTM", "Underdisiplin": "Ytre Miljø"},
+          { "Underdisiplinkode": "AKU", "Underdisiplin": "Akustikk"},
+          { "Underdisiplinkode": "KLM", "Underdisiplin": "Klima"},
+          { "Underdisiplinkode": "CEE", "Underdisiplin": "Ceequal"},
+          { "Underdisiplinkode": "MIL", "Underdisiplin": "Miljø"},
+          { "Underdisiplinkode": "GRE", "Underdisiplin": "Grunnerverv"},
+          { "Underdisiplinkode": "ADM", "Underdisiplin": "Administrasjon"},
+          { "Underdisiplinkode": "BIM", "Underdisiplin": "Bygningsinformasjonsmodellering"},
+          { "Underdisiplinkode": "GIS", "Underdisiplin": "Geografisk informasjonssystem"},
+          { "Underdisiplinkode": "HMS", "Underdisiplin": "Helse, Miljø og Sikkerhet"},
+          { "Underdisiplinkode": "SHA", "Underdisiplin": "SHA"}
+        ],
+      "minMMI": 100
+      }
+    },
+    "Underdisiplin": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "allowedValues": ["Elektro", "Hydrogeologi", "Ingeniørgeologi", "Geomatikk", "Geoteknikk", "Konstruksjon",
+                       "Planfag", "Styring, regulering og overvåkning", "Skilt og Oppmerking", "Vegutstyr", "Tunnel",
+                       "Vann og Avløp", "Hydrologi", "Vei", "Landskap", "Ytre Miljø", "Akustikk", "Klima", "Ceequal",
+                       "Miljø", "Grunnerverv", "Administrasjon", "Bygningsinformasjonsmodellering",
+                       "Geografisk informasjonssystem", "Helse, Miljø og Sikkerhet", "SHA"],
+      "minMMI": 100
+    },
+    "PNS Kode": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "crossReference": { 
+        "target": "PNS_Navn",
+        "validPairs": [
+          { "PNS Kode": "K001", "PNS Navn": "Navn 1" },
+          { "PNS Kode": "K002", "PNS Navn": "Navn 2" }
+        ],
+      "minMMI": 200
+      }
+    },
+    "PNS Navn": {
+      "propertySet": "0_Element",
+      "defaultRequirement": "required",
+      "allowedValues": [],
+      "minMMI": 200
+      }
+    },
+    "Bruksstatus": {
+      "propertySet": "0_Element",
+      "defaultRequirement": "optional",
+      "overrides": [
+        { "discipline": "KNS", "requirement": "required" }
+      ],
+      "allowedValues": ["Prosjektert", "Grunnlagsdata", "Midlertidig", "Avventer produktvalg", "Innmålt", "Rives/demonteres"],
+    },
+    "Faseplan": {
+      "propertySet": "0_Element",
+      "defaultRequirement": "optional",
+      "minMMI": 100
+    },
+    "Fase Rives": {
+      "propertySet": "0_Element",
+      "defaultRequirement": "optional"
+    },
+    "Fase Bygges": {
+      "propertySet": "0_Element",
+      "defaultRequirement": "optional"
+    },
+    "Godkjent av": {
+      "propertySet": "0_Element",
+      "defaultRequirement": "required",
+      "minMMI": 100
+    },
+    "Kontrollert av": {
+      "propertySet": "0_Element",
+      "defaultRequirement": "required",
+      "minMMI": 100
+    },
+    "MMI": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "format": "^[0-9]{3}$",
+      "allowedValues": [100, 200, 300, 350, 400, 450, 500, 600],
+      "minMMI": 100
+    },
+    "Objektklasse":{
+      "propertySet": "0_Element",
+      "requriement": "required",
+      "allowedValues": {
+        "AKU": ["Bygg", "Støyskjerm"],
+        "GMT": ["Eksisterende", "Terreng"],
+        "GTK": ["Grunnforhold", "Støttevegg", "Tørrmur", "Underbygning"],
+        "HYG": ["Hammerhull", "Tetthet"],
+        "IGG": ["Terreng", "Sikring"],
+        "KNS": ["Armering", "Avretting", "Betongelement", "Drenering", "Dør", "Festeelement", "Festemiddel", "Fiberduk", "Forskaling", "Fuge", "Fuktisolering",
+                "Fylling", "Føringsvei", "Informasjonsobjekt", "Innstøpningsgods", "Isolasjon", "Jording", "Lager", "Masseuttak", "Overbygning", "Overflatebehandling",
+                "Pel", "Plastring", "Plate", "Rekkverk", "Spennarmering", "Stålbjelke", "Trapp", "Heftbryter", "Støpeskjøt"],
+        "LAN": ["Fylling", "Gjerde", "Møblering", "Rekkverk", "Terrengforming", "Vegetasjon"],
+        "MIL": ["Forurenset-grunn", "Kulturminner"],
+        "SHA": ["Symbol"],
+        "SKO": ["Vegbom", "Oppmerking", "Skilt", "Skiltportal"],
+        "TNL": ["Armering", "Brannslokkesystem", "Festeelement", "Grunnarbeid, terreng", "Jordingssystem", "Kabelføringssystem", "Tunneloverbygning",
+                "Vann- og fuktforebyggende system", "Veggsystem"],
+        "UTS": ["Rekkverk", "Rekkverksende", "Kantstein", "Vegbom"],
+        "VEI": ["Overbygning", "Underbygning", "Skjæring", "Stikningsobjekt", "Sideområde"],
+        "VAA": ["Rørledning", "Kum"]
+      },
+      "minMMI": 100
+    },
+    "Objekttype": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "allowedValues": {
+        "AKU": {
+          "Bygg": ["Bygg"],
+          "Skjerm": ["Støyskjerm"]
+        },
+        "GMT": {
+          "Eksisterende": ["Eksisterende-objekter"],
+          "Terreng": ["Terrengoverflatemodell"]
+        },
+        "GTK": {
+          "Grunnforhold": ["Grunnforholdsmodell", "Grunnundersøkelse"],
+          "Støttevegg": ["Rørvegg", "Spunt", "Stag", "Stiver", "Pute", "Frontkledning"],
+          "Tørrmur": ["Natursteinsmur", "Betongmur"],
+          "Underbygning": ["Fiberduk", "Isolasjon", "Frostsikringslag", "Avrettingslag", "Omfylling", "LavesteGravenivå"]
+        },
+        "HYG": {
+          "Hammerhull": ["Hammerhull"],
+          "Tetthet": ["Tetthetskrav"],
+        },
+        "IGG": {
+          "Terreng": ["Bergmodell"],
+          "Sikring": ["Selvborende stag", "Bolt"]
+        },
+        "KNS": {
+          "Armering": ["Armeringsjern", "Krympeplast", "Muffeskjøter", "Skjøtekobling"],
+          "Avretting": ["Fraksjon 0/32", "Fraksjon 20/125 forkilt med 0/22", "Betongavretting B30", "Understøp"],
+          "Betongelement": ["Brem", "Brudekke", "Friksjonsplate", "Fugeseng", "Fundament", "Hvelv", "Kantbjelke",
+                            "Kasse", "Knevegg", "Konsoll", "Kontaktstøp", "Murkrage", "Overgangsplate", "Skjørt",
+                            "Søyle", "Takplate", "Tverrbjelke", "Tverrprofil", "Tverrskott", "Vegg", "Vinge", "Vingemur"],
+          "Drenering": ["Drensrenne", "Innstøpt stålrør", "Sluk", "Steinsatt renne", "Knotteplate"],
+          "Dør": ["Dør", "Karm", "Luke"],
+          "Festeelement": ["Forlenget gjengestag", "Brakett"],
+          "Festemiddel": ["Heftesveis", "Liming", "Kilsveis", "Buttsveis", "Mørtel", "Sveis"],
+          "Fiberduk": ["Fiberduk"],
+          "Forskaling": ["Forskaling", "Fortanning", "Trekantprofil"],
+          "Fuge": ["Fuge i betong", "Fugeinnlegg", "Fugeterskel", "Mekanisk fuge"],
+          "Fuktisolering": ["Asfaltmembran", "Fuktisolering", "Hulkil", "Tetningstiltak", "Klemlist", "Membran", "Membranbeskyttelse", "Plastmembran type I", "Plastmembran type II"],
+          "Fylling": ["Oppfylling fraksjon 22/125", "Lettklinker", "Tilbakefylling fraksjon 22/125"],
+          "Føringsvei": ["Trekkerør"],
+          "Informasjonsobjekt": ["Endelig posisjon", "Stikningsobjekt lager", "Stikningsobjekt nivelleringsbolter",
+                                "Stikningsobjekt overhøyde", "Stikningsobjekt sikringsgjerde", "Stikningsobjekt rekkverk",
+                                "Metadataobjekt", "Kjøreboks", "Stikningsobjekt lysmast", "Akse", "Stikningsobjekt trekkerør",
+                                "Stikningsobjekt VA-rør", "Stikningsobjekt høyspent", "Stikningsobjekt peler", "Stikningsobjekt kabelbru",
+                                "Stikningsobjekt", "Stikningsobjekt støyskjerm"],
+          "Innstøpningsgods": ["Boltegruppe", "Dybler", "Hylse", "Hylsegruppe med bolter", "Innstøpningsgods", "Innstøpt gjengestag", "Kjemisk anker", "Murkrage", "Nivelleringsbolt", "Lufterør"],
+          "Isolasjon": ["XPS"],
+          "Jording": ["Jording"],
+          "Lager": ["Lager", "Uarmert gummibånd", "Jekkepunkt", "Lager konsoll"],
+          "Masseuttak": ["Utgravde masser"],
+          "Overbygning": ["Bindlag"],
+          "Overflatebehandling": ["Avretting og pussing", "Herdetiltak"],
+          "Pel": ["Avstandsklosser", "Boring i berg", "Foringsrør", "Inspeksjonsrør", "Kappnivå", "Mørtel", "Pel", "Stiver", "Styrering", "Stålkjernepel", "Stålrør", "Topplate"],
+          "Plastring": ["Plastring"],
+          "Plate": ["Stålplate", "Metadataobjekt"],
+          "Rekkverk": ["Brøytetette paneler", "Midtdeler", "Betongrekkverk", "Rekkverksavslutter", "Rekkverkskinne", "Rekkverksstolpe", "Sikringsgjerde", "Støyskjerm"],
+          "Spennarmering": ["Drensslange", "Forankring", "Injiseringsslange", "Lufteslange", "Skjøtekobling", "Spennkabel", "Spiralarmering"],
+          "Stålbjelke": ["HUP"],
+          "Trapp": ["Trapp"],
+          "Heftbryter": ["Polyetylenfolie", "Asfaltmembran"],
+          "Støpeskjøt": ["Injiseringsslange", "Svellebånd"]
+        },
+        "LAN": {
+          "Fylling": ["Jordpåslag", "Tilbakefylling", "Motfylling"],
+          "Gjerde": ["Gjerde", "Viltgjerde", "Anleggsgjerde"],
+          "Møblering": ["Holdeplassutrustning", "Lekeaparat", "Utemøbler", "Bilettautomat", "Sykkelstativ", "Sykkelskur", "Utsmykningsobjekt", "Flaggstang"],
+          "Rekkverk": ["Betongrekkverk", "Rekkverkspanel", "Overgangsrekkverk", "Rekkverksskinne", "Rekkverksstolpe", "Natursteinsblokk", "Støttekonstruksjon"],
+          "Terrengforming": ["Matjord", "Plastring bekk", "Plastring erosjonssikring", "Revegetering", "Tilsåing", "Grasdekker", "Steinmaterialer", "SidearealTunnel", "Voll"],
+          "Vegetasjon": ["Tre", "Blomsterbeplantning", "Busk"]          
+        },
+        "MIL": {
+          "Forurenset-grunn": ["Masser", "Prøver"],
+          "Kulturminner": ["Kulturminner"]
+        },
+        "SHA": {
+          "Symbol": ["Symbol"]
+        },
+        "SKO": {
+          "Vegbom": ["Stengebom", "Ledebom", "Veibomfundament"],
+          "Oppmerking": ["OppmerkingForsterket", "OppmerkingLangs", "OppmerkingTverr"],
+          "Skilt": ["Signalholde", "Skilt", "Skiltfundament", "Skiltmast", "Skiltoppheng", "VariabeltSkilt", "Skiltplate"],
+          "Skiltportal": ["Helportal", "Halvportal", "Skiltportalfundament"]
+        },
+        "TNL": {
+          "Armering": ["Armeringsjern"],
+          "Brannslokkesystem": ["Skap"],
+          "Festeelement": ["Bjelke", "Festebolt", "Mutter"],
+          "Grunnarbeid, terreng": ["Tunnelløp"],
+          "Jordingssystem": ["Jordelektrode/spyd"],
+          "Kabelføringssystem": ["Trekkekum"],
+          "Tunneloverbygning": ["Bankett", "Brannsikring", "Betongavretting", "Bunnplate", "Dekke", "Filterlag", "Fylling", "Rist"],
+          "Vann- og fuktforebyggende system": ["Membran", "Sprøytebetong"],
+          "Veggsystem": ["Betongelement", "Dør", "Luke", "Utsparring", "Vegg"]
+        },
+        "UTS": {
+          "Rekkverk": ["Rekkverksstolpe", "Overgangsrekkverk", "Konfliktvolum", "Betongrekkverk", "Rekkverksskinne"],
+          "Rekkverksende": ["Endeterminal", "Ettergivende rekkverksende", "Nedføring", "Utføring", "Støtpute"],
+          "Kantstein": ["Kantstein"],
+          "Vegbom": ["Ledebom", "Stengebom"]
+        },
+        "VEI": {
+          "Overbygning": ["Bindlag", "Bærelag", "Nedre bærelag", "Øvre bærelag", "Fiberduk", "Filterlag", "Frostsikringslag", "Slitelag", "Grusskulder"],
+          "Underbygning": ["Frostsikringslag", "Avrettingslag", "Oppfylling", "LavesteGravenivå", "PlanumBerg", "PlanumJord", "PlanumFylling", "Planum"],
+          "Skjæring": ["SkjæringBerg", "SkjæringJord"],
+          "Stikningsobjekt": ["Stikningsobjekt"],
+          "Sideområde": ["Terrengforming", "Deponi", "Grøft", "Fyllingsskråning"]
+        },
+        "VAA": {
+          "Rørledning": ["Stikkrenne", "Graveflate", "Drensledning", "GrøftÅpen", "Isolasjon", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Varerør", "Vaskevannsledning", "Nedføringsrenne", "Infiltrasjonsledning"],
+          "Kum": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hjelpesluk", "Hydrant", "Kumlokk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Stengeventil", "Tank", "Vannkum", "Inntakskum"]
+        },
+      },
+      "minMMI": 100
+    },
+    "Objektkode V770": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "format": "^[0-9]{8}$",
+      "minMMI": 200
+    },
+    "Objektkodenavn V770": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "minMMI": 200
+    },
+    "Produkttype": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "minMMI": 100
+    },
+    "Element-ID": {
+      "propertySet": "0_Element",
+      "requirement": "optional",
+      "minMMI": 200
+    },
+    "Revisjon": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "format": "^[BCHZ][0-9]{2}$",
+      "minMMI": 100
+    },
+    "Revisjonsdato": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "format": "^(0[1-9]|[12][0-9]|3[01])\\.(0[1-9]|1[0-2])\\.\\d{4}$",
+      "minMMI": 100
+    },
+    "Revisjonen gjelder": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "minMMI": 100
+    },
+    "Teksturer": {
+      "propertySet": "0_Element",
+      "requirement": "optional",
+      "minMMI": 100
+    },
+    "Utarbeidet av": {
+      "propertySet": "0_Element",
+      "requirement": "required",
+      "minMMI": 100
+    },
+  }
+}
