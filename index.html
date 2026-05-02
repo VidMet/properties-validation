@@ -6,16 +6,16 @@
     <title>BIM Validering</title>
     <link rel="stylesheet" href="style.css">
     
-    <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
+    <script src="https://app.connect.trimble.com/tc/static/apiclient.js"></script>
 </head>
 <body>
     <div class="container">
         <h2>BIM Validering</h2>
         <p class="subtitle">Validerer 0_Element</p>
         
-        <button id="btn-validate" class="primary-btn" disabled>Laster inn...</button>
+        <button id="btn-validate" class="primary-btn">Valider valgte objekter</button>
         
-        <div id="status-message" class="status">Starter opp...</div>
+        <div id="status-message" class="status hidden">Laster...</div>
         
         <div id="results-container" class="hidden">
             <h3>Resultater</h3>
@@ -23,6 +23,6 @@
         </div>
     </div>
 
-    <script src="app.js?v=9000"></script>
+    <script src="app.js?v=9999"></script>
 </body>
 </html>
