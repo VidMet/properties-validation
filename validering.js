@@ -49,7 +49,7 @@ document.getElementById("btn-validate").addEventListener("click", async () => {
 
         statusEl.innerText = "Test 3: Henter Access Token...";
         // --- HER ER DEN NYE OPPDATERTE LINJEN ---
-        const token = await API.extension.requestPermission('accesstoken');
+        const token = await WorkspaceAPI.extension.requestPermission('accesstoken');
         
         statusEl.innerText = "✅ Test 3 OK! Alt fungerer perfekt.";
         statusEl.style.color = "green";
