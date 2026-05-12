@@ -5,38 +5,37 @@
       "propertySet": "0_Element",
       "requirement": "required",
       "allowedValues": [
-        "ELE", "HYG", "IGG", "GMT", "GTK", "KNS", "PLA", "SRO", "SKO", "UTS", "TNL", "VAA", "HYD", "VEI",
-        "LAN", "YTM", "AKU", "KLM", "CEE", "MIL", "GRE", "ADM", "BIM", "GIS", "HMS", "SHA"
+        "ELE", "HYG", "IGG", "GMT", "GTK", "KNS", "PLA", "SRO", "SKO", "UTS", "TNL", "VAA", "HYD", "VEI", "LAN", "YTM", "AKU", "KLM", "CEE", "MIL", "GRE", "ADM", "BIM", "GIS", "HMS", "SHA"
       ],
-      "crossReference": { 
+      "crossReference": {
         "target": "PNS_Navn",
         "validPairs": [
-          { "Underdisiplinkode": "ELE", "Underdisiplin": "Elektro"},
-          { "Underdisiplinkode": "HYG", "Underdisiplin": "Hydrogeologi"},
-          { "Underdisiplinkode": "IGG", "Underdisiplin": "Ingeniørgeologi"},
-          { "Underdisiplinkode": "GMT", "Underdisiplin": "Geomatikk"},
-          { "Underdisiplinkode": "GTK", "Underdisiplin": "Geoteknikk"},
-          { "Underdisiplinkode": "KNS", "Underdisiplin": "Konstruksjon"},
-          { "Underdisiplinkode": "PLA", "Underdisiplin": "Planfag"},
-          { "Underdisiplinkode": "SRO", "Underdisiplin": "Styring, regulering og overvåkning"},
-          { "Underdisiplinkode": "SKO", "Underdisiplin": "Skilt og Oppmerking"},
-          { "Underdisiplinkode": "UTS", "Underdisiplin": "Vegutstyr"},
-          { "Underdisiplinkode": "TNL", "Underdisiplin": "Tunnel"},
-          { "Underdisiplinkode": "VAA", "Underdisiplin": "Vann og Avløp"},
-          { "Underdisiplinkode": "HYD", "Underdisiplin": "Hydrologi"},
-          { "Underdisiplinkode": "VEI", "Underdisiplin": "Vei"},
-          { "Underdisiplinkode": "LAN", "Underdisiplin": "Landskap"},
-          { "Underdisiplinkode": "YTM", "Underdisiplin": "Ytre Miljø"},
-          { "Underdisiplinkode": "AKU", "Underdisiplin": "Akustikk"},
-          { "Underdisiplinkode": "KLM", "Underdisiplin": "Klima"},
-          { "Underdisiplinkode": "CEE", "Underdisiplin": "Ceequal"},
-          { "Underdisiplinkode": "MIL", "Underdisiplin": "Miljø"},
-          { "Underdisiplinkode": "GRE", "Underdisiplin": "Grunnerverv"},
-          { "Underdisiplinkode": "ADM", "Underdisiplin": "Administrasjon"},
-          { "Underdisiplinkode": "BIM", "Underdisiplin": "Bygningsinformasjonsmodellering"},
-          { "Underdisiplinkode": "GIS", "Underdisiplin": "Geografisk informasjonssystem"},
-          { "Underdisiplinkode": "HMS", "Underdisiplin": "Helse, Miljø og Sikkerhet"},
-          { "Underdisiplinkode": "SHA", "Underdisiplin": "SHA"}
+          { "Underdisiplinkode": "ELE", "Underdisiplin": "Elektro" },
+          { "Underdisiplinkode": "HYG", "Underdisiplin": "Hydrogeologi" },
+          { "Underdisiplinkode": "IGG", "Underdisiplin": "Ingeniørgeologi" },
+          { "Underdisiplinkode": "GMT", "Underdisiplin": "Geomatikk" },
+          { "Underdisiplinkode": "GTK", "Underdisiplin": "Geoteknikk" },
+          { "Underdisiplinkode": "KNS", "Underdisiplin": "Konstruksjon" },
+          { "Underdisiplinkode": "PLA", "Underdisiplin": "Planfag" },
+          { "Underdisiplinkode": "SRO", "Underdisiplin": "Styring, regulering og overvåkning" },
+          { "Underdisiplinkode": "SKO", "Underdisiplin": "Skilt og Oppmerking" },
+          { "Underdisiplinkode": "UTS", "Underdisiplin": "Vegutstyr" },
+          { "Underdisiplinkode": "TNL", "Underdisiplin": "Tunnel" },
+          { "Underdisiplinkode": "VAA", "Underdisiplin": "Vann og Avløp" },
+          { "Underdisiplinkode": "HYD", "Underdisiplin": "Hydrologi" },
+          { "Underdisiplinkode": "VEI", "Underdisiplin": "Vei" },
+          { "Underdisiplinkode": "LAN", "Underdisiplin": "Landskap" },
+          { "Underdisiplinkode": "YTM", "Underdisiplin": "Ytre Miljø" },
+          { "Underdisiplinkode": "AKU", "Underdisiplin": "Akustikk" },
+          { "Underdisiplinkode": "KLM", "Underdisiplin": "Klima" },
+          { "Underdisiplinkode": "CEE", "Underdisiplin": "Ceequal" },
+          { "Underdisiplinkode": "MIL", "Underdisiplin": "Miljø" },
+          { "Underdisiplinkode": "GRE", "Underdisiplin": "Grunnerverv" },
+          { "Underdisiplinkode": "ADM", "Underdisiplin": "Administrasjon" },
+          { "Underdisiplinkode": "BIM", "Underdisiplin": "Bygningsinformasjonsmodellering" },
+          { "Underdisiplinkode": "GIS", "Underdisiplin": "Geografisk informasjonssystem" },
+          { "Underdisiplinkode": "HMS", "Underdisiplin": "Helse, Miljø og Sikkerhet" },
+          { "Underdisiplinkode": "SHA", "Underdisiplin": "SHA" }
         ]
       },
       "minMMI": 100
@@ -45,18 +44,14 @@
       "propertySet": "0_Element",
       "requirement": "required",
       "allowedValues": [
-        "Elektro", "Hydrogeologi", "Ingeniørgeologi", "Geomatikk", "Geoteknikk", "Konstruksjon",
-        "Planfag", "Styring, regulering og overvåkning", "Skilt og Oppmerking", "Vegutstyr", "Tunnel",
-        "Vann og Avløp", "Hydrologi", "Vei", "Landskap", "Ytre Miljø", "Akustikk", "Klima", "Ceequal",
-        "Miljø", "Grunnerverv", "Administrasjon", "Bygningsinformasjonsmodellering",
-        "Geografisk informasjonssystem", "Helse, Miljø og Sikkerhet", "SHA"
+        "Elektro", "Hydrogeologi", "Ingeniørgeologi", "Geomatikk", "Geoteknikk", "Konstruksjon", "Planfag", "Styring, regulering og overvåkning", "Skilt og Oppmerking", "Vegutstyr", "Tunnel", "Vann og Avløp", "Hydrologi", "Vei", "Landskap", "Ytre Miljø", "Akustikk", "Klima", "Ceequal", "Miljø", "Grunnerverv", "Administrasjon", "Bygningsinformasjonsmodellering", "Geografisk informasjonssystem", "Helse, Miljø og Sikkerhet", "SHA"
       ],
       "minMMI": 100
     },
     "PNS Kode": {
       "propertySet": "0_Element",
       "requirement": "required",
-      "crossReference": { 
+      "crossReference": {
         "target": "PNS_Navn",
         "validPairs": [
           { "PNS Kode": "P3.1.1.1", "PNS Navn": "E6 Roterud - Strandengen nordgående Pel 9030-13100" },
@@ -72,7 +67,6 @@
           { "PNS Kode": "P3.1.2.53", "PNS Navn": "Fv.2540 Øyresvika Pel 0-910 (23400)" },
           { "PNS Kode": "P3.1.2.54", "PNS Navn": "Diverse veier, plasser, dammer, avkjørsler langs E6" },
           { "PNS Kode": "P3.2.1.1", "PNS Navn": "Roterudbrua sørgående og norgående (K3202 og K3201)" },
-          { "PNS Kode": "P3.2.1.1", "PNS Navn": "Roterudbrua sørgående og norgående (K3202 og K3201)" },
           { "PNS Kode": "P3.2.1.10", "PNS Navn": "Grythe kulvert (K3205)" },
           { "PNS Kode": "P3.2.1.11", "PNS Navn": "Oppsahl kluvert (K3206)" },
           { "PNS Kode": "P3.2.1.12", "PNS Navn": "Rogne kulvert nordgående (K3207)" },
@@ -84,16 +78,12 @@
           { "PNS Kode": "P3.2.1.18", "PNS Navn": "Røine Kulvert (K3256)" },
           { "PNS Kode": "P3.2.1.19", "PNS Navn": "Hov kulvert (K3257)" },
           { "PNS Kode": "P3.2.1.2", "PNS Navn": "Huskelhusbrua sørgeående og nordgående (K3209 og K3208)" },
-          { "PNS Kode": "P3.2.1.2", "PNS Navn": "Huskelhusbrua sørgeående og nordgående (K3209 og K3208)" },
           { "PNS Kode": "P3.2.1.20", "PNS Navn": "Støttemur (K3258)" },
-          { "PNS Kode": "P3.2.1.3", "PNS Navn": "Strandengbrua sørgående og nordgående (K3212 og K3211)" },
           { "PNS Kode": "P3.2.1.3", "PNS Navn": "Strandengbrua sørgående og nordgående (K3212 og K3211)" },
           { "PNS Kode": "P3.2.1.4", "PNS Navn": "Bjørnstad kulvert (K3225)" },
           { "PNS Kode": "P3.2.1.5", "PNS Navn": "Stranda Kulvert (K3233)" },
           { "PNS Kode": "P3.2.1.6", "PNS Navn": "Vingrom overgangsbru (K3251)" },
           { "PNS Kode": "P3.2.1.7", "PNS Navn": "Vingromsbrua sørgående og nordgående (K3241 og K3242)" },
-          { "PNS Kode": "P3.2.1.7", "PNS Navn": "Vingromsbrua sørgående og nordgående (K3241 og K3242)" },
-          { "PNS Kode": "P3.2.1.8", "PNS Navn": "Øyresvikkrysset bru sørgående og nordgående (K3262 og K3261)" },
           { "PNS Kode": "P3.2.1.8", "PNS Navn": "Øyresvikkrysset bru sørgående og nordgående (K3262 og K3261)" },
           { "PNS Kode": "P3.2.1.9", "PNS Navn": "Mæhlum kulvert (K3203)" },
           { "PNS Kode": "P3.3.1.1", "PNS Navn": "Sørgående ramper inkl. rundkjøring" },
@@ -107,8 +97,6 @@
           { "PNS Kode": "P4.1.2.3", "PNS Navn": "Hovsliveien" },
           { "PNS Kode": "P4.1.2.4", "PNS Navn": "Anleggsvei fra Trosset og sydover" },
           { "PNS Kode": "P4.2.1.1", "PNS Navn": "Portaler Øyresvika sørgående og nordgående (K4221 og K4222)" },
-          { "PNS Kode": "P4.2.1.1", "PNS Navn": "Portaler Øyresvika sørgående og nordgående (K4221 og K4222)" },
-          { "PNS Kode": "P4.2.1.2", "PNS Navn": "Portaler Trosset sørgående og nordgående (K4231 og K4232)" },
           { "PNS Kode": "P4.2.1.2", "PNS Navn": "Portaler Trosset sørgående og nordgående (K4231 og K4232)" },
           { "PNS Kode": "P4.2.1.3", "PNS Navn": "Jørstadmoveien kulvert (K2511)" },
           { "PNS Kode": "P5.1.1.1", "PNS Navn": "E6 og tilbakefylling bru Trosset" },
@@ -127,8 +115,6 @@
           { "PNS Kode": "P6.1.2.5", "PNS Navn": "Diverse veier, plasser, dammer, avkjørsler langs E6" },
           { "PNS Kode": "P6.2.1.1", "PNS Navn": "Hovemoen overgangsbru (K6611)" },
           { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
-          { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
-          { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
           { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
           { "PNS Kode": "P6.3.1.1", "PNS Navn": "Sørgående ramper" },
           { "PNS Kode": "P6.3.1.2", "PNS Navn": "Nordgående ramper" }
@@ -144,19 +130,18 @@
         "E6 Vingrom - Øyresvika Pel 19300 - 24300", "E6 Roterud - Vingrom sørgående Pel 9030 - 18400", "Fv. 2538 Paul A Owrens veg (23000) inkl. GS vei (74100)",
         "Kv. 7122 Burmavegen", "Fv. 2518 Døsvegen (23100)", "Fv. 2540 Vingromsveien Pel 0 - 865 (23200) inkl. GS vei (74400)", "Tursti fra Vingrom til Øyresvika (73300)", 
         "Rensebasseng Øyresvika", "Fv.2540 Øyresvika Pel 0-910 (23400)", "Diverse veier, plasser, dammer, avkjørsler langs E6", "Roterudbrua sørgående og norgående (K3202 og K3201)",
-        "Roterudbrua sørgående og norgående (K3202 og K3201)", "Grythe kulvert (K3205)", "Oppsahl kluvert (K3206)", "Rogne kulvert nordgående (K3207)", "Myhre kulvert (K3216)",
+        "Grythe kulvert (K3205)", "Oppsahl kluvert (K3206)", "Rogne kulvert nordgående (K3207)", "Myhre kulvert (K3216)",
         "Feiring kulvert (K3217)", "Svea bruer (K3235)", "Bakke kulvert nordgående (K3236)", "Vingromdammen kulvert (K3245)", "Røine Kulvert (K3256)", "Hov kulvert (K3257)",
-        "Huskelhusbrua sørgeående og nordgående (K3209 og K3208)", "Huskelhusbrua sørgeående og nordgående (K3209 og K3208)", "Støttemur (K3258)", "Strandengbrua sørgående og nordgående (K3212 og K3211)",
-        "Strandengbrua sørgående og nordgående (K3212 og K3211)", "Bjørnstad kulvert (K3225)", "Stranda Kulvert (K3233)", "Vingrom overgangsbru (K3251)", "Vingromsbrua sørgående og nordgående (K3241 og K3242)",
-        "Vingromsbrua sørgående og nordgående (K3241 og K3242)", "Øyresvikkrysset bru sørgående og nordgående (K3262 og K3261)", "Øyresvikkrysset bru sørgående og nordgående (K3262 og K3261)",
-        "Mæhlum kulvert (K3203)", "Sørgående ramper inkl. rundkjøring", "Nordgående ramper inkl. rundkjøring", "Sørgående rampe", "Nordgående rampe", "Forskjæring Øyresvika Pel 24300 - 24588",
+        "Huskelhusbrua sørgeående og nordgående (K3209 og K3208)", "Støttemur (K3258)", "Strandengbrua sørgående og nordgående (K3212 og K3211)",
+        "Bjørnstad kulvert (K3225)", "Stranda Kulvert (K3233)", "Vingrom overgangsbru (K3251)", "Vingromsbrua sørgående og nordgående (K3241 og K3242)",
+        "Øyresvikkrysset bru sørgående og nordgående (K3262 og K3261)", "Mæhlum kulvert (K3203)", "Sørgående ramper inkl. rundkjøring", "Nordgående ramper inkl. rundkjøring", "Sørgående rampe", "Nordgående rampe", "Forskjæring Øyresvika Pel 24300 - 24588",
         "Forskjæring Trosset Pel 28820 - 28850", "Tilkomstvei rensebasseng Øyresvika", "Tilkomstvei rensebasseng Trosset", "Hovsliveien", "Anleggsvei fra Trosset og sydover",
-        "Portaler Øyresvika sørgående og nordgående (K4221 og K4222)", "Portaler Øyresvika sørgående og nordgående (K4221 og K4222)", "Portaler Trosset sørgående og nordgående (K4231 og K4232)",
-        "Portaler Trosset sørgående og nordgående (K4231 og K4232)", "Jørstadmoveien kulvert (K2511)", "E6 og tilbakefylling bru Trosset", "E6 og tilbakefylling bru Hovemoen",
+        "Portaler Øyresvika sørgående og nordgående (K4221 og K4222)", "Portaler Trosset sørgående og nordgående (K4231 og K4232)",
+        "Jørstadmoveien kulvert (K2511)", "E6 og tilbakefylling bru Trosset", "E6 og tilbakefylling bru Hovemoen",
         "Fv. 253 Jørstadmovegen, (27100)", "Gårdsvei Hovemoen Gård (67100)", "Rensebasseng Trosset (K4233)", "Fundamentering", "ILM Bro", "E6 Hovemoen - Lillehammer kryss pel 29 500 - 30 850 ",
         "E6 Hovemoen - Storhove pel 30 850 - 31 618", "Vei Hovemoen Bru 69000", "Veier Hovemoen Gård", "Veier til rensebassenger ved Hovemoen og Storhove", "Gausdalsvegen", 
-        "Diverse veier, plasser, dammer, avkjørsler langs E6", "Hovemoen overgangsbru (K6611)", "Lillehammerkrysset bru sørgående og nordgående", "Lillehammerkrysset bru sørgående og nordgående", 
-        "Gausdalsarmen bru sørgående og nordgående", "Gausdalsarmen bru sørgående og nordgående", "Sørgående ramper", "Nordgående ramper"
+        "Diverse veier, plasser, dammer, avkjørsler langs E6", "Hovemoen overgangsbru (K6611)", "Lillehammerkrysset bru sørgående og nordgående", 
+        "Gausdalsarmen bru sørgående og nordgående", "Sørgående ramper", "Nordgående ramper"
       ],
       "minMMI": 200
     },
@@ -166,7 +151,9 @@
       "overrides": [
         { "discipline": "KNS", "requirement": "required" }
       ],
-      "allowedValues": ["Prosjektert", "Grunnlagsdata", "Midlertidig", "Avventer produktvalg", "Innmålt", "Rives/demonteres"]
+      "allowedValues": [
+        "Prosjektert", "Grunnlagsdata", "Midlertidig", "Avventer produktvalg", "Innmålt", "Rives/demonteres"
+      ]
     },
     "Faseplan": {
       "propertySet": "0_Element",
@@ -198,7 +185,7 @@
       "allowedValues": [100, 200, 300, 350, 400, 450, 500, 600],
       "minMMI": 100
     },
-    "Objektklasse":{
+    "Objektklasse": {
       "propertySet": "0_Element",
       "requirement": "required",
       "allowedValues": {
@@ -300,7 +287,7 @@
           "Møblering": ["Holdeplassutrustning", "Lekeaparat", "Utemøbler", "Bilettautomat", "Sykkelstativ", "Sykkelskur", "Utsmykningsobjekt", "Flaggstang"],
           "Rekkverk": ["Betongrekkverk", "Rekkverkspanel", "Overgangsrekkverk", "Rekkverksskinne", "Rekkverksstolpe", "Natursteinsblokk", "Støttekonstruksjon"],
           "Terrengforming": ["Matjord", "Plastring bekk", "Plastring erosjonssikring", "Revegetering", "Tilsåing", "Grasdekker", "Steinmaterialer", "SidearealTunnel", "Voll"],
-          "Vegetasjon": ["Tre", "Blomsterbeplantning", "Busk"]          
+          "Vegetasjon": ["Tre", "Blomsterbeplantning", "Busk"]
         },
         "MIL": {
           "Forurenset-grunn": ["Masser", "Prøver"],
