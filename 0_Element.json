@@ -182,7 +182,7 @@
       "propertySet": "0_Element",
       "requirement": "required",
       "format": "^[0-9]{3}$",
-      "allowedValues": [100, 200, 300, 350, 400, 450, 500, 600],
+      "allowedValues": ["100", "200", "300", "350", "400", "450", "500", "600"],
       "minMMI": 100
     },
     "Objektklasse": {
@@ -320,7 +320,7 @@
           "Vegbom": ["Ledebom", "Stengebom"]
         },
         "VEI": {
-          "Overbygning": ["Bindlag", "Bærelag", "Nedre bærelag", "Øvre bærelag", "Fiberduk", "Filterlag", "Frostsikringslag", "Slitelag", "Grusskulder"],
+          "Overbygning": ["Bindlag", "Bærelag", "Nedre bærelag", "Øvre bærelag", "Fiberduk", "Filterlag", "Forsterkningslag", "Slitelag", "Grusskulder"],
           "Underbygning": ["Frostsikringslag", "Avrettingslag", "Oppfylling", "LavesteGravenivå", "PlanumBerg", "PlanumJord", "PlanumFylling", "Planum"],
           "Skjæring": ["SkjæringBerg", "SkjæringJord"],
           "Stikningsobjekt": ["Stikningsobjekt"],
