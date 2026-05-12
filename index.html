@@ -1,202 +1,995 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="nb">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIM Validering</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f4f4; margin: 0; padding: 15px; }
-        .container { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h2 { font-size: 16px; margin: 0 0 5px 0; }
-        .subtitle { font-size: 12px; color: #666; margin-bottom: 15px; }
-        .primary-btn { background: #005f9e; color: white; padding: 10px; width: 100%; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .primary-btn:disabled { background: #ccc; cursor: not-allowed; }
-        .status { margin-top: 15px; font-size: 13px; font-weight: bold; }
-        .hidden { display: none; }
-        ul { padding-left: 20px; font-size: 12px; }
-        li { margin-bottom: 5px; }
-        .success { color: green; list-style-type: none; margin-left: -20px; font-weight: bold;}
-    </style>
-    <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
+  <meta charset="UTF-8"/>
+  <title>BIM Validering (0_Element)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
+  <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap');
+
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #1f2937;
+      --border:    #30363d;
+      --ink:       #e6edf3;
+      --muted:     #7d8590;
+      --green:     #3fb950;
+      --green-dim: #1a3a22;
+      --yellow:    #d29922;
+      --yellow-dim:#2d2205;
+      --red:       #f85149;
+      --red-dim:   #3a1212;
+      --blue:      #58a6ff;
+      --blue-dim:  #0d2044;
+      --accent:    #58a6ff;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .header-title { flex: 1; }
+    .header-title h1 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      color: var(--ink);
+    }
+    .header-title p {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-top: 1px;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .btn {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: opacity .15s, transform .1s;
+      white-space: nowrap;
+    }
+    .btn:disabled { opacity: .4; cursor: not-allowed; }
+    .btn:not(:disabled):hover { opacity: .85; }
+    .btn:not(:disabled):active { transform: scale(.97); }
+    .btn-primary { background: var(--blue); color: #000; }
+    .btn-ghost   { background: var(--surface2); color: var(--ink); border: 1px solid var(--border); }
+    .btn-danger  { background: #21262d; color: var(--red); border: 1px solid #3a1c1c; }
+    .btn-colorize { background: #1a3a22; color: var(--green); border: 1px solid #2a5a32; }
+    .btn-unreset  { background: #1f2937; color: var(--muted); border: 1px solid var(--border); }
+    .btn-export   { background: #0d2044; color: var(--blue); border: 1px solid #1a3a6c; }
+
+    #statusBar {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 6px 16px;
+      background: var(--blue-dim);
+      color: var(--blue);
+      border-bottom: 1px solid #1a3a5c;
+      flex-shrink: 0;
+    }
+    #statusBar.ok    { background: var(--green-dim); color: var(--green); border-color: #1a3a22; }
+    #statusBar.error { background: var(--red-dim);   color: var(--red);   border-color: #3a1212; }
+
+    #modelBar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    #modelBar label {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+    select {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--surface2);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      flex: 1;
+      min-width: 0;
+    }
+    select:disabled { opacity: .4; }
+
+    main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .card .label {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .card .value {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-top: 4px;
+    }
+    .card .sub {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-top: 3px;
+    }
+    .card.green  { border-color: #1e4028; }
+    .card.green .value { color: var(--green); }
+    .card.red    { border-color: #3a1212; }
+    .card.red .value { color: var(--red); }
+    .card.blue   { border-color: #0d2044; }
+    .card.blue .value { color: var(--blue); }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel-header h3 {
+      font-size: 13px;
+      font-weight: 700;
+      flex: 1;
+    }
+    .panel-header .hint {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 7px; }
+
+    .field-row { display: flex; align-items: center; gap: 10px; }
+    .field-name {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      width: 180px;
+      flex-shrink: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .bar-track {
+      flex: 1;
+      height: 16px;
+      background: var(--surface2);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+    }
+    .bar-fill-ok   { background: var(--green); height: 100%; transition: width .5s cubic-bezier(.4,0,.2,1); }
+    .bar-fill-miss { background: var(--red);   height: 100%; transition: width .5s cubic-bezier(.4,0,.2,1); }
+    .bar-pct {
+      font-family: var(--mono);
+      font-size: 10px;
+      width: 48px;
+      text-align: right;
+      flex-shrink: 0;
+      color: var(--ink);
+    }
+
+    .table-wrap { overflow: auto; max-height: 400px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+    thead th {
+      background: var(--surface2);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      padding: 8px 10px;
+      text-align: left;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      white-space: nowrap;
+    }
+    tbody tr { border-bottom: 1px solid #1c2128; cursor: pointer; }
+    tbody tr:hover td { background: #1c2128; }
+    tbody td {
+      padding: 6px 10px;
+      vertical-align: middle;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--ink);
+    }
+    .obj-name { color: var(--blue); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .guid     { color: var(--muted); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .guid:hover { color: var(--ink); }
+
+    .issue-cell {
+      min-width: 200px;
+      max-width: 300px;
+      white-space: normal;
+      line-height: 1.35;
+    }
+    .issue-pill {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+    }
+    .issue-pill.ok { background: var(--green-dim); color: var(--green); border-color: #1e4028; }
+    .issue-pill.warn { background: var(--yellow-dim); color: var(--yellow); border-color: #3a2d05; }
+    .issue-pill.miss { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
+
+    .field-value {
+      display: inline-block;
+      max-width: 150px;
+      min-width: 72px;
+      padding: 3px 7px;
+      border-radius: 5px;
+      font-family: var(--mono);
+      font-size: 10px;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border: 1px solid transparent;
+    }
+    .field-value.ok { background: var(--green-dim); color: var(--green); border-color: #1e4028; }
+    .field-value.warn { background: var(--yellow-dim); color: var(--yellow); border-color: #3a2d05; }
+    .field-value.miss { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
+    .field-value.na { background: #2a2f36; color: #9aa4af; border-color: #30363d; }
+    .field-col-head { min-width: 110px; max-width: 150px; }
+
+    .score {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 20px;
+    }
+    .score.s100 { background: var(--green-dim); color: var(--green); }
+    .score.s75  { background: #1a2a10; color: #7ee787; }
+    .score.s50  { background: var(--yellow-dim); color: var(--yellow); }
+    .score.s25  { background: #3a2005; color: #d08030; }
+    .score.s0   { background: var(--red-dim); color: var(--red); }
+
+    .tabs { display: flex; gap: 6px; }
+    .tab {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .tab.active, .tab:hover {
+      background: var(--surface2);
+      color: var(--ink);
+      border-color: var(--blue);
+    }
+
+    #donutWrap { display: flex; align-items: center; gap: 20px; padding: 14px; }
+    #donutSvg  { flex-shrink: 0; }
+    .donut-legend { display: flex; flex-direction: column; gap: 6px; }
+    .legend-item  { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+    .legend-dot   { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .legend-text  { color: var(--muted); font-family: var(--mono); font-size: 10px; }
+    .legend-val   { font-weight: 700; color: var(--ink); margin-left: auto; font-family: var(--mono); font-size: 10px; min-width: 28px; text-align: right; }
+
+    #searchInput {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: var(--surface2);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 10px;
+      width: 180px;
+    }
+
+    .empty { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px; }
+    .empty .icon { font-size: 36px; margin-bottom: 10px; }
+    
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(6px); }
+      to   { opacity:1; transform:none; }
+    }
+    .anim { animation: fadeUp .3s ease both; }
+    .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    @media(max-width: 640px) {
+      .grid-2col { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h2>BIM Validering</h2>
-        <p class="subtitle">Validerer 0_Element</p>
-        <button id="btn-validate" class="primary-btn" disabled>Starter opp...</button>
-        <div id="status-message" class="status">Håndhilser med Trimble...</div>
-        <div id="results-container" class="hidden">
-            <h3>Resultater</h3>
-            <ul id="results-list"></ul>
-        </div>
+
+<header>
+  <div class="header-title">
+    <h1>BIM Validering</h1>
+    <p>Validerer ut ifra egendefinerte regler hentet fra 0_Element.json</p>
+  </div>
+  <span class="badge" id="modelBadge">Ikke tilkoblet</span>
+  <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
+  <button class="btn btn-primary" id="btnValidate" disabled>▶ Valider markerte</button>
+  <button class="btn btn-colorize" id="btnColorize" disabled>🎨 Fargelegg</button>
+  <button class="btn btn-unreset" id="btnUncolor" disabled>⬜ Fjern farger</button>
+  <button class="btn btn-export" id="btnExport" disabled>⬇ Eksporter CSV</button>
+  <button class="btn btn-danger" id="btnReset" disabled>↺ Nullstill</button>
+</header>
+
+<div id="statusBar">Kobler til Trimble Connect…</div>
+
+<div id="modelBar">
+  <label>Modell:</label>
+  <select id="modelSelect" disabled><option value="">– velg modell –</option></select>
+</div>
+
+<main id="mainContent">
+  <div class="empty anim">
+    <div class="icon">🔍</div>
+    <div>
+      Marker objekter i modellen og trykk <strong>Valider markerte</strong> for å starte.<br>
+      <span style="font-size:11px;color:var(--muted)">
+        Regelsettet (0_Element.json) lastes automatisk ned fra GitHub når du trykker Valider.
+      </span>
+    </div>
+  </div>
+</main>
+
+<script>
+let API = null;
+let allModels = [];
+let validationRows = [];
+let validationRules = null;
+let FIELDS = []; // Dynamiske kolonner basert på JSON-filen
+let activeFilter = 'all';
+let searchTerm = '';
+
+const $ = id => document.getElementById(id);
+const btnLoad = $('btnLoad');
+const btnValidate = $('btnValidate');
+const btnReset = $('btnReset');
+const btnColorize = $('btnColorize');
+const btnUncolor = $('btnUncolor');
+const btnExport = $('btnExport');
+const modelSelect = $('modelSelect');
+const statusBar = $('statusBar');
+const modelBadge = $('modelBadge');
+const mainContent = $('mainContent');
+
+function norm(v){ return (v ?? '').toString().trim(); }
+function esc(v){ return norm(v).replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s])); }
+function setStatus(msg, cls=''){ statusBar.textContent = msg; statusBar.className = cls; }
+
+// --- 1. KOBLER TIL TRIMBLE ---
+async function connect(){
+  try {
+    if (!window.TrimbleConnectWorkspace?.connect) {
+      throw new Error('Trimble Connect Workspace API ikke tilgjengelig');
+    }
+    setStatus('⏳ Kobler til Trimble Connect…');
+    API = await window.TrimbleConnectWorkspace.connect(window.parent);
+    
+    btnLoad.disabled = false;
+    btnValidate.disabled = false;
+    setStatus('✅ Tilkoblet Trimble Connect. Klar til bruk!', 'ok');
+    modelBadge.textContent = 'Tilkoblet';
+  } catch (e) {
+    setStatus('❌ ' + (e.message || e), 'error');
+    modelBadge.textContent = 'Feil';
+  }
+}
+
+// --- 2. HENTER MODELLISTE (Valgfritt) ---
+async function loadModels(){
+  if (!API) return;
+  btnLoad.disabled = true;
+  setStatus('⏳ Leser modeller…');
+  try {
+    const objs = await API.viewer.getObjects();
+    allModels = (objs || []).map((m, i) => {
+      const modelId = norm(m.modelId || m.modelid || '');
+      if (!modelId) return null;
+      const name = m.name || `Modell ${i + 1}`;
+      const cnt = Array.isArray(m.objects) ? m.objects.length : 0;
+      return { modelId, name, objectCount: cnt };
+    }).filter(Boolean);
+
+    modelSelect.innerHTML = '<option value="">– velg modell (valgfritt) –</option>' +
+      allModels.map(m => `<option value="${esc(m.modelId)}">${esc(m.name)} (${m.objectCount} obj.)</option>`).join('');
+
+    modelSelect.disabled = false;
+    setStatus(`✅ ${allModels.length} modeller hentet.`, 'ok');
+  } catch (e) {
+    setStatus('❌ Feil ved henting: ' + (e.message || e), 'error');
+  } finally {
+    btnLoad.disabled = false;
+  }
+}
+
+// --- 3. FLATER UT TRIMBLE-EGENSKAPER ---
+function flattenProperties(tcProps) {
+    let flat = {};
+    if (!tcProps) return flat;
+    tcProps.forEach(group => {
+        group.properties.forEach(p => {
+            flat[p.name] = p.value;
+        });
+    });
+    return flat;
+}
+
+// --- 4. HENT REGLER FRA GITHUB ---
+async function fetchRules() {
+    if (validationRules) return;
+    setStatus('⏳ Laster ned regler fra GitHub (0_Element.json)...', 'blue');
+    const res = await fetch('0_Element.json');
+    if (!res.ok) throw new Error("Fant ikke filen '0_Element.json'. Ligger den i samme mappe på GitHub?");
+    validationRules = await res.json();
+    
+    // Bygger kolonnene automatisk basert på egenskapene i JSON-filen
+    FIELDS = Object.keys(validationRules.properties).map(k => ({ key: k, label: k }));
+}
+
+// --- 5. UTFØR VALidering PÅ JSON-REGLENE ---
+function runValidation(objProps, rules) {
+    let fields = {};
+    let missingCount = 0;
+    let formatErrorCount = 0;
+    let naCount = 0;
+    let okCount = 0;
+    const fag = objProps["Underdisiplinkode"];
+
+    for (const [propName, rule] of Object.entries(rules)) {
+        const val = objProps[propName] || '';
+        let effectiveRequirement = rule.requirement || rule.defaultRequirement;
+        
+        if (rule.overrides) {
+            const override = rule.overrides.find(o => o.discipline === fag);
+            if (override) effectiveRequirement = override.requirement;
+        }
+
+        // Sjekk om påkrevd men mangler
+        if (effectiveRequirement === "required" && (!val || val.toString().trim() === "")) {
+            fields[propName] = { status: 'missing', value: val, msg: `Mangler påkrevd egenskap` };
+            missingCount++;
+            continue;
+        }
+
+        // Sjekk om tom og ikke påkrevd
+        if (!val) {
+            fields[propName] = { status: 'na', value: val, msg: `Ikke påkrevd` };
+            naCount++;
+            continue;
+        }
+
+        let isFormatError = false;
+        let errMsg = '';
+
+        // Valider format
+        if (rule.format) {
+            const regex = new RegExp(rule.format);
+            if (!regex.test(val)) {
+                isFormatError = true;
+                errMsg = `Feil format`;
+            }
+        }
+
+        // Valider tillatte verdier
+        if (!isFormatError && rule.allowedValues) {
+            if (Array.isArray(rule.allowedValues)) {
+                if (!rule.allowedValues.includes(val)) {
+                    isFormatError = true;
+                    errMsg = `Ugyldig verdi`;
+                }
+            } else if (typeof rule.allowedValues === 'object' && fag) {
+                if (propName === "Objektklasse") {
+                    const validClasses = rule.allowedValues[fag];
+                    if (!validClasses || !validClasses.includes(val)) {
+                        isFormatError = true;
+                        errMsg = `Ugyldig klasse for fag '${fag}'`;
+                    }
+                } 
+                else if (propName === "Objekttype") {
+                    const klasse = objProps["Objektklasse"];
+                    const validTypesForFag = rule.allowedValues[fag];
+                    if (validTypesForFag && validTypesForFag[klasse]) {
+                        if (!validTypesForFag[klasse].includes(val)) {
+                            isFormatError = true;
+                            errMsg = `Ugyldig type for klasse '${klasse}'`;
+                        }
+                    } else {
+                        isFormatError = true;
+                        errMsg = `Ugyldig kombinasjon for fag og klasse`;
+                    }
+                }
+            }
+        }
+
+        if (isFormatError) {
+            fields[propName] = { status: 'format', value: val, msg: errMsg };
+            formatErrorCount++;
+        } else {
+            fields[propName] = { status: 'ok', value: val, msg: `OK` };
+            okCount++;
+        }
+    }
+
+    const requiredTotal = okCount + missingCount + formatErrorCount;
+    const score = requiredTotal > 0 ? Math.round((okCount / requiredTotal) * 100) : 100;
+
+    return { fields, missingCount, formatErrorCount, naCount, score };
+}
+
+// --- 6. HOVEDFUNKSJON: VALIDER ---
+async function validate(){
+  if (!API) return;
+  btnValidate.disabled = true;
+  btnReset.disabled = true;
+  mainContent.innerHTML = '';
+
+  try {
+    await fetchRules();
+    
+    setStatus('⏳ Leser valgte objekter fra 3D-modellen...');
+    const selection = await API.viewer.getSelection();
+    const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
+    
+    if (!hasSelection) {
+        setStatus('⚠️ Du må markere ett eller flere objekter i 3D-visningen før du validerer.', 'error');
+        btnValidate.disabled = false;
+        return;
+    }
+
+    const objectsData = await window.WorkspaceAPI.objects.getObjects(selection);
+    validationRows = [];
+
+    objectsData.forEach(obj => {
+        const props = flattenProperties(obj.properties);
+        const ruleResult = runValidation(props, validationRules.properties);
+
+        validationRows.push({
+            name: norm(obj.name || ''),
+            guid: norm(props["GlobalId"] || obj.id || ''),
+            modelId: norm(obj.modelId),
+            runtimeId: obj.id,
+            fields: ruleResult.fields,
+            score: ruleResult.score,
+            missingCount: ruleResult.missingCount,
+            formatErrorCount: ruleResult.formatErrorCount,
+            naCount: ruleResult.naCount
+        });
+    });
+
+    renderDashboard();
+    btnReset.disabled = false;
+    btnColorize.disabled = false;
+    btnExport.disabled = false;
+    setStatus(`✅ Validering fullført — ${validationRows.length} objekter analysert.`, 'ok');
+
+  } catch (e) {
+    setStatus('❌ Feil under validering: ' + (e.message || e), 'error');
+    console.error(e);
+  } finally {
+    btnValidate.disabled = false;
+  }
+}
+
+// --- 7. RENDERING AV UI ---
+function scoreClass(pct){
+  if (pct === 100) return 's100';
+  if (pct >= 75) return 's75';
+  if (pct >= 50) return 's50';
+  if (pct >= 25) return 's25';
+  return 's0';
+}
+
+function fieldClass(status){
+  if (status === 'ok') return 'ok';
+  if (status === 'na') return 'na';
+  if (status === 'format') return 'warn';
+  return 'miss';
+}
+
+function renderDashboard(){
+  const total = validationRows.length;
+  const perfect = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0).length;
+  const issues = total - perfect;
+  const totalMissing = validationRows.reduce((s, r) => s + r.missingCount, 0);
+  const totalFormat = validationRows.reduce((s, r) => s + r.formatErrorCount, 0);
+
+  const fieldStats = FIELDS.map(f => {
+    let ok = 0, miss = 0, format = 0, na = 0;
+    for (const r of validationRows) {
+      const st = r.fields[f.key]?.status;
+      if (st === 'ok') ok++;
+      else if (st === 'missing') miss++;
+      else if (st === 'format') format++;
+      else na++;
+    }
+    const applicable = total - na;
+    return { ...f, ok, miss, format, na, applicable };
+  });
+
+  mainContent.innerHTML = `
+    <div class="cards anim">
+      <div class="card blue">
+        <div class="label">Analysert</div>
+        <div class="value">${total}</div>
+        <div class="sub">objekter</div>
+      </div>
+      <div class="card green">
+        <div class="label">OK</div>
+        <div class="value">${perfect}</div>
+        <div class="sub">uten mangler og formatfeil</div>
+      </div>
+      <div class="card red">
+        <div class="label">Avvik</div>
+        <div class="value">${issues}</div>
+        <div class="sub">${totalMissing} mangler · ${totalFormat} formatfeil</div>
+      </div>
     </div>
 
-    <script>
-        let API = null;
-        let validationRules = null;
+    <div class="grid-2col anim" style="animation-delay:.05s">
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Overordnet status</h3>
+          <span class="hint">grønn = ok · gul = formatfeil · rød = mangler</span>
+        </div>
+        <div id="donutWrap">
+          <svg id="donutSvg" width="120" height="120" viewBox="0 0 120 120"></svg>
+          <div class="donut-legend" id="donutLegend"></div>
+        </div>
+      </div>
 
-        document.addEventListener("DOMContentLoaded", async () => {
-            const statusEl = document.getElementById("status-message");
-            const btn = document.getElementById("btn-validate");
-            try {
-                API = await window.TrimbleConnectWorkspace.connect(window.parent);
-                statusEl.innerText = "✅ Klar til validering!";
-                statusEl.style.color = "green";
-                btn.disabled = false;
-                btn.innerText = "Valider valgte objekter";
-                setTimeout(() => statusEl.classList.add("hidden"), 3000);
-            } catch (e) {
-                statusEl.innerText = "❌ Feil: Kunne ikke koble til 3D-modell.";
-                statusEl.style.color = "red";
-            }
-        });
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Feltdekning</h3>
+          <span class="hint">grå = ikke påkrevd</span>
+        </div>
+        <div id="fieldChart"></div>
+      </div>
+    </div>
 
-        document.getElementById("btn-validate").addEventListener("click", async () => {
-            const btn = document.getElementById("btn-validate");
-            const resultsList = document.getElementById("results-list");
-            const resultsContainer = document.getElementById("results-container");
-            const statusEl = document.getElementById("status-message");
+    <div class="panel anim" style="animation-delay:.1s">
+      <div class="panel-header">
+        <h3>Objektliste</h3>
+        <div class="tabs" id="filterTabs">
+          <button class="tab active" data-filter="all">Alle (${total})</button>
+          <button class="tab" data-filter="ok">✅ OK (${perfect})</button>
+          <button class="tab" data-filter="issues">⚠️ Avvik (${issues})</button>
+        </div>
+        <input id="searchInput" type="text" placeholder="Søk navn / GUID…" style="margin-left:8px"/>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Score</th>
+              <th>Status</th>
+              <th>Navn</th>
+              <th>ID</th>
+              ${FIELDS.map(f => `<th class="field-col-head" title="${esc(f.label)}">${esc(f.label)}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  `;
 
-            btn.disabled = true;
-            resultsList.innerHTML = "";
-            statusEl.classList.remove("hidden");
+  renderDonut(total, perfect, format, missing);
+  renderFieldBars(fieldStats);
+  renderTable();
 
-            try {
-                if (!validationRules) {
-                    statusEl.innerText = "Henter prosjektinfo...";
-                    statusEl.style.color = "blue";
+  document.getElementById('filterTabs').addEventListener('click', e => {
+    const btn = e.target.closest('.tab');
+    if (!btn) return;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderTable();
+  });
 
-                    const project = await API.project.getProject();
-                    const token = await API.extension.requestPermission('accesstoken');
-                    
-                    // SMART REGION-SJEKK: Trimble bruker ofte 'prod' for USA og 'eu' for Europa
-                    let baseUrl = "app.connect.trimble.com"; // Standard/Global
-                    if (project.region === "eu") {
-                        baseUrl = "eu.connect.trimble.com";
-                    } else if (project.region === "asia") {
-                        baseUrl = "asia.connect.trimble.com";
-                    }
+  document.getElementById('searchInput').addEventListener('input', e => {
+    searchTerm = e.target.value.toLowerCase();
+    renderTable();
+  });
+}
 
-                    statusEl.innerText = "Søker etter 0_Element.json...";
-                    const tcApiUrl = `https://${baseUrl}/tc/api/2.0/projects/${project.id}/files?name=0_Element.json`;
-                    
-                    const searchResponse = await fetch(tcApiUrl, {
-                        method: 'GET',
-                        headers: { 
-                            'Authorization': `Bearer ${token}`,
-                            'Accept': 'application/json'
-                        }
-                    });
+function renderDonut(total, ok, format, missing){
+  const okCount = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0).length;
+  const formatCount = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount > 0).length;
+  const missingCount = validationRows.filter(r => r.missingCount > 0).length;
 
-                    if (!searchResponse.ok) throw new Error(`TC svarte med feilkode ${searchResponse.status}`);
-                    
-                    const searchResult = await searchResponse.json();
-                    if (!searchResult || searchResult.length === 0) throw new Error("Fant ikke filen '0_Element.json' i prosjektet.");
+  const slices = [
+    { label: 'OK', count: okCount, color: '#3fb950' },
+    { label: 'Formatfeil', count: formatCount, color: '#d29922' },
+    { label: 'Manglende felter', count: missingCount, color: '#f85149' }
+  ];
 
-                    statusEl.innerText = "Laster ned reglene...";
-                    const fileId = searchResult[0].id;
-                    const fileContentUrl = `https://${baseUrl}/tc/api/2.0/files/${fileId}/content`;
-                    
-                    const fileResponse = await fetch(fileContentUrl, {
-                        method: 'GET',
-                        headers: { 'Authorization': `Bearer ${token}` }
-                    });
+  const svg = document.getElementById('donutSvg');
+  const legend = document.getElementById('donutLegend');
+  const cx = 60, cy = 60, r = 48, ir = 30;
+  const circumference = 2 * Math.PI * r;
+  let offset = 0;
+  let paths = '';
 
-                    if (!fileResponse.ok) throw new Error("Kunne ikke lese filinnholdet.");
-                    validationRules = await fileResponse.json();
-                    statusEl.innerText = "Regler lastet inn!";
-                    statusEl.style.color = "green";
-                }
+  for (const s of slices) {
+    const frac = total > 0 ? s.count / total : 0;
+    const dashLen = frac * circumference;
+    const gap = circumference - dashLen;
+    paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="18" stroke-dasharray="${dashLen.toFixed(2)} ${gap.toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}"></circle>`;
+    offset += dashLen;
+  }
 
-                // --- VALIDERINGS-DELEN ---
-                btn.innerText = "Validerer...";
-                const selection = await API.viewer.getSelection();
-                const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
-                
-                if (!hasSelection) throw new Error("Marker et objekt i 3D-visningen først!");
+  const pct = total > 0 ? Math.round((okCount / total) * 100) : 0;
+  svg.innerHTML = paths + `
+    <circle cx="${cx}" cy="${cy}" r="${ir}" fill="var(--surface)"></circle>
+    <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-family="Syne,sans-serif" font-size="18" font-weight="800" fill="var(--ink)">${pct}%</text>
+    <text x="${cx}" y="${cy + 12}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--muted)">OK</text>
+  `;
 
-                // Vi må hente objektdata via WorkspaceAPI (den gamle metoden som fungerte her)
-                const objectsData = await window.WorkspaceAPI.objects.getObjects(selection);
-                let totalErrors = 0;
+  legend.innerHTML = slices.map(s => `
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${s.color}"></div>
+      <span class="legend-text">${esc(s.label)}</span>
+      <span class="legend-val">${s.count}</span>
+    </div>
+  `).join('');
+}
 
-                objectsData.forEach(obj => {
-                    const props = flattenProperties(obj.properties);
-                    const errors = runValidation(props, validationRules.properties);
+function renderFieldBars(fieldStats){
+  const chart = document.getElementById('fieldChart');
+  chart.innerHTML = fieldStats.map(f => {
+    const okPct = f.applicable ? Math.round((f.ok / f.applicable) * 100) : 0;
+    const missPct = f.applicable ? Math.round((f.miss / f.applicable) * 100) : 0;
+    return `
+      <div class="field-row">
+        <div class="field-name" title="${esc(f.label)}">${esc(f.label)}</div>
+        <div class="bar-track">
+          <div class="bar-fill-ok" style="width:${okPct}%"></div>
+          <div class="bar-fill-miss" style="width:${missPct}%"></div>
+        </div>
+        <div class="bar-pct">${f.ok}/${f.applicable || 0}</div>
+      </div>
+    `;
+  }).join('');
+}
 
-                    if (errors.length > 0) {
-                        totalErrors += errors.length;
-                        errors.forEach(err => {
-                            const li = document.createElement("li");
-                            li.innerHTML = `<strong>Objekt: ${obj.id.substring(0,8)}</strong>: ${err}`;
-                            resultsList.appendChild(li);
-                        });
-                        window.WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 255, g: 0, b: 0, a: 255 } }]);
-                    } else {
-                        window.WorkspaceAPI.viewer.setColors([{ objects: [obj.id], color: { r: 0, g: 255, b: 0, a: 255 } }]);
-                    }
-                });
+function renderTable(){
+  let rows = validationRows.slice();
+  if (activeFilter === 'ok') rows = rows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0);
+  if (activeFilter === 'issues') rows = rows.filter(r => r.missingCount > 0 || r.formatErrorCount > 0);
+  if (searchTerm) {
+    rows = rows.filter(r => r.name.toLowerCase().includes(searchTerm) || r.guid.toLowerCase().includes(searchTerm));
+  }
 
-                resultsContainer.classList.remove("hidden");
-                statusEl.classList.add("hidden");
-                if (totalErrors === 0) {
-                    const li = document.createElement("li");
-                    li.className = "success";
-                    li.innerText = "Suksess! Objektene følger reglene.";
-                    resultsList.appendChild(li);
-                }
+  const tbody = document.getElementById('tableBody');
+  if (!rows.length) {
+    tbody.innerHTML = `<tr><td colspan="${4 + FIELDS.length}" class="empty" style="padding:20px;text-align:center;color:var(--muted)">Ingen rader matcher filteret.</td></tr>`;
+    return;
+  }
 
-            } catch (error) {
-                statusEl.innerText = "FEIL: " + error.message;
-                statusEl.style.color = "red";
-                console.error(error);
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "Valider valgte objekter";
-            }
-        });
+  tbody.innerHTML = rows.map(r => {
+    const sc = scoreClass(r.score);
+    let statusPill = `<span class="issue-pill ok">OK</span>`;
+    if (r.missingCount > 0) statusPill = `<span class="issue-pill miss">${r.missingCount} mangler</span>`;
+    else if (r.formatErrorCount > 0) statusPill = `<span class="issue-pill warn">${r.formatErrorCount} formatfeil</span>`;
 
-        function flattenProperties(tcProps) {
-            let flat = {};
-            if (!tcProps) return flat;
-            tcProps.forEach(group => {
-                group.properties.forEach(p => { flat[p.name] = p.value; });
-            });
-            return flat;
-        }
+    const cells = FIELDS.map(f => {
+      const fieldData = r.fields[f.key] || { status: 'missing', value: '', msg: 'Mangler' };
+      let cellText = fieldData.value || (fieldData.status === 'na' ? 'Ikke påkrevd' : 'Feil');
+      if (fieldData.status === 'ok' && !fieldData.value) cellText = 'OK';
+      const cls = fieldClass(fieldData.status);
+      return `<td title="${esc(fieldData.msg)}\nVerdi: ${esc(fieldData.value || '–')}"><span class="field-value ${cls}">${esc(cellText)}</span></td>`;
+    }).join('');
 
-        function runValidation(objProps, rules) {
-            let errors = [];
-            const fag = objProps["Underdisiplinkode"];
-            for (const [propName, rule] of Object.entries(rules)) {
-                const val = objProps[propName];
-                let req = rule.requirement || rule.defaultRequirement;
-                if (rule.overrides) {
-                    const ovr = rule.overrides.find(o => o.discipline === fag);
-                    if (ovr) req = ovr.requirement;
-                }
-                if (req === "required" && (!val || val.toString().trim() === "")) {
-                    errors.push(`Mangler <b>${propName}</b>`);
-                    continue;
-                }
-                if (!val) continue;
-                if (rule.format && !(new RegExp(rule.format).test(val))) {
-                    errors.push(`Formatfeil på <b>${propName}</b>`);
-                }
-                if (rule.allowedValues) {
-                    if (Array.isArray(rule.allowedValues)) {
-                        if (!rule.allowedValues.includes(val)) errors.push(`Ugyldig verdi i <b>${propName}</b>`);
-                    } else if (typeof rule.allowedValues === 'object' && fag) {
-                        if (propName === "Objektklasse") {
-                            if (!rule.allowedValues[fag]?.includes(val)) errors.push(`Klasse '${val}' ugyldig for '${fag}'`);
-                        } else if (propName === "Objekttype") {
-                            const kl = objProps["Objektklasse"];
-                            if (!rule.allowedValues[fag]?.[kl]?.includes(val)) errors.push(`Type '${val}' ugyldig for '${kl}'`);
-                        }
-                    }
-                }
-            }
-            return errors;
-        }
-    </script>
+    return `
+      <tr data-mid="${esc(r.modelId)}" data-rid="${esc(r.runtimeId)}">
+        <td><span class="score ${sc}">${r.score}%</span></td>
+        <td class="issue-cell">${statusPill}</td>
+        <td class="obj-name" title="${esc(r.name)}">${esc(r.name) || '<span style="color:var(--muted)">–</span>'}</td>
+        <td class="guid" title="${esc(r.guid)}">${r.guid ? esc(r.guid.substring(0,8) + '…') : '–'}</td>
+        ${cells}
+      </tr>
+    `;
+  }).join('');
+
+  // Legg til klikk-for-å-zoome funksjon i tabellen
+  tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
+    tr.addEventListener('click', async () => {
+      const rid = tr.dataset.rid;
+      if (!API || !rid) return;
+      try {
+        await window.WorkspaceAPI.viewer.setSelection([{ objects: [rid] }]);
+      } catch {}
+    });
+  });
+}
+
+// --- 8. FARGELEGGING OG EKSPORT ---
+async function colorizeModel(){
+  if (!API || !validationRows.length) return;
+  btnColorize.disabled = true;
+  setStatus('🎨 Fargelegger modell…');
+
+  try {
+    const greenIds = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0).map(r => r.runtimeId);
+    const yellowIds = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount > 0).map(r => r.runtimeId);
+    const redIds = validationRows.filter(r => r.missingCount > 0).map(r => r.runtimeId);
+
+    if (greenIds.length) await window.WorkspaceAPI.viewer.setColors([{ objects: greenIds, color: { r: 39, g: 174, b: 96, a: 255 } }]);
+    if (yellowIds.length) await window.WorkspaceAPI.viewer.setColors([{ objects: yellowIds, color: { r: 210, g: 153, b: 34, a: 255 } }]);
+    if (redIds.length) await window.WorkspaceAPI.viewer.setColors([{ objects: redIds, color: { r: 248, g: 81, b: 73, a: 255 } }]);
+
+    btnUncolor.disabled = false;
+    btnColorize.disabled = false;
+    setStatus(`🎨 Fargelagt: 🟢 ${greenIds.length} OK · 🟡 ${yellowIds.length} formatfeil · 🔴 ${redIds.length} mangler`, 'ok');
+  } catch (e) {
+    setStatus('❌ Feil ved fargelegging: ' + (e.message || e), 'error');
+  }
+}
+
+async function removeColors(){
+  if (!API) return;
+  try {
+    const allIds = validationRows.map(r => r.runtimeId);
+    if(allIds.length) await window.WorkspaceAPI.viewer.setColors([{ objects: allIds, color: { r: 255, g: 255, b: 255, a: 255 } }]); // Reset til hvit/standard
+    btnUncolor.disabled = true;
+    setStatus('⬜ Modellfarger fjernet.', '');
+  } catch (e) {}
+}
+
+function exportCsv(){
+  const issueRows = validationRows.filter(r => r.missingCount > 0 || r.formatErrorCount > 0);
+  if (!issueRows.length) {
+    setStatus('✅ Ingen avvik — ingenting å eksportere.', 'ok');
+    return;
+  }
+
+  const headers = ['Navn','ID','Score (%)','Mangler','Formatfeil',...FIELDS.map(f => f.label)];
+  const csvEsc = v => {
+    const s = (v ?? '').toString().replace(/"/g, '""');
+    return /[",\n]/.test(s) ? `"${s}"` : s;
+  };
+
+  const lines = [headers.map(csvEsc).join(',')];
+  for (const r of issueRows) {
+    lines.push([
+      csvEsc(r.name),
+      csvEsc(r.guid),
+      csvEsc(r.score),
+      csvEsc(r.missingCount),
+      csvEsc(r.formatErrorCount),
+      ...FIELDS.map(f => {
+        const d = r.fields[f.key];
+        if (d.status === 'ok') return csvEsc('OK');
+        if (d.status === 'na') return csvEsc('-');
+        if (d.status === 'format') return csvEsc(`Ugyldig (${d.value})`);
+        return csvEsc('MANGLER');
+      })
+    ].join(','));
+  }
+
+  const bom = '\ufeff';
+  const blob = new Blob([bom + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'BIM_Validering_Avvik_' + new Date().toISOString().slice(0,10) + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+  setStatus(`⬇ Eksportert ${issueRows.length} objekter med avvik til CSV.`, 'ok');
+}
+
+function reset(){
+  validationRows = [];
+  activeFilter = 'all';
+  searchTerm = '';
+  removeColors();
+  mainContent.innerHTML = `
+    <div class="empty anim">
+      <div class="icon">🔍</div>
+      <div>Marker objekter i modellen og trykk <strong>Valider markerte</strong> for å starte.</div>
+    </div>`;
+  btnReset.disabled = true;
+  btnColorize.disabled = true;
+  btnExport.disabled = true;
+  setStatus('↺ Nullstilt.', '');
+}
+
+btnLoad.addEventListener('click', loadModels);
+btnValidate.addEventListener('click', validate);
+btnColorize.addEventListener('click', colorizeModel);
+btnUncolor.addEventListener('click', removeColors);
+btnExport.addEventListener('click', exportCsv);
+btnReset.addEventListener('click', reset);
+
+connect();
+</script>
 </body>
 </html>
