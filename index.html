@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v1.01</title>
+  <title>Egenskapsvalidering v1.02</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -148,7 +148,7 @@
 
     .cards {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
     .card {
@@ -182,6 +182,8 @@
     .card.red .value { color: var(--red); }
     .card.blue   { border-color: #0d2044; }
     .card.blue .value { color: var(--blue); }
+    .card.gray   { border-color: #30363d; }
+    .card.gray .value { color: var(--muted); }
 
     .panel {
       background: var(--surface);
@@ -387,7 +389,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v1.01</h1>
+    <h1>Egenskapsvalidering v1.02</h1>
     <p>Validerer ut ifra egendefinerte regler hentet fra 0_Element.json</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -422,6 +424,7 @@
 let API = null;
 let allModels = [];
 let validationRows = [];
+let skippedCount = 0; // Holder styr på ignorert geometri
 let validationRules = null;
 let FIELDS = []; 
 let activeFilter = 'all';
@@ -460,17 +463,30 @@ async function connect(){
   }
 }
 
-// --- 2. HENTER MODELLISTE OG DERES OBJEKT-IDER ---
+// --- 2. HENTER MODELLISTE MED FILNAVN ---
 async function loadModels(){
   if (!API) return;
   btnLoad.disabled = true;
-  setStatus('⏳ Leser modeller og innhold (dette kan ta et øyeblikk)…');
+  setStatus('⏳ Leser modeller og filnavn...');
   try {
+    // Henter først ut filnavnene for prosjektet
+    let modelsInfo = [];
+    if (API.viewer.getModels) {
+        modelsInfo = await API.viewer.getModels();
+    } else if (API.project && API.project.getModels) {
+        modelsInfo = await API.project.getModels();
+    }
+
+    // Deretter henter vi objekttreet
     const objs = await API.viewer.getObjects();
+    
     allModels = (objs || []).map((m, i) => {
       const modelId = norm(m.modelId || m.modelid || '');
       if (!modelId) return null;
-      const name = m.name || `Modell ${i + 1}`;
+      
+      // Finner riktig filnavn fra modelsInfo
+      const info = modelsInfo.find(x => norm(x.id) === modelId);
+      const name = (info && info.name) ? info.name : (m.name || `Modell ${i + 1}`);
       
       let objectIds = [];
       if (Array.isArray(m.objectRuntimeIds)) {
@@ -481,7 +497,6 @@ async function loadModels(){
           objectIds = m.objectIds;
       }
       
-      // Sørger for at alle ID-er er gyldige tall (som det nye APIet krever)
       objectIds = objectIds.map(id => parseInt(id)).filter(id => !isNaN(id));
 
       return { modelId, name, objectCount: objectIds.length, objectIds };
@@ -615,6 +630,7 @@ async function validate(){
   btnValidate.disabled = true;
   btnReset.disabled = true;
   mainContent.innerHTML = '';
+  skippedCount = 0;
 
   try {
     await fetchRules();
@@ -646,12 +662,9 @@ async function validate(){
     
     let objectsData = [];
     
-    // Itererer gjennom utvalget og ber spesifikt om Å LASTE NED EGENSKAPENE
     for (const sel of selectionToFetch) {
         const mId = sel.modelId || sel.modelid;
         let rawIds = sel.objectRuntimeIds || sel.objects || sel.objectIds || [];
-        
-        // Sørger for at alle IDene er rene tall før vi spør serveren
         let rIds = rawIds.map(id => parseInt(typeof id === 'object' ? (id.id || id.objectRuntimeId) : id)).filter(id => !isNaN(id));
 
         if (mId && rIds.length > 0) {
@@ -681,6 +694,18 @@ async function validate(){
 
     objectsData.forEach(obj => {
         const props = flattenProperties(obj.properties);
+        
+        // --- IGNORERER STRUKTUR-OBJEKTER ---
+        const ifcClassRaw = obj.class || obj.name || props['IfcEntity'] || props['Entity'] || props['Type'] || '';
+        const ifcClass = ifcClassRaw.toLowerCase();
+        const skipClasses = ['ifcsite', 'ifcbuilding', 'ifcstorey', 'ifcbuildingstorey', 'ifcproject'];
+        
+        if (skipClasses.some(c => ifcClass.includes(c))) {
+            skippedCount++;
+            return; // Hopper over dette objektet
+        }
+        // -----------------------------------
+
         const ruleResult = runValidation(props, validationRules.properties);
 
         validationRows.push({
@@ -700,7 +725,7 @@ async function validate(){
     btnReset.disabled = false;
     btnColorize.disabled = false;
     btnExport.disabled = false;
-    setStatus(`✅ Validering fullført — ${validationRows.length} objekter analysert.`, 'ok');
+    setStatus(`✅ Validering fullført — ${validationRows.length} analysert. ${skippedCount > 0 ? `(${skippedCount} IFC-strukturer ble ignorert)` : ''}`, 'ok');
 
   } catch (e) {
     setStatus('❌ Feil under validering: ' + (e.message || e), 'error');
@@ -710,7 +735,7 @@ async function validate(){
   }
 }
 
-// --- HJELPEFUNKSJON FOR FARGELEGGING (Grupperer IDer per modell) ---
+// --- HJELPEFUNKSJON FOR FARGELEGGING ---
 function groupByModel(rows) {
     const map = {};
     rows.forEach(r => {
@@ -772,6 +797,11 @@ function renderDashboard(){
         <div class="label">Avvik</div>
         <div class="value">${issues}</div>
         <div class="sub">${totalMissing} mangler · ${totalFormat} formatfeil</div>
+      </div>
+      <div class="card gray">
+        <div class="label">Ignorert</div>
+        <div class="value">${skippedCount}</div>
+        <div class="sub">Bygningsstrukturer</div>
       </div>
     </div>
 
@@ -1042,6 +1072,7 @@ function exportCsv(){
 
 function reset(){
   validationRows = [];
+  skippedCount = 0;
   activeFilter = 'all';
   searchTerm = '';
 
