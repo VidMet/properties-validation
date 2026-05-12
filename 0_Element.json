@@ -4,8 +4,10 @@
     "Underdisiplinkode": {
       "propertySet": "0_Element",
       "requirement": "required",
-      "allowedValues": ["ELE", "HYG", "IGG", "GMT", "GTK", "KNS", "PLA", "SRO", "SKO", "UTS", "TNL", "VAA", "HYD", "VEI",
-                        "LAN", "YTM", "AKU", "KLM", "CEE", "MIL", "GRE", "ADM", "BIM", "GIS", "HMS", "SHA"],
+      "allowedValues": [
+        "ELE", "HYG", "IGG", "GMT", "GTK", "KNS", "PLA", "SRO", "SKO", "UTS", "TNL", "VAA", "HYD", "VEI",
+        "LAN", "YTM", "AKU", "KLM", "CEE", "MIL", "GRE", "ADM", "BIM", "GIS", "HMS", "SHA"
+      ],
       "crossReference": { 
         "target": "PNS_Navn",
         "validPairs": [
@@ -35,18 +37,20 @@
           { "Underdisiplinkode": "GIS", "Underdisiplin": "Geografisk informasjonssystem"},
           { "Underdisiplinkode": "HMS", "Underdisiplin": "Helse, Miljø og Sikkerhet"},
           { "Underdisiplinkode": "SHA", "Underdisiplin": "SHA"}
-        ],
-      }
+        ]
+      },
       "minMMI": 100
     },
     "Underdisiplin": {
       "propertySet": "0_Element",
       "requirement": "required",
-      "allowedValues": ["Elektro", "Hydrogeologi", "Ingeniørgeologi", "Geomatikk", "Geoteknikk", "Konstruksjon",
-                       "Planfag", "Styring, regulering og overvåkning", "Skilt og Oppmerking", "Vegutstyr", "Tunnel",
-                       "Vann og Avløp", "Hydrologi", "Vei", "Landskap", "Ytre Miljø", "Akustikk", "Klima", "Ceequal",
-                       "Miljø", "Grunnerverv", "Administrasjon", "Bygningsinformasjonsmodellering",
-                       "Geografisk informasjonssystem", "Helse, Miljø og Sikkerhet", "SHA"],
+      "allowedValues": [
+        "Elektro", "Hydrogeologi", "Ingeniørgeologi", "Geomatikk", "Geoteknikk", "Konstruksjon",
+        "Planfag", "Styring, regulering og overvåkning", "Skilt og Oppmerking", "Vegutstyr", "Tunnel",
+        "Vann og Avløp", "Hydrologi", "Vei", "Landskap", "Ytre Miljø", "Akustikk", "Klima", "Ceequal",
+        "Miljø", "Grunnerverv", "Administrasjon", "Bygningsinformasjonsmodellering",
+        "Geografisk informasjonssystem", "Helse, Miljø og Sikkerhet", "SHA"
+      ],
       "minMMI": 100
     },
     "PNS Kode": {
@@ -107,51 +111,53 @@
           { "PNS Kode": "P4.2.1.2", "PNS Navn": "Portaler Trosset sørgående og nordgående (K4231 og K4232)" },
           { "PNS Kode": "P4.2.1.2", "PNS Navn": "Portaler Trosset sørgående og nordgående (K4231 og K4232)" },
           { "PNS Kode": "P4.2.1.3", "PNS Navn": "Jørstadmoveien kulvert (K2511)" },
-	      { "PNS Kode": "P5.1.1.1", "PNS Navn": "E6 og tilbakefylling bru Trosset" },
-	      { "PNS Kode": "P5.1.1.2", "PNS Navn": "E6 og tilbakefylling bru Hovemoen" },
-	      { "PNS Kode": "P5.1.2.1", "PNS Navn": "Fv. 253 Jørstadmovegen, (27100)" },
-	      { "PNS Kode": "P5.1.2.2", "PNS Navn": "Gårdsvei Hovemoen Gård (67100)" },
-	      { "PNS Kode": "P5.1.2.3", "PNS Navn": "Rensebasseng Trosset (K4233)" },
-	      { "PNS Kode": "P5.2.1.1", "PNS Navn": "Fundamentering" },
-	      { "PNS Kode": "P5.2.2.7", "PNS Navn": "ILM Bro" },
-	      { "PNS Kode": "P6.1.1.1", "PNS Navn": "E6 Hovemoen - Lillehammer kryss pel 29 500 - 30 850 " },
-	      { "PNS Kode": "P6.1.1.2", "PNS Navn": "E6 Hovemoen - Storhove pel 30 850 - 31 618" },
-	      { "PNS Kode": "P6.1.2.1", "PNS Navn": "Vei Hovemoen Bru 69000" },
-	      { "PNS Kode": "P6.1.2.2", "PNS Navn": "Veier Hovemoen Gård" },
-	      { "PNS Kode": "P6.1.2.3", "PNS Navn": "Veier til rensebassenger ved Hovemoen og Storhove" },
-	      { "PNS Kode": "P6.1.2.4", "PNS Navn": "Gausdalsvegen" },
-	      { "PNS Kode": "P6.1.2.5", "PNS Navn": "Diverse veier, plasser, dammer, avkjørsler langs E6" },
-	      { "PNS Kode": "P6.2.1.1", "PNS Navn": "Hovemoen overgangsbru (K6611)" },
-	      { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
-	      { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
-	      { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
-	      { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
-	      { "PNS Kode": "P6.3.1.1", "PNS Navn": "Sørgående ramper" },
-	      { "PNS Kode": "P6.3.1.2", "PNS Navn": "Nordgående ramper" }
-        ],
-      }
+          { "PNS Kode": "P5.1.1.1", "PNS Navn": "E6 og tilbakefylling bru Trosset" },
+          { "PNS Kode": "P5.1.1.2", "PNS Navn": "E6 og tilbakefylling bru Hovemoen" },
+          { "PNS Kode": "P5.1.2.1", "PNS Navn": "Fv. 253 Jørstadmovegen, (27100)" },
+          { "PNS Kode": "P5.1.2.2", "PNS Navn": "Gårdsvei Hovemoen Gård (67100)" },
+          { "PNS Kode": "P5.1.2.3", "PNS Navn": "Rensebasseng Trosset (K4233)" },
+          { "PNS Kode": "P5.2.1.1", "PNS Navn": "Fundamentering" },
+          { "PNS Kode": "P5.2.2.7", "PNS Navn": "ILM Bro" },
+          { "PNS Kode": "P6.1.1.1", "PNS Navn": "E6 Hovemoen - Lillehammer kryss pel 29 500 - 30 850 " },
+          { "PNS Kode": "P6.1.1.2", "PNS Navn": "E6 Hovemoen - Storhove pel 30 850 - 31 618" },
+          { "PNS Kode": "P6.1.2.1", "PNS Navn": "Vei Hovemoen Bru 69000" },
+          { "PNS Kode": "P6.1.2.2", "PNS Navn": "Veier Hovemoen Gård" },
+          { "PNS Kode": "P6.1.2.3", "PNS Navn": "Veier til rensebassenger ved Hovemoen og Storhove" },
+          { "PNS Kode": "P6.1.2.4", "PNS Navn": "Gausdalsvegen" },
+          { "PNS Kode": "P6.1.2.5", "PNS Navn": "Diverse veier, plasser, dammer, avkjørsler langs E6" },
+          { "PNS Kode": "P6.2.1.1", "PNS Navn": "Hovemoen overgangsbru (K6611)" },
+          { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
+          { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
+          { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
+          { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
+          { "PNS Kode": "P6.3.1.1", "PNS Navn": "Sørgående ramper" },
+          { "PNS Kode": "P6.3.1.2", "PNS Navn": "Nordgående ramper" }
+        ]
+      },
       "minMMI": 200
     },
     "PNS Navn": {
       "propertySet": "0_Element",
       "defaultRequirement": "required",
-      "allowedValues": ["E6 Roterud - Strandengen nordgående Pel 9030-13100", "E6 Strandengen til Vingrom nordgående Pel 13100 - 19300 ( og 18 400 - 19 300 sørgående)",
-		  				"E6 Vingrom - Øyresvika Pel 19300 - 24300", "E6 Roterud - Vingrom sørgående Pel 9030 - 18400", "Fv. 2538 Paul A Owrens veg (23000) inkl. GS vei (74100)",
-		  				"Kv. 7122 Burmavegen", "Fv. 2518 Døsvegen (23100)", "Fv. 2540 Vingromsveien Pel 0 - 865 (23200) inkl. GS vei (74400)", "Tursti fra Vingrom til Øyresvika (73300)", 
-		  				"Rensebasseng Øyresvika", "Fv.2540 Øyresvika Pel 0-910 (23400)", "Diverse veier, plasser, dammer, avkjørsler langs E6", "Roterudbrua sørgående og norgående (K3202 og K3201)",
-		  				"Roterudbrua sørgående og norgående (K3202 og K3201)", "Grythe kulvert (K3205)", "Oppsahl kluvert (K3206)", "Rogne kulvert nordgående (K3207)", "Myhre kulvert (K3216)",
-		  				"Feiring kulvert (K3217)", "Svea bruer (K3235)", "Bakke kulvert nordgående (K3236)", "Vingromdammen kulvert (K3245)", "Røine Kulvert (K3256)", "Hov kulvert (K3257)",
-		  				"Huskelhusbrua sørgeående og nordgående (K3209 og K3208)", "Huskelhusbrua sørgeående og nordgående (K3209 og K3208)", "Støttemur (K3258)", "Strandengbrua sørgående og nordgående (K3212 og K3211)",
-		  				"Strandengbrua sørgående og nordgående (K3212 og K3211)", "Bjørnstad kulvert (K3225)", "Stranda Kulvert (K3233)", "Vingrom overgangsbru (K3251)", "Vingromsbrua sørgående og nordgående (K3241 og K3242)",
-		  				"Vingromsbrua sørgående og nordgående (K3241 og K3242)", "Øyresvikkrysset bru sørgående og nordgående (K3262 og K3261)", "Øyresvikkrysset bru sørgående og nordgående (K3262 og K3261)",
-		  				"Mæhlum kulvert (K3203)", "Sørgående ramper inkl. rundkjøring", "Nordgående ramper inkl. rundkjøring", "Sørgående rampe", "Nordgående rampe", "Forskjæring Øyresvika Pel 24300 - 24588",
-		  				"Forskjæring Trosset Pel 28820 - 28850", "Tilkomstvei rensebasseng Øyresvika", "Tilkomstvei rensebasseng Trosset", "Hovsliveien", "Anleggsvei fra Trosset og sydover",
-		  				"Portaler Øyresvika sørgående og nordgående (K4221 og K4222)", "Portaler Øyresvika sørgående og nordgående (K4221 og K4222)", "Portaler Trosset sørgående og nordgående (K4231 og K4232)",
-		  				"Portaler Trosset sørgående og nordgående (K4231 og K4232)", "Jørstadmoveien kulvert (K2511)", "E6 og tilbakefylling bru Trosset", "E6 og tilbakefylling bru Hovemoen",
-		  				"Fv. 253 Jørstadmovegen, (27100)", "Gårdsvei Hovemoen Gård (67100)", "Rensebasseng Trosset (K4233)", "Fundamentering", "ILM Bro", "E6 Hovemoen - Lillehammer kryss pel 29 500 - 30 850 ",
-		  				"E6 Hovemoen - Storhove pel 30 850 - 31 618", "Vei Hovemoen Bru 69000", "Veier Hovemoen Gård", "Veier til rensebassenger ved Hovemoen og Storhove", "Gausdalsvegen", 
-		  				"Diverse veier, plasser, dammer, avkjørsler langs E6", "Hovemoen overgangsbru (K6611)", "Lillehammerkrysset bru sørgående og nordgående", "Lillehammerkrysset bru sørgående og nordgående", 
-		  				"Gausdalsarmen bru sørgående og nordgående", "Gausdalsarmen bru sørgående og nordgående", "Sørgående ramper", "Nordgående ramper"],
+      "allowedValues": [
+        "E6 Roterud - Strandengen nordgående Pel 9030-13100", "E6 Strandengen til Vingrom nordgående Pel 13100 - 19300 ( og 18 400 - 19 300 sørgående)",
+        "E6 Vingrom - Øyresvika Pel 19300 - 24300", "E6 Roterud - Vingrom sørgående Pel 9030 - 18400", "Fv. 2538 Paul A Owrens veg (23000) inkl. GS vei (74100)",
+        "Kv. 7122 Burmavegen", "Fv. 2518 Døsvegen (23100)", "Fv. 2540 Vingromsveien Pel 0 - 865 (23200) inkl. GS vei (74400)", "Tursti fra Vingrom til Øyresvika (73300)", 
+        "Rensebasseng Øyresvika", "Fv.2540 Øyresvika Pel 0-910 (23400)", "Diverse veier, plasser, dammer, avkjørsler langs E6", "Roterudbrua sørgående og norgående (K3202 og K3201)",
+        "Roterudbrua sørgående og norgående (K3202 og K3201)", "Grythe kulvert (K3205)", "Oppsahl kluvert (K3206)", "Rogne kulvert nordgående (K3207)", "Myhre kulvert (K3216)",
+        "Feiring kulvert (K3217)", "Svea bruer (K3235)", "Bakke kulvert nordgående (K3236)", "Vingromdammen kulvert (K3245)", "Røine Kulvert (K3256)", "Hov kulvert (K3257)",
+        "Huskelhusbrua sørgeående og nordgående (K3209 og K3208)", "Huskelhusbrua sørgeående og nordgående (K3209 og K3208)", "Støttemur (K3258)", "Strandengbrua sørgående og nordgående (K3212 og K3211)",
+        "Strandengbrua sørgående og nordgående (K3212 og K3211)", "Bjørnstad kulvert (K3225)", "Stranda Kulvert (K3233)", "Vingrom overgangsbru (K3251)", "Vingromsbrua sørgående og nordgående (K3241 og K3242)",
+        "Vingromsbrua sørgående og nordgående (K3241 og K3242)", "Øyresvikkrysset bru sørgående og nordgående (K3262 og K3261)", "Øyresvikkrysset bru sørgående og nordgående (K3262 og K3261)",
+        "Mæhlum kulvert (K3203)", "Sørgående ramper inkl. rundkjøring", "Nordgående ramper inkl. rundkjøring", "Sørgående rampe", "Nordgående rampe", "Forskjæring Øyresvika Pel 24300 - 24588",
+        "Forskjæring Trosset Pel 28820 - 28850", "Tilkomstvei rensebasseng Øyresvika", "Tilkomstvei rensebasseng Trosset", "Hovsliveien", "Anleggsvei fra Trosset og sydover",
+        "Portaler Øyresvika sørgående og nordgående (K4221 og K4222)", "Portaler Øyresvika sørgående og nordgående (K4221 og K4222)", "Portaler Trosset sørgående og nordgående (K4231 og K4232)",
+        "Portaler Trosset sørgående og nordgående (K4231 og K4232)", "Jørstadmoveien kulvert (K2511)", "E6 og tilbakefylling bru Trosset", "E6 og tilbakefylling bru Hovemoen",
+        "Fv. 253 Jørstadmovegen, (27100)", "Gårdsvei Hovemoen Gård (67100)", "Rensebasseng Trosset (K4233)", "Fundamentering", "ILM Bro", "E6 Hovemoen - Lillehammer kryss pel 29 500 - 30 850 ",
+        "E6 Hovemoen - Storhove pel 30 850 - 31 618", "Vei Hovemoen Bru 69000", "Veier Hovemoen Gård", "Veier til rensebassenger ved Hovemoen og Storhove", "Gausdalsvegen", 
+        "Diverse veier, plasser, dammer, avkjørsler langs E6", "Hovemoen overgangsbru (K6611)", "Lillehammerkrysset bru sørgående og nordgående", "Lillehammerkrysset bru sørgående og nordgående", 
+        "Gausdalsarmen bru sørgående og nordgående", "Gausdalsarmen bru sørgående og nordgående", "Sørgående ramper", "Nordgående ramper"
+      ],
       "minMMI": 200
     },
     "Bruksstatus": {
@@ -201,15 +207,19 @@
         "GTK": ["Grunnforhold", "Støttevegg", "Tørrmur", "Underbygning"],
         "HYG": ["Hammerhull", "Tetthet"],
         "IGG": ["Terreng", "Sikring"],
-        "KNS": ["Armering", "Avretting", "Betongelement", "Drenering", "Dør", "Festeelement", "Festemiddel", "Fiberduk", "Forskaling", "Fuge", "Fuktisolering",
-                "Fylling", "Føringsvei", "Informasjonsobjekt", "Innstøpningsgods", "Isolasjon", "Jording", "Lager", "Masseuttak", "Overbygning", "Overflatebehandling",
-                "Pel", "Plastring", "Plate", "Rekkverk", "Spennarmering", "Stålbjelke", "Trapp", "Heftbryter", "Støpeskjøt"],
+        "KNS": [
+          "Armering", "Avretting", "Betongelement", "Drenering", "Dør", "Festeelement", "Festemiddel", "Fiberduk", "Forskaling", "Fuge", "Fuktisolering",
+          "Fylling", "Føringsvei", "Informasjonsobjekt", "Innstøpningsgods", "Isolasjon", "Jording", "Lager", "Masseuttak", "Overbygning", "Overflatebehandling",
+          "Pel", "Plastring", "Plate", "Rekkverk", "Spennarmering", "Stålbjelke", "Trapp", "Heftbryter", "Støpeskjøt"
+        ],
         "LAN": ["Fylling", "Gjerde", "Møblering", "Rekkverk", "Terrengforming", "Vegetasjon"],
         "MIL": ["Forurenset-grunn", "Kulturminner"],
         "SHA": ["Symbol"],
         "SKO": ["Vegbom", "Oppmerking", "Skilt", "Skiltportal"],
-        "TNL": ["Armering", "Brannslokkesystem", "Festeelement", "Grunnarbeid, terreng", "Jordingssystem", "Kabelføringssystem", "Tunneloverbygning",
-                "Vann- og fuktforebyggende system", "Veggsystem"],
+        "TNL": [
+          "Armering", "Brannslokkesystem", "Festeelement", "Grunnarbeid, terreng", "Jordingssystem", "Kabelføringssystem", "Tunneloverbygning",
+          "Vann- og fuktforebyggende system", "Veggsystem"
+        ],
         "UTS": ["Rekkverk", "Rekkverksende", "Kantstein", "Vegbom"],
         "VEI": ["Overbygning", "Underbygning", "Skjæring", "Stikningsobjekt", "Sideområde"],
         "VAA": ["Rørledning", "Kum"]
@@ -245,9 +255,11 @@
         "KNS": {
           "Armering": ["Armeringsjern", "Krympeplast", "Muffeskjøter", "Skjøtekobling"],
           "Avretting": ["Fraksjon 0/32", "Fraksjon 20/125 forkilt med 0/22", "Betongavretting B30", "Understøp"],
-          "Betongelement": ["Brem", "Brudekke", "Friksjonsplate", "Fugeseng", "Fundament", "Hvelv", "Kantbjelke",
-                            "Kasse", "Knevegg", "Konsoll", "Kontaktstøp", "Murkrage", "Overgangsplate", "Skjørt",
-                            "Søyle", "Takplate", "Tverrbjelke", "Tverrprofil", "Tverrskott", "Vegg", "Vinge", "Vingemur"],
+          "Betongelement": [
+            "Brem", "Brudekke", "Friksjonsplate", "Fugeseng", "Fundament", "Hvelv", "Kantbjelke",
+            "Kasse", "Knevegg", "Konsoll", "Kontaktstøp", "Murkrage", "Overgangsplate", "Skjørt",
+            "Søyle", "Takplate", "Tverrbjelke", "Tverrprofil", "Tverrskott", "Vegg", "Vinge", "Vingemur"
+          ],
           "Drenering": ["Drensrenne", "Innstøpt stålrør", "Sluk", "Steinsatt renne", "Knotteplate"],
           "Dør": ["Dør", "Karm", "Luke"],
           "Festeelement": ["Forlenget gjengestag", "Brakett"],
@@ -258,11 +270,13 @@
           "Fuktisolering": ["Asfaltmembran", "Fuktisolering", "Hulkil", "Tetningstiltak", "Klemlist", "Membran", "Membranbeskyttelse", "Plastmembran type I", "Plastmembran type II"],
           "Fylling": ["Oppfylling fraksjon 22/125", "Lettklinker", "Tilbakefylling fraksjon 22/125"],
           "Føringsvei": ["Trekkerør"],
-          "Informasjonsobjekt": ["Endelig posisjon", "Stikningsobjekt lager", "Stikningsobjekt nivelleringsbolter",
-                                "Stikningsobjekt overhøyde", "Stikningsobjekt sikringsgjerde", "Stikningsobjekt rekkverk",
-                                "Metadataobjekt", "Kjøreboks", "Stikningsobjekt lysmast", "Akse", "Stikningsobjekt trekkerør",
-                                "Stikningsobjekt VA-rør", "Stikningsobjekt høyspent", "Stikningsobjekt peler", "Stikningsobjekt kabelbru",
-                                "Stikningsobjekt", "Stikningsobjekt støyskjerm"],
+          "Informasjonsobjekt": [
+            "Endelig posisjon", "Stikningsobjekt lager", "Stikningsobjekt nivelleringsbolter",
+            "Stikningsobjekt overhøyde", "Stikningsobjekt sikringsgjerde", "Stikningsobjekt rekkverk",
+            "Metadataobjekt", "Kjøreboks", "Stikningsobjekt lysmast", "Akse", "Stikningsobjekt trekkerør",
+            "Stikningsobjekt VA-rør", "Stikningsobjekt høyspent", "Stikningsobjekt peler", "Stikningsobjekt kabelbru",
+            "Stikningsobjekt", "Stikningsobjekt støyskjerm"
+          ],
           "Innstøpningsgods": ["Boltegruppe", "Dybler", "Hylse", "Hylsegruppe med bolter", "Innstøpningsgods", "Innstøpt gjengestag", "Kjemisk anker", "Murkrage", "Nivelleringsbolt", "Lufterør"],
           "Isolasjon": ["XPS"],
           "Jording": ["Jording"],
@@ -379,6 +393,6 @@
       "propertySet": "0_Element",
       "requirement": "required",
       "minMMI": 100
-    },
+    }
   }
 }
