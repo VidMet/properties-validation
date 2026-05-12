@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>BIM Validering (0_Element)</title>
+  <title>BIM Validering v1.0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -387,7 +387,7 @@
 
 <header>
   <div class="header-title">
-    <h1>BIM Validering</h1>
+    <h1>BIM Validering v1.0</h1>
     <p>Validerer ut ifra egendefinerte regler hentet fra 0_Element.json</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -639,14 +639,14 @@ async function validate(){
 
     setStatus('⏳ Leser egenskaper (dette kan ta litt tid for store modeller)...');
     
-    // NY LØSNING: Bruker dynamisk søk etter riktig objekt-henter i det nye APIet!
+    // Bruker dynamisk søk etter riktig objekt-henter i det nye APIet
     let objectsData = [];
     if (API.objects && API.objects.getObjects) {
         objectsData = await API.objects.getObjects(selectionToFetch);
     } else if (API.project && API.project.getObjects) {
         objectsData = await API.project.getObjects(selectionToFetch);
     } else {
-        // Fallback for nyeste API-versjon
+        // Fallback
         objectsData = await API.viewer.getObjects(selectionToFetch);
     }
 
@@ -790,7 +790,7 @@ function renderDashboard(){
     </div>
   `;
 
-  renderDonut(total, perfect, format, missing);
+  renderDonut(total);
   renderFieldBars(fieldStats);
   renderTable();
 
@@ -809,7 +809,7 @@ function renderDashboard(){
   });
 }
 
-function renderDonut(total, ok, format, missing){
+function renderDonut(total){
   const okCount = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0).length;
   const formatCount = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount > 0).length;
   const missingCount = validationRows.filter(r => r.missingCount > 0).length;
@@ -938,7 +938,7 @@ async function colorizeModel(){
         if (yellowIds.length) await API.viewer.setColors([{ objects: yellowIds, color: { r: 210, g: 153, b: 34, a: 255 } }]);
         if (redIds.length) await API.viewer.setColors([{ objects: redIds, color: { r: 248, g: 81, b: 73, a: 255 } }]);
     } else if (API.viewer && API.viewer.setObjectState) {
-        // Reserveløsning for enkelte oppsett
+        // Reserveløsning
         if (greenIds.length) await API.viewer.setObjectState(greenIds, { color: '#27ae60' });
         if (yellowIds.length) await API.viewer.setObjectState(yellowIds, { color: '#d29922' });
         if (redIds.length) await API.viewer.setObjectState(redIds, { color: '#f85149' });
