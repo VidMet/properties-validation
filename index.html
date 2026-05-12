@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>BIM Validering v1.0</title>
+  <title>Egenskapsvalidering v1.01</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -387,7 +387,7 @@
 
 <header>
   <div class="header-title">
-    <h1>BIM Validering v1.0</h1>
+    <h1>Egenskapsvalidering v1.01</h1>
     <p>Validerer ut ifra egendefinerte regler hentet fra 0_Element.json</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -473,11 +473,16 @@ async function loadModels(){
       const name = m.name || `Modell ${i + 1}`;
       
       let objectIds = [];
-      if (Array.isArray(m.objects)) {
-          objectIds = m.objects.map(o => (typeof o === 'object' ? o.id : o));
+      if (Array.isArray(m.objectRuntimeIds)) {
+          objectIds = m.objectRuntimeIds;
+      } else if (Array.isArray(m.objects)) {
+          objectIds = m.objects.map(o => (typeof o === 'object' ? (o.id || o.objectRuntimeId) : o));
       } else if (Array.isArray(m.objectIds)) {
           objectIds = m.objectIds;
       }
+      
+      // Sørger for at alle ID-er er gyldige tall (som det nye APIet krever)
+      objectIds = objectIds.map(id => parseInt(id)).filter(id => !isNaN(id));
 
       return { modelId, name, objectCount: objectIds.length, objectIds };
     }).filter(Boolean);
@@ -624,7 +629,7 @@ async function validate(){
         if (!modelData || modelData.objectIds.length === 0) {
             throw new Error("Den valgte modellen inneholder ingen gjenkjennbare objekter.");
         }
-        selectionToFetch = [{ modelId: modelData.modelId, objectIds: modelData.objectIds }];
+        selectionToFetch = [{ modelId: modelData.modelId, objectRuntimeIds: modelData.objectIds }];
     } 
     else {
         setStatus('⏳ Sjekker markerte objekter i 3D...');
@@ -637,21 +642,39 @@ async function validate(){
         selectionToFetch = selection;
     }
 
-    setStatus('⏳ Leser egenskaper (dette kan ta litt tid for store modeller)...');
+    setStatus('⏳ Laster ned egenskaper for objektene (dette kan ta opptil 30 sekunder for store modeller)...');
     
-    // Bruker dynamisk søk etter riktig objekt-henter i det nye APIet
     let objectsData = [];
-    if (API.objects && API.objects.getObjects) {
-        objectsData = await API.objects.getObjects(selectionToFetch);
-    } else if (API.project && API.project.getObjects) {
-        objectsData = await API.project.getObjects(selectionToFetch);
-    } else {
-        // Fallback
-        objectsData = await API.viewer.getObjects(selectionToFetch);
+    
+    // Itererer gjennom utvalget og ber spesifikt om Å LASTE NED EGENSKAPENE
+    for (const sel of selectionToFetch) {
+        const mId = sel.modelId || sel.modelid;
+        let rawIds = sel.objectRuntimeIds || sel.objects || sel.objectIds || [];
+        
+        // Sørger for at alle IDene er rene tall før vi spør serveren
+        let rIds = rawIds.map(id => parseInt(typeof id === 'object' ? (id.id || id.objectRuntimeId) : id)).filter(id => !isNaN(id));
+
+        if (mId && rIds.length > 0) {
+            try {
+                const propsArr = await API.viewer.getObjectProperties(mId, rIds);
+                if (propsArr) {
+                    propsArr.forEach(p => {
+                        objectsData.push({
+                            modelId: mId,
+                            id: p.id || p.objectRuntimeId,
+                            name: p.class || p.name || 'Objekt',
+                            properties: p.properties
+                        });
+                    });
+                }
+            } catch(e) {
+                console.warn("Kunne ikke lese egenskaper for modell", mId, e);
+            }
+        }
     }
 
     if (!objectsData || objectsData.length === 0) {
-        throw new Error("Fant ingen objekter med egenskaper.");
+        throw new Error("Fant ingen objekter med egenskaper. Sjekk at modellen er lastet inn riktig.");
     }
 
     validationRows = [];
@@ -662,7 +685,7 @@ async function validate(){
 
         validationRows.push({
             name: norm(obj.name || ''),
-            guid: norm(props["GlobalId"] || obj.id || ''),
+            guid: norm(props["GlobalId"] || props["GUID"] || props["IfcGuid"] || obj.id || ''),
             modelId: norm(obj.modelId),
             runtimeId: obj.id,
             fields: ruleResult.fields,
@@ -685,6 +708,16 @@ async function validate(){
   } finally {
     btnValidate.disabled = false;
   }
+}
+
+// --- HJELPEFUNKSJON FOR FARGELEGGING (Grupperer IDer per modell) ---
+function groupByModel(rows) {
+    const map = {};
+    rows.forEach(r => {
+        if (!map[r.modelId]) map[r.modelId] = [];
+        map[r.modelId].push(r.runtimeId);
+    });
+    return Object.keys(map).map(mId => ({ modelId: mId, objectRuntimeIds: map[mId] }));
 }
 
 // --- 7. RENDERING AV UI ---
@@ -911,11 +944,12 @@ function renderTable(){
   // Klikk i tabell for å markere/zoome i 3D
   tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
-      const rid = tr.dataset.rid;
-      if (!API || !rid) return;
+      const rid = parseInt(tr.dataset.rid);
+      const mid = tr.dataset.mid;
+      if (!API || !rid || !mid) return;
       try {
-        if (API.viewer.setSelection) await API.viewer.setSelection([{ objects: [rid] }]);
-        else if (API.selection && API.selection.setSelection) await API.selection.setSelection([{ objects: [rid] }]);
+        const sel = [{ modelId: mid, objectRuntimeIds: [rid] }];
+        if (API.viewer.setSelection) await API.viewer.setSelection(sel);
       } catch {}
     });
   });
@@ -928,25 +962,24 @@ async function colorizeModel(){
   setStatus('🎨 Fargelegger modell…');
 
   try {
-    const greenIds = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0).map(r => r.runtimeId);
-    const yellowIds = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount > 0).map(r => r.runtimeId);
-    const redIds = validationRows.filter(r => r.missingCount > 0).map(r => r.runtimeId);
+    const greenModels = groupByModel(validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0));
+    const yellowModels = groupByModel(validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount > 0));
+    const redModels = groupByModel(validationRows.filter(r => r.missingCount > 0));
 
-    // Bruker den nye API-metoden for å fargelegge
-    if (API.viewer && API.viewer.setColors) {
-        if (greenIds.length) await API.viewer.setColors([{ objects: greenIds, color: { r: 39, g: 174, b: 96, a: 255 } }]);
-        if (yellowIds.length) await API.viewer.setColors([{ objects: yellowIds, color: { r: 210, g: 153, b: 34, a: 255 } }]);
-        if (redIds.length) await API.viewer.setColors([{ objects: redIds, color: { r: 248, g: 81, b: 73, a: 255 } }]);
-    } else if (API.viewer && API.viewer.setObjectState) {
-        // Reserveløsning
-        if (greenIds.length) await API.viewer.setObjectState(greenIds, { color: '#27ae60' });
-        if (yellowIds.length) await API.viewer.setObjectState(yellowIds, { color: '#d29922' });
-        if (redIds.length) await API.viewer.setObjectState(redIds, { color: '#f85149' });
+    if (API.viewer.setObjectState) {
+        if (greenModels.length) await API.viewer.setObjectState(greenModels, { color: '#27ae60' });
+        if (yellowModels.length) await API.viewer.setObjectState(yellowModels, { color: '#d29922' });
+        if (redModels.length) await API.viewer.setObjectState(redModels, { color: '#f85149' });
     }
 
     btnUncolor.disabled = false;
     btnColorize.disabled = false;
-    setStatus(`🎨 Fargelagt: 🟢 ${greenIds.length} OK · 🟡 ${yellowIds.length} formatfeil · 🔴 ${redIds.length} mangler`, 'ok');
+    
+    const countGreen = greenModels.reduce((acc, m) => acc + m.objectRuntimeIds.length, 0);
+    const countYellow = yellowModels.reduce((acc, m) => acc + m.objectRuntimeIds.length, 0);
+    const countRed = redModels.reduce((acc, m) => acc + m.objectRuntimeIds.length, 0);
+    
+    setStatus(`🎨 Fargelagt: 🟢 ${countGreen} OK · 🟡 ${countYellow} formatfeil · 🔴 ${countRed} mangler`, 'ok');
   } catch (e) {
     setStatus('❌ Feil ved fargelegging: ' + (e.message || e), 'error');
   }
@@ -955,11 +988,9 @@ async function colorizeModel(){
 async function removeColors(){
   if (!API) return;
   try {
-    if (API.viewer && API.viewer.setObjectState) {
-        await API.viewer.setObjectState(undefined, { color: 'reset' });
-    } else if (API.viewer && API.viewer.setColors) {
-        const allIds = validationRows.map(r => r.runtimeId);
-        if(allIds.length) await API.viewer.setColors([{ objects: allIds, color: { r: 255, g: 255, b: 255, a: 255 } }]);
+    if (API.viewer.setObjectState) {
+        const allModelsIds = groupByModel(validationRows);
+        await API.viewer.setObjectState(allModelsIds, { color: 'reset' });
     }
     btnUncolor.disabled = true;
     setStatus('⬜ Modellfarger fjernet.', '');
