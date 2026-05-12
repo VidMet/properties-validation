@@ -36,8 +36,8 @@
           { "Underdisiplinkode": "HMS", "Underdisiplin": "Helse, Miljø og Sikkerhet"},
           { "Underdisiplinkode": "SHA", "Underdisiplin": "SHA"}
         ],
-      "minMMI": 100
       }
+      "minMMI": 100
     },
     "Underdisiplin": {
       "propertySet": "0_Element",
@@ -107,37 +107,36 @@
           { "PNS Kode": "P4.2.1.2", "PNS Navn": "Portaler Trosset sørgående og nordgående (K4231 og K4232)" },
           { "PNS Kode": "P4.2.1.2", "PNS Navn": "Portaler Trosset sørgående og nordgående (K4231 og K4232)" },
           { "PNS Kode": "P4.2.1.3", "PNS Navn": "Jørstadmoveien kulvert (K2511)" },
-		      { "PNS Kode": "P5.1.1.1", "PNS Navn": "E6 og tilbakefylling bru Trosset" },
-		      { "PNS Kode": "P5.1.1.2", "PNS Navn": "E6 og tilbakefylling bru Hovemoen" },
-		      { "PNS Kode": "P5.1.2.1", "PNS Navn": "Fv. 253 Jørstadmovegen, (27100)" },
-		      { "PNS Kode": "P5.1.2.2", "PNS Navn": "Gårdsvei Hovemoen Gård (67100)" },
-		      { "PNS Kode": "P5.1.2.3", "PNS Navn": "Rensebasseng Trosset (K4233)" },
-		      { "PNS Kode": "P5.2.1.1", "PNS Navn": "Fundamentering" },
-		      { "PNS Kode": "P5.2.2.7", "PNS Navn": "ILM Bro" },
-		      { "PNS Kode": "P6.1.1.1", "PNS Navn": "E6 Hovemoen - Lillehammer kryss pel 29 500 - 30 850 " },
-		      { "PNS Kode": "P6.1.1.2", "PNS Navn": "E6 Hovemoen - Storhove pel 30 850 - 31 618" },
-		      { "PNS Kode": "P6.1.2.1", "PNS Navn": "Vei Hovemoen Bru 69000" },
-		      { "PNS Kode": "P6.1.2.2", "PNS Navn": "Veier Hovemoen Gård" },
-		      { "PNS Kode": "P6.1.2.3", "PNS Navn": "Veier til rensebassenger ved Hovemoen og Storhove" },
-		      { "PNS Kode": "P6.1.2.4", "PNS Navn": "Gausdalsvegen" },
-		      { "PNS Kode": "P6.1.2.5", "PNS Navn": "Diverse veier, plasser, dammer, avkjørsler langs E6" },
-		      { "PNS Kode": "P6.2.1.1", "PNS Navn": "Hovemoen overgangsbru (K6611)" },
-		      { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
-		      { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
-		      { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
-		      { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
-		      { "PNS Kode": "P6.3.1.1", "PNS Navn": "Sørgående ramper" },
-		      { "PNS Kode": "P6.3.1.2", "PNS Navn": "Nordgående ramper" }
+	      { "PNS Kode": "P5.1.1.1", "PNS Navn": "E6 og tilbakefylling bru Trosset" },
+	      { "PNS Kode": "P5.1.1.2", "PNS Navn": "E6 og tilbakefylling bru Hovemoen" },
+	      { "PNS Kode": "P5.1.2.1", "PNS Navn": "Fv. 253 Jørstadmovegen, (27100)" },
+	      { "PNS Kode": "P5.1.2.2", "PNS Navn": "Gårdsvei Hovemoen Gård (67100)" },
+	      { "PNS Kode": "P5.1.2.3", "PNS Navn": "Rensebasseng Trosset (K4233)" },
+	      { "PNS Kode": "P5.2.1.1", "PNS Navn": "Fundamentering" },
+	      { "PNS Kode": "P5.2.2.7", "PNS Navn": "ILM Bro" },
+	      { "PNS Kode": "P6.1.1.1", "PNS Navn": "E6 Hovemoen - Lillehammer kryss pel 29 500 - 30 850 " },
+	      { "PNS Kode": "P6.1.1.2", "PNS Navn": "E6 Hovemoen - Storhove pel 30 850 - 31 618" },
+	      { "PNS Kode": "P6.1.2.1", "PNS Navn": "Vei Hovemoen Bru 69000" },
+	      { "PNS Kode": "P6.1.2.2", "PNS Navn": "Veier Hovemoen Gård" },
+	      { "PNS Kode": "P6.1.2.3", "PNS Navn": "Veier til rensebassenger ved Hovemoen og Storhove" },
+	      { "PNS Kode": "P6.1.2.4", "PNS Navn": "Gausdalsvegen" },
+	      { "PNS Kode": "P6.1.2.5", "PNS Navn": "Diverse veier, plasser, dammer, avkjørsler langs E6" },
+	      { "PNS Kode": "P6.2.1.1", "PNS Navn": "Hovemoen overgangsbru (K6611)" },
+	      { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
+	      { "PNS Kode": "P6.2.1.2", "PNS Navn": "Lillehammerkrysset bru sørgående og nordgående" },
+	      { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
+	      { "PNS Kode": "P6.2.1.3", "PNS Navn": "Gausdalsarmen bru sørgående og nordgående" },
+	      { "PNS Kode": "P6.3.1.1", "PNS Navn": "Sørgående ramper" },
+	      { "PNS Kode": "P6.3.1.2", "PNS Navn": "Nordgående ramper" }
         ],
-      "minMMI": 200
       }
+      "minMMI": 200
     },
     "PNS Navn": {
       "propertySet": "0_Element",
       "defaultRequirement": "required",
       "allowedValues": [],
       "minMMI": 200
-      }
     },
     "Bruksstatus": {
       "propertySet": "0_Element",
@@ -145,7 +144,7 @@
       "overrides": [
         { "discipline": "KNS", "requirement": "required" }
       ],
-      "allowedValues": ["Prosjektert", "Grunnlagsdata", "Midlertidig", "Avventer produktvalg", "Innmålt", "Rives/demonteres"],
+      "allowedValues": ["Prosjektert", "Grunnlagsdata", "Midlertidig", "Avventer produktvalg", "Innmålt", "Rives/demonteres"]
     },
     "Faseplan": {
       "propertySet": "0_Element",
@@ -179,7 +178,7 @@
     },
     "Objektklasse":{
       "propertySet": "0_Element",
-      "requriement": "required",
+      "requirement": "required",
       "allowedValues": {
         "AKU": ["Bygg", "Støyskjerm"],
         "GMT": ["Eksisterende", "Terreng"],
@@ -221,7 +220,7 @@
         },
         "HYG": {
           "Hammerhull": ["Hammerhull"],
-          "Tetthet": ["Tetthetskrav"],
+          "Tetthet": ["Tetthetskrav"]
         },
         "IGG": {
           "Terreng": ["Bergmodell"],
@@ -313,7 +312,7 @@
         "VAA": {
           "Rørledning": ["Stikkrenne", "Graveflate", "Drensledning", "GrøftÅpen", "Isolasjon", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Varerør", "Vaskevannsledning", "Nedføringsrenne", "Infiltrasjonsledning"],
           "Kum": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hjelpesluk", "Hydrant", "Kumlokk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Stengeventil", "Tank", "Vannkum", "Inntakskum"]
-        },
+        }
       },
       "minMMI": 100
     },
