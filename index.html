@@ -5,6 +5,8 @@
   <title>BIM Validering (0_Element)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
+  <script src="https://app.connect.trimble.com/tc/static/apiclient.js"></script>
+  
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
   
   <style>
@@ -392,7 +394,7 @@
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
-  <button class="btn btn-primary" id="btnValidate" disabled>▶ Valider markerte</button>
+  <button class="btn btn-primary" id="btnValidate" disabled>▶ Valider</button>
   <button class="btn btn-colorize" id="btnColorize" disabled>🎨 Fargelegg</button>
   <button class="btn btn-unreset" id="btnUncolor" disabled>⬜ Fjern farger</button>
   <button class="btn btn-export" id="btnExport" disabled>⬇ Eksporter CSV</button>
@@ -402,15 +404,15 @@
 <div id="statusBar">Kobler til Trimble Connect…</div>
 
 <div id="modelBar">
-  <label>Modell:</label>
-  <select id="modelSelect" disabled><option value="">– velg modell –</option></select>
+  <label>Valider:</label>
+  <select id="modelSelect" disabled><option value="">– Valider kun markerte objekter i 3D –</option></select>
 </div>
 
 <main id="mainContent">
   <div class="empty anim">
     <div class="icon">🔍</div>
     <div>
-      Marker objekter i modellen og trykk <strong>Valider markerte</strong> for å starte.<br>
+      Velg en hel modell fra menyen, ELLER marker objekter manuelt, og trykk <strong>Valider</strong> for å starte.<br>
       <span style="font-size:11px;color:var(--muted)">
         Regelsettet (0_Element.json) lastes automatisk ned fra GitHub når du trykker Valider.
       </span>
@@ -423,7 +425,7 @@ let API = null;
 let allModels = [];
 let validationRows = [];
 let validationRules = null;
-let FIELDS = []; // Dynamiske kolonner basert på JSON-filen
+let FIELDS = []; 
 let activeFilter = 'all';
 let searchTerm = '';
 
@@ -446,9 +448,7 @@ function setStatus(msg, cls=''){ statusBar.textContent = msg; statusBar.classNam
 // --- 1. KOBLER TIL TRIMBLE ---
 async function connect(){
   try {
-    if (!window.TrimbleConnectWorkspace?.connect) {
-      throw new Error('Trimble Connect Workspace API ikke tilgjengelig');
-    }
+    if (!window.TrimbleConnectWorkspace?.connect) throw new Error('API ikke tilgjengelig');
     setStatus('⏳ Kobler til Trimble Connect…');
     API = await window.TrimbleConnectWorkspace.connect(window.parent);
     
@@ -462,26 +462,34 @@ async function connect(){
   }
 }
 
-// --- 2. HENTER MODELLISTE (Valgfritt) ---
+// --- 2. HENTER MODELLISTE OG DERES OBJEKT-IDER ---
 async function loadModels(){
   if (!API) return;
   btnLoad.disabled = true;
-  setStatus('⏳ Leser modeller…');
+  setStatus('⏳ Leser modeller og innhold (dette kan ta et øyeblikk)…');
   try {
     const objs = await API.viewer.getObjects();
     allModels = (objs || []).map((m, i) => {
       const modelId = norm(m.modelId || m.modelid || '');
       if (!modelId) return null;
       const name = m.name || `Modell ${i + 1}`;
-      const cnt = Array.isArray(m.objects) ? m.objects.length : 0;
-      return { modelId, name, objectCount: cnt };
+      
+      // Pakker ut ID-ene til alle objektene inni modellen
+      let objectIds = [];
+      if (Array.isArray(m.objects)) {
+          objectIds = m.objects.map(o => (typeof o === 'object' ? o.id : o));
+      } else if (Array.isArray(m.objectIds)) {
+          objectIds = m.objectIds;
+      }
+
+      return { modelId, name, objectCount: objectIds.length, objectIds };
     }).filter(Boolean);
 
-    modelSelect.innerHTML = '<option value="">– velg modell (valgfritt) –</option>' +
+    modelSelect.innerHTML = '<option value="">– Valider kun markerte objekter i 3D –</option>' +
       allModels.map(m => `<option value="${esc(m.modelId)}">${esc(m.name)} (${m.objectCount} obj.)</option>`).join('');
 
     modelSelect.disabled = false;
-    setStatus(`✅ ${allModels.length} modeller hentet.`, 'ok');
+    setStatus(`✅ ${allModels.length} modeller hentet. Klar til validering.`, 'ok');
   } catch (e) {
     setStatus('❌ Feil ved henting: ' + (e.message || e), 'error');
   } finally {
@@ -506,10 +514,8 @@ async function fetchRules() {
     if (validationRules) return;
     setStatus('⏳ Laster ned regler fra GitHub (0_Element.json)...', 'blue');
     const res = await fetch('0_Element.json');
-    if (!res.ok) throw new Error("Fant ikke filen '0_Element.json'. Ligger den i samme mappe på GitHub?");
+    if (!res.ok) throw new Error("Fant ikke filen '0_Element.json' på GitHub.");
     validationRules = await res.json();
-    
-    // Bygger kolonnene automatisk basert på egenskapene i JSON-filen
     FIELDS = Object.keys(validationRules.properties).map(k => ({ key: k, label: k }));
 }
 
@@ -531,14 +537,12 @@ function runValidation(objProps, rules) {
             if (override) effectiveRequirement = override.requirement;
         }
 
-        // Sjekk om påkrevd men mangler
         if (effectiveRequirement === "required" && (!val || val.toString().trim() === "")) {
             fields[propName] = { status: 'missing', value: val, msg: `Mangler påkrevd egenskap` };
             missingCount++;
             continue;
         }
 
-        // Sjekk om tom og ikke påkrevd
         if (!val) {
             fields[propName] = { status: 'na', value: val, msg: `Ikke påkrevd` };
             naCount++;
@@ -548,7 +552,6 @@ function runValidation(objProps, rules) {
         let isFormatError = false;
         let errMsg = '';
 
-        // Valider format
         if (rule.format) {
             const regex = new RegExp(rule.format);
             if (!regex.test(val)) {
@@ -557,7 +560,6 @@ function runValidation(objProps, rules) {
             }
         }
 
-        // Valider tillatte verdier
         if (!isFormatError && rule.allowedValues) {
             if (Array.isArray(rule.allowedValues)) {
                 if (!rule.allowedValues.includes(val)) {
@@ -613,17 +615,41 @@ async function validate(){
   try {
     await fetchRules();
     
-    setStatus('⏳ Leser valgte objekter fra 3D-modellen...');
-    const selection = await API.viewer.getSelection();
-    const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
-    
-    if (!hasSelection) {
-        setStatus('⚠️ Du må markere ett eller flere objekter i 3D-visningen før du validerer.', 'error');
-        btnValidate.disabled = false;
-        return;
+    const selectedModelId = modelSelect.value;
+    let selectionToFetch = [];
+
+    // Sjekker om brukeren har valgt en hel modell i menyen
+    if (selectedModelId) {
+        setStatus('⏳ Henter alle objekter fra valgt modell...');
+        const modelData = allModels.find(m => m.modelId === selectedModelId);
+        
+        if (!modelData || modelData.objectIds.length === 0) {
+            throw new Error("Den valgte modellen inneholder ingen gjenkjennbare objekter.");
+        }
+        
+        // Putter hele modellen inn i markerings-køen
+        selectionToFetch = [{ modelId: modelData.modelId, objectIds: modelData.objectIds }];
+    } 
+    // Hvis menyen er tom, sjekker vi hva som er manuelt markert i 3D
+    else {
+        setStatus('⏳ Sjekker manuelt markerte objekter i 3D...');
+        const selection = await API.viewer.getSelection();
+        const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
+        
+        if (!hasSelection) {
+            throw new Error("Du må enten velge en modell i nedtrekksmenyen, eller markere objekter manuelt i 3D-visningen.");
+        }
+        selectionToFetch = selection;
     }
 
-    const objectsData = await window.WorkspaceAPI.objects.getObjects(selection);
+    setStatus('⏳ Leser data fra objektene (dette kan ta litt tid for store modeller)...');
+    
+    // Her sjekker vi at det GAMLE API-et faktisk er lastet inn fra HTML-toppen
+    if (!window.WorkspaceAPI || !window.WorkspaceAPI.objects) {
+        throw new Error("Kunne ikke lese egenskapene. Sørg for at den gamle API-lenken (apiclient.js) ligger i filen din.");
+    }
+
+    const objectsData = await window.WorkspaceAPI.objects.getObjects(selectionToFetch);
     validationRows = [];
 
     objectsData.forEach(obj => {
@@ -878,7 +904,7 @@ function renderTable(){
     `;
   }).join('');
 
-  // Legg til klikk-for-å-zoome funksjon i tabellen
+  // Klikk for å zoome
   tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
       const rid = tr.dataset.rid;
@@ -892,7 +918,7 @@ function renderTable(){
 
 // --- 8. FARGELEGGING OG EKSPORT ---
 async function colorizeModel(){
-  if (!API || !validationRows.length) return;
+  if (!window.WorkspaceAPI || !validationRows.length) return;
   btnColorize.disabled = true;
   setStatus('🎨 Fargelegger modell…');
 
@@ -914,10 +940,10 @@ async function colorizeModel(){
 }
 
 async function removeColors(){
-  if (!API) return;
+  if (!window.WorkspaceAPI) return;
   try {
     const allIds = validationRows.map(r => r.runtimeId);
-    if(allIds.length) await window.WorkspaceAPI.viewer.setColors([{ objects: allIds, color: { r: 255, g: 255, b: 255, a: 255 } }]); // Reset til hvit/standard
+    if(allIds.length) await window.WorkspaceAPI.viewer.setColors([{ objects: allIds, color: { r: 255, g: 255, b: 255, a: 255 } }]);
     btnUncolor.disabled = true;
     setStatus('⬜ Modellfarger fjernet.', '');
   } catch (e) {}
@@ -970,14 +996,21 @@ function reset(){
   validationRows = [];
   activeFilter = 'all';
   searchTerm = '';
-  removeColors();
+
+  if (window.WorkspaceAPI) {
+    removeColors();
+  }
+
   mainContent.innerHTML = `
     <div class="empty anim">
       <div class="icon">🔍</div>
-      <div>Marker objekter i modellen og trykk <strong>Valider markerte</strong> for å starte.</div>
+      <div>
+        Velg en hel modell fra menyen, ELLER marker objekter manuelt, og trykk <strong>Valider</strong> for å starte.<br>
+      </div>
     </div>`;
   btnReset.disabled = true;
   btnColorize.disabled = true;
+  btnUncolor.disabled = true;
   btnExport.disabled = true;
   setStatus('↺ Nullstilt.', '');
 }
