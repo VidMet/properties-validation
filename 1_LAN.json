@@ -5,11 +5,13 @@
     "Materiale": {
       "propertySet": "1_LAN",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
 	  "minMMI": 300
     },
     "Dimensjon H,B,L (mm)|Eier|Navn|Areal (m2)|Art|BotaniskNavn|Bratteste fall|Lagtykkelse (mm)|Massetype": {
       "propertySet": "1_LAN",
       "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
 		{
           "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
@@ -19,7 +21,8 @@
     },
     "Anvisning|Link|Merknad 1|Merknad 2|Merknad 3|Merknad 4|Merknad 5|Merknad 6|Merknad 7|Merknad 8|Merknad 9|Merknad 10|Merknad 11|Merknad 12": {
       "propertySet": "1_LAN",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     }
   }
 }
