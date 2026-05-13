@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.3</title>
+  <title>Egenskapsvalidering v2.4</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -217,7 +217,18 @@
       font-family: var(--mono);
     }
 
-    #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 7px; }
+    /* NY OG DRAGBAR FELTDEKNINGS-BOKS */
+    #fieldChart { 
+      padding: 14px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 7px; 
+      height: 220px;       /* Standardhøyde */
+      min-height: 80px;    /* Så man ikke kan krympe den helt bort */
+      max-height: 600px;
+      resize: vertical;    /* Gjør boksen dragbar opp/ned! */
+      overflow: auto;      /* Nødvendig for resize, og gir en fin rullefelt */
+    }
 
     .field-row { display: flex; align-items: center; gap: 10px; }
     .field-name {
@@ -249,7 +260,14 @@
       color: var(--ink);
     }
 
-    .table-wrap { overflow: auto; max-height: 400px; }
+    /* NY OG DRAGBAR TABELL-BOKS */
+    .table-wrap { 
+      overflow: auto; 
+      height: 40vh;        /* Fyller opptil 40% av skjermhøyden som standard */
+      min-height: 150px; 
+      resize: vertical;    /* Gjør at tabellen også kan dras større/mindre */
+    }
+    
     table {
       width: 100%;
       border-collapse: collapse;
@@ -354,7 +372,7 @@
       border-color: var(--blue);
     }
 
-    #donutWrap { display: flex; align-items: center; gap: 20px; padding: 14px; }
+    #donutWrap { display: flex; align-items: center; gap: 20px; padding: 14px; height: 100%; min-height: 220px; }
     #donutSvg  { flex-shrink: 0; }
     .donut-legend { display: flex; flex-direction: column; gap: 6px; }
     .legend-item  { display: flex; align-items: center; gap: 8px; font-size: 11px; }
@@ -385,7 +403,9 @@
       to   { opacity:1; transform:none; }
     }
     .anim { animation: fadeUp .3s ease both; }
-    .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    
+    /* Justert grid slik at venstre kolonne følger høyden til høyre kolonne */
+    .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
 
     @media(max-width: 640px) {
       .grid-2col { grid-template-columns: 1fr; }
@@ -397,7 +417,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.3</h1>
+    <h1>Egenskapsvalidering v2.4</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -889,7 +909,7 @@ function renderDashboard(){
       <div class="panel">
         <div class="panel-header">
           <h3>Feltdekning</h3>
-          <span class="hint">grå = ikke påkrevd</span>
+          <span class="hint">grå = ikke påkrevd (trekk hjørnet for å utvide)</span>
         </div>
         <div id="fieldChart"></div>
       </div>
