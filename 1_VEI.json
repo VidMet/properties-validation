@@ -1,5 +1,6 @@
 {
   "version": "1.0",
+  "allowExtraProperties": false,
   "properties": {
     "Materiale": {
       "propertySet": "1_VEI",
