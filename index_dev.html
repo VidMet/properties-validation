@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.6</title>
+  <title>Egenskapsvalidering v2.7</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.6</h1>
+    <h1>Egenskapsvalidering v2.7</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -522,12 +522,11 @@ async function loadModels(){
           objectIds = m.objectIds;
       }
       
-      objectIds = objectIds.map(id => parseInt(id)).filter(id => !isNaN(id));
+      objectIds = objectIds.map(id => parseInt(id, 10)).filter(id => !isNaN(id));
 
       return { modelId, name, objectCount: objectIds.length, objectIds };
     }).filter(Boolean);
 
-    // Beholder "ALL_VISIBLE" på toppen i menyen
     modelSelect.innerHTML = '<option value="">– Valider kun markerte objekter i 3D –</option>' +
       '<option value="ALL_VISIBLE">– Valider alle modeller i visningen –</option>' +
       allModels.map(m => `<option value="${esc(m.modelId)}">${esc(m.name)} (${m.objectCount} obj.)</option>`).join('');
@@ -706,7 +705,6 @@ async function validate(){
     const selectedModelId = modelSelect.value;
     let selectionToFetch = [];
 
-    // NY LOGIKK FOR "Valider alle modeller"
     if (selectedModelId === "ALL_VISIBLE") {
         setStatus('⏳ Forbereder alle modeller i visningen...');
         selectionToFetch = allModels.map(m => ({ modelId: m.modelId, objectRuntimeIds: m.objectIds }));
@@ -741,16 +739,21 @@ async function validate(){
     for (const sel of selectionToFetch) {
         const mId = sel.modelId || sel.modelid;
         let rawIds = sel.objectRuntimeIds || sel.objects || sel.objectIds || [];
-        let rIds = rawIds.map(id => parseInt(typeof id === 'object' ? (id.id || id.objectRuntimeId) : id)).filter(id => !isNaN(id));
+        let rIds = rawIds.map(id => parseInt(typeof id === 'object' ? (id.id || id.objectRuntimeId) : id, 10)).filter(id => !isNaN(id));
 
         if (mId && rIds.length > 0) {
             try {
                 const propsArr = await API.viewer.getObjectProperties(mId, rIds);
                 if (propsArr) {
-                    propsArr.forEach(p => {
+                    propsArr.forEach((p, index) => {
+                        // SIKKERHETSSJEKK: Vi må ha den eksakte IDen som fargemotoren forstår
+                        let rId = p.objectRuntimeId;
+                        if (rId === undefined && typeof p.id === 'number') rId = p.id;
+                        if (rId === undefined) rId = rIds[index];
+
                         objectsData.push({
                             modelId: mId,
-                            id: p.id || p.objectRuntimeId,
+                            objectRuntimeId: rId,
                             name: p.class || p.name || 'Objekt',
                             properties: p.properties
                         });
@@ -792,10 +795,9 @@ async function validate(){
 
         validationRows.push({
             name: norm(obj.name || ''),
-            guid: norm(props["GlobalId"] || props["GUID"] || props["IfcGuid"] || obj.id || ''),
+            guid: norm(props["GlobalId"] || props["GUID"] || props["IfcGuid"] || ''),
             modelId: norm(obj.modelId),
-            // Tvinger IDen til å bli lagret som tall, for å forhindre fargeleggings-krasj!
-            runtimeId: parseInt(obj.id || obj.objectRuntimeId, 10),
+            runtimeId: obj.objectRuntimeId, // KUN det gyldige tall-IDet går hit nå
             fields: ruleResult.fields,
             score: ruleResult.score,
             missingCount: ruleResult.missingCount,
@@ -822,12 +824,15 @@ function groupByModel(rows) {
     const map = {};
     rows.forEach(r => {
         if (!map[r.modelId]) map[r.modelId] = [];
-        // Sikkerhetssjekk for at vi kun sender med gyldige tall til fargemotoren
-        if (!isNaN(r.runtimeId)) {
+        // Et ekstra filter som blokkerer alt som ikke er et rent tall fra farging
+        if (typeof r.runtimeId === 'number' && !isNaN(r.runtimeId)) {
             map[r.modelId].push(r.runtimeId);
         }
     });
-    return Object.keys(map).map(mId => ({ modelId: mId, objectRuntimeIds: map[mId] }));
+    // Fjerner evt. tomme ID-lister som ellers ville fargelagt hele modellen
+    return Object.keys(map)
+        .filter(mId => map[mId].length > 0)
+        .map(mId => ({ modelId: mId, objectRuntimeIds: map[mId] }));
 }
 
 function scoreClass(pct){
@@ -1057,9 +1062,9 @@ function renderTable(){
 
   tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
-      const rid = parseInt(tr.dataset.rid);
+      const rid = parseInt(tr.dataset.rid, 10);
       const mid = tr.dataset.mid;
-      if (!API || !rid || !mid) return;
+      if (!API || isNaN(rid) || !mid) return;
       try {
         const sel = [{ modelId: mid, objectRuntimeIds: [rid] }];
         if (API.viewer.setSelection) await API.viewer.setSelection(sel);
@@ -1077,6 +1082,9 @@ async function colorizeModel(){
     const greenModels = groupByModel(validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0));
     const yellowModels = groupByModel(validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount > 0));
     const redModels = groupByModel(validationRows.filter(r => r.missingCount > 0));
+
+    // Nullstiller alltid fargene først for å sikre en "clean slate"
+    try { await API.viewer.setObjectState(undefined, { color: 'reset' }); } catch(e){}
 
     if (API.viewer.setObjectState) {
         if (greenModels.length) await API.viewer.setObjectState(greenModels, { color: '#27ae60' });
