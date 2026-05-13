@@ -219,7 +219,7 @@
         ],
         "UTS": ["Rekkverk", "Rekkverksende", "Kantstein", "Vegbom"],
         "VEI": ["Overbygning", "Underbygning", "Skjæring", "Stikningsobjekt", "Sideområde"],
-        "VAA": ["Rørledning", "Kum"]
+        "VAA": ["Rørledning", "Kum", "Stikningsobjekt"]
       },
       "minMMI": 100
     },
@@ -338,7 +338,8 @@
         },
         "VAA": {
           "Rørledning": ["Stikkrenne", "Graveflate", "Drensledning", "GrøftÅpen", "Isolasjon", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Varerør", "Vaskevannsledning", "Nedføringsrenne", "Infiltrasjonsledning"],
-          "Kum": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hjelpesluk", "Hydrant", "Kumlokk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Stengeventil", "Tank", "Vannkum", "Inntakskum"]
+          "Kum": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hjelpesluk", "Hydrant", "Kumlokk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Stengeventil", "Tank", "Vannkum", "Inntakskum"],
+          "Stikningsobjekt": "Stikningsobjekt"
         }
       },
       "minMMI": 100
