@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.09</title>
+  <title>Egenskapsvalidering v2.10</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.09</h1>
+    <h1>Egenskapsvalidering v2.10</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -424,9 +424,9 @@
   </div>
   
   <div class="select-group">
-    <label>Objekter:</label>
+    <label>Modell:</label>
     <select id="modelSelect" disabled>
-      <option value="">– Valider markerte objekter i 3D-visningen –</option>
+      <option value="">– Laster modeller... –</option>
     </select>
   </div>
 </div>
@@ -435,9 +435,9 @@
   <div class="empty anim">
     <div class="icon">🔍</div>
     <div>
-      Marker objektene du vil sjekke direkte i 3D-visningen, og trykk <strong>Valider</strong>.<br>
+      Velg et regelsett og en modell fra menyen over, ELLER marker objekter manuelt, og trykk <strong>Valider</strong>.<br>
       <span style="font-size:11px;color:var(--muted)">
-        For å validere hele modellen: Bruk boks-markering eller trykk Ctrl+A i 3D.
+        Regelsettet lastes automatisk ned fra GitHub når du trykker Valider.
       </span>
     </div>
   </div>
@@ -492,15 +492,48 @@ async function connect(){
   }
 }
 
+// ENDRET: Full innlasting av modeller er tilbake på plass!
 async function loadModels(){
-  // Funksjonen eksisterer for kompatibilitet og knapp-aktivering, 
-  // men vi skjuler rotnodene fra dropdown for å unngå rot-fargeleggings-buggen.
   if (!API) return;
   btnLoad.disabled = true;
-  setStatus('⏳ Sjekker tilkobling til visningen...');
+  setStatus('⏳ Leser modeller og filnavn...');
   try {
+    let modelsInfo = [];
+    if (API.viewer.getModels) {
+        modelsInfo = await API.viewer.getModels();
+    } else if (API.project && API.project.getModels) {
+        modelsInfo = await API.project.getModels();
+    }
+
+    const objs = await API.viewer.getObjects();
+    
+    allModels = (objs || []).map((m, i) => {
+      const modelId = norm(m.modelId || m.modelid || '');
+      if (!modelId) return null;
+      
+      const info = modelsInfo.find(x => norm(x.id) === modelId);
+      const name = (info && info.name) ? info.name : (m.name || `Modell ${i + 1}`);
+      
+      let objectIds = [];
+      if (Array.isArray(m.objectRuntimeIds)) {
+          objectIds = m.objectRuntimeIds;
+      } else if (Array.isArray(m.objects)) {
+          objectIds = m.objects.map(o => (typeof o === 'object' ? (o.id || o.objectRuntimeId) : o));
+      } else if (Array.isArray(m.objectIds)) {
+          objectIds = m.objectIds;
+      }
+      
+      objectIds = objectIds.filter(id => id !== undefined && id !== null);
+
+      return { modelId, name, objectCount: objectIds.length, objectIds };
+    }).filter(Boolean);
+
+    modelSelect.innerHTML = '<option value="">– Valider kun markerte objekter i 3D –</option>' +
+      '<option value="ALL_VISIBLE">– Valider alle modeller i visningen –</option>' +
+      allModels.map(m => `<option value="${esc(m.modelId)}">${esc(m.name)} (${m.objectCount} obj.)</option>`).join('');
+
     modelSelect.disabled = false;
-    setStatus(`✅ Tilkoblet. Velg objekter i 3D-visningen for å starte.`, 'ok');
+    setStatus(`✅ ${allModels.length} modeller hentet. Klar til validering.`, 'ok');
   } catch (e) {
     setStatus('❌ Feil ved henting: ' + (e.message || e), 'error');
   } finally {
@@ -702,16 +735,37 @@ async function validate(){
   try {
     await fetchRules();
     
-    setStatus('⏳ Sjekker markerte objekter i 3D...');
-    const selection = await API.viewer.getSelection();
-    const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
-    
-    if (!hasSelection) {
-        throw new Error("Du må markere objekter i 3D-visningen før du trykker Valider.");
+    const selectedModelId = modelSelect.value;
+    let selectionToFetch = [];
+
+    if (selectedModelId === "ALL_VISIBLE") {
+        setStatus('⏳ Forbereder alle modeller i visningen...');
+        selectionToFetch = allModels.map(m => ({ modelId: m.modelId, objectRuntimeIds: m.objectIds }));
+        if (selectionToFetch.length === 0) {
+            throw new Error("Fant ingen modeller å validere. Husk å trykke 'Hent modeller' først.");
+        }
+    } 
+    else if (selectedModelId) {
+        setStatus('⏳ Forbereder objekter fra valgt modell...');
+        const modelData = allModels.find(m => m.modelId === selectedModelId);
+        
+        if (!modelData || modelData.objectIds.length === 0) {
+            throw new Error("Den valgte modellen inneholder ingen gjenkjennbare objekter.");
+        }
+        selectionToFetch = [{ modelId: modelData.modelId, objectRuntimeIds: modelData.objectIds }];
+    } 
+    else {
+        setStatus('⏳ Sjekker markerte objekter i 3D...');
+        const selection = await API.viewer.getSelection();
+        const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
+        
+        if (!hasSelection) {
+            throw new Error("Du må markere objekter i 3D-visningen før du trykker Valider.");
+        }
+        selectionToFetch = selection;
     }
-    
-    let selectionToFetch = selection;
-    setStatus('⏳ Laster ned egenskaper for objektene (dette kan ta litt tid for mange objekter)...');
+
+    setStatus('⏳ Laster ned egenskaper for objektene (dette kan ta opptil 30 sekunder for store modeller)...');
     
     let objectsData = [];
     
@@ -719,7 +773,6 @@ async function validate(){
         const mId = sel.modelId || sel.modelid;
         let rawIds = sel.objectRuntimeIds || sel.objects || sel.objectIds || [];
         
-        // Henter ut IDen nøyaktig slik den er for å bevare GUIDs
         let rIds = rawIds.map(id => {
             if (typeof id === 'object' && id !== null) {
                 return id.id || id.objectRuntimeId || id.objectId;
@@ -781,7 +834,7 @@ async function validate(){
             name: norm(obj.name || ''),
             guid: norm(flatProps["GlobalId"] || flatProps["GUID"] || flatProps["IfcGuid"] || ''),
             modelId: norm(obj.modelId),
-            runtimeId: obj.objectRuntimeId || obj.id, // Settes inn urevidert
+            runtimeId: obj.objectRuntimeId || obj.id, 
             fields: ruleResult.fields,
             score: ruleResult.score,
             missingCount: ruleResult.missingCount,
@@ -809,7 +862,9 @@ function groupByModel(rows) {
     rows.forEach(r => {
         if (!map[r.modelId]) map[r.modelId] = [];
         if (r.runtimeId !== undefined && r.runtimeId !== null && r.runtimeId !== "") {
-            map[r.modelId].push(r.runtimeId);
+            // Tvinger id-en til å være et tall FØR den sendes til fargeleggingsmotoren (for å forhindre "Rot-node-buggen")
+            const rid = /^\d+$/.test(r.runtimeId) ? parseInt(r.runtimeId, 10) : r.runtimeId;
+            map[r.modelId].push(rid);
         }
     });
     return Object.keys(map)
@@ -1044,11 +1099,10 @@ function renderTable(){
 
   tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
-      // Tolker ID-en trygt: Beholder tekst hvis tekst, tall hvis rent tall.
       const rawRid = tr.dataset.rid;
       const rid = /^\d+$/.test(rawRid) ? parseInt(rawRid, 10) : rawRid;
       const mid = tr.dataset.mid;
-      if (!API || !rawRid || !mid) return;
+      if (!API || rawRid === undefined || !mid) return;
       try {
         const sel = [{ modelId: mid, objectRuntimeIds: [rid] }];
         if (API.viewer.setSelection) await API.viewer.setSelection(sel);
@@ -1154,7 +1208,7 @@ function reset(){
     <div class="empty anim">
       <div class="icon">🔍</div>
       <div>
-        Velg et regelsett fra menyen over, marker objekter i 3D-visningen, og trykk <strong>Valider</strong>.<br>
+        Velg et regelsett og en modell fra menyen over, ELLER marker objekter manuelt, og trykk <strong>Valider</strong>.<br>
       </div>
     </div>`;
   btnReset.disabled = true;
