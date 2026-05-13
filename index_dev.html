@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.7</title>
+  <title>Egenskapsvalidering v2.8</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.7</h1>
+    <h1>Egenskapsvalidering v2.8</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -416,8 +416,9 @@
     <label>Regelsett:</label>
     <select id="ruleSelect">
       <option value="0_Element.json">0_Element</option>
-      <option value="1_VEI.json">1_VEI</option>
+      <option value="1_SKO.json">1_SKO</option>
       <option value="1_UTS.json">1_UTS</option>
+      <option value="1_VEI.json">1_VEI</option>
       <option value="3_Beskrivelse.json">3_Beskrivelse</option>
     </select>
   </div>
@@ -540,7 +541,6 @@ async function loadModels(){
   }
 }
 
-// ENDRET: Nå sorterer vi ut egenskapene slik at vi vet HVILKET egenskapssett de tilhører
 function flattenProperties(tcProps) {
     let flat = {};
     let psets = {};
@@ -570,7 +570,6 @@ async function fetchRules() {
     validationRules = await res.json();
     FIELDS = Object.keys(validationRules.properties).map(k => ({ key: k, label: k }));
     
-    // NYTT: Legger til kolonnen automatisk hvis Strict Mode er på
     if (validationRules.allowExtraProperties === false) {
         FIELDS.push({ key: '_Extra', label: 'Uønskede egenskaper' });
     }
@@ -700,7 +699,6 @@ function runValidation(propsData, fullRules) {
         }
     }
     
-    // --- NY LOGIKK FOR STRENG MODUS (allowExtraProperties: false) ---
     if (fullRules.allowExtraProperties === false) {
         const firstRule = Object.values(rules)[0];
         const targetPset = firstRule ? firstRule.propertySet : null;
@@ -709,7 +707,6 @@ function runValidation(propsData, fullRules) {
             const allowedKeys = Object.keys(rules);
             const objectKeysInPset = psets[targetPset] || [];
             
-            // Finner egenskapene i fanen som IKKE er definert i JSON-filen
             const extraKeys = objectKeysInPset.filter(k => !allowedKeys.includes(k));
             
             if (extraKeys.length > 0) {
@@ -827,7 +824,6 @@ async function validate(){
             return; 
         }
 
-        // Sender hele dataobjektet og reglene inn til validering
         const ruleResult = runValidation(propsData, validationRules);
 
         validationRows.push({
