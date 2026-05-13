@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.1</title>
+  <title>Egenskapsvalidering v2.2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.1</h1>
+    <h1>Egenskapsvalidering v2.2</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -416,12 +416,13 @@
     <label>Regelsett:</label>
     <select id="ruleSelect">
       <option value="0_Element.json">0_Element</option>
+      <option value="1_VEI.json">1_VEI</option>
       <option value="3_Beskrivelse.json">3_Beskrivelse</option>
-      </select>
+    </select>
   </div>
   
   <div class="select-group">
-    <label>Valider:</label>
+    <label>Modell:</label>
     <select id="modelSelect" disabled><option value="">– Valider kun markerte objekter i 3D –</option></select>
   </div>
 </div>
