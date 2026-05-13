@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.11</title>
+  <title>Egenskapsvalidering v2.12</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.11</h1>
+    <h1>Egenskapsvalidering v2.12</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -522,8 +522,8 @@ async function loadModels(){
           objectIds = m.objectIds;
       }
       
-      // TVINGER ALLE ID-ER TIL Å VÆRE TEKST! (Dette fikser "marker hele modellen"-feilen)
-      objectIds = objectIds.filter(id => id !== undefined && id !== null).map(id => String(id));
+      // Sørger for at alle hentes som gyldige tall, hvis mulig
+      objectIds = objectIds.filter(id => id !== undefined && id !== null);
 
       return { modelId, name, objectCount: objectIds.length, objectIds };
     }).filter(Boolean);
@@ -773,21 +773,22 @@ async function validate(){
         const mId = sel.modelId || sel.modelid;
         let rawIds = sel.objectRuntimeIds || sel.objects || sel.objectIds || [];
         
-        // Tvinger også alle ID-er i valideringskøen til å være tekst
+        // Fikser uthenting av IDs. IGNORERER p.id som ofte er GUID.
         let rIds = rawIds.map(id => {
-            if (typeof id === 'object' && id !== null) return String(id.id || id.objectRuntimeId || id.objectId);
-            return String(id);
-        }).filter(id => id !== "undefined" && id !== "null" && id !== "");
+            if (typeof id === 'object' && id !== null) return id.objectRuntimeId || id.objectId || id.id;
+            return id;
+        }).filter(id => id !== undefined && id !== null);
 
         if (mId && rIds.length > 0) {
             try {
                 const propsArr = await API.viewer.getObjectProperties(mId, rIds);
                 if (propsArr && Array.isArray(propsArr)) {
                     propsArr.forEach((p, index) => {
-                        let rId = p.objectRuntimeId !== undefined ? p.objectRuntimeId : (p.id !== undefined ? p.id : rIds[index]);
+                        // Henter den garanterte interne IDen vi sendte inn
+                        let rId = p.objectRuntimeId !== undefined ? p.objectRuntimeId : rIds[index];
                         objectsData.push({
                             modelId: mId,
-                            objectRuntimeId: String(rId), // Lagres som tekst
+                            objectRuntimeId: rId,
                             name: p.class || p.name || 'Objekt',
                             properties: p.properties
                         });
@@ -832,7 +833,7 @@ async function validate(){
             name: norm(obj.name || ''),
             guid: norm(flatProps["GlobalId"] || flatProps["GUID"] || flatProps["IfcGuid"] || ''),
             modelId: norm(obj.modelId),
-            runtimeId: String(obj.objectRuntimeId || obj.id), // Lagres kun som tekst!
+            runtimeId: obj.objectRuntimeId, // Lagrer den rene, interne IDen her
             fields: ruleResult.fields,
             score: ruleResult.score,
             missingCount: ruleResult.missingCount,
@@ -860,8 +861,11 @@ function groupByModel(rows) {
     rows.forEach(r => {
         if (!map[r.modelId]) map[r.modelId] = [];
         if (r.runtimeId !== undefined && r.runtimeId !== null && r.runtimeId !== "") {
-            // Sørger for at den sendes til TC som rein tekst
-            map[r.modelId].push(String(r.runtimeId));
+            // Sørger for at IDen er et RENT TALL (fjerner eventuelt kluss) for å unngå rot-farging
+            const rid = parseInt(r.runtimeId, 10);
+            if (!isNaN(rid)) {
+                map[r.modelId].push(rid);
+            }
         }
     });
     return Object.keys(map)
@@ -1096,10 +1100,9 @@ function renderTable(){
 
   tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
-      // Sørger for at IDen forblir ren tekst her også!
-      const rid = String(tr.dataset.rid);
+      const rid = parseInt(tr.dataset.rid, 10);
       const mid = tr.dataset.mid;
-      if (!API || !rid || !mid) return;
+      if (!API || isNaN(rid) || !mid) return;
       try {
         const sel = [{ modelId: mid, objectRuntimeIds: [rid] }];
         if (API.viewer.setSelection) await API.viewer.setSelection(sel);
