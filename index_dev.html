@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.17</title>
+  <title>Egenskapsvalidering v2.20</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.17</h1>
+    <h1>Egenskapsvalidering v2.20</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -416,6 +416,7 @@
     <label>Regelsett:</label>
     <select id="ruleSelect">
       <option value="0_Element.json">0_Element</option>
+      <option value="1_AKU.json">1_AKU</option>
       <option value="1_LAN.json">1_LAN</option>
       <option value="1_SKO.json">1_SKO</option>
       <option value="1_UTS.json">1_UTS</option>
@@ -455,7 +456,6 @@ let FIELDS = [];
 let activeFilter = 'all';
 let searchTerm = '';
 
-// Definerer system-noder/mapper som SKAL ignoreres (slik som i referansefilen din)
 const IGNORE = new Set([
   'IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE',
   'IFCZONE','IFCBUILDINGUNIT','IFCSPATIALZONE','IFCGROUP','IFCSYSTEM'
@@ -479,7 +479,6 @@ function esc(v){ return norm(v).replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;'
 function setStatus(msg, cls=''){ statusBar.textContent = msg; statusBar.className = cls; }
 function lastPathPart(v){ return norm(v).split('/').pop().split('\\').pop(); }
 
-// Finner ut om objektet er en system-node som skal overses
 function getIfcType(obj){
     const s = norm(obj.class || obj.className || obj.type || obj.ifcType || obj.ifcEntity || '').toUpperCase();
     if (s && s.startsWith('IFC')) return s;
@@ -514,7 +513,6 @@ async function connect(){
   }
 }
 
-// Laster ned alle modeller og forbereder dem i dropdown-menyen
 async function loadModels(){
   if (!API) return;
   btnLoad.disabled = true;
@@ -550,16 +548,32 @@ async function loadModels(){
       
       const name = nameMap.get(modelId) || m.name || `Modell ${i + 1}`;
       
-      let objectIds = [];
-      if (Array.isArray(m.objects)) {
-          objectIds = m.objects.map(o => o.id).filter(v => v != null);
-      } else if (Array.isArray(m.objectRuntimeIds)) {
-          objectIds = m.objectRuntimeIds;
-      } else if (Array.isArray(m.objectIds)) {
-          objectIds = m.objectIds;
+      let leafIds = [];
+      function getLeaves(nodes) {
+          let res = [];
+          for (let n of nodes) {
+              if (n && n.children && n.children.length > 0) {
+                  res.push(...getLeaves(n.children));
+              } else if (n) {
+                  if (n.id !== undefined) res.push(n.id);
+                  else if (n.objectRuntimeId !== undefined) res.push(n.objectRuntimeId);
+                  else if (typeof n === 'string' || typeof n === 'number') res.push(n);
+              }
+          }
+          return res;
       }
 
-      return { modelId, name, objectCount: objectIds.length, objectIds };
+      if (Array.isArray(m.objects)) {
+          leafIds = getLeaves(m.objects);
+      } else if (Array.isArray(m.objectRuntimeIds)) {
+          leafIds = m.objectRuntimeIds;
+      } else if (Array.isArray(m.objectIds)) {
+          leafIds = m.objectIds;
+      }
+      
+      leafIds = leafIds.filter(id => id !== undefined && id !== null);
+
+      return { modelId, name, objectCount: leafIds.length, objectIds: leafIds };
     }).filter(Boolean);
 
     modelSelect.innerHTML = '<option value="">– Velg modell –</option>' +
@@ -601,7 +615,14 @@ async function fetchRules() {
     if (!res.ok) throw new Error(`Fant ikke filen '${selectedRuleFile}' på GitHub.`);
     
     validationRules = await res.json();
-    FIELDS = Object.keys(validationRules.properties).map(k => ({ key: k, label: k }));
+    
+    FIELDS = [];
+    Object.keys(validationRules.properties).forEach(key => {
+        key.split('|').forEach(subKey => {
+            const cleanKey = subKey.trim();
+            if(cleanKey) FIELDS.push({ key: cleanKey, label: cleanKey });
+        });
+    });
     
     if (validationRules.allowExtraProperties === false) {
         FIELDS.push({ key: '_Extra', label: 'Uønskede egenskaper' });
@@ -621,114 +642,120 @@ function runValidation(propsData, fullRules) {
     const fag = objProps["Underdisiplinkode"];
     const objectMMI = parseInt(objProps["MMI"], 10) || 0;
 
-    for (const [propName, rule] of Object.entries(rules)) {
-        const val = objProps[propName] || '';
-        let effectiveRequirement = rule.requirement || rule.defaultRequirement;
+    for (const [propKeys, rule] of Object.entries(rules)) {
+        const propNames = propKeys.split('|').map(k => k.trim());
         
-        if (rule.overrides) {
-            const override = rule.overrides.find(o => {
-                if (o.discipline && o.discipline === fag) return true;
-                if (o.conditions) {
-                    return Object.entries(o.conditions).every(([key, validValues]) => {
-                        const objValue = objProps[key];
-                        if (Array.isArray(validValues)) {
-                            return validValues.includes(objValue);
-                        }
-                        return validValues === objValue;
-                    });
-                }
-                return false;
-            });
-            if (override) effectiveRequirement = override.requirement;
-        }
-
-        if (rule.minMMI && objectMMI > 0 && objectMMI < rule.minMMI) {
-            if (effectiveRequirement === "required") {
-                effectiveRequirement = "optional";
+        for (const propName of propNames) {
+            if (!propName) continue;
+            
+            const val = objProps[propName] || '';
+            let effectiveRequirement = rule.requirement || rule.defaultRequirement;
+            
+            if (rule.overrides) {
+                const override = rule.overrides.find(o => {
+                    if (o.discipline && o.discipline === fag) return true;
+                    if (o.conditions) {
+                        return Object.entries(o.conditions).every(([key, validValues]) => {
+                            const objValue = objProps[key];
+                            if (Array.isArray(validValues)) {
+                                return validValues.includes(objValue);
+                            }
+                            return validValues === objValue;
+                        });
+                    }
+                    return false;
+                });
+                if (override) effectiveRequirement = override.requirement;
             }
-        }
 
-        if (effectiveRequirement === "notallowed") {
-            if (val && val.toString().trim() !== "") {
-                fields[propName] = { status: 'format', value: val, msg: `Egenskapen er ikke tillatt for dette objektet` };
+            if (rule.minMMI && objectMMI > 0 && objectMMI < rule.minMMI) {
+                if (effectiveRequirement === "required") {
+                    effectiveRequirement = "optional";
+                }
+            }
+
+            if (effectiveRequirement === "notallowed") {
+                if (val && val.toString().trim() !== "") {
+                    fields[propName] = { status: 'format', value: val, msg: `Egenskapen er ikke tillatt for dette objektet` };
+                    formatErrorCount++;
+                } else {
+                    fields[propName] = { status: 'na', value: val, msg: `Ikke tillatt (korrekt tom)` };
+                    naCount++;
+                }
+                continue; 
+            }
+
+            if (effectiveRequirement === "required" && (!val || val.toString().trim() === "")) {
+                fields[propName] = { status: 'missing', value: val, msg: `Mangler påkrevd egenskap` };
+                missingCount++;
+                continue;
+            }
+
+            if (!val || val.toString().trim() === "") {
+                fields[propName] = { status: 'na', value: val, msg: `Ikke påkrevd` };
+                naCount++;
+                continue;
+            }
+
+            let isFormatError = false;
+            let errMsg = '';
+
+            if (rule.format) {
+                const regex = new RegExp(rule.format);
+                if (!regex.test(val)) {
+                    isFormatError = true;
+                    errMsg = `Feil format`;
+                }
+            }
+
+            if (!isFormatError && rule.disallowedValues) {
+                if (Array.isArray(rule.disallowedValues)) {
+                    const stringDisallowedValues = rule.disallowedValues.map(v => String(v).trim().toLowerCase());
+                    if (stringDisallowedValues.includes(String(val).trim().toLowerCase())) {
+                        isFormatError = true;
+                        errMsg = `Verdien '${val}' er ikke tillatt`;
+                    }
+                }
+            }
+
+            if (!isFormatError && rule.allowedValues) {
+                if (Array.isArray(rule.allowedValues)) {
+                    const stringAllowedValues = rule.allowedValues.map(String);
+                    if (!stringAllowedValues.includes(String(val))) {
+                        isFormatError = true;
+                        errMsg = `Ugyldig verdi`;
+                    }
+                } else if (typeof rule.allowedValues === 'object' && fag) {
+                    if (propName === "Objektklasse") {
+                        const validClasses = rule.allowedValues[fag];
+                        if (!validClasses || !validClasses.includes(val)) {
+                            isFormatError = true;
+                            errMsg = `Ugyldig klasse for fag '${fag}'`;
+                        }
+                    } 
+                    else if (propName === "Objekttype") {
+                        const klasse = objProps["Objektklasse"];
+                        const validTypesForFag = rule.allowedValues[fag];
+                        if (validTypesForFag && validTypesForFag[klasse]) {
+                            if (!validTypesForFag[klasse].includes(val)) {
+                                isFormatError = true;
+                                errMsg = `Ugyldig type for klasse '${klasse}'`;
+                            }
+                        } else {
+                            isFormatError = true;
+                            errMsg = `Ugyldig kombinasjon for fag og klasse`;
+                        }
+                    }
+                }
+            }
+
+            if (isFormatError) {
+                fields[propName] = { status: 'format', value: val, msg: errMsg };
                 formatErrorCount++;
             } else {
-                fields[propName] = { status: 'na', value: val, msg: `Ikke tillatt (korrekt tom)` };
-                naCount++;
+                fields[propName] = { status: 'ok', value: val, msg: `OK` };
+                okCount++;
             }
-            continue; 
-        }
-
-        if (effectiveRequirement === "required" && (!val || val.toString().trim() === "")) {
-            fields[propName] = { status: 'missing', value: val, msg: `Mangler påkrevd egenskap` };
-            missingCount++;
-            continue;
-        }
-
-        if (!val || val.toString().trim() === "") {
-            fields[propName] = { status: 'na', value: val, msg: `Ikke påkrevd` };
-            naCount++;
-            continue;
-        }
-
-        let isFormatError = false;
-        let errMsg = '';
-
-        if (rule.format) {
-            const regex = new RegExp(rule.format);
-            if (!regex.test(val)) {
-                isFormatError = true;
-                errMsg = `Feil format`;
-            }
-        }
-
-        if (!isFormatError && rule.disallowedValues) {
-            if (Array.isArray(rule.disallowedValues)) {
-                const stringDisallowedValues = rule.disallowedValues.map(v => String(v).trim().toLowerCase());
-                if (stringDisallowedValues.includes(String(val).trim().toLowerCase())) {
-                    isFormatError = true;
-                    errMsg = `Verdien '${val}' er ikke tillatt`;
-                }
-            }
-        }
-
-        if (!isFormatError && rule.allowedValues) {
-            if (Array.isArray(rule.allowedValues)) {
-                const stringAllowedValues = rule.allowedValues.map(String);
-                if (!stringAllowedValues.includes(String(val))) {
-                    isFormatError = true;
-                    errMsg = `Ugyldig verdi`;
-                }
-            } else if (typeof rule.allowedValues === 'object' && fag) {
-                if (propName === "Objektklasse") {
-                    const validClasses = rule.allowedValues[fag];
-                    if (!validClasses || !validClasses.includes(val)) {
-                        isFormatError = true;
-                        errMsg = `Ugyldig klasse for fag '${fag}'`;
-                    }
-                } 
-                else if (propName === "Objekttype") {
-                    const klasse = objProps["Objektklasse"];
-                    const validTypesForFag = rule.allowedValues[fag];
-                    if (validTypesForFag && validTypesForFag[klasse]) {
-                        if (!validTypesForFag[klasse].includes(val)) {
-                            isFormatError = true;
-                            errMsg = `Ugyldig type for klasse '${klasse}'`;
-                        }
-                    } else {
-                        isFormatError = true;
-                        errMsg = `Ugyldig kombinasjon for fag og klasse`;
-                    }
-                }
-            }
-        }
-
-        if (isFormatError) {
-            fields[propName] = { status: 'format', value: val, msg: errMsg };
-            formatErrorCount++;
-        } else {
-            fields[propName] = { status: 'ok', value: val, msg: `OK` };
-            okCount++;
         }
     }
     
@@ -737,9 +764,10 @@ function runValidation(propsData, fullRules) {
         const targetPset = firstRule ? firstRule.propertySet : null;
         
         if (targetPset) {
-            const allowedKeys = Object.keys(rules);
-            const objectKeysInPset = psets[targetPset] || [];
+            const allowedKeys = [];
+            Object.keys(rules).forEach(k => k.split('|').forEach(sub => allowedKeys.push(sub.trim())));
             
+            const objectKeysInPset = psets[targetPset] || [];
             const extraKeys = objectKeysInPset.filter(k => !allowedKeys.includes(k));
             
             if (extraKeys.length > 0) {
@@ -782,16 +810,14 @@ async function validate(){
     const runtimeIds = modelEntry.objectIds;
     const total = runtimeIds.length;
     let done = 0;
-    const CHUNK = 200; // Deler nedlastingen opp i puljer på 200 for å unngå krasj!
+    const CHUNK = 200; 
     validationRows = [];
 
-    // Laster ned egenskapene fra Trimble Connect i puljer
     for (let i = 0; i < runtimeIds.length; i += CHUNK) {
         const chunk = runtimeIds.slice(i, i + CHUNK);
         const propsArr = await API.viewer.getObjectProperties(modelId, chunk);
 
         for (const obj of (propsArr || [])) {
-            // SILER UT SYSTEMMAPPER! (Dette forhindrer hele modellen fra å bli rød)
             const ifcType = getIfcType(obj);
             if (IGNORE.has(ifcType)) {
                 skippedCount++;
@@ -807,7 +833,7 @@ async function validate(){
                 name: norm(obj.name || obj.objectName || ''),
                 guid: norm(flatProps["GlobalId"] || flatProps["GUID"] || flatProps["IfcGuid"] || ''),
                 modelId: norm(obj.modelId || modelId),
-                runtimeId: obj.id || obj.objectRuntimeId, // Lagrer riktig visnings-ID
+                runtimeId: obj.id || obj.objectRuntimeId, 
                 fields: ruleResult.fields,
                 score: ruleResult.score,
                 missingCount: ruleResult.missingCount,
@@ -1059,7 +1085,6 @@ function renderTable(){
     `;
   }).join('');
 
-  // SIKKERHET FOR VALG I VISNING: Konvolutt-metoden!
   tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
       const mid = tr.dataset.mid;
@@ -1106,10 +1131,8 @@ async function colorizeModel(){
     const ySel = toSel(yellowMap);
     const rSel = toSel(redMap);
 
-    // MÅ fjerne farger først for å hindre at alt stikker av!
     try { await API.viewer.setObjectState(undefined, { color: 'reset' }); } catch(e){}
 
-    // DEN KORREKTE KONVOLUTT-METODEN FOR FARGELEGGING I TC API
     if (gSel.length) await API.viewer.setObjectState({ modelObjectIds: gSel }, { color: { r: 39,  g: 174, b: 96,  a: 255 } });
     if (ySel.length) await API.viewer.setObjectState({ modelObjectIds: ySel }, { color: { r: 210, g: 153, b: 34,  a: 255 } });
     if (rSel.length) await API.viewer.setObjectState({ modelObjectIds: rSel }, { color: { r: 248, g: 81,  b: 73,  a: 255 } });
