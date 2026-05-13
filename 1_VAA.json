@@ -2,83 +2,29 @@
   "version": "1.0",
   "allowExtraProperties": false,
   "properties": {
-    "Materiale": {
+    "Materiale|Bruksområde|Type og Dimensjon": {
       "propertySet": "1_VAA",
       "defaultRequirement": "required",
+      "minMMI": 300,
       "overrides": [
         {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Graveflate", "GrøftÅpen", "Nedføringsrenne" ] },
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Graveflate", "GrøftÅpen", "Nedføringsrenne"] },
           "requirement": "notallowed"
         },
         {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Stikningsobjekt", "Objekttype": ["Stikningsobjekt" ] },
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Stikningsobjekt" },
           "requirement": "notallowed"
         },
         {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hydrant", "Stengeventil", "Tank" ] },
-          "requirement": "notallowed"
-        }
-      ],
-	  "minMMI": 300
-    },
-    "Bruksområde": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "required",
-      "overrides": [
-        {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Graveflate", "GrøftÅpen", "Nedføringsrenne" ] },
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hydrant", "Stengeventil", "Tank"] },
           "requirement": "notallowed"
         },
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Isolasjon", "Varerør", "Vaskevannsledning" ] },
+        {
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum"] },
           "requirement": "optional"
         },
         {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Stikningsobjekt", "Objekttype": ["Stikningsobjekt" ] },
-          "requirement": "notallowed"
-        },
-        {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hydrant", "Stengeventil", "Tank" ] },
-          "requirement": "notallowed"
-        },
-        {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
-          "requirement": "optional"
-        }
-      ],
-	  "minMMI": 300
-    },
-    "Diameter kumlokk (mm)": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
-          "requirement": "optional"
-        }
-      ]
-    },
-    "Ledningsfall": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Infiltrasjonsledning" ] },
-          "requirement": "required",
-		  "minMMI": 300
-        },
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Isolasjon", "Varerør", "Vaskevannsledning" ] },
-          "requirement": "optional"
-        }
-      ]
-    },
-    "Kumlokkform": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Isolasjon", "Varerør", "Vaskevannsledning"] },
           "requirement": "optional"
         }
       ]
@@ -87,206 +33,63 @@
       "propertySet": "1_VAA",
       "defaultRequirement": "notallowed",
       "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
+        {
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum"] },
           "requirement": "required",
-		  "minMMI": 300
+          "minMMI": 300
         }
       ]
     },
-    "Ledning fra kum": {
+    "Diameter kumlokk (mm)|Kumlokkform|Rotasjon|Sumpdybde|Kote innvendig kumbunn|Kote topp ramme": {
       "propertySet": "1_VAA",
       "defaultRequirement": "notallowed",
       "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Infiltrasjonsledning", "Isolasjon", "Varerør", "Vaskevannsledning" ] },
+        {
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum"] },
           "requirement": "optional"
         }
       ]
     },
-    "Ledning til kum": {
+    "Ledningsfall|Lengde (m)": {
       "propertySet": "1_VAA",
       "defaultRequirement": "notallowed",
       "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Infiltrasjonsledning", "Isolasjon", "Varerør", "Vaskevannsledning" ] },
-          "requirement": "optional"
-        }
-      ]
-    },
-    "Lengde (m)": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Infiltrasjonsledning" ] },
+        {
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Infiltrasjonsledning"] },
           "requirement": "required",
-		  "minMMI": 300
+          "minMMI": 300
         },
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Isolasjon", "Varerør", "Vaskevannsledning" ] },
+        {
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Isolasjon", "Varerør", "Vaskevannsledning"] },
           "requirement": "optional"
         }
       ]
     },
-    "Referansepunkt": {
+    "Ledning fra kum|Ledning til kum|Ringstivhet/SDR/Klasse": {
       "propertySet": "1_VAA",
       "defaultRequirement": "notallowed",
       "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Infiltrasjonsledning", "Isolasjon", "Varerør", "Vaskevannsledning" ] },
-          "requirement": "optional"
-        },
         {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": [ "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Infiltrasjonsledning", "Isolasjon", "Varerør", "Vaskevannsledning"] },
           "requirement": "optional"
         }
       ]
     },
-    "Ringstivhet/SDR/Klasse": {
+    "Referansepunkt|System": {
       "propertySet": "1_VAA",
       "defaultRequirement": "notallowed",
       "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Infiltrasjonsledning", "Isolasjon", "Varerør", "Vaskevannsledning" ] },
-          "requirement": "optional"
-        }
-      ]
-    },
-    "Rotasjon": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
-          "requirement": "optional"
-        }
-      ]
-    },
-    "Sumpdybde": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
-          "requirement": "optional"
-        }
-      ]
-    },
-    "System": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Vannledning", "Infiltrasjonsledning", "Isolasjon", "Vaskevannsledning" ] },
-          "requirement": "optional"
-        },
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
-          "requirement": "optional"
-        }
-      ]
-    },
-    "Type og Dimensjon": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "required",
-      "overrides": [
         {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Graveflate", "GrøftÅpen", "Nedføringsrenne" ] },
-          "requirement": "notallowed"
-        },
-		{
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": "Isolasjon" },
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": ["Stikkrenne", "Drensledning", "Overvannsledning", "Spillvannsledning", "Trekkerør", "Vannledning", "Infiltrasjonsledning", "Isolasjon", "Varerør", "Vaskevannsledning"] },
           "requirement": "optional"
         },
         {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Stikningsobjekt", "Objekttype": ["Stikningsobjekt" ] },
-          "requirement": "notallowed"
-        },
-        {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hydrant", "Stengeventil", "Tank" ] },
-          "requirement": "notallowed"
-        },
-        {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
-          "requirement": "optional"
-        }
-      ],
-	  "minMMI": 300
-    },
-    "Kote innvendig kumbunn": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "not allowed",
-      "overrides": [
-        {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum"] },
           "requirement": "optional"
         }
       ]
     },
-    "Kote topp ramme": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "not allowed",
-      "overrides": [
-        {
-          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
-          "requirement": "optional"
-        }
-      ]
-    },
-    "Henvisning": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Link": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 1": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 2": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 3": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 4": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 5": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 6": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 7": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 8": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 9": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 10": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 11": {
-      "propertySet": "1_VAA",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 12": {
+    "Henvisning|Link|Merknad 1|Merknad 2|Merknad 3|Merknad 4|Merknad 5|Merknad 6|Merknad 7|Merknad 8|Merknad 9|Merknad 10|Merknad 11|Merknad 12": {
       "propertySet": "1_VAA",
       "defaultRequirement": "optional"
     }
