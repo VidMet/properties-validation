@@ -598,17 +598,36 @@ function runValidation(objProps, rules) {
             if (override) effectiveRequirement = override.requirement;
         }
 
+        // MMI-sjekk (Gjør 'required' om til 'optional' hvis MMI er for lav. Påvirker ikke 'notallowed')
         if (rule.minMMI && objectMMI > 0 && objectMMI < rule.minMMI) {
-            effectiveRequirement = "optional";
+            if (effectiveRequirement === "required") {
+                effectiveRequirement = "optional";
+            }
         }
 
+        // --- NY LOGIKK FOR "notallowed" ---
+        if (effectiveRequirement === "notallowed") {
+            if (val && val.toString().trim() !== "") {
+                // Egenskapen har en verdi, men skal ikke ha det!
+                fields[propName] = { status: 'format', value: val, msg: `Egenskapen er ikke tillatt for dette objektet` };
+                formatErrorCount++;
+            } else {
+                // Egenskapen mangler (er tom), noe som er 100 % riktig.
+                fields[propName] = { status: 'na', value: val, msg: `Ikke tillatt (korrekt tom)` };
+                naCount++;
+            }
+            continue; // Hopper over format/verdi-sjekk siden den er ferdig behandlet
+        }
+
+        // Sjekk om påkrevd men mangler
         if (effectiveRequirement === "required" && (!val || val.toString().trim() === "")) {
             fields[propName] = { status: 'missing', value: val, msg: `Mangler påkrevd egenskap` };
             missingCount++;
             continue;
         }
 
-        if (!val) {
+        // Sjekk om tom og ikke påkrevd (optional)
+        if (!val || val.toString().trim() === "") {
             fields[propName] = { status: 'na', value: val, msg: `Ikke påkrevd` };
             naCount++;
             continue;
