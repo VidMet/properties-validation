@@ -4,6 +4,7 @@
     "Prosesskode": {
       "propertySet": "3_Beskrivelse",
       "defaultRequirement": "required",
+      "minMMI": 300,
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": "GrøftÅpen" },
@@ -18,6 +19,7 @@
     "Prosessnavn": {
       "propertySet": "3_Beskrivelse",
       "defaultRequirement": "required",
+      "minMMI": 300,
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": "GrøftÅpen" },
@@ -32,6 +34,7 @@
     "Enhet": {
       "propertySet": "3_Beskrivelse",
       "defaultRequirement": "required",
+      "minMMI": 300,
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": "GrøftÅpen" },
@@ -58,6 +61,7 @@
     "Mengde": {
       "propertySet": "3_Beskrivelse",
       "defaultRequirement": "required",
+      "minMMI": 300,
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "LAN" },
