@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v1.02</title>
+  <title>Egenskapsvalidering v2.0</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -114,10 +114,18 @@
       border-bottom: 1px solid var(--border);
       padding: 8px 16px;
       display: flex;
-      gap: 10px;
+      gap: 15px;
       align-items: center;
       flex-shrink: 0;
     }
+    
+    .select-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+
     #modelBar label {
       font-size: 11px;
       color: var(--muted);
@@ -132,7 +140,7 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 6px 10px;
-      flex: 1;
+      width: 100%;
       min-width: 0;
     }
     select:disabled { opacity: .4; }
@@ -389,8 +397,8 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v1.02</h1>
-    <p>Validerer ut ifra egendefinerte regler hentet fra 0_Element.json</p>
+    <h1>Egenskapsvalidering v2.0</h1>
+    <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
@@ -404,17 +412,27 @@
 <div id="statusBar">Kobler til Trimble Connect…</div>
 
 <div id="modelBar">
-  <label>Valider:</label>
-  <select id="modelSelect" disabled><option value="">– Valider kun markerte objekter i 3D –</option></select>
+  <div class="select-group">
+    <label>Regelsett:</label>
+    <select id="ruleSelect">
+      <option value="0_Element.json">0_Element</option>
+      <option value="3_Beskrivelse.json">3_Beskrivelse</option>
+      </select>
+  </div>
+  
+  <div class="select-group">
+    <label>Valider:</label>
+    <select id="modelSelect" disabled><option value="">– Valider kun markerte objekter i 3D –</option></select>
+  </div>
 </div>
 
 <main id="mainContent">
   <div class="empty anim">
     <div class="icon">🔍</div>
     <div>
-      Velg en hel modell fra menyen, ELLER marker objekter manuelt, og trykk <strong>Valider</strong> for å starte.<br>
+      Velg et regelsett og en modell fra menyen over, ELLER marker objekter manuelt, og trykk <strong>Valider</strong>.<br>
       <span style="font-size:11px;color:var(--muted)">
-        Regelsettet (0_Element.json) lastes automatisk ned fra GitHub når du trykker Valider.
+        Regelsettet lastes automatisk ned fra GitHub når du trykker Valider.
       </span>
     </div>
   </div>
@@ -424,7 +442,7 @@
 let API = null;
 let allModels = [];
 let validationRows = [];
-let skippedCount = 0; // Holder styr på ignorert geometri
+let skippedCount = 0; 
 let validationRules = null;
 let FIELDS = []; 
 let activeFilter = 'all';
@@ -437,6 +455,7 @@ const btnReset = $('btnReset');
 const btnColorize = $('btnColorize');
 const btnUncolor = $('btnUncolor');
 const btnExport = $('btnExport');
+const ruleSelect = $('ruleSelect');
 const modelSelect = $('modelSelect');
 const statusBar = $('statusBar');
 const modelBadge = $('modelBadge');
@@ -445,6 +464,13 @@ const mainContent = $('mainContent');
 function norm(v){ return (v ?? '').toString().trim(); }
 function esc(v){ return norm(v).replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s])); }
 function setStatus(msg, cls=''){ statusBar.textContent = msg; statusBar.className = cls; }
+
+// --- TØM GAMLE REGLER NÅR DU BYTTER REGELSETT ---
+ruleSelect.addEventListener('change', () => {
+    validationRules = null; // Tvinger nedlasting av ny fil
+    reset(); // Nullstiller UI og farger
+    setStatus(`Valgt regelsett byttet til: ${ruleSelect.options[ruleSelect.selectedIndex].text}. Klar til validering.`, 'blue');
+});
 
 // --- 1. KOBLER TIL TRIMBLE ---
 async function connect(){
@@ -469,7 +495,6 @@ async function loadModels(){
   btnLoad.disabled = true;
   setStatus('⏳ Leser modeller og filnavn...');
   try {
-    // Henter først ut filnavnene for prosjektet
     let modelsInfo = [];
     if (API.viewer.getModels) {
         modelsInfo = await API.viewer.getModels();
@@ -477,14 +502,12 @@ async function loadModels(){
         modelsInfo = await API.project.getModels();
     }
 
-    // Deretter henter vi objekttreet
     const objs = await API.viewer.getObjects();
     
     allModels = (objs || []).map((m, i) => {
       const modelId = norm(m.modelId || m.modelid || '');
       if (!modelId) return null;
       
-      // Finner riktig filnavn fra modelsInfo
       const info = modelsInfo.find(x => norm(x.id) === modelId);
       const name = (info && info.name) ? info.name : (m.name || `Modell ${i + 1}`);
       
@@ -528,12 +551,16 @@ function flattenProperties(tcProps) {
     return flat;
 }
 
-// --- 4. HENT REGLER FRA GITHUB ---
+// --- 4. HENT VALGT REGELSETT FRA GITHUB ---
 async function fetchRules() {
-    if (validationRules) return;
-    setStatus('⏳ Laster ned regler fra GitHub (0_Element.json)...', 'blue');
-    const res = await fetch('0_Element.json');
-    if (!res.ok) throw new Error("Fant ikke filen '0_Element.json' på GitHub.");
+    if (validationRules) return; // Hopper over hvis allerede lastet ned
+    
+    const selectedRuleFile = ruleSelect.value;
+    setStatus(`⏳ Laster ned regler fra GitHub (${selectedRuleFile})...`, 'blue');
+    
+    const res = await fetch(selectedRuleFile);
+    if (!res.ok) throw new Error(`Fant ikke filen '${selectedRuleFile}' på GitHub.`);
+    
     validationRules = await res.json();
     FIELDS = Object.keys(validationRules.properties).map(k => ({ key: k, label: k }));
 }
@@ -546,14 +573,31 @@ function runValidation(objProps, rules) {
     let naCount = 0;
     let okCount = 0;
     const fag = objProps["Underdisiplinkode"];
+    const objectMMI = parseInt(objProps["MMI"], 10) || 0;
 
     for (const [propName, rule] of Object.entries(rules)) {
         const val = objProps[propName] || '';
         let effectiveRequirement = rule.requirement || rule.defaultRequirement;
         
         if (rule.overrides) {
-            const override = rule.overrides.find(o => o.discipline === fag);
+            const override = rule.overrides.find(o => {
+                if (o.discipline && o.discipline === fag) return true;
+                if (o.conditions) {
+                    return Object.entries(o.conditions).every(([key, validValues]) => {
+                        const objValue = objProps[key];
+                        if (Array.isArray(validValues)) {
+                            return validValues.includes(objValue);
+                        }
+                        return validValues === objValue;
+                    });
+                }
+                return false;
+            });
             if (override) effectiveRequirement = override.requirement;
+        }
+
+        if (rule.minMMI && objectMMI > 0 && objectMMI < rule.minMMI) {
+            effectiveRequirement = "optional";
         }
 
         if (effectiveRequirement === "required" && (!val || val.toString().trim() === "")) {
@@ -581,7 +625,8 @@ function runValidation(objProps, rules) {
 
         if (!isFormatError && rule.allowedValues) {
             if (Array.isArray(rule.allowedValues)) {
-                if (!rule.allowedValues.includes(val)) {
+                const stringAllowedValues = rule.allowedValues.map(String);
+                if (!stringAllowedValues.includes(String(val))) {
                     isFormatError = true;
                     errMsg = `Ugyldig verdi`;
                 }
@@ -695,16 +740,14 @@ async function validate(){
     objectsData.forEach(obj => {
         const props = flattenProperties(obj.properties);
         
-        // --- IGNORERER STRUKTUR-OBJEKTER ---
         const ifcClassRaw = obj.class || obj.name || props['IfcEntity'] || props['Entity'] || props['Type'] || '';
         const ifcClass = ifcClassRaw.toLowerCase();
         const skipClasses = ['ifcsite', 'ifcbuilding', 'ifcstorey', 'ifcbuildingstorey', 'ifcproject'];
         
         if (skipClasses.some(c => ifcClass.includes(c))) {
             skippedCount++;
-            return; // Hopper over dette objektet
+            return; 
         }
-        // -----------------------------------
 
         const ruleResult = runValidation(props, validationRules.properties);
 
@@ -1082,7 +1125,7 @@ function reset(){
     <div class="empty anim">
       <div class="icon">🔍</div>
       <div>
-        Velg en hel modell fra menyen, ELLER marker objekter manuelt, og trykk <strong>Valider</strong> for å starte.<br>
+        Velg et regelsett og en modell fra menyen over, ELLER marker objekter manuelt, og trykk <strong>Valider</strong>.<br>
       </div>
     </div>`;
   btnReset.disabled = true;
