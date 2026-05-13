@@ -416,8 +416,8 @@
     <label>Regelsett:</label>
     <select id="ruleSelect">
       <option value="0_Element.json">0_Element</option>
-      <option value="1_UTS.json">1_UTS</option>
       <option value="1_VEI.json">1_VEI</option>
+      <option value="1_UTS.json">1_UTS</option>
       <option value="3_Beskrivelse.json">3_Beskrivelse</option>
     </select>
   </div>
@@ -469,8 +469,8 @@ function setStatus(msg, cls=''){ statusBar.textContent = msg; statusBar.classNam
 
 // --- TØM GAMLE REGLER NÅR DU BYTTER REGELSETT ---
 ruleSelect.addEventListener('change', () => {
-    validationRules = null; // Tvinger nedlasting av ny fil
-    reset(); // Nullstiller UI og farger
+    validationRules = null; 
+    reset(); 
     setStatus(`Valgt regelsett byttet til: ${ruleSelect.options[ruleSelect.selectedIndex].text}. Klar til validering.`, 'blue');
 });
 
@@ -555,7 +555,7 @@ function flattenProperties(tcProps) {
 
 // --- 4. HENT VALGT REGELSETT FRA GITHUB ---
 async function fetchRules() {
-    if (validationRules) return; // Hopper over hvis allerede lastet ned
+    if (validationRules) return; 
     
     const selectedRuleFile = ruleSelect.value;
     setStatus(`⏳ Laster ned regler fra GitHub (${selectedRuleFile})...`, 'blue');
@@ -605,28 +605,24 @@ function runValidation(objProps, rules) {
             }
         }
 
-        // --- NY LOGIKK FOR "notallowed" ---
+        // --- LOGIKK FOR "notallowed" ---
         if (effectiveRequirement === "notallowed") {
             if (val && val.toString().trim() !== "") {
-                // Egenskapen har en verdi, men skal ikke ha det!
                 fields[propName] = { status: 'format', value: val, msg: `Egenskapen er ikke tillatt for dette objektet` };
                 formatErrorCount++;
             } else {
-                // Egenskapen mangler (er tom), noe som er 100 % riktig.
                 fields[propName] = { status: 'na', value: val, msg: `Ikke tillatt (korrekt tom)` };
                 naCount++;
             }
-            continue; // Hopper over format/verdi-sjekk siden den er ferdig behandlet
+            continue; 
         }
 
-        // Sjekk om påkrevd men mangler
         if (effectiveRequirement === "required" && (!val || val.toString().trim() === "")) {
             fields[propName] = { status: 'missing', value: val, msg: `Mangler påkrevd egenskap` };
             missingCount++;
             continue;
         }
 
-        // Sjekk om tom og ikke påkrevd (optional)
         if (!val || val.toString().trim() === "") {
             fields[propName] = { status: 'na', value: val, msg: `Ikke påkrevd` };
             naCount++;
@@ -762,10 +758,19 @@ async function validate(){
         const props = flattenProperties(obj.properties);
         
         const ifcClassRaw = obj.class || obj.name || props['IfcEntity'] || props['Entity'] || props['Type'] || '';
-        const ifcClass = ifcClassRaw.toLowerCase();
+        const ifcClass = ifcClassRaw.toLowerCase().trim();
+        
+        // Henter KUN disse eksakte klassene for å unngå å fjerne Proxy-elementer
         const skipClasses = ['ifcsite', 'ifcbuilding', 'ifcstorey', 'ifcbuildingstorey', 'ifcproject'];
         
-        if (skipClasses.some(c => ifcClass.includes(c))) {
+        const shouldSkip = skipClasses.some(c => 
+            ifcClass === c || 
+            ifcClass.startsWith(c + ' ') || 
+            ifcClass.startsWith(c + ':') || 
+            ifcClass.startsWith(c + '-')
+        );
+        
+        if (shouldSkip) {
             skippedCount++;
             return; 
         }
