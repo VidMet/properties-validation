@@ -1,0 +1,106 @@
+{
+  "version": "1.0",
+  "properties": {
+    "Element": {
+      "propertySet": "3_Beskrivelse",
+      "defaultRequirement": "optional"
+    },
+    "Sted": {
+      "propertySet": "3_Beskrivelse",
+      "defaultRequirement": "optional"
+    },
+    "Postnotat": {
+      "propertySet": "3_Beskrivelse",
+      "defaultRequirement": "optional"
+    },
+    "Prosesskode": {
+      "propertySet": "3_Beskrivelse",
+      "defaultRequirement": "required",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": "GrøftÅpen" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "KNS", "Objektklasse": "Overbygning", "Objekttype": "Bindlag" },
+          "requirement": "optional"
+        }
+      ]
+    },
+    "Prosessnavn": {
+      "propertySet": "3_Beskrivelse",
+      "defaultRequirement": "required",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": "GrøftÅpen" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "KNS", "Objektklasse": "Overbygning", "Objekttype": "Bindlag" },
+          "requirement": "optional"
+        }
+      ]
+    },
+    "Enhet": {
+      "propertySet": "3_Beskrivelse",
+      "defaultRequirement": "required",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": "GrøftÅpen" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": "Rekkverkstolpe" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "LAN" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "KNS", "Objektklasse": "Overbygning", "Objekttype": "Bindlag" },
+          "requirement": "optional"
+        }
+      ]
+    },
+    "Mengde": {
+      "propertySet": "3_Beskrivelse",
+      "defaultRequirement": "required",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "LAN" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "VAA", "Objektklasse": "Rørledning", "Objekttype": "GrøftÅpen" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": "Rekkverkstolpe" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": {
+            "Underdisiplinkode": "KNS",
+            "Objektklasse": [
+              "Drenering", "Dør", "Festeelement", "Festemiddel", "Fiberduk", "Forskaling",
+              "Fuge", "Fuktisolering", "Fylling", "Føringsvei", "Informasjonsobjekt",
+              "Innstøpningsgods", "Isolasjon", "Jording", "Lager", "Masseuttak",
+              "Overbygning", "Overflatebehandling", "Pel", "Plastring", "Plate",
+              "Rekkverk", "Spennarmering", "Stålbjelke", "Trapp", "Heftbryter", "Støpeskjøt"
+            ]
+          },
+          "requirement": "optional"
+        }
+      ]
+    }
+  }
+}
