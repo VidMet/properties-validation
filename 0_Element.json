@@ -7,6 +7,7 @@
       "allowedValues": [
         "ELE", "HYG", "IGG", "GMT", "GTK", "KNS", "PLA", "SRO", "SKO", "UTS", "TNL", "VAA", "HYD", "VEI", "LAN", "YTM", "AKU", "KLM", "CEE", "MIL", "GRE", "ADM", "BIM", "GIS", "HMS", "SHA"
       ],
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "crossReference": {
         "target": "PNS_Navn",
         "validPairs": [
@@ -46,6 +47,7 @@
       "allowedValues": [
         "Elektro", "Hydrogeologi", "Ingeniørgeologi", "Geomatikk", "Geoteknikk", "Konstruksjon", "Planfag", "Styring, regulering og overvåkning", "Skilt og Oppmerking", "Vegutstyr", "Tunnel", "Vann og Avløp", "Hydrologi", "Vei", "Landskap", "Ytre Miljø", "Akustikk", "Klima", "Ceequal", "Miljø", "Grunnerverv", "Administrasjon", "Bygningsinformasjonsmodellering", "Geografisk informasjonssystem", "Helse, Miljø og Sikkerhet", "SHA"
       ],
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 100
     },
     "PNS Kode": {
@@ -119,6 +121,7 @@
           { "PNS Kode": "P6.3.1.1", "PNS Navn": "Sørgående ramper" },
           { "PNS Kode": "P6.3.1.2", "PNS Navn": "Nordgående ramper" }
         ]
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       },
       "minMMI": 200
     },
@@ -143,6 +146,7 @@
         "Diverse veier, plasser, dammer, avkjørsler langs E6", "Hovemoen overgangsbru (K6611)", "Lillehammerkrysset bru sørgående og nordgående", 
         "Gausdalsarmen bru sørgående og nordgående", "Sørgående ramper", "Nordgående ramper"
       ],
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 200
     },
     "Bruksstatus": {
@@ -158,24 +162,29 @@
     "Faseplan": {
       "propertySet": "0_Element",
       "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
       "minMMI": 100
     },
     "Fase Rives": {
       "propertySet": "0_Element",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Fase Bygges": {
       "propertySet": "0_Element",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Godkjent av": {
       "propertySet": "0_Element",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 100
     },
     "Kontrollert av": {
       "propertySet": "0_Element",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 100
     },
     "MMI": {
@@ -337,21 +346,25 @@
       "propertySet": "0_Element",
       "requirement": "required",
       "format": "^[0-9]{8}$",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 200
     },
     "Objektkodenavn V770": {
       "propertySet": "0_Element",
       "requirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 200
     },
     "Produkttype": {
       "propertySet": "0_Element",
       "requirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 100
     },
     "Element-ID": {
       "propertySet": "0_Element",
       "requirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 200
     },
     "Revisjon": {
@@ -369,16 +382,19 @@
     "Revisjonen gjelder": {
       "propertySet": "0_Element",
       "requirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 100
     },
     "Teksturer": {
       "propertySet": "0_Element",
       "requirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 100
     },
     "Utarbeidet av": {
       "propertySet": "0_Element",
       "requirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 100
     }
   }
