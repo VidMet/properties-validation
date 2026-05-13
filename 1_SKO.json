@@ -2,7 +2,7 @@
   "version": "1.0",
   "allowExtraProperties": false,
   "properties": {
-    "Farge": {
+    "Farge|Linjekode|Utleggingsmetode": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
       "overrides": [
@@ -108,29 +108,7 @@
         }
       ]
     },
-    "Linjekode": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-        {
-          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Oppmerking", "Objekttype": [ "OppmerkingLangs", "OppmerkingTverr" ] },
-          "requirement": "required",
-          "minMMI": 300
-        }
-      ]
-    },
-    "Skiltnavn": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-        {
-          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "Signalhode", "VariabeltSkilt", "Skiltstolpe" ] },
-          "requirement": "required",
-          "minMMI": 300
-        }
-      ]
-    },
-    "Skiltnummer": {
+    "Skiltnavn|Skiltnummer": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
       "overrides": [
@@ -167,18 +145,7 @@
         }
       ]
     },
-    "Utleggingsmetode": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-        {
-          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Oppmerking", "Objekttype": [ "OppmerkingLangs", "OppmerkingTverr" ] },
-          "requirement": "required",
-          "minMMI": 300
-        }
-      ]
-    },
-    "x-koordinat": {
+    "x-koordinat|y-koordinat|z-koordinat": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
       "overrides": [
@@ -199,101 +166,7 @@
         }
       ]
     },
-    "y-koordinat": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-        {
-          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
-          "requirement": "required",
-          "minMMI": 300
-        },
-        {
-          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Skiltfundament" },
-          "requirement": "required",
-          "minMMI": 300
-        },
-        {
-          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skiltportal", "Objekttype": "Skiltportalfundament" },
-          "requirement": "required",
-          "minMMI": 300
-        }
-      ]
-    },
-    "z-koordinat": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "notallowed",
-      "overrides": [
-        {
-          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
-          "requirement": "required",
-          "minMMI": 300
-        },
-        {
-          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Skiltfundament" },
-          "requirement": "required",
-          "minMMI": 300
-        },
-        {
-          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skiltportal", "Objekttype": "Skiltportalfundament" },
-          "requirement": "required",
-          "minMMI": 300
-        }
-      ]
-    },
-    "Anvisning": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Link": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 1": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 2": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 3": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 4": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 5": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 6": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 7": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 8": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 9": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 10": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 11": {
-      "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 12": {
+    "Anvisning|Link|Merknad 1|Merknad 2|Merknad 3|Merknad 4|Merknad 5|Merknad 6|Merknad 7|Merknad 8|Merknad 9|Merknad 10|Merknad 11|Merknad 12": {
       "propertySet": "1_SKO",
       "defaultRequirement": "optional"
     }
