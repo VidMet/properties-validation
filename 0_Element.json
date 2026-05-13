@@ -372,7 +372,7 @@
     "Revisjon": {
       "propertySet": "0_Element",
       "requirement": "required",
-      "format": "^[BCHZ][0-9]{2}$",
+      "format": "^(?:[BCHZ][0-9]{2}|HOLD)$",
       "minMMI": 100
     },
     "Revisjonsdato": {
