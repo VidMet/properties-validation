@@ -1,0 +1,79 @@
+{
+  "version": "1.0",
+  "properties": {
+    "Materiale": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "required",
+	  "minMMI": 300
+    },
+    "Trafikkgruppe": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "required",
+	  "minMMI": 300
+    },
+    "Fraksjon": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Tykkelse (mm)": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Anvisning": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Link": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 1": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 2": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 3": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 4": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 5": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 6": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 7": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 8": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 9": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 10": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 11": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 12": {
+      "propertySet": "1_VEI",
+      "defaultRequirement": "optional"
+    }
+  }
+}
