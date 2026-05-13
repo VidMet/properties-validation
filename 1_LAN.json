@@ -7,33 +7,6 @@
       "defaultRequirement": "required",
 	  "minMMI": 300
     },
-    "Bruksområde": {
-      "propertySet": "1_LAN",
-      "defaultRequirement": "required",
-      "overrides": [
-        {
-          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Rørledning", "Objekttype": ["Graveflate", "GrøftÅpen", "Nedføringsrenne" ] },
-          "requirement": "notallowed"
-        },
-		{
-          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Rørledning", "Objekttype": ["Isolasjon", "Varerør", "Vaskevannsledning" ] },
-          "requirement": "optional"
-        },
-        {
-          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Stikningsobjekt", "Objekttype": ["Stikningsobjekt" ] },
-          "requirement": "notallowed"
-        },
-        {
-          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Kum", "Objekttype": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hydrant", "Stengeventil", "Tank" ] },
-          "requirement": "notallowed"
-        },
-        {
-          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
-          "requirement": "optional"
-        }
-      ],
-	  "minMMI": 300
-    },
     "Dimensjon H,B,L (mm)": {
       "propertySet": "1_LAN",
       "defaultRequirement": "optional",
