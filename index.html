@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.4</title>
+  <title>Egenskapsvalidering v2.5</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -217,18 +217,7 @@
       font-family: var(--mono);
     }
 
-    /* NY OG DRAGBAR FELTDEKNINGS-BOKS */
-    #fieldChart { 
-      padding: 14px; 
-      display: flex; 
-      flex-direction: column; 
-      gap: 7px; 
-      height: 220px;       /* Standardhøyde */
-      min-height: 80px;    /* Så man ikke kan krympe den helt bort */
-      max-height: 600px;
-      resize: vertical;    /* Gjør boksen dragbar opp/ned! */
-      overflow: auto;      /* Nødvendig for resize, og gir en fin rullefelt */
-    }
+    #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 7px; height: 220px; min-height: 80px; max-height: 600px; resize: vertical; overflow: auto; }
 
     .field-row { display: flex; align-items: center; gap: 10px; }
     .field-name {
@@ -260,14 +249,7 @@
       color: var(--ink);
     }
 
-    /* NY OG DRAGBAR TABELL-BOKS */
-    .table-wrap { 
-      overflow: auto; 
-      height: 40vh;        /* Fyller opptil 40% av skjermhøyden som standard */
-      min-height: 150px; 
-      resize: vertical;    /* Gjør at tabellen også kan dras større/mindre */
-    }
-    
+    .table-wrap { overflow: auto; height: 40vh; min-height: 150px; resize: vertical; }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -403,8 +385,6 @@
       to   { opacity:1; transform:none; }
     }
     .anim { animation: fadeUp .3s ease both; }
-    
-    /* Justert grid slik at venstre kolonne følger høyden til høyre kolonne */
     .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
 
     @media(max-width: 640px) {
@@ -417,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.4</h1>
+    <h1>Egenskapsvalidering v2.5</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -487,14 +467,12 @@ function norm(v){ return (v ?? '').toString().trim(); }
 function esc(v){ return norm(v).replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s])); }
 function setStatus(msg, cls=''){ statusBar.textContent = msg; statusBar.className = cls; }
 
-// --- TØM GAMLE REGLER NÅR DU BYTTER REGELSETT ---
 ruleSelect.addEventListener('change', () => {
     validationRules = null; 
     reset(); 
     setStatus(`Valgt regelsett byttet til: ${ruleSelect.options[ruleSelect.selectedIndex].text}. Klar til validering.`, 'blue');
 });
 
-// --- 1. KOBLER TIL TRIMBLE ---
 async function connect(){
   try {
     if (!window.TrimbleConnectWorkspace?.connect) throw new Error('API ikke tilgjengelig');
@@ -511,7 +489,6 @@ async function connect(){
   }
 }
 
-// --- 2. HENTER MODELLISTE MED FILNAVN ---
 async function loadModels(){
   if (!API) return;
   btnLoad.disabled = true;
@@ -559,7 +536,6 @@ async function loadModels(){
   }
 }
 
-// --- 3. FLATER UT TRIMBLE-EGENSKAPER ---
 function flattenProperties(tcProps) {
     let flat = {};
     if (!tcProps) return flat;
@@ -573,7 +549,6 @@ function flattenProperties(tcProps) {
     return flat;
 }
 
-// --- 4. HENT VALGT REGELSETT FRA GITHUB ---
 async function fetchRules() {
     if (validationRules) return; 
     
@@ -587,7 +562,6 @@ async function fetchRules() {
     FIELDS = Object.keys(validationRules.properties).map(k => ({ key: k, label: k }));
 }
 
-// --- 5. UTFØR VALidering PÅ JSON-REGLENE ---
 function runValidation(objProps, rules) {
     let fields = {};
     let missingCount = 0;
@@ -618,14 +592,12 @@ function runValidation(objProps, rules) {
             if (override) effectiveRequirement = override.requirement;
         }
 
-        // MMI-sjekk (Gjør 'required' om til 'optional' hvis MMI er for lav. Påvirker ikke 'notallowed')
         if (rule.minMMI && objectMMI > 0 && objectMMI < rule.minMMI) {
             if (effectiveRequirement === "required") {
                 effectiveRequirement = "optional";
             }
         }
 
-        // --- LOGIKK FOR "notallowed" ---
         if (effectiveRequirement === "notallowed") {
             if (val && val.toString().trim() !== "") {
                 fields[propName] = { status: 'format', value: val, msg: `Egenskapen er ikke tillatt for dette objektet` };
@@ -657,6 +629,17 @@ function runValidation(objProps, rules) {
             if (!regex.test(val)) {
                 isFormatError = true;
                 errMsg = `Feil format`;
+            }
+        }
+
+        // --- NY LOGIKK FOR "disallowedValues" (Svartelisting) ---
+        if (!isFormatError && rule.disallowedValues) {
+            if (Array.isArray(rule.disallowedValues)) {
+                const stringDisallowedValues = rule.disallowedValues.map(v => String(v).trim().toLowerCase());
+                if (stringDisallowedValues.includes(String(val).trim().toLowerCase())) {
+                    isFormatError = true;
+                    errMsg = `Verdien '${val}' er ikke tillatt`;
+                }
             }
         }
 
@@ -706,7 +689,6 @@ function runValidation(objProps, rules) {
     return { fields, missingCount, formatErrorCount, naCount, score };
 }
 
-// --- 6. HOVEDFUNKSJON: VALIDER ---
 async function validate(){
   if (!API) return;
   btnValidate.disabled = true;
@@ -780,7 +762,6 @@ async function validate(){
         const ifcClassRaw = obj.class || obj.name || props['IfcEntity'] || props['Entity'] || props['Type'] || '';
         const ifcClass = ifcClassRaw.toLowerCase().trim();
         
-        // Henter KUN disse eksakte klassene for å unngå å fjerne Proxy-elementer
         const skipClasses = ['ifcsite', 'ifcbuilding', 'ifcstorey', 'ifcbuildingstorey', 'ifcproject'];
         
         const shouldSkip = skipClasses.some(c => 
@@ -824,7 +805,6 @@ async function validate(){
   }
 }
 
-// --- HJELPEFUNKSJON FOR FARGELEGGING ---
 function groupByModel(rows) {
     const map = {};
     rows.forEach(r => {
@@ -834,7 +814,6 @@ function groupByModel(rows) {
     return Object.keys(map).map(mId => ({ modelId: mId, objectRuntimeIds: map[mId] }));
 }
 
-// --- 7. RENDERING AV UI ---
 function scoreClass(pct){
   if (pct === 100) return 's100';
   if (pct >= 75) return 's75';
@@ -1060,7 +1039,6 @@ function renderTable(){
     `;
   }).join('');
 
-  // Klikk i tabell for å markere/zoome i 3D
   tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
       const rid = parseInt(tr.dataset.rid);
@@ -1074,7 +1052,6 @@ function renderTable(){
   });
 }
 
-// --- 8. FARGELEGGING OG EKSPORT ---
 async function colorizeModel(){
   if (!API || !validationRows.length) return;
   btnColorize.disabled = true;
