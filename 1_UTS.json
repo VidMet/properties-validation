@@ -8,22 +8,30 @@
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": "Konfliktvolum" },
-          "requirement": "optional"
+          "requirement": "notallowed"
         },
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Skjerm", "Objekttype": "Støyskjerm" },
           "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom" },
+          "requirement": "notallowed"
         }
       ]
     },
     "Dimensjon H,B,L (mm)": {
       "propertySet": "1_UTS",
-      "defaultRequirement": "optional",
+      "defaultRequirement": "notallowed",
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
           "requirement": "required",
 		  "minMMI": 300
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Skjerm", "Objekttype": "Støyskjerm" },
+          "requirement": "optional"
         }
       ]
     },
@@ -49,7 +57,7 @@
     },
     "Fas": {
       "propertySet": "1_UTS",
-      "defaultRequirement": "optional",
+      "defaultRequirement": "notallowed",
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
@@ -60,7 +68,7 @@
     },
     "Vishøyde": {
       "propertySet": "1_UTS",
-      "defaultRequirement": "optional",
+      "defaultRequirement": "notallowed",
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
@@ -201,7 +209,17 @@
     },
     "Farge": {
       "propertySet": "1_UTS",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "notallowed"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
+          "requirement": "notallowed"
+        }
+      ]
     },
     "Produktnavn": {
       "propertySet": "1_UTS",
