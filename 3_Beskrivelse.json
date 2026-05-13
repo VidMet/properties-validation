@@ -14,7 +14,8 @@
           "conditions": { "Underdisiplinkode": "KNS", "Objektklasse": "Overbygning", "Objekttype": "Bindlag" },
           "requirement": "optional"
         }
-      ]
+      ],
+       "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Prosessnavn": {
       "propertySet": "3_Beskrivelse",
@@ -29,7 +30,8 @@
           "conditions": { "Underdisiplinkode": "KNS", "Objektklasse": "Overbygning", "Objekttype": "Bindlag" },
           "requirement": "optional"
         }
-      ]
+      ],
+       "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Enhet": {
       "propertySet": "3_Beskrivelse",
@@ -56,7 +58,8 @@
           "conditions": { "Underdisiplinkode": "KNS", "Objektklasse": "Overbygning", "Objekttype": "Bindlag" },
           "requirement": "optional"
         }
-      ]
+      ],
+       "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Mengde": {
       "propertySet": "3_Beskrivelse",
@@ -92,19 +95,23 @@
           },
           "requirement": "optional"
         }
-      ]
+      ],
+       "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Element": {
       "propertySet": "3_Beskrivelse",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+       "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Sted": {
       "propertySet": "3_Beskrivelse",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+       "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Postnotat": {
       "propertySet": "3_Beskrivelse",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+       "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     }
   }
 }
