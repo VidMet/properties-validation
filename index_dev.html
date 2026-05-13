@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.10</title>
+  <title>Egenskapsvalidering v2.11</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.10</h1>
+    <h1>Egenskapsvalidering v2.11</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -492,7 +492,6 @@ async function connect(){
   }
 }
 
-// ENDRET: Full innlasting av modeller er tilbake på plass!
 async function loadModels(){
   if (!API) return;
   btnLoad.disabled = true;
@@ -523,7 +522,8 @@ async function loadModels(){
           objectIds = m.objectIds;
       }
       
-      objectIds = objectIds.filter(id => id !== undefined && id !== null);
+      // TVINGER ALLE ID-ER TIL Å VÆRE TEKST! (Dette fikser "marker hele modellen"-feilen)
+      objectIds = objectIds.filter(id => id !== undefined && id !== null).map(id => String(id));
 
       return { modelId, name, objectCount: objectIds.length, objectIds };
     }).filter(Boolean);
@@ -742,7 +742,7 @@ async function validate(){
         setStatus('⏳ Forbereder alle modeller i visningen...');
         selectionToFetch = allModels.map(m => ({ modelId: m.modelId, objectRuntimeIds: m.objectIds }));
         if (selectionToFetch.length === 0) {
-            throw new Error("Fant ingen modeller å validere. Husk å trykke 'Hent modeller' først.");
+            throw new Error("Fant ingen modeller å validere. Sjekk at modellene er slått på i 3D.");
         }
     } 
     else if (selectedModelId) {
@@ -760,7 +760,7 @@ async function validate(){
         const hasSelection = Array.isArray(selection) ? selection.length > 0 : (selection && Object.keys(selection).length > 0);
         
         if (!hasSelection) {
-            throw new Error("Du må markere objekter i 3D-visningen før du trykker Valider.");
+            throw new Error("Du må enten velge en modell i menyen, eller markere objekter manuelt i 3D-visningen.");
         }
         selectionToFetch = selection;
     }
@@ -773,13 +773,11 @@ async function validate(){
         const mId = sel.modelId || sel.modelid;
         let rawIds = sel.objectRuntimeIds || sel.objects || sel.objectIds || [];
         
+        // Tvinger også alle ID-er i valideringskøen til å være tekst
         let rIds = rawIds.map(id => {
-            if (typeof id === 'object' && id !== null) {
-                return id.id || id.objectRuntimeId || id.objectId;
-            }
-            return id;
-        });
-        rIds = rIds.filter(id => id !== undefined && id !== null);
+            if (typeof id === 'object' && id !== null) return String(id.id || id.objectRuntimeId || id.objectId);
+            return String(id);
+        }).filter(id => id !== "undefined" && id !== "null" && id !== "");
 
         if (mId && rIds.length > 0) {
             try {
@@ -789,7 +787,7 @@ async function validate(){
                         let rId = p.objectRuntimeId !== undefined ? p.objectRuntimeId : (p.id !== undefined ? p.id : rIds[index]);
                         objectsData.push({
                             modelId: mId,
-                            objectRuntimeId: rId,
+                            objectRuntimeId: String(rId), // Lagres som tekst
                             name: p.class || p.name || 'Objekt',
                             properties: p.properties
                         });
@@ -802,7 +800,7 @@ async function validate(){
     }
 
     if (!objectsData || objectsData.length === 0) {
-        throw new Error("Fant ingen egenskaper. Sjekk at modellen er lastet inn og at du har valgt faktiske bygningsobjekter.");
+        throw new Error("Fant ingen objekter med egenskaper. Sjekk at modellen er lastet inn riktig.");
     }
 
     validationRows = [];
@@ -834,7 +832,7 @@ async function validate(){
             name: norm(obj.name || ''),
             guid: norm(flatProps["GlobalId"] || flatProps["GUID"] || flatProps["IfcGuid"] || ''),
             modelId: norm(obj.modelId),
-            runtimeId: obj.objectRuntimeId || obj.id, 
+            runtimeId: String(obj.objectRuntimeId || obj.id), // Lagres kun som tekst!
             fields: ruleResult.fields,
             score: ruleResult.score,
             missingCount: ruleResult.missingCount,
@@ -862,9 +860,8 @@ function groupByModel(rows) {
     rows.forEach(r => {
         if (!map[r.modelId]) map[r.modelId] = [];
         if (r.runtimeId !== undefined && r.runtimeId !== null && r.runtimeId !== "") {
-            // Tvinger id-en til å være et tall FØR den sendes til fargeleggingsmotoren (for å forhindre "Rot-node-buggen")
-            const rid = /^\d+$/.test(r.runtimeId) ? parseInt(r.runtimeId, 10) : r.runtimeId;
-            map[r.modelId].push(rid);
+            // Sørger for at den sendes til TC som rein tekst
+            map[r.modelId].push(String(r.runtimeId));
         }
     });
     return Object.keys(map)
@@ -1099,10 +1096,10 @@ function renderTable(){
 
   tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
-      const rawRid = tr.dataset.rid;
-      const rid = /^\d+$/.test(rawRid) ? parseInt(rawRid, 10) : rawRid;
+      // Sørger for at IDen forblir ren tekst her også!
+      const rid = String(tr.dataset.rid);
       const mid = tr.dataset.mid;
-      if (!API || rawRid === undefined || !mid) return;
+      if (!API || !rid || !mid) return;
       try {
         const sel = [{ modelId: mid, objectRuntimeIds: [rid] }];
         if (API.viewer.setSelection) await API.viewer.setSelection(sel);
