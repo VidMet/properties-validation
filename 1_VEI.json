@@ -9,7 +9,7 @@
     "Trafikkgruppe": {
       "propertySet": "1_VEI",
       "defaultRequirement": "required",
-	  "allowedValues": ["A - Asfalt", "A - Grusdekke", "B", "C", "D", "E", "Parkeringsplass", "Landbruksvei", "Tursti", "Gang- og sykkelvei", "Midlertidig kjørevei", "Midlertidig gs-vei"]
+	  "allowedValues": ["A - Asfalt", "A - Grusdekke", "B", "C", "D", "E", "Parkeringsplass", "Landbruksvei", "Tursti", "Gang- og sykkelvei", "Midlertidig kjørevei", "Midlertidig gs-vei"],
 	  "minMMI": 300
     },
     "Fraksjon": {
