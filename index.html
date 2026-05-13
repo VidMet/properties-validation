@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.5</title>
+  <title>Egenskapsvalidering v2.6</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.5</h1>
+    <h1>Egenskapsvalidering v2.6</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -424,7 +424,10 @@
   
   <div class="select-group">
     <label>Modell:</label>
-    <select id="modelSelect" disabled><option value="">– Valider kun markerte objekter i 3D –</option></select>
+    <select id="modelSelect" disabled>
+      <option value="">– Valider kun markerte objekter i 3D –</option>
+      <option value="ALL_VISIBLE">– Valider alle modeller i visningen –</option>
+    </select>
   </div>
 </div>
 
@@ -524,7 +527,9 @@ async function loadModels(){
       return { modelId, name, objectCount: objectIds.length, objectIds };
     }).filter(Boolean);
 
+    // Beholder "ALL_VISIBLE" på toppen i menyen
     modelSelect.innerHTML = '<option value="">– Valider kun markerte objekter i 3D –</option>' +
+      '<option value="ALL_VISIBLE">– Valider alle modeller i visningen –</option>' +
       allModels.map(m => `<option value="${esc(m.modelId)}">${esc(m.name)} (${m.objectCount} obj.)</option>`).join('');
 
     modelSelect.disabled = false;
@@ -632,7 +637,6 @@ function runValidation(objProps, rules) {
             }
         }
 
-        // --- NY LOGIKK FOR "disallowedValues" (Svartelisting) ---
         if (!isFormatError && rule.disallowedValues) {
             if (Array.isArray(rule.disallowedValues)) {
                 const stringDisallowedValues = rule.disallowedValues.map(v => String(v).trim().toLowerCase());
@@ -702,7 +706,15 @@ async function validate(){
     const selectedModelId = modelSelect.value;
     let selectionToFetch = [];
 
-    if (selectedModelId) {
+    // NY LOGIKK FOR "Valider alle modeller"
+    if (selectedModelId === "ALL_VISIBLE") {
+        setStatus('⏳ Forbereder alle modeller i visningen...');
+        selectionToFetch = allModels.map(m => ({ modelId: m.modelId, objectRuntimeIds: m.objectIds }));
+        if (selectionToFetch.length === 0) {
+            throw new Error("Fant ingen modeller å validere.");
+        }
+    } 
+    else if (selectedModelId) {
         setStatus('⏳ Forbereder objekter fra valgt modell...');
         const modelData = allModels.find(m => m.modelId === selectedModelId);
         
@@ -782,7 +794,8 @@ async function validate(){
             name: norm(obj.name || ''),
             guid: norm(props["GlobalId"] || props["GUID"] || props["IfcGuid"] || obj.id || ''),
             modelId: norm(obj.modelId),
-            runtimeId: obj.id,
+            // Tvinger IDen til å bli lagret som tall, for å forhindre fargeleggings-krasj!
+            runtimeId: parseInt(obj.id || obj.objectRuntimeId, 10),
             fields: ruleResult.fields,
             score: ruleResult.score,
             missingCount: ruleResult.missingCount,
@@ -809,7 +822,10 @@ function groupByModel(rows) {
     const map = {};
     rows.forEach(r => {
         if (!map[r.modelId]) map[r.modelId] = [];
-        map[r.modelId].push(r.runtimeId);
+        // Sikkerhetssjekk for at vi kun sender med gyldige tall til fargemotoren
+        if (!isNaN(r.runtimeId)) {
+            map[r.modelId].push(r.runtimeId);
+        }
     });
     return Object.keys(map).map(mId => ({ modelId: mId, objectRuntimeIds: map[mId] }));
 }
@@ -1085,8 +1101,7 @@ async function removeColors(){
   if (!API) return;
   try {
     if (API.viewer.setObjectState) {
-        const allModelsIds = groupByModel(validationRows);
-        await API.viewer.setObjectState(allModelsIds, { color: 'reset' });
+        await API.viewer.setObjectState(undefined, { color: 'reset' });
     }
     btnUncolor.disabled = true;
     setStatus('⬜ Modellfarger fjernet.', '');
