@@ -1,5 +1,6 @@
 {
   "version": "1.0",
+  "allowExtraProperties": false,
   "properties": {
     "Prosesskode": {
       "propertySet": "3_Beskrivelse",
