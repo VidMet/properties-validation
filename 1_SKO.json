@@ -5,6 +5,7 @@
     "Farge|Linjekode|Utleggingsmetode": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Oppmerking", "Objekttype": ["OppmerkingLangs", "OppmerkingTverr" ] },
@@ -16,6 +17,7 @@
     "Type": {
       "propertySet": "1_SKO",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 400,
       "overrides": [
         {
@@ -31,6 +33,7 @@
     "Høyde (mm)": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "Skiltfundament", "VariabeltSkilt", "Skiltstolpe" ] },
@@ -51,6 +54,7 @@
     "Bredde (mm)": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Oppmerking", "Objekttype": [ "OppmerkingForsterket", "OppmerkingLangs" ] },
@@ -70,6 +74,7 @@
     "Folieklasse": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "VariabeltSkilt" },
@@ -85,6 +90,7 @@
     "ID.nr": {
       "propertySet": "1_SKO",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
@@ -100,6 +106,7 @@
     "Lengde bomarm": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": [ "Ledebom", "Stengebom" ] },
@@ -111,6 +118,7 @@
     "Skiltnavn|Skiltnummer": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "Signalhode", "VariabeltSkilt", "Skiltstolpe" ] },
@@ -122,6 +130,7 @@
     "Størrelse H,B,L (mm)": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Signalhode" },
@@ -137,6 +146,7 @@
     "Teksthøyde": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "VariabeltSkilt", "Skiltstolpe" ] },
@@ -148,6 +158,7 @@
     "x-koordinat|y-koordinat|z-koordinat": {
       "propertySet": "1_SKO",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
@@ -168,7 +179,8 @@
     },
     "Anvisning|Link|Merknad 1|Merknad 2|Merknad 3|Merknad 4|Merknad 5|Merknad 6|Merknad 7|Merknad 8|Merknad 9|Merknad 10|Merknad 11|Merknad 12": {
       "propertySet": "1_SKO",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     }
   }
 }
