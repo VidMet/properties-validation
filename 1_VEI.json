@@ -5,77 +5,24 @@
     "Materiale": {
       "propertySet": "1_VEI",
       "defaultRequirement": "required",
-	  "minMMI": 300
+      "minMMI": 300,
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Trafikkgruppe": {
       "propertySet": "1_VEI",
       "defaultRequirement": "required",
-	  "allowedValues": ["A - Asfalt", "A - Grusdekke", "B", "C", "D", "E", "Parkeringsplass", "Landbruksvei", "Tursti", "Gang- og sykkelvei", "Midlertidig kjørevei", "Midlertidig gs-vei"],
-	  "minMMI": 300
+      "allowedValues": [
+        "A - Asfalt", "A - Grusdekke", "B", "C", "D", "E", 
+        "Parkeringsplass", "Landbruksvei", "Tursti", 
+        "Gang- og sykkelvei", "Midlertidig kjørevei", "Midlertidig gs-vei"
+      ],
+      "minMMI": 300,
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
-    "Fraksjon": {
+    "Fraksjon|Tykkelse (mm)|Anvisning|Link|Merknad 1|Merknad 2|Merknad 3|Merknad 4|Merknad 5|Merknad 6|Merknad 7|Merknad 8|Merknad 9|Merknad 10|Merknad 11|Merknad 12": {
       "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Tykkelse (mm)": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Anvisning": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Link": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 1": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 2": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 3": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 4": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 5": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 6": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 7": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 8": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 9": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 10": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 11": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
-    },
-    "Merknad 12": {
-      "propertySet": "1_VEI",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     }
   }
 }
