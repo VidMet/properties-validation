@@ -1,0 +1,267 @@
+{
+  "version": "1.0",
+  "properties": {
+    "Materiale": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "required",
+	  "minMMI": 300,
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": "Konfliktvolum" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Skjerm", "Objekttype": "Støyskjerm" },
+          "requirement": "optional"
+        }
+      ]
+    },
+    "Dimensjon H,B,L (mm)": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "required",
+		  "minMMI": 300
+        }
+      ]
+    },
+    "Arbeidsklassebredde": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Bredde (mm)": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "required",
+		  "minMMI": 300
+        }
+      ]
+    },
+    "Type": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "required",
+      "minMMI": 300
+    },
+    "Fas": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "required",
+		  "minMMI": 300
+        }
+      ]
+    },
+    "Vishøyde": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "required",
+		  "minMMI": 300
+        }
+      ]
+    },
+    "En- eller tosidig": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "required",
+      "minMMI": 300,
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": "Konfliktvolum" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverksende", "Objekttype": "Støtpute" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Skjerm", "Objekttype": "Støyskjerm" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom", "Objekttype": ["Ledebom", "Stengebom", "Vegbomfundament"] },
+          "requirement": "optional"
+        }
+      ]
+    },
+    "ID.nr": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
+          "requirement": "required",
+		  "minMMI": 300
+        }
+      ]
+    },
+    "Lengde bomarm": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom", "Objekttype": ["Ledebom", "Stengebom"] },
+          "requirement": "required",
+		  "minMMI": 300
+        }
+      ]
+    },
+    "Sikkerhetsklasse": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Stolpeavstand": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "required",
+	    "minMMI": 300,
+	    "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": ["Konfliktvolum", "Betongrekkverk"] },
+          "requirement": "optional"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverksende", "Objekttype": "Støtpute" },
+          "requirement": "required"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Skjerm", "Objekttype": "Støyskjerm" },
+          "requirement": "required"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "required"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom", "Objekttype": ["Ledebom", "Stengebom", "Vegbomfundament"] },
+          "requirement": "required"
+        }
+      ]
+    },
+    "Stolpelengde": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "required",
+	    "minMMI": 300,
+	    "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": ["Konfliktvolum", "Betongrekkverk"] },
+          "requirement": "optional"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverksende", "Objekttype": "Støtpute" },
+          "requirement": "required"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Skjerm", "Objekttype": "Støyskjerm" },
+          "requirement": "required"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "required"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom", "Objekttype": ["Ledebom", "Stengebom", "Vegbomfundament"] },
+          "requirement": "required"
+        }
+      ]
+    },
+    "Styrkeklasse": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "required",
+	    "minMMI": 300,
+	    "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": ["Rekkverksstolpe", "Konfliktvolum"] },
+          "requirement": "optional"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Skjerm", "Objekttype": "Støyskjerm" },
+          "requirement": "required"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
+          "requirement": "required"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom", "Objekttype": ["Ledebom", "Stengebom", "Vegbomfundament"] },
+          "requirement": "required"
+        }
+      ]
+    },
+    "Farge": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Produktnavn": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Anvisning": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Link": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 1": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 2": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 3": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 4": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 5": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 6": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 7": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 8": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 9": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 10": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 11": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 12": {
+      "propertySet": "1_UTS",
+      "defaultRequirement": "optional"
+    }
+  }
+}
