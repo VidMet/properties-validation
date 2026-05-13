@@ -5,6 +5,7 @@
     "Materiale": {
       "propertySet": "1_UTS",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 300,
       "overrides": [
         {
@@ -24,6 +25,7 @@
     "Dimensjon H,B,L (mm)": {
       "propertySet": "1_UTS",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
@@ -38,11 +40,13 @@
     },
     "Arbeidsklassebredde|Anvisning|Link|Merknad 1|Merknad 2|Merknad 3|Merknad 4|Merknad 5|Merknad 6|Merknad 7|Merknad 8|Merknad 9|Merknad 10|Merknad 11|Merknad 12|Produktnavn": {
       "propertySet": "1_UTS",
-      "defaultRequirement": "optional"
+      "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"]
     },
     "Bredde (mm)": {
       "propertySet": "1_UTS",
       "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
@@ -54,11 +58,13 @@
     "Type": {
       "propertySet": "1_UTS",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 300
     },
     "Fas|Vishøyde": {
       "propertySet": "1_UTS",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
@@ -70,6 +76,7 @@
     "En- eller tosidig": {
       "propertySet": "1_UTS",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 300,
       "overrides": [
         {
@@ -97,6 +104,7 @@
     "ID.nr": {
       "propertySet": "1_UTS",
       "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
@@ -108,6 +116,7 @@
     "Lengde bomarm": {
       "propertySet": "1_UTS",
       "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Vegbom", "Objekttype": ["Ledebom", "Stengebom"] },
@@ -119,6 +128,7 @@
     "Sikkerhetsklasse": {
       "propertySet": "1_UTS",
       "defaultRequirement": "optional",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": ["Skjerm", "Kantstein"] },
@@ -133,6 +143,7 @@
     "Stolpeavstand|Stolpelengde": {
       "propertySet": "1_UTS",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 300,
       "overrides": [
         {
@@ -144,6 +155,7 @@
     "Styrkeklasse": {
       "propertySet": "1_UTS",
       "defaultRequirement": "required",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "minMMI": 300,
       "overrides": [
         {
@@ -155,6 +167,7 @@
     "Farge": {
       "propertySet": "1_UTS",
       "defaultRequirement": "notallowed",
+      "disallowedValues": ["N/A", "NA", "-", "Ukjent", "Mangler", "IA", "I/A"],
       "overrides": [
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Kantstein", "Objekttype": "Kantstein" },
