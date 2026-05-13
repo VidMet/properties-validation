@@ -547,6 +547,9 @@ function runValidation(objProps, rules) {
     let okCount = 0;
     const fag = objProps["Underdisiplinkode"];
 
+    // Henter ut objektets faktiske MMI og gjør teksten ("200") om til et rent tall (200)
+    const objectMMI = parseInt(objProps["MMI"], 10) || 0;
+
     for (const [propName, rule] of Object.entries(rules)) {
         const val = objProps[propName] || '';
         let effectiveRequirement = rule.requirement || rule.defaultRequirement;
@@ -556,14 +559,22 @@ function runValidation(objProps, rules) {
             if (override) effectiveRequirement = override.requirement;
         }
 
+        // --- NY LOGIKK FOR minMMI ---
+        // Hvis objektet har en MMI, og denne er lavere enn reglens minMMI, er feltet IKKE påkrevd ennå.
+        if (rule.minMMI && objectMMI > 0 && objectMMI < rule.minMMI) {
+            effectiveRequirement = "optional";
+        }
+
+        // Sjekk om påkrevd men mangler
         if (effectiveRequirement === "required" && (!val || val.toString().trim() === "")) {
             fields[propName] = { status: 'missing', value: val, msg: `Mangler påkrevd egenskap` };
             missingCount++;
             continue;
         }
 
+        // Sjekk om tom og ikke påkrevd
         if (!val) {
-            fields[propName] = { status: 'na', value: val, msg: `Ikke påkrevd` };
+            fields[propName] = { status: 'na', value: val, msg: `Ikke påkrevd for dette MMI-nivået` };
             naCount++;
             continue;
         }
@@ -571,6 +582,7 @@ function runValidation(objProps, rules) {
         let isFormatError = false;
         let errMsg = '';
 
+        // Valider format
         if (rule.format) {
             const regex = new RegExp(rule.format);
             if (!regex.test(val)) {
@@ -579,9 +591,13 @@ function runValidation(objProps, rules) {
             }
         }
 
+        // Valider tillatte verdier
         if (!isFormatError && rule.allowedValues) {
             if (Array.isArray(rule.allowedValues)) {
-                if (!rule.allowedValues.includes(val)) {
+                // Vi gjør om både regel-verdiene og objekt-verdien til ren tekst før vi sammenligner.
+                // Da blir tallet 200 og teksten "200" likestilt.
+                const stringAllowedValues = rule.allowedValues.map(String);
+                if (!stringAllowedValues.includes(String(val))) {
                     isFormatError = true;
                     errMsg = `Ugyldig verdi`;
                 }
