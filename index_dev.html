@@ -540,17 +540,22 @@ async function loadModels(){
   }
 }
 
+// ENDRET: Nå sorterer vi ut egenskapene slik at vi vet HVILKET egenskapssett de tilhører
 function flattenProperties(tcProps) {
     let flat = {};
-    if (!tcProps) return flat;
+    let psets = {};
+    if (!tcProps) return { flat, psets };
+    
     tcProps.forEach(group => {
         if (group.properties) {
+            if (!psets[group.name]) psets[group.name] = [];
             group.properties.forEach(p => {
                 flat[p.name] = p.value;
+                psets[group.name].push(p.name);
             });
         }
     });
-    return flat;
+    return { flat, psets };
 }
 
 async function fetchRules() {
@@ -564,14 +569,23 @@ async function fetchRules() {
     
     validationRules = await res.json();
     FIELDS = Object.keys(validationRules.properties).map(k => ({ key: k, label: k }));
+    
+    // NYTT: Legger til kolonnen automatisk hvis Strict Mode er på
+    if (validationRules.allowExtraProperties === false) {
+        FIELDS.push({ key: '_Extra', label: 'Uønskede egenskaper' });
+    }
 }
 
-function runValidation(objProps, rules) {
+function runValidation(propsData, fullRules) {
     let fields = {};
     let missingCount = 0;
     let formatErrorCount = 0;
     let naCount = 0;
     let okCount = 0;
+    
+    const objProps = propsData.flat;
+    const psets = propsData.psets;
+    const rules = fullRules.properties;
     const fag = objProps["Underdisiplinkode"];
     const objectMMI = parseInt(objProps["MMI"], 10) || 0;
 
@@ -685,6 +699,28 @@ function runValidation(objProps, rules) {
             okCount++;
         }
     }
+    
+    // --- NY LOGIKK FOR STRENG MODUS (allowExtraProperties: false) ---
+    if (fullRules.allowExtraProperties === false) {
+        const firstRule = Object.values(rules)[0];
+        const targetPset = firstRule ? firstRule.propertySet : null;
+        
+        if (targetPset) {
+            const allowedKeys = Object.keys(rules);
+            const objectKeysInPset = psets[targetPset] || [];
+            
+            // Finner egenskapene i fanen som IKKE er definert i JSON-filen
+            const extraKeys = objectKeysInPset.filter(k => !allowedKeys.includes(k));
+            
+            if (extraKeys.length > 0) {
+                fields["_Extra"] = { status: 'format', value: extraKeys.join(', '), msg: `Uønskede egenskaper funnet i ${targetPset}` };
+                formatErrorCount++;
+            } else {
+                fields["_Extra"] = { status: 'ok', value: '-', msg: 'Ingen uønskede egenskaper' };
+                okCount++;
+            }
+        }
+    }
 
     const requiredTotal = okCount + missingCount + formatErrorCount;
     const score = requiredTotal > 0 ? Math.round((okCount / requiredTotal) * 100) : 100;
@@ -746,7 +782,6 @@ async function validate(){
                 const propsArr = await API.viewer.getObjectProperties(mId, rIds);
                 if (propsArr) {
                     propsArr.forEach((p, index) => {
-                        // SIKKERHETSSJEKK: Vi må ha den eksakte IDen som fargemotoren forstår
                         let rId = p.objectRuntimeId;
                         if (rId === undefined && typeof p.id === 'number') rId = p.id;
                         if (rId === undefined) rId = rIds[index];
@@ -772,9 +807,10 @@ async function validate(){
     validationRows = [];
 
     objectsData.forEach(obj => {
-        const props = flattenProperties(obj.properties);
+        const propsData = flattenProperties(obj.properties);
+        const flatProps = propsData.flat;
         
-        const ifcClassRaw = obj.class || obj.name || props['IfcEntity'] || props['Entity'] || props['Type'] || '';
+        const ifcClassRaw = obj.class || obj.name || flatProps['IfcEntity'] || flatProps['Entity'] || flatProps['Type'] || '';
         const ifcClass = ifcClassRaw.toLowerCase().trim();
         
         const skipClasses = ['ifcsite', 'ifcbuilding', 'ifcstorey', 'ifcbuildingstorey', 'ifcproject'];
@@ -791,13 +827,14 @@ async function validate(){
             return; 
         }
 
-        const ruleResult = runValidation(props, validationRules.properties);
+        // Sender hele dataobjektet og reglene inn til validering
+        const ruleResult = runValidation(propsData, validationRules);
 
         validationRows.push({
             name: norm(obj.name || ''),
-            guid: norm(props["GlobalId"] || props["GUID"] || props["IfcGuid"] || ''),
+            guid: norm(flatProps["GlobalId"] || flatProps["GUID"] || flatProps["IfcGuid"] || ''),
             modelId: norm(obj.modelId),
-            runtimeId: obj.objectRuntimeId, // KUN det gyldige tall-IDet går hit nå
+            runtimeId: parseInt(obj.objectRuntimeId || obj.id, 10),
             fields: ruleResult.fields,
             score: ruleResult.score,
             missingCount: ruleResult.missingCount,
@@ -824,12 +861,10 @@ function groupByModel(rows) {
     const map = {};
     rows.forEach(r => {
         if (!map[r.modelId]) map[r.modelId] = [];
-        // Et ekstra filter som blokkerer alt som ikke er et rent tall fra farging
         if (typeof r.runtimeId === 'number' && !isNaN(r.runtimeId)) {
             map[r.modelId].push(r.runtimeId);
         }
     });
-    // Fjerner evt. tomme ID-lister som ellers ville fargelagt hele modellen
     return Object.keys(map)
         .filter(mId => map[mId].length > 0)
         .map(mId => ({ modelId: mId, objectRuntimeIds: map[mId] }));
@@ -1083,7 +1118,6 @@ async function colorizeModel(){
     const yellowModels = groupByModel(validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount > 0));
     const redModels = groupByModel(validationRows.filter(r => r.missingCount > 0));
 
-    // Nullstiller alltid fargene først for å sikre en "clean slate"
     try { await API.viewer.setObjectState(undefined, { color: 'reset' }); } catch(e){}
 
     if (API.viewer.setObjectState) {
