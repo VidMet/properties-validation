@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.12</title>
+  <title>Egenskapsvalidering v2.13</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.12</h1>
+    <h1>Egenskapsvalidering v2.13</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -492,10 +492,11 @@ async function connect(){
   }
 }
 
+// NY LOGIKK FOR Å GRAVE UT DE FAKTISKE BYGNINGSOBJEKTENE FRA MAPPENE
 async function loadModels(){
   if (!API) return;
   btnLoad.disabled = true;
-  setStatus('⏳ Leser modeller og filnavn...');
+  setStatus('⏳ Leser modeller, mapper og objekter...');
   try {
     let modelsInfo = [];
     if (API.viewer.getModels) {
@@ -513,19 +514,34 @@ async function loadModels(){
       const info = modelsInfo.find(x => norm(x.id) === modelId);
       const name = (info && info.name) ? info.name : (m.name || `Modell ${i + 1}`);
       
-      let objectIds = [];
-      if (Array.isArray(m.objectRuntimeIds)) {
-          objectIds = m.objectRuntimeIds;
-      } else if (Array.isArray(m.objects)) {
-          objectIds = m.objects.map(o => (typeof o === 'object' ? (o.id || o.objectRuntimeId) : o));
+      let leafIds = [];
+      
+      // Pakker ut tre-strukturen for å unngå rot-noder
+      function getLeaves(nodes) {
+          let res = [];
+          for (let n of nodes) {
+              if (n && n.children && n.children.length > 0) {
+                  res.push(...getLeaves(n.children));
+              } else if (n) {
+                  if (n.id !== undefined) res.push(n.id);
+                  else if (n.objectRuntimeId !== undefined) res.push(n.objectRuntimeId);
+                  else if (typeof n === 'string' || typeof n === 'number') res.push(n);
+              }
+          }
+          return res;
+      }
+
+      if (Array.isArray(m.objects)) {
+          leafIds = getLeaves(m.objects);
+      } else if (Array.isArray(m.objectRuntimeIds)) {
+          leafIds = m.objectRuntimeIds;
       } else if (Array.isArray(m.objectIds)) {
-          objectIds = m.objectIds;
+          leafIds = m.objectIds;
       }
       
-      // Sørger for at alle hentes som gyldige tall, hvis mulig
-      objectIds = objectIds.filter(id => id !== undefined && id !== null);
+      leafIds = leafIds.filter(id => id !== undefined && id !== null);
 
-      return { modelId, name, objectCount: objectIds.length, objectIds };
+      return { modelId, name, objectCount: leafIds.length, objectIds: leafIds };
     }).filter(Boolean);
 
     modelSelect.innerHTML = '<option value="">– Valider kun markerte objekter i 3D –</option>' +
@@ -742,7 +758,7 @@ async function validate(){
         setStatus('⏳ Forbereder alle modeller i visningen...');
         selectionToFetch = allModels.map(m => ({ modelId: m.modelId, objectRuntimeIds: m.objectIds }));
         if (selectionToFetch.length === 0) {
-            throw new Error("Fant ingen modeller å validere. Sjekk at modellene er slått på i 3D.");
+            throw new Error("Fant ingen modeller å validere. Husk å trykke 'Hent modeller' først.");
         }
     } 
     else if (selectedModelId) {
@@ -771,11 +787,13 @@ async function validate(){
     
     for (const sel of selectionToFetch) {
         const mId = sel.modelId || sel.modelid;
-        let rawIds = sel.objectRuntimeIds || sel.objects || sel.objectIds || [];
+        let rawIds = sel.objects || sel.objectRuntimeIds || sel.objectIds || [];
         
-        // Fikser uthenting av IDs. IGNORERER p.id som ofte er GUID.
+        // BEHOLDER EKSAKT TYPE FRA API-ET FOR Å UNNGÅ ROT-NODE FEILEN
         let rIds = rawIds.map(id => {
-            if (typeof id === 'object' && id !== null) return id.objectRuntimeId || id.objectId || id.id;
+            if (typeof id === 'object' && id !== null) {
+                return id.id !== undefined ? id.id : (id.objectRuntimeId !== undefined ? id.objectRuntimeId : id.objectId);
+            }
             return id;
         }).filter(id => id !== undefined && id !== null);
 
@@ -784,11 +802,10 @@ async function validate(){
                 const propsArr = await API.viewer.getObjectProperties(mId, rIds);
                 if (propsArr && Array.isArray(propsArr)) {
                     propsArr.forEach((p, index) => {
-                        // Henter den garanterte interne IDen vi sendte inn
-                        let rId = p.objectRuntimeId !== undefined ? p.objectRuntimeId : rIds[index];
+                        let rId = p.id !== undefined ? p.id : (p.objectRuntimeId !== undefined ? p.objectRuntimeId : rIds[index]);
                         objectsData.push({
                             modelId: mId,
-                            objectRuntimeId: rId,
+                            runtimeId: rId, // Lagres uendret!
                             name: p.class || p.name || 'Objekt',
                             properties: p.properties
                         });
@@ -833,7 +850,7 @@ async function validate(){
             name: norm(obj.name || ''),
             guid: norm(flatProps["GlobalId"] || flatProps["GUID"] || flatProps["IfcGuid"] || ''),
             modelId: norm(obj.modelId),
-            runtimeId: obj.objectRuntimeId, // Lagrer den rene, interne IDen her
+            runtimeId: obj.runtimeId, 
             fields: ruleResult.fields,
             score: ruleResult.score,
             missingCount: ruleResult.missingCount,
@@ -856,21 +873,25 @@ async function validate(){
   }
 }
 
+// HYBRID-MAPPER SOM SENDER TEKST OG TALL SEPARAT FOR PERFEKT FARGELEGGING
 function groupByModel(rows) {
     const map = {};
     rows.forEach(r => {
-        if (!map[r.modelId]) map[r.modelId] = [];
-        if (r.runtimeId !== undefined && r.runtimeId !== null && r.runtimeId !== "") {
-            // Sørger for at IDen er et RENT TALL (fjerner eventuelt kluss) for å unngå rot-farging
-            const rid = parseInt(r.runtimeId, 10);
-            if (!isNaN(rid)) {
-                map[r.modelId].push(rid);
-            }
+        if (!map[r.modelId]) map[r.modelId] = { objects: [], objectRuntimeIds: [] };
+        if (typeof r.runtimeId === 'string') {
+            map[r.modelId].objects.push(r.runtimeId);
+        } else if (typeof r.runtimeId === 'number') {
+            map[r.modelId].objectRuntimeIds.push(r.runtimeId);
         }
     });
     return Object.keys(map)
-        .filter(mId => map[mId].length > 0)
-        .map(mId => ({ modelId: mId, objectRuntimeIds: map[mId] }));
+        .filter(mId => map[mId].objects.length > 0 || map[mId].objectRuntimeIds.length > 0)
+        .map(mId => {
+            let payload = { modelId: mId };
+            if (map[mId].objects.length > 0) payload.objects = map[mId].objects;
+            if (map[mId].objectRuntimeIds.length > 0) payload.objectRuntimeIds = map[mId].objectRuntimeIds;
+            return payload;
+        });
 }
 
 function scoreClass(pct){
@@ -1087,8 +1108,9 @@ function renderTable(){
       return `<td title="${esc(fieldData.msg)}\nVerdi: ${esc(fieldData.value || '–')}"><span class="field-value ${cls}">${esc(cellText)}</span></td>`;
     }).join('');
 
+    const idType = typeof r.runtimeId;
     return `
-      <tr data-mid="${esc(r.modelId)}" data-rid="${esc(r.runtimeId)}">
+      <tr data-mid="${esc(r.modelId)}" data-rid="${esc(r.runtimeId)}" data-rtype="${idType}">
         <td><span class="score ${sc}">${r.score}%</span></td>
         <td class="issue-cell">${statusPill}</td>
         <td class="obj-name" title="${esc(r.name)}">${esc(r.name) || '<span style="color:var(--muted)">–</span>'}</td>
@@ -1098,14 +1120,23 @@ function renderTable(){
     `;
   }).join('');
 
+  // TABELL-KLIKK SOM FORSTÅR FORSKJELL PÅ TEKST-ID OG TALL-ID
   tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
-      const rid = parseInt(tr.dataset.rid, 10);
+      const rawRid = tr.dataset.rid;
+      const rType = tr.dataset.rtype;
       const mid = tr.dataset.mid;
-      if (!API || isNaN(rid) || !mid) return;
+      
+      if (!API || rawRid === undefined || !mid) return;
+      
+      const rid = rType === 'number' ? Number(rawRid) : rawRid;
+      let payload = { modelId: mid };
+      
+      if (rType === 'number') payload.objectRuntimeIds = [rid];
+      else payload.objects = [rid];
+
       try {
-        const sel = [{ modelId: mid, objectRuntimeIds: [rid] }];
-        if (API.viewer.setSelection) await API.viewer.setSelection(sel);
+        if (API.viewer.setSelection) await API.viewer.setSelection([payload]);
       } catch {}
     });
   });
@@ -1132,9 +1163,10 @@ async function colorizeModel(){
     btnUncolor.disabled = false;
     btnColorize.disabled = false;
     
-    const countGreen = greenModels.reduce((acc, m) => acc + m.objectRuntimeIds.length, 0);
-    const countYellow = yellowModels.reduce((acc, m) => acc + m.objectRuntimeIds.length, 0);
-    const countRed = redModels.reduce((acc, m) => acc + m.objectRuntimeIds.length, 0);
+    // Teller hvor mange objekter som faktisk ble farget
+    const countGreen = greenModels.reduce((acc, m) => acc + (m.objects ? m.objects.length : 0) + (m.objectRuntimeIds ? m.objectRuntimeIds.length : 0), 0);
+    const countYellow = yellowModels.reduce((acc, m) => acc + (m.objects ? m.objects.length : 0) + (m.objectRuntimeIds ? m.objectRuntimeIds.length : 0), 0);
+    const countRed = redModels.reduce((acc, m) => acc + (m.objects ? m.objects.length : 0) + (m.objectRuntimeIds ? m.objectRuntimeIds.length : 0), 0);
     
     setStatus(`🎨 Fargelagt: 🟢 ${countGreen} OK · 🟡 ${countYellow} formatfeil · 🔴 ${countRed} mangler`, 'ok');
   } catch (e) {
