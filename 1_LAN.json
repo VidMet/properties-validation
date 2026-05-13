@@ -1,0 +1,184 @@
+{
+  "version": "1.0",
+  "allowExtraProperties": false,
+  "properties": {
+    "Materiale": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "required",
+	  "minMMI": 300
+    },
+    "Bruksområde": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "required",
+      "overrides": [
+        {
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Rørledning", "Objekttype": ["Graveflate", "GrøftÅpen", "Nedføringsrenne" ] },
+          "requirement": "notallowed"
+        },
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Rørledning", "Objekttype": ["Isolasjon", "Varerør", "Vaskevannsledning" ] },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Stikningsobjekt", "Objekttype": ["Stikningsobjekt" ] },
+          "requirement": "notallowed"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Kum", "Objekttype": ["Bekkeinntak", "Brannhydrant", "Brannvannsuttak", "Graveflate", "Hydrant", "Stengeventil", "Tank" ] },
+          "requirement": "notallowed"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Kum", "Objekttype": ["Hjelpesluk", "Overvannskum", "Sandfang", "Spillvannskum", "Stake-/Spylekum", "Vannkum", "Inntakskum" ] },
+          "requirement": "optional"
+        }
+      ],
+	  "minMMI": 300
+    },
+    "Dimensjon H,B,L (mm)": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional",
+      "overrides": [
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
+          "requirement": "notallowed"
+        }
+      ]
+    },
+    "Anvisning": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Link": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Eier": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional",
+      "overrides": [
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
+          "requirement": "notallowed"
+        }
+      ]
+    },
+    "Navn": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional",
+      "overrides": [
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
+          "requirement": "notallowed"
+        }
+      ]
+    },
+    "Areal (m2)": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional",
+      "overrides": [
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
+          "requirement": "notallowed"
+        }
+      ]
+    },
+    "Art": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional",
+      "overrides": [
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
+          "requirement": "notallowed"
+        }
+      ]
+    },
+    "BotaniskNavn": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional",
+      "overrides": [
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
+          "requirement": "notallowed"
+        }
+      ]
+    },
+    "Bratteste fall": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional",
+      "overrides": [
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
+          "requirement": "notallowed"
+        }
+      ]
+    },
+    "Lagtykkelse (mm)": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional",
+      "overrides": [
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
+          "requirement": "notallowed"
+        }
+      ]
+    },
+    "Massetype": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional",
+      "overrides": [
+		{
+          "conditions": { "Underdisiplinkode": "LAN", "Objektklasse": "Gjerde", "Objekttype": ["Viltgjerde", "Anleggsgjerde" ] },
+          "requirement": "notallowed"
+        }
+      ]
+    },
+    "Merknad 1": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 2": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 3": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 4": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 5": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 6": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 7": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 8": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 9": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 10": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 11": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    },
+    "Merknad 12": {
+      "propertySet": "1_LAN",
+      "defaultRequirement": "optional"
+    }
+  }
+}
