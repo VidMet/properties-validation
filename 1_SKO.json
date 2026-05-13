@@ -7,14 +7,7 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Oppmerking",
-            "Objekttype": [
-              "OppmerkingLangs",
-              "OppmerkingTverr"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Oppmerking", "Objekttype": ["OppmerkingLangs", "OppmerkingTverr" ] },
           "requirement": "notallowed",
           "minMMI": 300
         }
@@ -26,23 +19,11 @@
       "minMMI": 400,
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": [
-              "Skilt",
-              "Skiltfundament",
-              "Skiltmast",
-              "Skiltoppheng"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": ["Skilt", "Skiltfundament", "Skiltmast", "Skiltoppheng"] },
           "requirement": "notallowed"
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skiltportal"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skiltportal" },
           "requirement": "notallowed"
         }
       ]
@@ -52,35 +33,16 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": [
-              "Skiltfundament",
-              "VariabeltSkilt",
-              "Skiltstolpe"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "Skiltfundament", "VariabeltSkilt", "Skiltstolpe" ] },
           "requirement": "optional"
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": "Skiltmast"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Skiltmast" },
           "requirement": "required",
           "minMMI": 300
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skiltportal",
-            "Objekttype": [
-              "Helportal",
-              "Halvportal"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skiltportal", "Objekttype": [ "Helportal", "Halvportal" ] },
           "requirement": "required",
           "minMMI": 300
         }
@@ -91,38 +53,16 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Oppmerking",
-            "Objekttype": [
-              "OppmerkingForsterket",
-              "OppmerkingLangs"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Oppmerking", "Objekttype": [ "OppmerkingForsterket", "OppmerkingLangs" ] },
           "requirement": "required",
           "minMMI": 300
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": [
-              "Skiltfundament",
-              "Skiltmast",
-              "Skiltplate"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "Skiltfundament", "Skiltmast", "Skiltplate" ] },
           "requirement": "optional"
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skiltportal",
-            "Objekttype": [
-              "Helportal",
-              "Halvportal"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skiltportal", "Objekttype": [ "Helportal", "Halvportal" ] },
           "requirement": "optional"
         }
       ]
@@ -132,19 +72,11 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": "VariabeltSkilt"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "VariabeltSkilt" },
           "requirement": "optional"
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": "Skiltplate"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Skiltplate" },
           "requirement": "required",
           "minMMI": 300
         }
@@ -155,19 +87,11 @@
       "defaultRequirement": "required",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Vegbom",
-            "Objekttype": "Vegbomfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
           "requirement": "notallowed"
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": "Skiltoppheng"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Skiltoppheng" },
           "requirement": "notallowed"
         }
       ],
@@ -178,14 +102,7 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Vegbom",
-            "Objekttype": [
-              "Ledebom",
-              "Stengebom"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": [ "Ledebom", "Stengebom" ] },
           "requirement": "required",
           "minMMI": 300
         }
@@ -196,14 +113,7 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Oppmerking",
-            "Objekttype": [
-              "OppmerkingLangs",
-              "OppmerkingTverr"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Oppmerking", "Objekttype": [ "OppmerkingLangs", "OppmerkingTverr" ] },
           "requirement": "required",
           "minMMI": 300
         }
@@ -214,15 +124,7 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": [
-              "Signalhode",
-              "VariabeltSkilt",
-              "Skiltstolpe"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "Signalhode", "VariabeltSkilt", "Skiltstolpe" ] },
           "requirement": "required",
           "minMMI": 300
         }
@@ -233,15 +135,7 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": [
-              "Signalhode",
-              "VariabeltSkilt",
-              "Skiltstolpe"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "Signalhode", "VariabeltSkilt", "Skiltstolpe" ] },
           "requirement": "required",
           "minMMI": 300
         }
@@ -252,23 +146,12 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": "Signalhode"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Signalhode" },
           "requirement": "required",
           "minMMI": 300
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": [
-              "VariabeltSkilt",
-              "Skiltstolpe"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "VariabeltSkilt", "Skiltstolpe" ] },
           "requirement": "optional"
         }
       ]
@@ -278,14 +161,7 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": [
-              "VariabeltSkilt",
-              "Skiltstolpe"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": [ "VariabeltSkilt", "Skiltstolpe" ] },
           "requirement": "optional",
           "minMMI": 300
         }
@@ -296,14 +172,7 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Oppmerking",
-            "Objekttype": [
-              "OppmerkingLangs",
-              "OppmerkingTverr"
-            ]
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Oppmerking", "Objekttype": [ "OppmerkingLangs", "OppmerkingTverr" ] },
           "requirement": "required",
           "minMMI": 300
         }
@@ -314,29 +183,17 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Vegbom",
-            "Objekttype": "Vegbomfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
           "requirement": "required",
           "minMMI": 300
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": "Skiltfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Skiltfundament" },
           "requirement": "required",
           "minMMI": 300
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skiltportal",
-            "Objekttype": "Skiltportalfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skiltportal", "Objekttype": "Skiltportalfundament" },
           "requirement": "required",
           "minMMI": 300
         }
@@ -347,29 +204,17 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Vegbom",
-            "Objekttype": "Vegbomfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
           "requirement": "required",
           "minMMI": 300
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": "Skiltfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Skiltfundament" },
           "requirement": "required",
           "minMMI": 300
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skiltportal",
-            "Objekttype": "Skiltportalfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skiltportal", "Objekttype": "Skiltportalfundament" },
           "requirement": "required",
           "minMMI": 300
         }
@@ -380,29 +225,17 @@
       "defaultRequirement": "notallowed",
       "overrides": [
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Vegbom",
-            "Objekttype": "Vegbomfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Vegbom", "Objekttype": "Vegbomfundament" },
           "requirement": "required",
           "minMMI": 300
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skilt",
-            "Objekttype": "Skiltfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skilt", "Objekttype": "Skiltfundament" },
           "requirement": "required",
           "minMMI": 300
         },
         {
-          "conditions": {
-            "Underdisiplinkode": "SKO",
-            "Objektklasse": "Skiltportal",
-            "Objekttype": "Skiltportalfundament"
-          },
+          "conditions": { "Underdisiplinkode": "SKO", "Objektklasse": "Skiltportal", "Objekttype": "Skiltportalfundament" },
           "requirement": "required",
           "minMMI": 300
         }
