@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v3.04</title>
+  <title>Egenskapsvalidering v3.06</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -31,9 +31,26 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body { background: var(--bg); color: var(--ink); font-family: var(--sans); min-height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
-    
-    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
     .header-title { flex: 1; }
     .header-title h1 { font-size: 16px; font-weight: 800; letter-spacing: -.3px; color: var(--ink); }
     .header-title p { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 1px; }
@@ -65,53 +82,62 @@
     .card .label { font-size: 10px; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; }
     .card .value { font-size: 28px; font-weight: 800; line-height: 1.1; margin-top: 4px; }
     .card .sub { font-size: 10px; color: var(--muted); font-family: var(--mono); margin-top: 3px; }
+    .card.green  { border-color: #1e4028; }
     .card.green .value { color: var(--green); }
+    .card.red    { border-color: #3a1212; }
     .card.red .value { color: var(--red); }
+    .card.blue   { border-color: #0d2044; }
     .card.blue .value { color: var(--blue); }
 
     .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
     .panel-header { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
     .panel-header h3 { font-size: 13px; font-weight: 700; flex: 1; }
-    .panel-header .hint { font-size: 10px; color: var(--muted); font-family: var(--mono); }
 
     #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 7px; height: 220px; overflow: auto; resize: vertical; }
     .field-row { display: flex; align-items: center; gap: 10px; }
     .field-name { font-family: var(--mono); font-size: 10px; color: var(--muted); width: 180px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .bar-track { flex: 1; height: 16px; background: var(--surface2); border-radius: 4px; overflow: hidden; display: flex; }
-    .bar-fill-ok { background: var(--green); height: 100%; transition: width .5s; }
+    .bar-fill-ok   { background: var(--green); height: 100%; transition: width .5s cubic-bezier(.4,0,.2,1); }
     .bar-pct { font-family: var(--mono); font-size: 10px; width: 48px; text-align: right; flex-shrink: 0; color: var(--ink); }
 
     .table-wrap { overflow: auto; height: 45vh; min-height: 150px; resize: vertical; }
     table { width: 100%; border-collapse: collapse; font-size: 11px; }
-    thead th { background: var(--surface2); color: var(--muted); font-family: var(--mono); font-size: 10px; text-transform: uppercase; padding: 8px 10px; text-align: left; position: sticky; top: 0; z-index: 1; white-space: nowrap; }
+    thead th { background: var(--surface2); color: var(--muted); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .4px; padding: 8px 10px; text-align: left; position: sticky; top: 0; z-index: 1; white-space: nowrap; }
     tbody tr { border-bottom: 1px solid #1c2128; cursor: pointer; }
     tbody tr:hover td { background: #1c2128; }
-    tbody td { padding: 6px 10px; font-family: var(--mono); font-size: 10px; color: var(--ink); }
+    tbody td { padding: 6px 10px; vertical-align: middle; font-family: var(--mono); font-size: 10px; color: var(--ink); }
     .obj-name { color: var(--blue); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
     .field-value { display: inline-block; padding: 3px 6px; border-radius: 4px; font-size: 9px; font-family: var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; border: 1px solid transparent; }
     .field-value.ok { background: var(--green-dim); color: var(--green); border-color: #1e4028; }
     .field-value.warn { background: var(--yellow-dim); color: var(--yellow); border-color: #3a2d05; }
     .field-value.miss { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
-    .field-value.opt { background: #1a2027; color: var(--muted); border-color: #30363d; } /* Ny farge for Valgfri */
+    .field-value.opt { background: #1a2027; color: var(--muted); border-color: #30363d; }
 
     #donutWrap { display: flex; align-items: center; gap: 20px; padding: 14px; min-height: 220px; }
     #donutSvg  { flex-shrink: 0; }
     .donut-legend { display: flex; flex-direction: column; gap: 6px; }
     .legend-item  { display: flex; align-items: center; gap: 8px; font-size: 11px; }
-    .legend-dot   { width: 10px; height: 10px; border-radius: 50%; }
+    .legend-dot   { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
     .empty { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px; }
     ::-webkit-scrollbar { width: 5px; height: 5px; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(6px); }
+      to   { opacity:1; transform:none; }
+    }
+    .anim { animation: fadeUp .3s ease both; }
+    .grid-2col { display: grid; grid-template-columns: 1fr 1.5fr; gap: 14px; align-items: start; }
   </style>
 </head>
 <body>
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v3.04</h1>
-    <p>Dynamisk kolonnefiltrering og krasj-beskyttelse</p>
+    <h1>Egenskapsvalidering v3.06</h1>
+    <p>Avansert ordbok-støtte og UI-gjenoppretting</p>
   </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
@@ -139,14 +165,13 @@
 </div>
 
 <main id="mainContent">
-  <div class="empty">Velg et regelsett og en modell, og trykk <strong>Valider</strong>.</div>
+  <div class="empty anim">Velg et regelsett og en modell fra menyen, og trykk <strong>Valider</strong>.</div>
 </main>
 
 <script>
 let API = null;
 let allModels = [];
 let validationRows = [];
-let skippedCount = 0;
 
 const IGNORE = new Set(['IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE','IFCZONE','IFCGROUP','IFCSYSTEM']);
 const $ = id => document.getElementById(id);
@@ -197,10 +222,10 @@ async function loadModels(){
   } catch(e) { setStatus('❌ Feil ved henting: ' + e.message, 'error'); }
 }
 
-// VALIDERINGS-MOTOREN: Tilbake med full kraft (disallowedValues, etc.)
 function runValidation(objProps, fullRules) {
   let fields = {}, ok = 0, miss = 0, warn = 0;
   const props = objProps.flat;
+  const disc = (props["Underdisiplinkode"] || "").toUpperCase();
   const mmi = parseInt(props["MMI"]) || 0;
 
   for (const [propKeys, rule] of Object.entries(fullRules?.properties || {})) {
@@ -211,7 +236,6 @@ function runValidation(objProps, fullRules) {
       const val = props[propName] || '';
       let req = rule.requirement || rule.defaultRequirement;
 
-      // Sikker override-sjekk med || {} for å hindre "undefined"-krasj
       if (rule.overrides) {
         const override = rule.overrides.find(o => {
           if (!o.conditions) return false;
@@ -231,31 +255,22 @@ function runValidation(objProps, fullRules) {
       let errMsg = '';
       const strVal = val.toString().trim();
 
-      // Sjekker kravnivå
       if (req === 'notallowed') {
-        if (strVal !== "") {
-           fields[propName] = { status: 'warn', value: val, msg: 'Ikke tillatt' }; warn++;
-        } else {
-           fields[propName] = { status: 'na', value: '-', msg: 'Ikke tillatt' }; // na = Ignoreres i UI
-        }
+        if (strVal !== "") { fields[propName] = { status: 'warn', value: val, msg: 'Ikke tillatt' }; warn++; } 
+        else { fields[propName] = { status: 'na', value: '-', msg: 'Ikke tillatt' }; }
         return; 
       }
 
       if (req === 'required' && strVal === "") {
-         fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++;
-         return;
+         fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; return;
       }
 
       if (strVal === "") {
-         // Den var optional og brukeren lot den stå tom (OK oppførsel)
-         fields[propName] = { status: 'opt', value: '-', msg: 'Valgfri' }; 
-         return;
+         fields[propName] = { status: 'opt', value: '-', msg: 'Valgfri' }; return;
       }
 
-      // Verdi finnes, sjekker format og lister
-      if (rule.format) {
-        const regex = new RegExp(rule.format);
-        if (!regex.test(val)) { isFormatError = true; errMsg = 'Feil format'; }
+      if (rule.format && !(new RegExp(rule.format).test(val))) { 
+         isFormatError = true; errMsg = 'Feil format'; 
       }
 
       if (!isFormatError && rule.disallowedValues) {
@@ -265,18 +280,41 @@ function runValidation(objProps, fullRules) {
         }
       }
 
+      // STØTTE FOR AVANSERTE ORDBØKER (som 0_Element)
       if (!isFormatError && rule.allowedValues) {
-        const allowed = Array.isArray(rule.allowedValues) ? rule.allowedValues : [rule.allowedValues];
-        if (!allowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
-          isFormatError = true; errMsg = 'Verdi ikke i liste';
+        if (Array.isArray(rule.allowedValues)) {
+            const allowed = rule.allowedValues;
+            if (!allowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
+              isFormatError = true; errMsg = 'Verdi ikke i liste';
+            }
+        } else if (typeof rule.allowedValues === 'object') {
+            const fagKey = Object.keys(rule.allowedValues).find(k => k.toUpperCase() === disc.toUpperCase());
+            if (fagKey) {
+                const allowedForFag = rule.allowedValues[fagKey];
+                
+                if (Array.isArray(allowedForFag)) {
+                    if (!allowedForFag.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
+                        isFormatError = true; errMsg = `Ugyldig for ${disc}`;
+                    }
+                } else if (typeof allowedForFag === 'object') {
+                    const klasse = String(props["Objektklasse"] || '').trim();
+                    const klasseKey = Object.keys(allowedForFag).find(k => k.toUpperCase() === klasse.toUpperCase());
+                    
+                    if (klasseKey) {
+                        const validTypes = allowedForFag[klasseKey];
+                        if (Array.isArray(validTypes) && !validTypes.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
+                            isFormatError = true; errMsg = `Ugyldig for ${klasse}`;
+                        }
+                    } else if (klasse) {
+                        isFormatError = true; errMsg = `Ukjent klasse ${klasse}`;
+                    }
+                }
+            }
         }
       }
 
-      if (isFormatError) {
-         fields[propName] = { status: 'warn', value: val, msg: errMsg }; warn++;
-      } else {
-         fields[propName] = { status: 'ok', value: val, msg: 'OK' }; ok++;
-      }
+      if (isFormatError) { fields[propName] = { status: 'warn', value: val, msg: errMsg }; warn++; } 
+      else { fields[propName] = { status: 'ok', value: val, msg: 'OK' }; ok++; }
     });
   }
 
@@ -294,19 +332,16 @@ async function validate(){
     const res = await fetch($('ruleSelect').value);
     const validationRules = await res.json();
     
-    // Henter ut alle mulige egenskaper fra regelfilen
     let ALL_FIELDS = [];
     Object.keys(validationRules?.properties || {}).forEach(k => k.split('|').forEach(n => ALL_FIELDS.push(n.trim())));
 
     const model = allModels.find(m => m.id === mid);
     validationRows = [];
-    skippedCount = 0;
     const CHUNK = 200;
 
     for (let i = 0; i < model.objectIds.length; i += CHUNK) {
       const propsArr = await API.viewer.getObjectProperties(mid, model.objectIds.slice(i, i + CHUNK));
       
-      // La inn sikkerhetsnett på .properties for å hindre krasj hvis objekt mangler egenskaper
       propsArr.forEach(o => {
         const flat = {};
         (o.properties || []).forEach(g => (g.properties || []).forEach(p => flat[p.name] = p.value));
@@ -323,7 +358,7 @@ async function validate(){
       setStatus(`⏳ Validerer... ${Math.min(i+CHUNK, model.objectIds.length)} / ${model.objectIds.length}`);
     }
 
-    // DYNAMISK FILTER: Skjuler kolonner som kun er merket som "Ikke tillatt" ('na') for hele modellen
+    // DYNAMISK FILTER: Viser kun de kolonnene som er relevant for objektene i modellen
     const relevantFields = ALL_FIELDS.filter(f => {
        return validationRows.some(r => r.fields[f] && r.fields[f].status !== 'na');
     });
@@ -350,13 +385,13 @@ function renderDashboard(relevantFields){
   });
 
   $('mainContent').innerHTML = `
-    <div class="cards">
-      <div class="card blue"><div class="label">Analysert</div><div class="value">${total}</div></div>
-      <div class="card green"><div class="label">OK</div><div class="value">${perfect}</div></div>
-      <div class="card red"><div class="label">Avvik</div><div class="value">${issues}</div></div>
+    <div class="cards anim">
+      <div class="card blue"><div class="label">Analysert</div><div class="value">${total}</div><div class="sub">objekter</div></div>
+      <div class="card green"><div class="label">OK</div><div class="value">${perfect}</div><div class="sub">uten feil</div></div>
+      <div class="card red"><div class="label">Avvik</div><div class="value">${issues}</div><div class="sub">objekter med feil</div></div>
     </div>
 
-    <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap:14px; margin-top:14px;">
+    <div class="grid-2col anim" style="animation-delay:.05s">
       <div class="panel">
         <div class="panel-header"><h3>Statusfordeling</h3></div>
         <div id="donutWrap">
@@ -365,12 +400,12 @@ function renderDashboard(relevantFields){
         </div>
       </div>
       <div class="panel">
-        <div class="panel-header"><h3>Feltdekning (Kun relevante felt)</h3></div>
+        <div class="panel-header"><h3>Feltdekning (Kun relevante)</h3></div>
         <div id="fieldChart"></div>
       </div>
     </div>
 
-    <div class="panel" style="margin-top:14px;">
+    <div class="panel anim" style="animation-delay:.1s; margin-top:14px;">
       <div class="panel-header"><h3>Objektliste</h3></div>
       <div class="table-wrap">
         <table>
@@ -390,8 +425,7 @@ function renderDonut(total, ok, fail){
   const slices = [{ label: 'OK', count: ok, color: '#3fb950' }, { label: 'Feil', count: fail, color: '#f85149' }];
   const svg = $('donutSvg');
   const cx=60, cy=60, r=48;
-  let offset = 0;
-  let paths = '';
+  let offset = 0, paths = '';
   slices.forEach(s => {
     const frac = total > 0 ? s.count / total : 0;
     const len = frac * 2 * Math.PI * r;
@@ -407,7 +441,7 @@ function renderFieldBars(stats){
     const okPct = s.applicable > 0 ? (s.ok / s.applicable) * 100 : 0;
     return `
       <div class="field-row">
-        <div class="field-name">${s.name}</div>
+        <div class="field-name" title="${s.name}">${s.name}</div>
         <div class="bar-track"><div class="bar-fill-ok" style="width:${okPct}%"></div></div>
         <div class="bar-pct">${Math.round(okPct)}%</div>
       </div>`;
@@ -418,7 +452,7 @@ function renderTable(relevantFields){
   $('tableBody').innerHTML = validationRows.map(r => `
     <tr>
       <td>${r.score}%</td>
-      <td class="obj-name">${r.name}</td>
+      <td class="obj-name" title="${r.name}">${r.name}</td>
       ${relevantFields.map(f => {
         const d = r.fields[f] || {status:'na', value:'-'};
         return `<td><span class="field-value ${d.status}" title="${d.msg}">${d.value}</span></td>`;
@@ -429,7 +463,7 @@ function renderTable(relevantFields){
 
 function reset(){
   validationRows = [];
-  $('mainContent').innerHTML = '<div class="empty">Nullstilt. Klar for ny validering.</div>';
+  $('mainContent').innerHTML = '<div class="empty anim">Nullstilt. Klar for ny validering.</div>';
   setStatus('↺ Nullstilt.', '');
 }
 
