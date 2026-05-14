@@ -2,193 +2,586 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v3.02</title>
+  <title>Egenskapsvalidering v3.03</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap');
+
     :root {
-      --bg: #0d1117; --surface: #161b22; --surface2: #1f2937; --border: #30363d;
-      --ink: #e6edf3; --muted: #7d8590; --green: #3fb950; --green-dim: #1a3a22;
-      --yellow: #d29922; --yellow-dim: #2d2205; --red: #f85149; --red-dim: #3a1212;
-      --blue: #58a6ff; --blue-dim: #0d2044; --mono: 'JetBrains Mono', monospace; --sans: 'Syne', sans-serif;
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #1f2937;
+      --border:    #30363d;
+      --ink:       #e6edf3;
+      --muted:     #7d8590;
+      --green:     #3fb950;
+      --green-dim: #1a3a22;
+      --yellow:    #d29922;
+      --yellow-dim:#2d2205;
+      --red:       #f85149;
+      --red-dim:   #3a1212;
+      --blue:      #58a6ff;
+      --blue-dim:  #0d2044;
+      --accent:    #58a6ff;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Syne', sans-serif;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--ink); font-family: var(--sans); min-height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
-    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
     .header-title { flex: 1; }
-    .header-title h1 { font-size: 16px; font-weight: 800; color: var(--ink); }
-    .header-title p { font-size: 11px; color: var(--muted); font-family: var(--mono); }
-    .badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); color: var(--muted); }
-    .btn { font-family: var(--sans); font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 6px; border: none; cursor: pointer; transition: all .15s; white-space: nowrap; }
+    .header-title h1 {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      color: var(--ink);
+    }
+    .header-title p {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-top: 1px;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .btn {
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: opacity .15s, transform .1s;
+      white-space: nowrap;
+    }
     .btn:disabled { opacity: .4; cursor: not-allowed; }
+    .btn:not(:disabled):hover { opacity: .85; }
+    .btn:not(:disabled):active { transform: scale(.97); }
     .btn-primary { background: var(--blue); color: #000; }
-    .btn-ghost { background: var(--surface2); color: var(--ink); border: 1px solid var(--border); }
-    #statusBar { font-family: var(--mono); font-size: 11px; padding: 6px 16px; background: var(--blue-dim); color: var(--blue); border-bottom: 1px solid #1a3a5c; }
-    #statusBar.ok { background: var(--green-dim); color: var(--green); border-color: #1a3a22; }
-    #statusBar.error { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
-    #modelBar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; gap: 15px; align-items: center; }
-    select { font-family: var(--mono); font-size: 12px; background: var(--surface2); color: var(--ink); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; width: 100%; }
-    main { flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 14px; }
-    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
-    .card .label { font-size: 10px; color: var(--muted); font-family: var(--mono); text-transform: uppercase; }
-    .card .value { font-size: 28px; font-weight: 800; margin-top: 4px; }
+    .btn-ghost   { background: var(--surface2); color: var(--ink); border: 1px solid var(--border); }
+    .btn-danger  { background: #21262d; color: var(--red); border: 1px solid #3a1c1c; }
+
+    #statusBar {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 6px 16px;
+      background: var(--blue-dim);
+      color: var(--blue);
+      border-bottom: 1px solid #1a3a5c;
+      flex-shrink: 0;
+    }
+    #statusBar.ok    { background: var(--green-dim); color: var(--green); border-color: #1a3a22; }
+    #statusBar.error { background: var(--red-dim);   color: var(--red);   border-color: #3a1212; }
+
+    #modelBar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    
+    .select-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+
+    #modelBar label {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: var(--mono);
+      white-space: nowrap;
+    }
+    select {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: var(--surface2);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 10px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .card .label {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .card .value {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-top: 4px;
+    }
+    .card .sub {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: var(--mono);
+      margin-top: 3px;
+    }
     .card.green .value { color: var(--green); }
     .card.red .value { color: var(--red); }
-    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    .table-wrap { overflow: auto; height: 50vh; }
+    .card.blue .value { color: var(--blue); }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel-header h3 {
+      font-size: 13px;
+      font-weight: 700;
+      flex: 1;
+    }
+    .panel-header .hint {
+      font-size: 10px;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 7px; height: 220px; overflow: auto; resize: vertical; }
+
+    .field-row { display: flex; align-items: center; gap: 10px; }
+    .field-name {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--muted);
+      width: 180px;
+      flex-shrink: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .bar-track {
+      flex: 1;
+      height: 16px;
+      background: var(--surface2);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+    }
+    .bar-fill-ok   { background: var(--green); height: 100%; transition: width .5s; }
+    .bar-fill-miss { background: var(--red);   height: 100%; transition: width .5s; }
+    .bar-pct {
+      font-family: var(--mono);
+      font-size: 10px;
+      width: 48px;
+      text-align: right;
+      flex-shrink: 0;
+      color: var(--ink);
+    }
+
+    .table-wrap { overflow: auto; height: 45vh; min-height: 150px; resize: vertical; }
     table { width: 100%; border-collapse: collapse; font-size: 11px; }
-    thead th { background: var(--surface2); color: var(--muted); padding: 8px 10px; text-align: left; position: sticky; top: 0; z-index: 1; }
+    thead th {
+      background: var(--surface2);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      text-align: left;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      white-space: nowrap;
+    }
     tbody tr { border-bottom: 1px solid #1c2128; cursor: pointer; }
     tbody tr:hover { background: #1c2128; }
-    tbody td { padding: 6px 10px; font-family: var(--mono); font-size: 10px; }
-    .field-value { padding: 2px 6px; border-radius: 4px; font-size: 9px; }
+    tbody td {
+      padding: 6px 10px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--ink);
+    }
+    .obj-name { color: var(--blue); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .issue-pill {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .issue-pill.ok { background: var(--green-dim); color: var(--green); border-color: #1e4028; }
+    .issue-pill.warn { background: var(--yellow-dim); color: var(--yellow); border-color: #3a2d05; }
+    .issue-pill.miss { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
+
+    .field-value {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 9px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 120px;
+    }
     .field-value.ok { background: var(--green-dim); color: var(--green); }
     .field-value.warn { background: var(--yellow-dim); color: var(--yellow); }
     .field-value.miss { background: var(--red-dim); color: var(--red); }
     .field-value.na { background: #2a2f36; color: var(--muted); }
+
+    #donutWrap { display: flex; align-items: center; gap: 20px; padding: 14px; min-height: 220px; }
+    #donutSvg  { flex-shrink: 0; }
+    .donut-legend { display: flex; flex-direction: column; gap: 6px; }
+    .legend-item  { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+    .legend-dot   { width: 10px; height: 10px; border-radius: 50%; }
+
+    .empty { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   </style>
 </head>
 <body>
+
 <header>
-  <div class="header-title"><h1>Egenskapsvalidering v3.02</h1><p>Intelligent tolkning av 1_&lt;Fag&gt;</p></div>
+  <div class="header-title">
+    <h1>Egenskapsvalidering v3.03</h1>
+    <p>Gjenopprettet dashbord med intelligent 1_&lt;Fag&gt; logikk</p>
+  </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
-  <button class="btn btn-primary" id="btnValidate" disabled>Valider</button>
+  <button class="btn btn-primary" id="btnValidate" disabled>▶ Valider</button>
+  <button class="btn btn-danger" id="btnReset" disabled>↺ Nullstill</button>
 </header>
+
 <div id="statusBar">Kobler til Trimble Connect...</div>
+
 <div id="modelBar">
-  <select id="ruleSelect">
-    <option value="0_Element.json">0_Element</option>
-    <option value="1_FAG.json">1_FAG (Intelligent)</option>
-    <option value="2_RDS.json">2_RDS</option>
-    <option value="3_Beskrivelse.json">3_Beskrivelse</option>
-  </select>
-  <select id="modelSelect" disabled><option value="">– Laster... –</option></select>
+  <div class="select-group">
+    <label>Regelsett:</label>
+    <select id="ruleSelect">
+      <option value="0_Element.json">0_Element</option>
+      <option value="1_FAG.json">1_FAG (Intelligent)</option>
+      <option value="2_RDS.json">2_RDS</option>
+      <option value="3_Beskrivelse.json">3_Beskrivelse</option>
+    </select>
+  </div>
+  
+  <div class="select-group">
+    <label>Modell:</label>
+    <select id="modelSelect" disabled><option value="">– Laster... –</option></select>
+  </div>
 </div>
-<main id="mainContent"></main>
+
+<main id="mainContent">
+  <div class="empty">Velg et regelsett og en modell, og trykk <strong>Valider</strong>.</div>
+</main>
 
 <script>
-let API, allModels = [], validationRows = [], validationRules = null, FIELDS = [];
+let API = null;
+let allModels = [];
+let validationRows = [];
+let validationRules = null;
+let FIELDS = [];
+let skippedCount = 0;
+
 const IGNORE = new Set(['IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE','IFCZONE','IFCGROUP','IFCSYSTEM']);
 
 const $ = id => document.getElementById(id);
 const setStatus = (m, c='') => { $('statusBar').textContent = m; $('statusBar').className = c; };
+const lastPathPart = (v) => (v || '').split('/').pop().split('\\').pop();
 
 async function connect(){
   try {
     API = await window.TrimbleConnectWorkspace.connect(window.parent);
-    $('btnLoad').disabled = false; $('btnValidate').disabled = false;
-    setStatus('✅ Tilkoblet.', 'ok'); $('modelBadge').textContent = 'Tilkoblet';
-  } catch(e) { setStatus('❌ API-feil.', 'error'); }
+    $('btnLoad').disabled = false;
+    $('btnValidate').disabled = false;
+    setStatus('✅ Tilkoblet Trimble Connect.', 'ok');
+    $('modelBadge').textContent = 'Tilkoblet';
+  } catch(e) { setStatus('❌ Kunne ikke koble til API.', 'error'); }
 }
 
 async function loadModels(){
-  setStatus('⏳ Leser modeller...');
-  const objs = await API.viewer.getObjects();
-  allModels = (objs || []).map(m => ({
-    id: m.modelId, name: m.name || 'Modell', ids: (m.objects || []).map(o => o.id)
-  })).filter(m => m.ids.length > 0);
-  $('modelSelect').innerHTML = allModels.map(m => `<option value="${m.id}">${m.name} (${m.ids.length} obj)</option>`).join('');
-  $('modelSelect').disabled = false;
-  setStatus('✅ Modeller klare.', 'ok');
+  if (!API) return;
+  setStatus('⏳ Leser modeller og filnavn...');
+  try {
+    const nameMap = new Map();
+    const srcs = [() => API.models?.getModels(), () => API.viewer?.getModels()];
+    for (const src of srcs) {
+      try {
+        const res = await src();
+        const list = Array.isArray(res) ? res : (res?.models || res?.items || []);
+        list.forEach(m => {
+          const id = m.id || m.modelId;
+          const fn = [m.name, m.fileName, m.filename].find(v => /\.ifc/i.test(v));
+          if (id && fn) nameMap.set(id, lastPathPart(fn));
+        });
+      } catch(e){}
+    }
+
+    const objs = await API.viewer.getObjects();
+    allModels = (objs || []).map(m => {
+      const mid = m.modelId || m.modelid;
+      return {
+        id: mid,
+        name: nameMap.get(mid) || m.name || 'Ukjent modell',
+        objectIds: (m.objects || []).map(o => o.id || o.objectRuntimeId).filter(id => id != null)
+      };
+    }).filter(m => m.objectIds.length > 0);
+
+    $('modelSelect').innerHTML = allModels.map(m => `<option value="${m.id}">${m.name} (${m.objectIds.length} obj)</option>`).join('');
+    $('modelSelect').disabled = false;
+    setStatus('✅ Modeller hentet.', 'ok');
+  } catch(e) { setStatus('❌ Feil ved henting: ' + e.message, 'error'); }
 }
 
-// INTELLIGENT NAVNELØSER: Mapper "1_<Fag>" til "1_VAA", "1_VEI" osv.
 function resolvePsetName(template, disc) {
   if (!template || !disc) return template;
   return template.replace(/<Fag>/gi, disc.toUpperCase());
 }
 
-function runValidation(objProps, rulesData) {
-  let results = {}, ok = 0, miss = 0, warn = 0, na = 0;
+function runValidation(objProps, fullRules) {
+  let fields = {}, ok = 0, miss = 0, warn = 0, na = 0;
   const props = objProps.flat;
   const disc = (props["Underdisiplinkode"] || "").toUpperCase();
   const mmi = parseInt(props["MMI"]) || 0;
 
-  for (const [keys, rule] of Object.entries(rulesData.properties)) {
-    keys.split('|').forEach(name => {
-      const val = props[name] || '';
+  for (const [propKeys, rule] of Object.entries(fullRules.properties)) {
+    propKeys.split('|').forEach(propName => {
+      const val = props[propName] || '';
       let req = rule.requirement || rule.defaultRequirement;
-      
+
       if (rule.overrides) {
-        const match = rule.overrides.find(o => Object.entries(o.conditions).every(([k, v]) => {
+        const override = rule.overrides.find(o => Object.entries(o.conditions).every(([k, v]) => {
           const objV = String(props[k] || '').trim().toUpperCase();
           return Array.isArray(v) ? v.some(x => x.toUpperCase() === objV) : v.toUpperCase() === objV;
         }));
-        if (match) req = match.requirement;
+        if (override) req = override.requirement;
       }
 
       if (rule.minMMI && mmi > 0 && mmi < rule.minMMI && req === 'required') req = 'optional';
 
       if (req === 'notallowed') {
-        if (val.trim()) { results[name] = { st: 'warn', val, msg: 'Ikke tillatt' }; warn++; }
-        else { results[name] = { st: 'na', val: '-', msg: 'OK' }; na++; }
-      } else if (req === 'required' && !val.trim()) {
-        results[name] = { st: 'miss', val: '', msg: 'Mangler' }; miss++;
+        if (val.toString().trim()) { fields[propName] = { status: 'format', value: val, msg: 'Ikke tillatt' }; warn++; }
+        else { fields[propName] = { status: 'na', value: '-', msg: 'OK' }; na++; }
+      } else if (req === 'required' && !val.toString().trim()) {
+        fields[propName] = { status: 'missing', value: '', msg: 'Mangler' }; miss++;
+      } else if (val.toString().trim()) {
+        fields[propName] = { status: 'ok', value: val, msg: 'OK' }; ok++;
       } else {
-        results[name] = { st: 'ok', val: val || '–', msg: 'OK' }; ok++;
+        fields[propName] = { status: 'na', value: '-', msg: 'Valgfri/Tom' }; na++;
       }
     });
   }
-  return { results, score: Math.round((ok / (ok+miss+warn)) * 100) || 100, miss, warn };
+  const totalReq = ok + miss + warn;
+  return { fields, score: totalReq > 0 ? Math.round((ok / totalReq) * 100) : 100, miss, warn, ok };
 }
 
 async function validate(){
   const mid = $('modelSelect').value;
-  if (!mid) return;
-  setStatus('⏳ Validerer...');
-  const res = await fetch($('ruleSelect').value);
-  validationRules = await res.json();
-  FIELDS = [];
-  Object.keys(validationRules.properties).forEach(k => k.split('|').forEach(n => FIELDS.push(n)));
+  if (!mid || !API) return;
+  setStatus('⏳ Laster regler og validerer...');
   
-  const m = allModels.find(x => x.id === mid);
-  validationRows = [];
-  const CHUNK = 200;
-  for(let i=0; i<m.ids.length; i+=CHUNK){
-    const props = await API.viewer.getObjectProperties(mid, m.ids.slice(i, i+CHUNK));
-    props.forEach(o => {
-      const flat = {}; o.properties.forEach(g => g.properties.forEach(p => flat[p.name] = p.value));
-      const psets = {}; o.properties.forEach(g => psets[g.name.toUpperCase()] = true);
-      
-      const disc = (flat["Underdisiplinkode"] || "").toUpperCase();
-      const rawPsetName = Object.values(validationRules.properties)[0].propertySet;
-      const targetPset = resolvePsetName(rawPsetName, disc);
+  try {
+    const res = await fetch($('ruleSelect').value);
+    validationRules = await res.json();
+    FIELDS = [];
+    Object.keys(validationRules.properties).forEach(k => k.split('|').forEach(n => FIELDS.push(n)));
 
-      // SJEKK: Har objektet det riktige settet? (F.eks 1_VAA)
-      if (validationRules.allowExtraProperties === false && disc && !psets[targetPset]) {
-         // Hvis settet mangler helt, flagger vi det som feil i dashbordet
-      }
+    const model = allModels.find(m => m.id === mid);
+    validationRows = [];
+    skippedCount = 0;
+    const CHUNK = 200;
 
-      const v = runValidation({flat}, validationRules);
-      validationRows.push({ name: o.name, score: v.score, fields: v.results, miss: v.miss, warn: v.warn });
-    });
-    setStatus(`⏳ ${Math.min(i+CHUNK, m.ids.length)} / ${m.ids.length}`);
-  }
-  render();
-  setStatus('✅ Fullført.', 'ok');
+    for (let i = 0; i < model.objectIds.length; i += CHUNK) {
+      const propsArr = await API.viewer.getObjectProperties(mid, model.objectIds.slice(i, i + CHUNK));
+      propsArr.forEach(o => {
+        const flat = {};
+        o.properties.forEach(g => g.properties.forEach(p => flat[p.name] = p.value));
+        
+        const result = runValidation({flat}, validationRules);
+        validationRows.push({
+          name: o.name || 'Objekt',
+          fields: result.fields,
+          score: result.score,
+          missCount: result.miss,
+          warnCount: result.warn
+        });
+      });
+      setStatus(`⏳ Validerer... ${Math.min(i+CHUNK, model.objectIds.length)} / ${model.objectIds.length}`);
+    }
+
+    renderDashboard();
+    setStatus('✅ Validering fullført.', 'ok');
+    $('btnReset').disabled = false;
+  } catch(e) { setStatus('❌ Feil: ' + e.message, 'error'); }
 }
 
-function render(){
+function renderDashboard(){
   const total = validationRows.length;
-  const okObj = validationRows.filter(r => r.miss === 0 && r.warn === 0).length;
+  const perfect = validationRows.filter(r => r.missCount === 0 && r.warnCount === 0).length;
+  const issues = total - perfect;
+
+  const fieldStats = FIELDS.map(f => {
+    let ok = 0, miss = 0, applicable = 0;
+    validationRows.forEach(r => {
+      const st = r.fields[f]?.status;
+      if (st === 'ok') { ok++; applicable++; }
+      else if (st === 'missing') { miss++; applicable++; }
+      else if (st === 'format') { applicable++; }
+    });
+    return { name: f, ok, miss, applicable };
+  });
+
   $('mainContent').innerHTML = `
-    <div class="cards"><div class="card">ID: ${total}</div><div class="card green">OK: ${okObj}</div><div class="card red">FEIL: ${total-okObj}</div></div>
-    <div class="panel"><div class="table-wrap"><table>
-      <thead><tr><th>Score</th><th>Navn</th>${FIELDS.slice(0,8).map(f => `<th>${f}</th>`).join('')}</tr></thead>
-      <tbody>${validationRows.map(r => `
-        <tr><td>${r.score}%</td><td>${r.name || 'Objekt'}</td>
-        ${FIELDS.slice(0,8).map(f => {
-          const d = r.fields[f] || {st:'na', val:'-'};
-          return `<td><span class="field-value ${d.st}">${d.val}</span></td>`;
-        }).join('')}</tr>`).join('')}
-      </tbody></table></div></div>`;
+    <div class="cards">
+      <div class="card blue"><div class="label">Analysert</div><div class="value">${total}</div></div>
+      <div class="card green"><div class="label">OK</div><div class="value">${perfect}</div></div>
+      <div class="card red"><div class="label">Avvik</div><div class="value">${issues}</div></div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap:14px; margin-top:14px;">
+      <div class="panel">
+        <div class="panel-header"><h3>Statusfordeling</h3></div>
+        <div id="donutWrap">
+          <svg id="donutSvg" width="120" height="120" viewBox="0 0 120 120"></svg>
+          <div class="donut-legend" id="donutLegend"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header"><h3>Feltdekning</h3></div>
+        <div id="fieldChart"></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:14px;">
+      <div class="panel-header"><h3>Objektliste</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Score</th><th>Navn</th>${FIELDS.map(f => `<th>${f}</th>`).join('')}</tr></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  `;
+
+  renderDonut(total, perfect, issues);
+  renderFieldBars(fieldStats);
+  renderTable();
+}
+
+function renderDonut(total, ok, fail){
+  const slices = [{ label: 'OK', count: ok, color: '#3fb950' }, { label: 'Feil', count: fail, color: '#f85149' }];
+  const svg = $('donutSvg');
+  const cx=60, cy=60, r=48;
+  let offset = 0;
+  let paths = '';
+  slices.forEach(s => {
+    const frac = total > 0 ? s.count / total : 0;
+    const len = frac * 2 * Math.PI * r;
+    paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="18" stroke-dasharray="${len} ${2*Math.PI*r}" stroke-dashoffset="${-offset}"></circle>`;
+    offset += len;
+  });
+  svg.innerHTML = paths + `<circle cx="${cx}" cy="${cy}" r="30" fill="var(--surface)"></circle><text x="${cx}" y="${cy+5}" text-anchor="middle" font-size="12" fill="var(--ink)" font-weight="800">${Math.round((ok/total)*100)}%</text>`;
+  $('donutLegend').innerHTML = slices.map(s => `<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div><span>${s.label}: ${s.count}</span></div>`).join('');
+}
+
+function renderFieldBars(stats){
+  $('fieldChart').innerHTML = stats.map(s => {
+    const okPct = s.applicable > 0 ? (s.ok / s.applicable) * 100 : 0;
+    return `
+      <div class="field-row">
+        <div class="field-name">${s.name}</div>
+        <div class="bar-track"><div class="bar-fill-ok" style="width:${okPct}%"></div></div>
+        <div class="bar-pct">${Math.round(okPct)}%</div>
+      </div>`;
+  }).join('');
+}
+
+function renderTable(){
+  $('tableBody').innerHTML = validationRows.map(r => `
+    <tr>
+      <td>${r.score}%</td>
+      <td class="obj-name">${r.name}</td>
+      ${FIELDS.map(f => {
+        const d = r.fields[f] || {status:'na', value:'-'};
+        return `<td><span class="field-value ${d.status === 'format' ? 'warn' : d.status === 'missing' ? 'miss' : d.status === 'na' ? 'na' : 'ok'}">${d.value}</span></td>`;
+      }).join('')}
+    </tr>
+  `).join('');
+}
+
+function reset(){
+  validationRows = [];
+  $('mainContent').innerHTML = '<div class="empty">Nullstilt. Klar for ny validering.</div>';
+  setStatus('↺ Nullstilt.', '');
 }
 
 $('btnLoad').onclick = loadModels;
 $('btnValidate').onclick = validate;
+$('btnReset').onclick = reset;
 connect();
 </script>
 </body>
