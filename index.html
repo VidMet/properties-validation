@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v2.20</title>
+  <title>Egenskapsvalidering v3.08</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -25,7 +25,6 @@
       --red-dim:   #3a1212;
       --blue:      #58a6ff;
       --blue-dim:  #0d2044;
-      --accent:    #58a6ff;
       --mono:      'JetBrains Mono', monospace;
       --sans:      'Syne', sans-serif;
     }
@@ -33,60 +32,22 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      background: var(--bg); color: var(--ink); font-family: var(--sans);
+      min-height: 100vh; display: flex; flex-direction: column; overflow: hidden;
     }
 
     header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
     }
 
     .header-title { flex: 1; }
-    .header-title h1 {
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -.3px;
-      color: var(--ink);
-    }
-    .header-title p {
-      font-size: 11px;
-      color: var(--muted);
-      font-family: var(--mono);
-      margin-top: 1px;
-    }
+    .header-title h1 { font-size: 16px; font-weight: 800; letter-spacing: -.3px; color: var(--ink); }
+    .header-title p { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 1px; }
 
-    .badge {
-      font-family: var(--mono);
-      font-size: 10px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      white-space: nowrap;
-    }
+    .badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); color: var(--muted); white-space: nowrap; }
 
-    .btn {
-      font-family: var(--sans);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 7px 14px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      transition: opacity .15s, transform .1s;
-      white-space: nowrap;
-    }
+    .btn { font-family: var(--sans); font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 6px; border: none; cursor: pointer; transition: opacity .15s, transform .1s; white-space: nowrap; }
     .btn:disabled { opacity: .4; cursor: not-allowed; }
     .btn:not(:disabled):hover { opacity: .85; }
     .btn:not(:disabled):active { transform: scale(.97); }
@@ -97,287 +58,63 @@
     .btn-unreset  { background: #1f2937; color: var(--muted); border: 1px solid var(--border); }
     .btn-export   { background: #0d2044; color: var(--blue); border: 1px solid #1a3a6c; }
 
-    #statusBar {
-      font-family: var(--mono);
-      font-size: 11px;
-      padding: 6px 16px;
-      background: var(--blue-dim);
-      color: var(--blue);
-      border-bottom: 1px solid #1a3a5c;
-      flex-shrink: 0;
-    }
+    #statusBar { font-family: var(--mono); font-size: 11px; padding: 6px 16px; background: var(--blue-dim); color: var(--blue); border-bottom: 1px solid #1a3a5c; flex-shrink: 0; }
     #statusBar.ok    { background: var(--green-dim); color: var(--green); border-color: #1a3a22; }
     #statusBar.error { background: var(--red-dim);   color: var(--red);   border-color: #3a1212; }
 
-    #modelBar {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 8px 16px;
-      display: flex;
-      gap: 15px;
-      align-items: center;
-      flex-shrink: 0;
-    }
-    
-    .select-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex: 1;
-    }
-
-    #modelBar label {
-      font-size: 11px;
-      color: var(--muted);
-      font-family: var(--mono);
-      white-space: nowrap;
-    }
-    select {
-      font-family: var(--mono);
-      font-size: 12px;
-      background: var(--surface2);
-      color: var(--ink);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 6px 10px;
-      width: 100%;
-      min-width: 0;
-    }
+    #modelBar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
+    .select-group { display: flex; align-items: center; gap: 8px; flex: 1; }
+    #modelBar label { font-size: 11px; color: var(--muted); font-family: var(--mono); white-space: nowrap; }
+    select { font-family: var(--mono); font-size: 12px; background: var(--surface2); color: var(--ink); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; width: 100%; min-width: 0; }
     select:disabled { opacity: .4; }
 
-    main {
-      flex: 1;
-      overflow-y: auto;
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
+    main { flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 14px; }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 14px;
-    }
-    .card .label {
-      font-size: 10px;
-      color: var(--muted);
-      font-family: var(--mono);
-      text-transform: uppercase;
-      letter-spacing: .5px;
-    }
-    .card .value {
-      font-size: 28px;
-      font-weight: 800;
-      line-height: 1.1;
-      margin-top: 4px;
-    }
-    .card .sub {
-      font-size: 10px;
-      color: var(--muted);
-      font-family: var(--mono);
-      margin-top: 3px;
-    }
-    .card.green  { border-color: #1e4028; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+    .card .label { font-size: 10px; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; }
+    .card .value { font-size: 28px; font-weight: 800; line-height: 1.1; margin-top: 4px; }
+    .card .sub { font-size: 10px; color: var(--muted); font-family: var(--mono); margin-top: 3px; }
     .card.green .value { color: var(--green); }
-    .card.red    { border-color: #3a1212; }
     .card.red .value { color: var(--red); }
-    .card.blue   { border-color: #0d2044; }
     .card.blue .value { color: var(--blue); }
-    .card.gray   { border-color: #30363d; }
     .card.gray .value { color: var(--muted); }
+    .card.gray { border-color: #30363d; }
 
-    .panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .panel-header {
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .panel-header h3 {
-      font-size: 13px;
-      font-weight: 700;
-      flex: 1;
-    }
-    .panel-header .hint {
-      font-size: 10px;
-      color: var(--muted);
-      font-family: var(--mono);
-    }
+    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .panel-header { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+    .panel-header h3 { font-size: 13px; font-weight: 700; flex: 1; }
 
-    #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 7px; height: 220px; min-height: 80px; max-height: 600px; resize: vertical; overflow: auto; }
-
+    #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 7px; height: 220px; overflow: auto; resize: vertical; }
     .field-row { display: flex; align-items: center; gap: 10px; }
-    .field-name {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--muted);
-      width: 180px;
-      flex-shrink: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .bar-track {
-      flex: 1;
-      height: 16px;
-      background: var(--surface2);
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-    }
+    .field-name { font-family: var(--mono); font-size: 10px; color: var(--muted); width: 180px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bar-track { flex: 1; height: 16px; background: var(--surface2); border-radius: 4px; overflow: hidden; display: flex; }
     .bar-fill-ok   { background: var(--green); height: 100%; transition: width .5s cubic-bezier(.4,0,.2,1); }
-    .bar-fill-miss { background: var(--red);   height: 100%; transition: width .5s cubic-bezier(.4,0,.2,1); }
-    .bar-pct {
-      font-family: var(--mono);
-      font-size: 10px;
-      width: 48px;
-      text-align: right;
-      flex-shrink: 0;
-      color: var(--ink);
-    }
+    .bar-pct { font-family: var(--mono); font-size: 10px; width: 48px; text-align: right; flex-shrink: 0; color: var(--ink); }
 
-    .table-wrap { overflow: auto; height: 40vh; min-height: 150px; resize: vertical; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 11px;
-    }
-    thead th {
-      background: var(--surface2);
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .4px;
-      padding: 8px 10px;
-      text-align: left;
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      white-space: nowrap;
-    }
+    .table-wrap { overflow: auto; height: 45vh; min-height: 150px; resize: vertical; }
+    table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    thead th { background: var(--surface2); color: var(--muted); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .4px; padding: 8px 10px; text-align: left; position: sticky; top: 0; z-index: 1; white-space: nowrap; }
     tbody tr { border-bottom: 1px solid #1c2128; cursor: pointer; }
     tbody tr:hover td { background: #1c2128; }
-    tbody td {
-      padding: 6px 10px;
-      vertical-align: middle;
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--ink);
-    }
+    tbody td { padding: 6px 10px; vertical-align: middle; font-family: var(--mono); font-size: 10px; color: var(--ink); }
     .obj-name { color: var(--blue); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .guid     { color: var(--muted); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .guid:hover { color: var(--ink); }
 
-    .issue-cell {
-      min-width: 200px;
-      max-width: 300px;
-      white-space: normal;
-      line-height: 1.35;
-    }
-    .issue-pill {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 10px;
-      padding: 3px 7px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: var(--surface2);
-      color: var(--muted);
-    }
-    .issue-pill.ok { background: var(--green-dim); color: var(--green); border-color: #1e4028; }
-    .issue-pill.warn { background: var(--yellow-dim); color: var(--yellow); border-color: #3a2d05; }
-    .issue-pill.miss { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
-
-    .field-value {
-      display: inline-block;
-      max-width: 150px;
-      min-width: 72px;
-      padding: 3px 7px;
-      border-radius: 5px;
-      font-family: var(--mono);
-      font-size: 10px;
-      line-height: 1.2;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      border: 1px solid transparent;
-    }
+    .field-value { display: inline-block; padding: 3px 6px; border-radius: 4px; font-size: 9px; font-family: var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; border: 1px solid transparent; }
     .field-value.ok { background: var(--green-dim); color: var(--green); border-color: #1e4028; }
     .field-value.warn { background: var(--yellow-dim); color: var(--yellow); border-color: #3a2d05; }
     .field-value.miss { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
-    .field-value.na { background: #2a2f36; color: #9aa4af; border-color: #30363d; }
-    .field-col-head { min-width: 110px; max-width: 150px; }
+    .field-value.opt { background: #1a2027; color: var(--muted); border-color: #30363d; }
+    .field-value.na { background: #2a2f36; color: var(--muted); border-color: #30363d; }
 
-    .score {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 20px;
-    }
-    .score.s100 { background: var(--green-dim); color: var(--green); }
-    .score.s75  { background: #1a2a10; color: #7ee787; }
-    .score.s50  { background: var(--yellow-dim); color: var(--yellow); }
-    .score.s25  { background: #3a2005; color: #d08030; }
-    .score.s0   { background: var(--red-dim); color: var(--red); }
-
-    .tabs { display: flex; gap: 6px; }
-    .tab {
-      font-family: var(--mono);
-      font-size: 10px;
-      padding: 4px 10px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all .15s;
-    }
-    .tab.active, .tab:hover {
-      background: var(--surface2);
-      color: var(--ink);
-      border-color: var(--blue);
-    }
-
-    #donutWrap { display: flex; align-items: center; gap: 20px; padding: 14px; height: 100%; min-height: 220px; }
+    #donutWrap { display: flex; align-items: center; gap: 20px; padding: 14px; min-height: 220px; }
     #donutSvg  { flex-shrink: 0; }
     .donut-legend { display: flex; flex-direction: column; gap: 6px; }
     .legend-item  { display: flex; align-items: center; gap: 8px; font-size: 11px; }
     .legend-dot   { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-    .legend-text  { color: var(--muted); font-family: var(--mono); font-size: 10px; }
-    .legend-val   { font-weight: 700; color: var(--ink); margin-left: auto; font-family: var(--mono); font-size: 10px; min-width: 28px; text-align: right; }
-
-    #searchInput {
-      font-family: var(--mono);
-      font-size: 11px;
-      background: var(--surface2);
-      color: var(--ink);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 5px 10px;
-      width: 180px;
-    }
 
     .empty { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px; }
-    .empty .icon { font-size: 36px; margin-bottom: 10px; }
-    
     ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
     @keyframes fadeUp {
@@ -385,22 +122,17 @@
       to   { opacity:1; transform:none; }
     }
     .anim { animation: fadeUp .3s ease both; }
-    .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
-
-    @media(max-width: 640px) {
-      .grid-2col { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: repeat(2,1fr); }
-    }
+    .grid-2col { display: grid; grid-template-columns: 1fr 1.5fr; gap: 14px; align-items: start; }
   </style>
 </head>
 <body>
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v2.20</h1>
-    <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
+    <h1>Egenskapsvalidering v3.08</h1>
+    <p>Filter for IFC-systemnoder (Project, Site, Building) gjenopprettet</p>
   </div>
-  <span class="badge" id="modelBadge">Ikke tilkoblet</span>
+  <span class="badge" id="modelBadge">Frakoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
   <button class="btn btn-primary" id="btnValidate" disabled>▶ Valider</button>
   <button class="btn btn-colorize" id="btnColorize" disabled>🎨 Fargelegg</button>
@@ -409,785 +141,420 @@
   <button class="btn btn-danger" id="btnReset" disabled>↺ Nullstill</button>
 </header>
 
-<div id="statusBar">Kobler til Trimble Connect…</div>
+<div id="statusBar">Kobler til Trimble Connect...</div>
 
 <div id="modelBar">
   <div class="select-group">
     <label>Regelsett:</label>
     <select id="ruleSelect">
       <option value="0_Element.json">0_Element</option>
-      <option value="1_AKU.json">1_AKU</option>
-      <option value="1_LAN.json">1_LAN</option>
-      <option value="1_SKO.json">1_SKO</option>
-      <option value="1_UTS.json">1_UTS</option>
-      <option value="1_VAA.json">1_VAA</option>
-      <option value="1_VEI.json">1_VEI</option>
+      <option value="1_FAG.json">1_FAG (Dynamisk)</option>
       <option value="3_Beskrivelse.json">3_Beskrivelse</option>
     </select>
   </div>
   
   <div class="select-group">
     <label>Modell:</label>
-    <select id="modelSelect" disabled>
-      <option value="">– Laster modeller... –</option>
-    </select>
+    <select id="modelSelect" disabled><option value="">– Laster... –</option></select>
   </div>
 </div>
 
 <main id="mainContent">
-  <div class="empty anim">
-    <div class="icon">🔍</div>
-    <div>
-      Velg et regelsett og en modell fra menyen over, og trykk <strong>Valider</strong>.<br>
-      <span style="font-size:11px;color:var(--muted)">
-        Koden bruker Chunking-teknologi for å håndtere svært store modeller raskt.
-      </span>
-    </div>
-  </div>
+  <div class="empty anim">Velg et regelsett og en modell fra menyen, og trykk <strong>Valider</strong>.</div>
 </main>
 
 <script>
 let API = null;
 let allModels = [];
 let validationRows = [];
-let skippedCount = 0; 
-let validationRules = null;
-let FIELDS = []; 
-let activeFilter = 'all';
-let searchTerm = '';
+let currentRelevantFields = [];
+let skippedCount = 0;
 
-const IGNORE = new Set([
-  'IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE',
-  'IFCZONE','IFCBUILDINGUNIT','IFCSPATIALZONE','IFCGROUP','IFCSYSTEM'
-]);
+// Filter for mapper og systemnoder som ikke er ekte objekter
+const IGNORE = new Set(['IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE','IFCZONE','IFCGROUP','IFCSYSTEM']);
 
 const $ = id => document.getElementById(id);
-const btnLoad = $('btnLoad');
-const btnValidate = $('btnValidate');
-const btnReset = $('btnReset');
-const btnColorize = $('btnColorize');
-const btnUncolor = $('btnUncolor');
-const btnExport = $('btnExport');
-const ruleSelect = $('ruleSelect');
-const modelSelect = $('modelSelect');
-const statusBar = $('statusBar');
-const modelBadge = $('modelBadge');
-const mainContent = $('mainContent');
-
-function norm(v){ return (v ?? '').toString().trim(); }
-function esc(v){ return norm(v).replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s])); }
-function setStatus(msg, cls=''){ statusBar.textContent = msg; statusBar.className = cls; }
-function lastPathPart(v){ return norm(v).split('/').pop().split('\\').pop(); }
+const setStatus = (m, c='') => { $('statusBar').textContent = m; $('statusBar').className = c; };
+const lastPathPart = (v) => (v || '').split('/').pop().split('\\').pop();
+const esc = (v) => (v ?? '').toString().replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]));
 
 function getIfcType(obj){
-    const s = norm(obj.class || obj.className || obj.type || obj.ifcType || obj.ifcEntity || '').toUpperCase();
+    const s = (obj.class || obj.className || obj.type || obj.ifcType || obj.ifcEntity || '').toString().trim().toUpperCase();
     if (s && s.startsWith('IFC')) return s;
     for (const ps of (obj.properties || [])) {
         for (const p of (ps.properties || [])) {
-            const v = norm(p.value).toUpperCase();
+            const v = (p.value || '').toString().trim().toUpperCase();
             if (v.startsWith('IFC')) return v;
         }
     }
     return '';
 }
 
-ruleSelect.addEventListener('change', () => {
-    validationRules = null; 
-    reset(); 
-    setStatus(`Valgt regelsett byttet til: ${ruleSelect.options[ruleSelect.selectedIndex].text}. Klar til validering.`, 'blue');
-});
-
 async function connect(){
   try {
-    if (!window.TrimbleConnectWorkspace?.connect) throw new Error('API ikke tilgjengelig');
-    setStatus('⏳ Kobler til Trimble Connect…');
     API = await window.TrimbleConnectWorkspace.connect(window.parent);
-    
-    btnLoad.disabled = false;
-    btnValidate.disabled = false;
-    setStatus('✅ Tilkoblet Trimble Connect. Trykk "Hent modeller".', 'ok');
-    modelBadge.textContent = 'Tilkoblet';
-  } catch (e) {
-    setStatus('❌ ' + (e.message || e), 'error');
-    modelBadge.textContent = 'Feil';
-  }
+    $('btnLoad').disabled = false;
+    $('btnValidate').disabled = false;
+    setStatus('✅ Tilkoblet Trimble Connect.', 'ok');
+    $('modelBadge').textContent = 'Tilkoblet';
+  } catch(e) { setStatus('❌ Kunne ikke koble til API.', 'error'); }
 }
 
 async function loadModels(){
   if (!API) return;
-  btnLoad.disabled = true;
   setStatus('⏳ Leser modeller og filnavn...');
   try {
     const nameMap = new Map();
-    const srcs = [
-      () => API.models?.getModels?.(),
-      () => API.viewer?.getModels?.(),
-      () => API.project?.getModels?.()
-    ];
-
+    const srcs = [() => API.models?.getModels(), () => API.viewer?.getModels()];
     for (const src of srcs) {
       try {
         const res = await src();
-        if (!res) continue;
-        const list = Array.isArray(res) ? res : (res.models || res.items || []);
-        for (const m of list) {
-          const id = norm(m.id || m.modelId || '');
-          if (!id) continue;
-          const fn = [m.name, m.fileName, m.filename].map(norm).find(v => /\.ifc/i.test(v));
-          if (fn) nameMap.set(id, lastPathPart(fn));
-        }
-        if (nameMap.size) break;
-      } catch {}
+        const list = Array.isArray(res) ? res : (res?.models || res?.items || []);
+        list.forEach(m => {
+          const id = m.id || m.modelId;
+          const fn = [m.name, m.fileName, m.filename].find(v => /\.ifc/i.test(v));
+          if (id && fn) nameMap.set(id, lastPathPart(fn));
+        });
+      } catch(e){}
     }
 
     const objs = await API.viewer.getObjects();
-    
-    allModels = (objs || []).map((m, i) => {
-      const modelId = norm(m.modelId || m.modelid || m['model Id'] || '');
-      if (!modelId) return null;
-      
-      const name = nameMap.get(modelId) || m.name || `Modell ${i + 1}`;
-      
-      let leafIds = [];
-      function getLeaves(nodes) {
-          let res = [];
-          for (let n of nodes) {
-              if (n && n.children && n.children.length > 0) {
-                  res.push(...getLeaves(n.children));
-              } else if (n) {
-                  if (n.id !== undefined) res.push(n.id);
-                  else if (n.objectRuntimeId !== undefined) res.push(n.objectRuntimeId);
-                  else if (typeof n === 'string' || typeof n === 'number') res.push(n);
-              }
-          }
-          return res;
-      }
+    allModels = (objs || []).map(m => {
+      const mid = m.modelId || m.modelid;
+      return {
+        id: mid,
+        name: nameMap.get(mid) || m.name || 'Ukjent modell',
+        objectIds: (m.objects || []).map(o => o.id || o.objectRuntimeId).filter(id => id != null)
+      };
+    }).filter(m => m.objectIds.length > 0);
 
-      if (Array.isArray(m.objects)) {
-          leafIds = getLeaves(m.objects);
-      } else if (Array.isArray(m.objectRuntimeIds)) {
-          leafIds = m.objectRuntimeIds;
-      } else if (Array.isArray(m.objectIds)) {
-          leafIds = m.objectIds;
-      }
-      
-      leafIds = leafIds.filter(id => id !== undefined && id !== null);
-
-      return { modelId, name, objectCount: leafIds.length, objectIds: leafIds };
-    }).filter(Boolean);
-
-    modelSelect.innerHTML = '<option value="">– Velg modell –</option>' +
-      allModels.map(m => `<option value="${esc(m.modelId)}">${esc(m.name)} (${m.objectCount} obj.)</option>`).join('');
-
-    modelSelect.disabled = false;
-    setStatus(`✅ ${allModels.length} modeller hentet. Klar til validering.`, 'ok');
-  } catch (e) {
-    setStatus('❌ Feil ved henting: ' + (e.message || e), 'error');
-  } finally {
-    btnLoad.disabled = false;
-  }
+    $('modelSelect').innerHTML = allModels.map(m => `<option value="${m.id}">${esc(m.name)} (${m.objectIds.length} obj)</option>`).join('');
+    $('modelSelect').disabled = false;
+    setStatus('✅ Modeller hentet.', 'ok');
+  } catch(e) { setStatus('❌ Feil ved henting: ' + e.message, 'error'); }
 }
 
-function flattenProperties(tcProps) {
-    let flat = {};
-    let psets = {};
-    if (!tcProps) return { flat, psets };
-    
-    tcProps.forEach(group => {
-        if (group.properties) {
-            if (!psets[group.name]) psets[group.name] = [];
-            group.properties.forEach(p => {
-                flat[p.name] = p.value;
-                psets[group.name].push(p.name);
-            });
-        }
-    });
-    return { flat, psets };
-}
+function runValidation(objProps, fullRules) {
+  let fields = {}, ok = 0, miss = 0, warn = 0;
+  const props = objProps.flat;
+  const disc = (props["Underdisiplinkode"] || "").toUpperCase();
+  const mmi = parseInt(props["MMI"]) || 0;
 
-async function fetchRules() {
-    if (validationRules) return; 
-    
-    const selectedRuleFile = ruleSelect.value;
-    setStatus(`⏳ Laster ned regler fra GitHub (${selectedRuleFile})...`, 'blue');
-    
-    const res = await fetch(selectedRuleFile);
-    if (!res.ok) throw new Error(`Fant ikke filen '${selectedRuleFile}' på GitHub.`);
-    
-    validationRules = await res.json();
-    
-    FIELDS = [];
-    Object.keys(validationRules.properties).forEach(key => {
-        key.split('|').forEach(subKey => {
-            const cleanKey = subKey.trim();
-            if(cleanKey) FIELDS.push({ key: cleanKey, label: cleanKey });
+  for (const [propKeys, rule] of Object.entries(fullRules?.properties || {})) {
+    propKeys.split('|').forEach(propName => {
+      propName = propName.trim();
+      if (!propName) return;
+
+      const val = props[propName] || '';
+      let req = rule.requirement || rule.defaultRequirement;
+
+      if (rule.overrides) {
+        const override = rule.overrides.find(o => {
+          if (!o.conditions) return false;
+          return Object.entries(o.conditions).every(([k, v]) => {
+            const objV = String(props[k] || '').trim().toUpperCase();
+            return Array.isArray(v) ? v.some(x => String(x).trim().toUpperCase() === objV) : String(v).trim().toUpperCase() === objV;
+          });
         });
+        if (override) req = override.requirement;
+      }
+
+      if (rule.minMMI && mmi > 0 && mmi < rule.minMMI && req === 'required') {
+        req = 'optional';
+      }
+
+      let isFormatError = false;
+      let errMsg = '';
+      const strVal = val.toString().trim();
+
+      if (req === 'notallowed') {
+        if (strVal !== "") { fields[propName] = { status: 'warn', value: val, msg: 'Ikke tillatt' }; warn++; } 
+        else { fields[propName] = { status: 'na', value: '-', msg: 'Ikke tillatt' }; }
+        return; 
+      }
+
+      if (req === 'required' && strVal === "") {
+         fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; return;
+      }
+
+      if (strVal === "") {
+         fields[propName] = { status: 'opt', value: 'Ikke påkrevd', msg: 'Valgfri' }; return;
+      }
+
+      if (rule.format && !(new RegExp(rule.format).test(val))) { 
+         isFormatError = true; errMsg = 'Feil format'; 
+      }
+
+      if (!isFormatError && rule.disallowedValues) {
+        const disallowed = Array.isArray(rule.disallowedValues) ? rule.disallowedValues : [rule.disallowedValues];
+        if (disallowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
+          isFormatError = true; errMsg = `Ugyldig verdi '${val}'`;
+        }
+      }
+
+      if (!isFormatError && rule.allowedValues) {
+        if (Array.isArray(rule.allowedValues)) {
+            const allowed = rule.allowedValues;
+            if (!allowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
+              isFormatError = true; errMsg = 'Verdi ikke i liste';
+            }
+        } else if (typeof rule.allowedValues === 'object') {
+            const fagKey = Object.keys(rule.allowedValues).find(k => k.toUpperCase() === disc.toUpperCase());
+            if (fagKey) {
+                const allowedForFag = rule.allowedValues[fagKey];
+                
+                if (Array.isArray(allowedForFag)) {
+                    if (!allowedForFag.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
+                        isFormatError = true; errMsg = `Ugyldig for ${disc}`;
+                    }
+                } else if (typeof allowedForFag === 'object') {
+                    const klasse = String(props["Objektklasse"] || '').trim();
+                    const klasseKey = Object.keys(allowedForFag).find(k => k.toUpperCase() === klasse.toUpperCase());
+                    
+                    if (klasseKey) {
+                        const validTypes = allowedForFag[klasseKey];
+                        if (Array.isArray(validTypes) && !validTypes.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
+                            isFormatError = true; errMsg = `Ugyldig for ${klasse}`;
+                        }
+                    } else if (klasse) {
+                        isFormatError = true; errMsg = `Ukjent klasse ${klasse}`;
+                    }
+                }
+            }
+        }
+      }
+
+      if (isFormatError) { fields[propName] = { status: 'warn', value: val, msg: errMsg }; warn++; } 
+      else { fields[propName] = { status: 'ok', value: val, msg: 'OK' }; ok++; }
     });
-    
-    if (validationRules.allowExtraProperties === false) {
-        FIELDS.push({ key: '_Extra', label: 'Uønskede egenskaper' });
-    }
-}
+  }
 
-function runValidation(propsData, fullRules) {
-    let fields = {};
-    let missingCount = 0;
-    let formatErrorCount = 0;
-    let naCount = 0;
-    let okCount = 0;
-    
-    const objProps = propsData.flat;
-    const psets = propsData.psets;
-    const rules = fullRules.properties;
-    const fag = objProps["Underdisiplinkode"];
-    const objectMMI = parseInt(objProps["MMI"], 10) || 0;
-
-    for (const [propKeys, rule] of Object.entries(rules)) {
-        const propNames = propKeys.split('|').map(k => k.trim());
-        
-        for (const propName of propNames) {
-            if (!propName) continue;
-            
-            const val = objProps[propName] || '';
-            let effectiveRequirement = rule.requirement || rule.defaultRequirement;
-            
-            if (rule.overrides) {
-                const override = rule.overrides.find(o => {
-                    if (o.discipline && o.discipline === fag) return true;
-                    if (o.conditions) {
-                        return Object.entries(o.conditions).every(([key, validValues]) => {
-                            const objValue = objProps[key];
-                            if (Array.isArray(validValues)) {
-                                return validValues.includes(objValue);
-                            }
-                            return validValues === objValue;
-                        });
-                    }
-                    return false;
-                });
-                if (override) effectiveRequirement = override.requirement;
-            }
-
-            if (rule.minMMI && objectMMI > 0 && objectMMI < rule.minMMI) {
-                if (effectiveRequirement === "required") {
-                    effectiveRequirement = "optional";
-                }
-            }
-
-            if (effectiveRequirement === "notallowed") {
-                if (val && val.toString().trim() !== "") {
-                    fields[propName] = { status: 'format', value: val, msg: `Egenskapen er ikke tillatt for dette objektet` };
-                    formatErrorCount++;
-                } else {
-                    fields[propName] = { status: 'na', value: val, msg: `Ikke tillatt (korrekt tom)` };
-                    naCount++;
-                }
-                continue; 
-            }
-
-            if (effectiveRequirement === "required" && (!val || val.toString().trim() === "")) {
-                fields[propName] = { status: 'missing', value: val, msg: `Mangler påkrevd egenskap` };
-                missingCount++;
-                continue;
-            }
-
-            if (!val || val.toString().trim() === "") {
-                fields[propName] = { status: 'na', value: val, msg: `Ikke påkrevd` };
-                naCount++;
-                continue;
-            }
-
-            let isFormatError = false;
-            let errMsg = '';
-
-            if (rule.format) {
-                const regex = new RegExp(rule.format);
-                if (!regex.test(val)) {
-                    isFormatError = true;
-                    errMsg = `Feil format`;
-                }
-            }
-
-            if (!isFormatError && rule.disallowedValues) {
-                if (Array.isArray(rule.disallowedValues)) {
-                    const stringDisallowedValues = rule.disallowedValues.map(v => String(v).trim().toLowerCase());
-                    if (stringDisallowedValues.includes(String(val).trim().toLowerCase())) {
-                        isFormatError = true;
-                        errMsg = `Verdien '${val}' er ikke tillatt`;
-                    }
-                }
-            }
-
-            if (!isFormatError && rule.allowedValues) {
-                if (Array.isArray(rule.allowedValues)) {
-                    const stringAllowedValues = rule.allowedValues.map(String);
-                    if (!stringAllowedValues.includes(String(val))) {
-                        isFormatError = true;
-                        errMsg = `Ugyldig verdi`;
-                    }
-                } else if (typeof rule.allowedValues === 'object' && fag) {
-                    if (propName === "Objektklasse") {
-                        const validClasses = rule.allowedValues[fag];
-                        if (!validClasses || !validClasses.includes(val)) {
-                            isFormatError = true;
-                            errMsg = `Ugyldig klasse for fag '${fag}'`;
-                        }
-                    } 
-                    else if (propName === "Objekttype") {
-                        const klasse = objProps["Objektklasse"];
-                        const validTypesForFag = rule.allowedValues[fag];
-                        if (validTypesForFag && validTypesForFag[klasse]) {
-                            if (!validTypesForFag[klasse].includes(val)) {
-                                isFormatError = true;
-                                errMsg = `Ugyldig type for klasse '${klasse}'`;
-                            }
-                        } else {
-                            isFormatError = true;
-                            errMsg = `Ugyldig kombinasjon for fag og klasse`;
-                        }
-                    }
-                }
-            }
-
-            if (isFormatError) {
-                fields[propName] = { status: 'format', value: val, msg: errMsg };
-                formatErrorCount++;
-            } else {
-                fields[propName] = { status: 'ok', value: val, msg: `OK` };
-                okCount++;
-            }
-        }
-    }
-    
-    if (fullRules.allowExtraProperties === false) {
-        const firstRule = Object.values(rules)[0];
-        const targetPset = firstRule ? firstRule.propertySet : null;
-        
-        if (targetPset) {
-            const allowedKeys = [];
-            Object.keys(rules).forEach(k => k.split('|').forEach(sub => allowedKeys.push(sub.trim())));
-            
-            const objectKeysInPset = psets[targetPset] || [];
-            const extraKeys = objectKeysInPset.filter(k => !allowedKeys.includes(k));
-            
-            if (extraKeys.length > 0) {
-                fields["_Extra"] = { status: 'format', value: extraKeys.join(', '), msg: `Uønskede egenskaper funnet i ${targetPset}` };
-                formatErrorCount++;
-            } else {
-                fields["_Extra"] = { status: 'ok', value: '-', msg: 'Ingen uønskede egenskaper' };
-                okCount++;
-            }
-        }
-    }
-
-    const requiredTotal = okCount + missingCount + formatErrorCount;
-    const score = requiredTotal > 0 ? Math.round((okCount / requiredTotal) * 100) : 100;
-
-    return { fields, missingCount, formatErrorCount, naCount, score };
+  const totalReq = ok + miss + warn;
+  const score = totalReq > 0 ? Math.round((ok / totalReq) * 100) : 100;
+  return { fields, score, miss, warn };
 }
 
 async function validate(){
-  const modelId = modelSelect.value;
-  if (!modelId) {
-    setStatus('⚠️ Velg en modell fra nedtrekksmenyen først.', 'error');
-    return;
-  }
-
-  if (!API) return;
-  btnValidate.disabled = true;
-  btnReset.disabled = true;
-  mainContent.innerHTML = '';
-  skippedCount = 0;
-
+  const mid = $('modelSelect').value;
+  if (!mid || !API) return;
+  setStatus('⏳ Laster regler og validerer...');
+  $('btnReset').disabled = true; $('btnColorize').disabled = true; $('btnExport').disabled = true; $('btnUncolor').disabled = true;
+  
   try {
-    await fetchRules();
+    const res = await fetch($('ruleSelect').value);
+    const validationRules = await res.json();
     
-    const modelEntry = allModels.find(m => m.modelId === modelId);
-    if (!modelEntry || modelEntry.objectIds.length === 0) {
-        throw new Error("Fant ingen objekter i valgt modell.");
-    }
+    let ALL_FIELDS = [];
+    Object.keys(validationRules?.properties || {}).forEach(k => k.split('|').forEach(n => ALL_FIELDS.push(n.trim())));
 
-    const runtimeIds = modelEntry.objectIds;
-    const total = runtimeIds.length;
-    let done = 0;
-    const CHUNK = 200; 
+    const model = allModels.find(m => m.id === mid);
     validationRows = [];
+    skippedCount = 0;
+    const CHUNK = 200;
 
-    for (let i = 0; i < runtimeIds.length; i += CHUNK) {
-        const chunk = runtimeIds.slice(i, i + CHUNK);
-        const propsArr = await API.viewer.getObjectProperties(modelId, chunk);
-
-        for (const obj of (propsArr || [])) {
-            const ifcType = getIfcType(obj);
-            if (IGNORE.has(ifcType)) {
-                skippedCount++;
-                continue;
-            }
-
-            const propsData = flattenProperties(obj.properties);
-            const flatProps = propsData.flat;
-
-            const ruleResult = runValidation(propsData, validationRules);
-
-            validationRows.push({
-                name: norm(obj.name || obj.objectName || ''),
-                guid: norm(flatProps["GlobalId"] || flatProps["GUID"] || flatProps["IfcGuid"] || ''),
-                modelId: norm(obj.modelId || modelId),
-                runtimeId: obj.id || obj.objectRuntimeId, 
-                fields: ruleResult.fields,
-                score: ruleResult.score,
-                missingCount: ruleResult.missingCount,
-                formatErrorCount: ruleResult.formatErrorCount,
-                naCount: ruleResult.naCount
-            });
+    for (let i = 0; i < model.objectIds.length; i += CHUNK) {
+      const propsArr = await API.viewer.getObjectProperties(mid, model.objectIds.slice(i, i + CHUNK));
+      
+      propsArr.forEach(o => {
+        // FILTER: Ignorerer Systemnoder/Mapper (IfcProject, IfcBuilding etc)
+        const ifcType = getIfcType(o);
+        if (IGNORE.has(ifcType)) {
+            skippedCount++;
+            return;
         }
+
+        const flat = {};
+        (o.properties || []).forEach(g => (g.properties || []).forEach(p => flat[p.name] = p.value));
         
-        done += chunk.length;
-        setStatus(`⏳ Validerer... ${Math.min(done, total)} / ${total} objekter analysert`);
+        const result = runValidation({flat}, validationRules);
+        validationRows.push({
+          name: o.name || 'Objekt',
+          modelId: mid,
+          runtimeId: o.id || o.objectRuntimeId,
+          fields: result.fields,
+          score: result.score,
+          missCount: result.miss,
+          warnCount: result.warn
+        });
+      });
+      setStatus(`⏳ Validerer... ${Math.min(i+CHUNK, model.objectIds.length)} / ${model.objectIds.length}`);
     }
 
-    renderDashboard();
-    btnReset.disabled = false;
-    btnColorize.disabled = false;
-    btnExport.disabled = false;
-    setStatus(`✅ Validering fullført — ${validationRows.length} analysert. ${skippedCount > 0 ? `(${skippedCount} IFC-strukturer/mapper ble ignorert)` : ''}`, 'ok');
+    currentRelevantFields = ALL_FIELDS.filter(f => {
+       return validationRows.some(r => r.fields[f] && r.fields[f].status !== 'na');
+    });
 
-  } catch (e) {
-    setStatus('❌ Feil under validering: ' + (e.message || e), 'error');
-    console.error(e);
-  } finally {
-    btnValidate.disabled = false;
-  }
+    renderDashboard(currentRelevantFields);
+    setStatus('✅ Validering fullført.', 'ok');
+    $('btnReset').disabled = false; $('btnColorize').disabled = false; $('btnExport').disabled = false;
+  } catch(e) { setStatus('❌ Feil: ' + e.message, 'error'); console.error(e); }
 }
 
-function scoreClass(pct){
-  if (pct === 100) return 's100';
-  if (pct >= 75) return 's75';
-  if (pct >= 50) return 's50';
-  if (pct >= 25) return 's25';
-  return 's0';
-}
-
-function fieldClass(status){
-  if (status === 'ok') return 'ok';
-  if (status === 'na') return 'na';
-  if (status === 'format') return 'warn';
-  return 'miss';
-}
-
-function renderDashboard(){
+function renderDashboard(relevantFields){
   const total = validationRows.length;
-  const perfect = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0).length;
+  const perfect = validationRows.filter(r => r.missCount === 0 && r.warnCount === 0).length;
   const issues = total - perfect;
-  const totalMissing = validationRows.reduce((s, r) => s + r.missingCount, 0);
-  const totalFormat = validationRows.reduce((s, r) => s + r.formatErrorCount, 0);
 
-  const fieldStats = FIELDS.map(f => {
-    let ok = 0, miss = 0, format = 0, na = 0;
-    for (const r of validationRows) {
-      const st = r.fields[f.key]?.status;
-      if (st === 'ok') ok++;
-      else if (st === 'missing') miss++;
-      else if (st === 'format') format++;
-      else na++;
-    }
-    const applicable = total - na;
-    return { ...f, ok, miss, format, na, applicable };
+  const fieldStats = relevantFields.map(f => {
+    let ok = 0, applicable = 0;
+    validationRows.forEach(r => {
+      const st = r.fields[f]?.status;
+      if (st === 'ok') { ok++; applicable++; }
+      else if (st === 'miss' || st === 'warn') { applicable++; }
+    });
+    return { name: f, ok, applicable };
   });
 
-  mainContent.innerHTML = `
+  $('mainContent').innerHTML = `
     <div class="cards anim">
-      <div class="card blue">
-        <div class="label">Analysert</div>
-        <div class="value">${total}</div>
-        <div class="sub">objekter</div>
-      </div>
-      <div class="card green">
-        <div class="label">OK</div>
-        <div class="value">${perfect}</div>
-        <div class="sub">uten mangler og formatfeil</div>
-      </div>
-      <div class="card red">
-        <div class="label">Avvik</div>
-        <div class="value">${issues}</div>
-        <div class="sub">${totalMissing} mangler · ${totalFormat} formatfeil</div>
-      </div>
-      <div class="card gray">
-        <div class="label">Ignorert</div>
-        <div class="value">${skippedCount}</div>
-        <div class="sub">Bygningsstrukturer</div>
-      </div>
+      <div class="card blue"><div class="label">Analysert</div><div class="value">${total}</div><div class="sub">objekter</div></div>
+      <div class="card green"><div class="label">OK</div><div class="value">${perfect}</div><div class="sub">uten feil</div></div>
+      <div class="card red"><div class="label">Avvik</div><div class="value">${issues}</div><div class="sub">objekter med feil</div></div>
+      <div class="card gray"><div class="label">Ignorert</div><div class="value">${skippedCount}</div><div class="sub">systemnoder (Project/Site/Building)</div></div>
     </div>
 
     <div class="grid-2col anim" style="animation-delay:.05s">
       <div class="panel">
-        <div class="panel-header">
-          <h3>Overordnet status</h3>
-          <span class="hint">grønn = ok · gul = formatfeil · rød = mangler</span>
-        </div>
+        <div class="panel-header"><h3>Statusfordeling</h3></div>
         <div id="donutWrap">
           <svg id="donutSvg" width="120" height="120" viewBox="0 0 120 120"></svg>
           <div class="donut-legend" id="donutLegend"></div>
         </div>
       </div>
-
       <div class="panel">
-        <div class="panel-header">
-          <h3>Feltdekning</h3>
-          <span class="hint">grå = ikke påkrevd (trekk hjørnet for å utvide)</span>
-        </div>
+        <div class="panel-header"><h3>Feltdekning (Kun relevante)</h3></div>
         <div id="fieldChart"></div>
       </div>
     </div>
 
-    <div class="panel anim" style="animation-delay:.1s">
-      <div class="panel-header">
-        <h3>Objektliste</h3>
-        <div class="tabs" id="filterTabs">
-          <button class="tab active" data-filter="all">Alle (${total})</button>
-          <button class="tab" data-filter="ok">✅ OK (${perfect})</button>
-          <button class="tab" data-filter="issues">⚠️ Avvik (${issues})</button>
-        </div>
-        <input id="searchInput" type="text" placeholder="Søk navn / GUID…" style="margin-left:8px"/>
-      </div>
+    <div class="panel anim" style="animation-delay:.1s; margin-top:14px;">
+      <div class="panel-header"><h3>Objektliste (klikk for å markere i 3D)</h3></div>
       <div class="table-wrap">
         <table>
-          <thead>
-            <tr>
-              <th>Score</th>
-              <th>Status</th>
-              <th>Navn</th>
-              <th>ID</th>
-              ${FIELDS.map(f => `<th class="field-col-head" title="${esc(f.label)}">${esc(f.label)}</th>`).join('')}
-            </tr>
-          </thead>
+          <thead><tr><th>Score</th><th>Navn</th>${relevantFields.map(f => `<th>${f}</th>`).join('')}</tr></thead>
           <tbody id="tableBody"></tbody>
         </table>
       </div>
     </div>
   `;
 
-  renderDonut(total);
+  renderDonut(total, perfect, issues);
   renderFieldBars(fieldStats);
-  renderTable();
-
-  document.getElementById('filterTabs').addEventListener('click', e => {
-    const btn = e.target.closest('.tab');
-    if (!btn) return;
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
-    renderTable();
-  });
-
-  document.getElementById('searchInput').addEventListener('input', e => {
-    searchTerm = e.target.value.toLowerCase();
-    renderTable();
-  });
+  renderTable(relevantFields);
 }
 
-function renderDonut(total){
-  const okCount = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0).length;
-  const formatCount = validationRows.filter(r => r.missingCount === 0 && r.formatErrorCount > 0).length;
-  const missingCount = validationRows.filter(r => r.missingCount > 0).length;
-
-  const slices = [
-    { label: 'OK', count: okCount, color: '#3fb950' },
-    { label: 'Formatfeil', count: formatCount, color: '#d29922' },
-    { label: 'Manglende felter', count: missingCount, color: '#f85149' }
-  ];
-
-  const svg = document.getElementById('donutSvg');
-  const legend = document.getElementById('donutLegend');
-  const cx = 60, cy = 60, r = 48, ir = 30;
-  const circumference = 2 * Math.PI * r;
-  let offset = 0;
-  let paths = '';
-
-  for (const s of slices) {
+function renderDonut(total, ok, fail){
+  const slices = [{ label: 'OK', count: ok, color: '#3fb950' }, { label: 'Feil', count: fail, color: '#f85149' }];
+  const svg = $('donutSvg');
+  const cx=60, cy=60, r=48;
+  let offset = 0, paths = '';
+  slices.forEach(s => {
     const frac = total > 0 ? s.count / total : 0;
-    const dashLen = frac * circumference;
-    const gap = circumference - dashLen;
-    paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="18" stroke-dasharray="${dashLen.toFixed(2)} ${gap.toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}"></circle>`;
-    offset += dashLen;
-  }
-
-  const pct = total > 0 ? Math.round((okCount / total) * 100) : 0;
-  svg.innerHTML = paths + `
-    <circle cx="${cx}" cy="${cy}" r="${ir}" fill="var(--surface)"></circle>
-    <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-family="Syne,sans-serif" font-size="18" font-weight="800" fill="var(--ink)">${pct}%</text>
-    <text x="${cx}" y="${cy + 12}" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--muted)">OK</text>
-  `;
-
-  legend.innerHTML = slices.map(s => `
-    <div class="legend-item">
-      <div class="legend-dot" style="background:${s.color}"></div>
-      <span class="legend-text">${esc(s.label)}</span>
-      <span class="legend-val">${s.count}</span>
-    </div>
-  `).join('');
+    const len = frac * 2 * Math.PI * r;
+    paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="18" stroke-dasharray="${len} ${2*Math.PI*r}" stroke-dashoffset="${-offset}"></circle>`;
+    offset += len;
+  });
+  svg.innerHTML = paths + `<circle cx="${cx}" cy="${cy}" r="30" fill="var(--surface)"></circle><text x="${cx}" y="${cy+5}" text-anchor="middle" font-size="12" fill="var(--ink)" font-weight="800">${Math.round((ok/total)*100)}%</text>`;
+  $('donutLegend').innerHTML = slices.map(s => `<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div><span>${s.label}: ${s.count}</span></div>`).join('');
 }
 
-function renderFieldBars(fieldStats){
-  const chart = document.getElementById('fieldChart');
-  chart.innerHTML = fieldStats.map(f => {
-    const okPct = f.applicable ? Math.round((f.ok / f.applicable) * 100) : 0;
-    const missPct = f.applicable ? Math.round((f.miss / f.applicable) * 100) : 0;
+function renderFieldBars(stats){
+  $('fieldChart').innerHTML = stats.map(s => {
+    const okPct = s.applicable > 0 ? (s.ok / s.applicable) * 100 : 0;
     return `
       <div class="field-row">
-        <div class="field-name" title="${esc(f.label)}">${esc(f.label)}</div>
-        <div class="bar-track">
-          <div class="bar-fill-ok" style="width:${okPct}%"></div>
-          <div class="bar-fill-miss" style="width:${missPct}%"></div>
-        </div>
-        <div class="bar-pct">${f.ok}/${f.applicable || 0}</div>
-      </div>
-    `;
+        <div class="field-name" title="${esc(s.name)}">${esc(s.name)}</div>
+        <div class="bar-track"><div class="bar-fill-ok" style="width:${okPct}%"></div></div>
+        <div class="bar-pct">${Math.round(okPct)}%</div>
+      </div>`;
   }).join('');
 }
 
-function renderTable(){
-  let rows = validationRows.slice();
-  if (activeFilter === 'ok') rows = rows.filter(r => r.missingCount === 0 && r.formatErrorCount === 0);
-  if (activeFilter === 'issues') rows = rows.filter(r => r.missingCount > 0 || r.formatErrorCount > 0);
-  if (searchTerm) {
-    rows = rows.filter(r => r.name.toLowerCase().includes(searchTerm) || r.guid.toLowerCase().includes(searchTerm));
-  }
+function renderTable(relevantFields){
+  $('tableBody').innerHTML = validationRows.map(r => `
+    <tr data-mid="${esc(r.modelId)}" data-rid="${esc(r.runtimeId)}">
+      <td>${r.score}%</td>
+      <td class="obj-name" title="${esc(r.name)}">${esc(r.name)}</td>
+      ${relevantFields.map(f => {
+        const d = r.fields[f] || {status:'na', value:'-'};
+        return `<td><span class="field-value ${d.status}" title="${esc(d.msg)}">${esc(d.value)}</span></td>`;
+      }).join('')}
+    </tr>
+  `).join('');
 
-  const tbody = document.getElementById('tableBody');
-  if (!rows.length) {
-    tbody.innerHTML = `<tr><td colspan="${4 + FIELDS.length}" class="empty" style="padding:20px;text-align:center;color:var(--muted)">Ingen rader matcher filteret.</td></tr>`;
-    return;
-  }
-
-  tbody.innerHTML = rows.map(r => {
-    const sc = scoreClass(r.score);
-    let statusPill = `<span class="issue-pill ok">OK</span>`;
-    if (r.missingCount > 0) statusPill = `<span class="issue-pill miss">${r.missingCount} mangler</span>`;
-    else if (r.formatErrorCount > 0) statusPill = `<span class="issue-pill warn">${r.formatErrorCount} formatfeil</span>`;
-
-    const cells = FIELDS.map(f => {
-      const fieldData = r.fields[f.key] || { status: 'missing', value: '', msg: 'Mangler' };
-      let cellText = fieldData.value || (fieldData.status === 'na' ? 'Ikke påkrevd' : 'Feil');
-      if (fieldData.status === 'ok' && !fieldData.value) cellText = 'OK';
-      const cls = fieldClass(fieldData.status);
-      return `<td title="${esc(fieldData.msg)}\nVerdi: ${esc(fieldData.value || '–')}"><span class="field-value ${cls}">${esc(cellText)}</span></td>`;
-    }).join('');
-
-    return `
-      <tr data-mid="${esc(r.modelId)}" data-rid="${esc(r.runtimeId)}">
-        <td><span class="score ${sc}">${r.score}%</span></td>
-        <td class="issue-cell">${statusPill}</td>
-        <td class="obj-name" title="${esc(r.name)}">${esc(r.name) || '<span style="color:var(--muted)">–</span>'}</td>
-        <td class="guid" title="${esc(r.guid)}">${r.guid ? esc(r.guid.substring(0,8) + '…') : '–'}</td>
-        ${cells}
-      </tr>
-    `;
-  }).join('');
-
-  tbody.querySelectorAll('tr[data-rid]').forEach(tr => {
+  $('tableBody').querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
       const mid = tr.dataset.mid;
       const rid = Number(tr.dataset.rid);
-      
       try {
         if (API.viewer.setSelection) {
             await API.viewer.setSelection({ modelObjectIds: [{ modelId: mid, objectRuntimeIds: [rid] }] }, 'set');
         }
-      } catch {}
+      } catch(e) {}
     });
   });
 }
 
 async function colorizeModel(){
   if (!API || !validationRows.length) return;
-  btnColorize.disabled = true;
+  $('btnColorize').disabled = true;
   setStatus('🎨 Fargelegger modell…');
 
   try {
-    const greenMap = new Map();
-    const yellowMap = new Map();
-    const redMap = new Map();
+    const greenMap = new Map(); const yellowMap = new Map(); const redMap = new Map();
 
     for (const row of validationRows) {
         const mid = row.modelId;
         const rid = Number(row.runtimeId);
-        
         if (isNaN(rid)) continue;
 
-        const addTo = map => {
-            if (!map.has(mid)) map.set(mid, []);
-            map.get(mid).push(rid);
-        };
-
-        if (row.missingCount > 0) addTo(redMap);
-        else if (row.formatErrorCount > 0) addTo(yellowMap);
+        const addTo = map => { if (!map.has(mid)) map.set(mid, []); map.get(mid).push(rid); };
+        if (row.missCount > 0) addTo(redMap);
+        else if (row.warnCount > 0) addTo(yellowMap);
         else addTo(greenMap);
     }
 
     const toSel = map => Array.from(map.entries()).map(([modelId, objectRuntimeIds]) => ({ modelId, objectRuntimeIds }));
-
-    const gSel = toSel(greenMap);
-    const ySel = toSel(yellowMap);
-    const rSel = toSel(redMap);
-
+    
     try { await API.viewer.setObjectState(undefined, { color: 'reset' }); } catch(e){}
 
-    if (gSel.length) await API.viewer.setObjectState({ modelObjectIds: gSel }, { color: { r: 39,  g: 174, b: 96,  a: 255 } });
-    if (ySel.length) await API.viewer.setObjectState({ modelObjectIds: ySel }, { color: { r: 210, g: 153, b: 34,  a: 255 } });
-    if (rSel.length) await API.viewer.setObjectState({ modelObjectIds: rSel }, { color: { r: 248, g: 81,  b: 73,  a: 255 } });
+    if (greenMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(greenMap) }, { color: { r: 39,  g: 174, b: 96,  a: 255 } });
+    if (yellowMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(yellowMap) }, { color: { r: 210, g: 153, b: 34,  a: 255 } });
+    if (redMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(redMap) }, { color: { r: 248, g: 81,  b: 73,  a: 255 } });
 
-    btnUncolor.disabled = false;
-    btnColorize.disabled = false;
-    
-    const gc = [...greenMap.values()].reduce((s, a) => s + a.length, 0);
-    const yc = [...yellowMap.values()].reduce((s, a) => s + a.length, 0);
-    const rc = [...redMap.values()].reduce((s, a) => s + a.length, 0);
-    
-    setStatus(`🎨 Fargelagt: 🟢 ${gc} OK · 🟡 ${yc} formatfeil · 🔴 ${rc} mangler`, 'ok');
-  } catch (e) {
-    setStatus('❌ Feil ved fargelegging: ' + (e.message || e), 'error');
-  }
+    $('btnUncolor').disabled = false; $('btnColorize').disabled = false;
+    setStatus(`🎨 Fargelagt OK / Formatfeil / Mangler`, 'ok');
+  } catch (e) { setStatus('❌ Feil ved fargelegging: ' + e.message, 'error'); }
 }
 
 async function removeColors(){
   if (!API) return;
   try {
-    if (API.viewer.setObjectState) {
-        await API.viewer.setObjectState(undefined, { color: 'reset' });
-    }
-    btnUncolor.disabled = true;
+    if (API.viewer.setObjectState) await API.viewer.setObjectState(undefined, { color: 'reset' });
+    $('btnUncolor').disabled = true;
     setStatus('⬜ Modellfarger fjernet.', '');
   } catch (e) {}
 }
 
 function exportCsv(){
-  const issueRows = validationRows.filter(r => r.missingCount > 0 || r.formatErrorCount > 0);
+  const issueRows = validationRows.filter(r => r.missCount > 0 || r.warnCount > 0);
   if (!issueRows.length) {
-    setStatus('✅ Ingen avvik — ingenting å eksportere.', 'ok');
-    return;
+    setStatus('✅ Ingen avvik å eksportere.', 'ok'); return;
   }
 
-  const headers = ['Navn','ID','Score (%)','Mangler','Formatfeil',...FIELDS.map(f => f.label)];
-  const csvEsc = v => {
-    const s = (v ?? '').toString().replace(/"/g, '""');
-    return /[",\n]/.test(s) ? `"${s}"` : s;
-  };
+  const headers = ['Navn','ID','Score (%)','Mangler','Formatfeil', ...currentRelevantFields];
+  const csvEsc = v => { const s = (v ?? '').toString().replace(/"/g, '""'); return /[",\n]/.test(s) ? `"${s}"` : s; };
 
   const lines = [headers.map(csvEsc).join(',')];
   for (const r of issueRows) {
     lines.push([
-      csvEsc(r.name),
-      csvEsc(r.guid),
-      csvEsc(r.score),
-      csvEsc(r.missingCount),
-      csvEsc(r.formatErrorCount),
-      ...FIELDS.map(f => {
-        const d = r.fields[f.key];
+      csvEsc(r.name), csvEsc(r.runtimeId), csvEsc(r.score), csvEsc(r.missCount), csvEsc(r.warnCount),
+      ...currentRelevantFields.map(f => {
+        const d = r.fields[f];
+        if (!d) return csvEsc('-');
         if (d.status === 'ok') return csvEsc('OK');
-        if (d.status === 'na') return csvEsc('-');
-        if (d.status === 'format') return csvEsc(`Ugyldig (${d.value})`);
-        return csvEsc('MANGLER');
+        if (d.status === 'na' || d.status === 'opt') return csvEsc(d.value);
+        return csvEsc(`Feil: ${d.value} (${d.msg})`);
       })
     ].join(','));
   }
@@ -1197,42 +564,23 @@ function exportCsv(){
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'BIM_Validering_Avvik_' + new Date().toISOString().slice(0,10) + '.csv';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(a.href);
-  setStatus(`⬇ Eksportert ${issueRows.length} objekter med avvik til CSV.`, 'ok');
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(a.href);
+  setStatus(`⬇ Eksportert ${issueRows.length} objekter til CSV.`, 'ok');
 }
 
 function reset(){
-  validationRows = [];
-  skippedCount = 0;
-  activeFilter = 'all';
-  searchTerm = '';
-
-  removeColors();
-
-  mainContent.innerHTML = `
-    <div class="empty anim">
-      <div class="icon">🔍</div>
-      <div>
-        Velg en modell fra menyen og trykk <strong>Valider</strong>.<br>
-      </div>
-    </div>`;
-  btnReset.disabled = true;
-  btnColorize.disabled = true;
-  btnUncolor.disabled = true;
-  btnExport.disabled = true;
+  validationRows = []; removeColors();
+  $('mainContent').innerHTML = '<div class="empty anim">Nullstilt. Klar for ny validering.</div>';
+  $('btnReset').disabled = true; $('btnColorize').disabled = true; $('btnExport').disabled = true;
   setStatus('↺ Nullstilt.', '');
 }
 
-btnLoad.addEventListener('click', loadModels);
-btnValidate.addEventListener('click', validate);
-btnColorize.addEventListener('click', colorizeModel);
-btnUncolor.addEventListener('click', removeColors);
-btnExport.addEventListener('click', exportCsv);
-btnReset.addEventListener('click', reset);
-
+$('btnLoad').onclick = loadModels;
+$('btnValidate').onclick = validate;
+$('btnColorize').onclick = colorizeModel;
+$('btnUncolor').onclick = removeColors;
+$('btnExport').onclick = exportCsv;
+$('btnReset').onclick = reset;
 connect();
 </script>
 </body>
