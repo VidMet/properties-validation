@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v3.0</title>
+  <title>Egenskapsvalidering v3.01</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -397,7 +397,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v3.0</h1>
+    <h1>Egenskapsvalidering v3.01</h1>
     <p>Validerer IFC-modeller ut ifra egendefinerte regelsett på GitHub</p>
   </div>
   <span class="badge" id="modelBadge">Ikke tilkoblet</span>
@@ -416,7 +416,12 @@
     <label>Regelsett:</label>
     <select id="ruleSelect">
       <option value="0_Element.json">0_Element</option>
-      <option value="1_AKU.json">1_FAG</option>
+      <option value="1_AKU.json">1_AKU</option>
+      <option value="1_LAN.json">1_LAN</option>
+      <option value="1_SKO.json">1_SKO</option>
+      <option value="1_UTS.json">1_UTS</option>
+      <option value="1_VAA.json">1_VAA</option>
+      <option value="1_VEI.json">1_VEI</option>
       <option value="3_Beskrivelse.json">3_Beskrivelse</option>
     </select>
   </div>
@@ -634,7 +639,7 @@ function runValidation(propsData, fullRules) {
     const objProps = propsData.flat;
     const psets = propsData.psets;
     const rules = fullRules.properties;
-    const fag = objProps["Underdisiplinkode"];
+    
     const objectMMI = parseInt(objProps["MMI"], 10) || 0;
 
     for (const [propKeys, rule] of Object.entries(rules)) {
@@ -646,16 +651,16 @@ function runValidation(propsData, fullRules) {
             const val = objProps[propName] || '';
             let effectiveRequirement = rule.requirement || rule.defaultRequirement;
             
+            // v3.01 - 100% STORE/små-bokstav-uavhengighet i betingelser (Case-insensitive)
             if (rule.overrides) {
                 const override = rule.overrides.find(o => {
-                    if (o.discipline && o.discipline === fag) return true;
                     if (o.conditions) {
                         return Object.entries(o.conditions).every(([key, validValues]) => {
-                            const objValue = objProps[key];
+                            const objValue = String(objProps[key] || '').trim().toUpperCase();
                             if (Array.isArray(validValues)) {
-                                return validValues.includes(objValue);
+                                return validValues.some(v => String(v).trim().toUpperCase() === objValue);
                             }
-                            return validValues === objValue;
+                            return String(validValues).trim().toUpperCase() === objValue;
                         });
                     }
                     return false;
@@ -703,10 +708,11 @@ function runValidation(propsData, fullRules) {
                 }
             }
 
+            // Case-insensitive sjekk for verdier
             if (!isFormatError && rule.disallowedValues) {
                 if (Array.isArray(rule.disallowedValues)) {
-                    const stringDisallowedValues = rule.disallowedValues.map(v => String(v).trim().toLowerCase());
-                    if (stringDisallowedValues.includes(String(val).trim().toLowerCase())) {
+                    const stringDisallowedValues = rule.disallowedValues.map(v => String(v).trim().toUpperCase());
+                    if (stringDisallowedValues.includes(String(val).trim().toUpperCase())) {
                         isFormatError = true;
                         errMsg = `Verdien '${val}' er ikke tillatt`;
                     }
@@ -715,32 +721,13 @@ function runValidation(propsData, fullRules) {
 
             if (!isFormatError && rule.allowedValues) {
                 if (Array.isArray(rule.allowedValues)) {
-                    const stringAllowedValues = rule.allowedValues.map(String);
-                    if (!stringAllowedValues.includes(String(val))) {
+                    const stringAllowedValues = rule.allowedValues.map(v => String(v).trim().toUpperCase());
+                    if (!stringAllowedValues.includes(String(val).trim().toUpperCase())) {
                         isFormatError = true;
                         errMsg = `Ugyldig verdi`;
                     }
-                } else if (typeof rule.allowedValues === 'object' && fag) {
-                    if (propName === "Objektklasse") {
-                        const validClasses = rule.allowedValues[fag];
-                        if (!validClasses || !validClasses.includes(val)) {
-                            isFormatError = true;
-                            errMsg = `Ugyldig klasse for fag '${fag}'`;
-                        }
-                    } 
-                    else if (propName === "Objekttype") {
-                        const klasse = objProps["Objektklasse"];
-                        const validTypesForFag = rule.allowedValues[fag];
-                        if (validTypesForFag && validTypesForFag[klasse]) {
-                            if (!validTypesForFag[klasse].includes(val)) {
-                                isFormatError = true;
-                                errMsg = `Ugyldig type for klasse '${klasse}'`;
-                            }
-                        } else {
-                            isFormatError = true;
-                            errMsg = `Ugyldig kombinasjon for fag og klasse`;
-                        }
-                    }
+                } else if (typeof rule.allowedValues === 'object') {
+                    // Hvis det er et hierarki i allowedValues, kan vi bruke fag/klasse-logikken, men dette er sjeldent brukt nå
                 }
             }
 
