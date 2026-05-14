@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v3.06</title>
+  <title>Egenskapsvalidering v3.07</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -32,23 +32,13 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      background: var(--bg); color: var(--ink); font-family: var(--sans);
+      min-height: 100vh; display: flex; flex-direction: column; overflow: hidden;
     }
 
     header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
     }
 
     .header-title { flex: 1; }
@@ -64,6 +54,9 @@
     .btn-primary { background: var(--blue); color: #000; }
     .btn-ghost   { background: var(--surface2); color: var(--ink); border: 1px solid var(--border); }
     .btn-danger  { background: #21262d; color: var(--red); border: 1px solid #3a1c1c; }
+    .btn-colorize { background: #1a3a22; color: var(--green); border: 1px solid #2a5a32; }
+    .btn-unreset  { background: #1f2937; color: var(--muted); border: 1px solid var(--border); }
+    .btn-export   { background: #0d2044; color: var(--blue); border: 1px solid #1a3a6c; }
 
     #statusBar { font-family: var(--mono); font-size: 11px; padding: 6px 16px; background: var(--blue-dim); color: var(--blue); border-bottom: 1px solid #1a3a5c; flex-shrink: 0; }
     #statusBar.ok    { background: var(--green-dim); color: var(--green); border-color: #1a3a22; }
@@ -113,6 +106,7 @@
     .field-value.warn { background: var(--yellow-dim); color: var(--yellow); border-color: #3a2d05; }
     .field-value.miss { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
     .field-value.opt { background: #1a2027; color: var(--muted); border-color: #30363d; }
+    .field-value.na { background: #2a2f36; color: var(--muted); border-color: #30363d; }
 
     #donutWrap { display: flex; align-items: center; gap: 20px; padding: 14px; min-height: 220px; }
     #donutSvg  { flex-shrink: 0; }
@@ -136,12 +130,15 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v3.06</h1>
-    <p>Avansert ordbok-støtte og UI-gjenoppretting</p>
+    <h1>Egenskapsvalidering v3.07</h1>
+    <p>Markering, knapper og "Ikke påkrevd" er gjenopprettet!</p>
   </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
   <button class="btn btn-primary" id="btnValidate" disabled>▶ Valider</button>
+  <button class="btn btn-colorize" id="btnColorize" disabled>🎨 Fargelegg</button>
+  <button class="btn btn-unreset" id="btnUncolor" disabled>⬜ Fjern farger</button>
+  <button class="btn btn-export" id="btnExport" disabled>⬇ Eksporter CSV</button>
   <button class="btn btn-danger" id="btnReset" disabled>↺ Nullstill</button>
 </header>
 
@@ -153,7 +150,6 @@
     <select id="ruleSelect">
       <option value="0_Element.json">0_Element</option>
       <option value="1_FAG.json">1_FAG (Dynamisk)</option>
-      <option value="2_RDS.json">2_RDS</option>
       <option value="3_Beskrivelse.json">3_Beskrivelse</option>
     </select>
   </div>
@@ -172,11 +168,13 @@
 let API = null;
 let allModels = [];
 let validationRows = [];
+let currentRelevantFields = [];
 
 const IGNORE = new Set(['IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE','IFCZONE','IFCGROUP','IFCSYSTEM']);
 const $ = id => document.getElementById(id);
 const setStatus = (m, c='') => { $('statusBar').textContent = m; $('statusBar').className = c; };
 const lastPathPart = (v) => (v || '').split('/').pop().split('\\').pop();
+const esc = (v) => (v ?? '').toString().replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]));
 
 async function connect(){
   try {
@@ -216,7 +214,7 @@ async function loadModels(){
       };
     }).filter(m => m.objectIds.length > 0);
 
-    $('modelSelect').innerHTML = allModels.map(m => `<option value="${m.id}">${m.name} (${m.objectIds.length} obj)</option>`).join('');
+    $('modelSelect').innerHTML = allModels.map(m => `<option value="${m.id}">${esc(m.name)} (${m.objectIds.length} obj)</option>`).join('');
     $('modelSelect').disabled = false;
     setStatus('✅ Modeller hentet.', 'ok');
   } catch(e) { setStatus('❌ Feil ved henting: ' + e.message, 'error'); }
@@ -265,8 +263,9 @@ function runValidation(objProps, fullRules) {
          fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; return;
       }
 
+      // Her setter vi "Ikke påkrevd" hvis feltet er valgfritt og tomt
       if (strVal === "") {
-         fields[propName] = { status: 'opt', value: '-', msg: 'Valgfri' }; return;
+         fields[propName] = { status: 'opt', value: 'Ikke påkrevd', msg: 'Valgfri' }; return;
       }
 
       if (rule.format && !(new RegExp(rule.format).test(val))) { 
@@ -280,7 +279,6 @@ function runValidation(objProps, fullRules) {
         }
       }
 
-      // STØTTE FOR AVANSERTE ORDBØKER (som 0_Element)
       if (!isFormatError && rule.allowedValues) {
         if (Array.isArray(rule.allowedValues)) {
             const allowed = rule.allowedValues;
@@ -327,6 +325,7 @@ async function validate(){
   const mid = $('modelSelect').value;
   if (!mid || !API) return;
   setStatus('⏳ Laster regler og validerer...');
+  $('btnReset').disabled = true; $('btnColorize').disabled = true; $('btnExport').disabled = true; $('btnUncolor').disabled = true;
   
   try {
     const res = await fetch($('ruleSelect').value);
@@ -349,6 +348,8 @@ async function validate(){
         const result = runValidation({flat}, validationRules);
         validationRows.push({
           name: o.name || 'Objekt',
+          modelId: mid,
+          runtimeId: o.id || o.objectRuntimeId,
           fields: result.fields,
           score: result.score,
           missCount: result.miss,
@@ -358,14 +359,13 @@ async function validate(){
       setStatus(`⏳ Validerer... ${Math.min(i+CHUNK, model.objectIds.length)} / ${model.objectIds.length}`);
     }
 
-    // DYNAMISK FILTER: Viser kun de kolonnene som er relevant for objektene i modellen
-    const relevantFields = ALL_FIELDS.filter(f => {
+    currentRelevantFields = ALL_FIELDS.filter(f => {
        return validationRows.some(r => r.fields[f] && r.fields[f].status !== 'na');
     });
 
-    renderDashboard(relevantFields);
+    renderDashboard(currentRelevantFields);
     setStatus('✅ Validering fullført.', 'ok');
-    $('btnReset').disabled = false;
+    $('btnReset').disabled = false; $('btnColorize').disabled = false; $('btnExport').disabled = false;
   } catch(e) { setStatus('❌ Feil: ' + e.message, 'error'); console.error(e); }
 }
 
@@ -406,7 +406,7 @@ function renderDashboard(relevantFields){
     </div>
 
     <div class="panel anim" style="animation-delay:.1s; margin-top:14px;">
-      <div class="panel-header"><h3>Objektliste</h3></div>
+      <div class="panel-header"><h3>Objektliste (klikk for å markere i 3D)</h3></div>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Score</th><th>Navn</th>${relevantFields.map(f => `<th>${f}</th>`).join('')}</tr></thead>
@@ -441,7 +441,7 @@ function renderFieldBars(stats){
     const okPct = s.applicable > 0 ? (s.ok / s.applicable) * 100 : 0;
     return `
       <div class="field-row">
-        <div class="field-name" title="${s.name}">${s.name}</div>
+        <div class="field-name" title="${esc(s.name)}">${esc(s.name)}</div>
         <div class="bar-track"><div class="bar-fill-ok" style="width:${okPct}%"></div></div>
         <div class="bar-pct">${Math.round(okPct)}%</div>
       </div>`;
@@ -450,25 +450,115 @@ function renderFieldBars(stats){
 
 function renderTable(relevantFields){
   $('tableBody').innerHTML = validationRows.map(r => `
-    <tr>
+    <tr data-mid="${esc(r.modelId)}" data-rid="${esc(r.runtimeId)}">
       <td>${r.score}%</td>
-      <td class="obj-name" title="${r.name}">${r.name}</td>
+      <td class="obj-name" title="${esc(r.name)}">${esc(r.name)}</td>
       ${relevantFields.map(f => {
         const d = r.fields[f] || {status:'na', value:'-'};
-        return `<td><span class="field-value ${d.status}" title="${d.msg}">${d.value}</span></td>`;
+        return `<td><span class="field-value ${d.status}" title="${esc(d.msg)}">${esc(d.value)}</span></td>`;
       }).join('')}
     </tr>
   `).join('');
+
+  // KLIKK-FUNKSJONALITET ER TILBAKE!
+  $('tableBody').querySelectorAll('tr[data-rid]').forEach(tr => {
+    tr.addEventListener('click', async () => {
+      const mid = tr.dataset.mid;
+      const rid = Number(tr.dataset.rid);
+      try {
+        if (API.viewer.setSelection) {
+            await API.viewer.setSelection({ modelObjectIds: [{ modelId: mid, objectRuntimeIds: [rid] }] }, 'set');
+        }
+      } catch(e) {}
+    });
+  });
+}
+
+async function colorizeModel(){
+  if (!API || !validationRows.length) return;
+  $('btnColorize').disabled = true;
+  setStatus('🎨 Fargelegger modell…');
+
+  try {
+    const greenMap = new Map(); const yellowMap = new Map(); const redMap = new Map();
+
+    for (const row of validationRows) {
+        const mid = row.modelId;
+        const rid = Number(row.runtimeId);
+        if (isNaN(rid)) continue;
+
+        const addTo = map => { if (!map.has(mid)) map.set(mid, []); map.get(mid).push(rid); };
+        if (row.missCount > 0) addTo(redMap);
+        else if (row.warnCount > 0) addTo(yellowMap);
+        else addTo(greenMap);
+    }
+
+    const toSel = map => Array.from(map.entries()).map(([modelId, objectRuntimeIds]) => ({ modelId, objectRuntimeIds }));
+    
+    try { await API.viewer.setObjectState(undefined, { color: 'reset' }); } catch(e){}
+
+    if (greenMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(greenMap) }, { color: { r: 39,  g: 174, b: 96,  a: 255 } });
+    if (yellowMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(yellowMap) }, { color: { r: 210, g: 153, b: 34,  a: 255 } });
+    if (redMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(redMap) }, { color: { r: 248, g: 81,  b: 73,  a: 255 } });
+
+    $('btnUncolor').disabled = false; $('btnColorize').disabled = false;
+    setStatus(`🎨 Fargelagt OK / Formatfeil / Mangler`, 'ok');
+  } catch (e) { setStatus('❌ Feil ved fargelegging: ' + e.message, 'error'); }
+}
+
+async function removeColors(){
+  if (!API) return;
+  try {
+    if (API.viewer.setObjectState) await API.viewer.setObjectState(undefined, { color: 'reset' });
+    $('btnUncolor').disabled = true;
+    setStatus('⬜ Modellfarger fjernet.', '');
+  } catch (e) {}
+}
+
+function exportCsv(){
+  const issueRows = validationRows.filter(r => r.missCount > 0 || r.warnCount > 0);
+  if (!issueRows.length) {
+    setStatus('✅ Ingen avvik å eksportere.', 'ok'); return;
+  }
+
+  const headers = ['Navn','ID','Score (%)','Mangler','Formatfeil', ...currentRelevantFields];
+  const csvEsc = v => { const s = (v ?? '').toString().replace(/"/g, '""'); return /[",\n]/.test(s) ? `"${s}"` : s; };
+
+  const lines = [headers.map(csvEsc).join(',')];
+  for (const r of issueRows) {
+    lines.push([
+      csvEsc(r.name), csvEsc(r.runtimeId), csvEsc(r.score), csvEsc(r.missCount), csvEsc(r.warnCount),
+      ...currentRelevantFields.map(f => {
+        const d = r.fields[f];
+        if (!d) return csvEsc('-');
+        if (d.status === 'ok') return csvEsc('OK');
+        if (d.status === 'na' || d.status === 'opt') return csvEsc(d.value);
+        return csvEsc(`Feil: ${d.value} (${d.msg})`);
+      })
+    ].join(','));
+  }
+
+  const bom = '\ufeff';
+  const blob = new Blob([bom + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'BIM_Validering_Avvik_' + new Date().toISOString().slice(0,10) + '.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(a.href);
+  setStatus(`⬇ Eksportert ${issueRows.length} objekter til CSV.`, 'ok');
 }
 
 function reset(){
-  validationRows = [];
+  validationRows = []; removeColors();
   $('mainContent').innerHTML = '<div class="empty anim">Nullstilt. Klar for ny validering.</div>';
+  $('btnReset').disabled = true; $('btnColorize').disabled = true; $('btnExport').disabled = true;
   setStatus('↺ Nullstilt.', '');
 }
 
 $('btnLoad').onclick = loadModels;
 $('btnValidate').onclick = validate;
+$('btnColorize').onclick = colorizeModel;
+$('btnUncolor').onclick = removeColors;
+$('btnExport').onclick = exportCsv;
 $('btnReset').onclick = reset;
 connect();
 </script>
