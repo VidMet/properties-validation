@@ -52,6 +52,10 @@
           "requirement": "optional"
         },
         {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": "Konfliktvolum" },
+          "requirement": "optional"
+        },
+        {
           "conditions": { "Underdisiplinkode": "LAN" },
           "requirement": "optional"
         },
@@ -81,6 +85,10 @@
         },
         {
           "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": "Rekkverkstolpe" },
+          "requirement": "optional"
+        },
+        {
+          "conditions": { "Underdisiplinkode": "UTS", "Objektklasse": "Rekkverk", "Objekttype": "Konfliktvolum" },
           "requirement": "optional"
         },
         {
