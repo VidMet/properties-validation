@@ -14,6 +14,7 @@
         {
           "conditions": {
             "Objektklasse": "Bygg",
+            "Objekttype": "Bygg",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -21,6 +22,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -28,6 +30,10 @@
         {
           "conditions": {
             "Objektklasse": "Grunnforhold",
+            "Objekttype": [
+              "Grunnforholdsmodell",
+              "Grunnundersøkelse"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "required"
@@ -35,6 +41,14 @@
         {
           "conditions": {
             "Objektklasse": "Støttevegg",
+            "Objekttype": [
+              "Rørvegg",
+              "Spunt",
+              "Stag",
+              "Stiver",
+              "Pute",
+              "Frontkledning"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "required"
@@ -42,6 +56,10 @@
         {
           "conditions": {
             "Objektklasse": "Tørrmur",
+            "Objekttype": [
+              "Natursteinsmur",
+              "Betongmur"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "required"
@@ -49,6 +67,14 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
+            "Objekttype": [
+              "Fiberduk",
+              "Isolasjon",
+              "Frostsikringslag",
+              "Avrettingslag",
+              "Omfylling",
+              "LavesteGravenivå"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "required"
@@ -56,6 +82,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -63,6 +90,7 @@
         {
           "conditions": {
             "Objektklasse": "Tetthetskrav",
+            "Objekttype": "Tetthetskrav",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -70,6 +98,7 @@
         {
           "conditions": {
             "Objektklasse": "Terreng",
+            "Objekttype": "Bergmodell",
             "Underdisiplinkode": "IGG"
           },
           "requirement": "required"
@@ -77,6 +106,10 @@
         {
           "conditions": {
             "Objektklasse": "Sikring",
+            "Objekttype": [
+              "Selvborende stag",
+              "Bolt"
+            ],
             "Underdisiplinkode": "IGG"
           },
           "requirement": "required"
@@ -84,6 +117,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Jordpåslag",
+              "Tilbakefylling",
+              "Motfylling"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "required"
@@ -91,6 +129,11 @@
         {
           "conditions": {
             "Objektklasse": "Gjerde",
+            "Objekttype": [
+              "Gjerde",
+              "Viltgjerde",
+              "Anleggsgjerde"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "required"
@@ -98,6 +141,16 @@
         {
           "conditions": {
             "Objektklasse": "Møblering",
+            "Objekttype": [
+              "Holdeplassutrustning",
+              "Lekeaparat",
+              "Utemøbler",
+              "Bilettautomat",
+              "Sykkelstativ",
+              "Sykkelskur",
+              "Utsmykningsobjekt",
+              "Flaggstang"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "required"
@@ -105,6 +158,15 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Betongrekkverk",
+              "Rekkverkspanel",
+              "Overgangsrekkverk",
+              "Rekkverksskinne",
+              "Rekkverksstolpe",
+              "Natursteinsblokk",
+              "Støttekonstruksjon"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "required"
@@ -112,6 +174,17 @@
         {
           "conditions": {
             "Objektklasse": "Terrengforming",
+            "Objekttype": [
+              "Matjord",
+              "Plastring bekk",
+              "Plastring erosjonssikring",
+              "Revegetering",
+              "Tilsåing",
+              "Grasdekker",
+              "Steinmaterialer",
+              "SidearealTunnel",
+              "Voll"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "required"
@@ -119,6 +192,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegetasjon",
+            "Objekttype": [
+              "Tre",
+              "Blomsterbeplantning",
+              "Busk"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "required"
@@ -126,6 +204,10 @@
         {
           "conditions": {
             "Objektklasse": "Forurenset-grunn",
+            "Objekttype": [
+              "Masser",
+              "Prøver"
+            ],
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -133,6 +215,7 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
+            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -140,6 +223,7 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
+            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -147,6 +231,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -154,6 +239,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -161,6 +247,11 @@
         {
           "conditions": {
             "Objektklasse": "Festeelement",
+            "Objekttype": [
+              "Bjelke",
+              "Festebolt",
+              "Mutter"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -168,6 +259,7 @@
         {
           "conditions": {
             "Objektklasse": "Jordingssystem",
+            "Objekttype": "Jordelektrode/spyd",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -175,6 +267,7 @@
         {
           "conditions": {
             "Objektklasse": "Kabelføringssystem",
+            "Objekttype": "Trekkekum",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -182,6 +275,17 @@
         {
           "conditions": {
             "Objektklasse": "Tunneloverbygning",
+            "Objekttype": [
+              "Bankett",
+              "Brannsikring",
+              "Betongavretting",
+              "Betongelement",
+              "Bunnplate",
+              "Dekke",
+              "Filterlag",
+              "Fylling",
+              "Rist"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -199,7 +303,6 @@
             "Objektklasse": "Veggsystem",
             "Objekttype": [
               "Betongelement",
-              "Vegg",
               "Vegg"
             ],
             "Underdisiplinkode": "TNL"
@@ -222,6 +325,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -229,6 +339,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -236,6 +347,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -243,6 +355,17 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": [
+              "Bindlag",
+              "Bærelag",
+              "Nedre bærelag",
+              "Øvre bærelag",
+              "Fiberduk",
+              "Filterlag",
+              "Forsterkningslag",
+              "Slitelag",
+              "Grusskulder"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -250,6 +373,16 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
+            "Objekttype": [
+              "Frostsikringslag",
+              "Avrettingslag",
+              "Oppfylling",
+              "LavesteGravenivå",
+              "PlanumBerg",
+              "PlanumJord",
+              "PlanumFylling",
+              "Planum"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -257,6 +390,10 @@
         {
           "conditions": {
             "Objektklasse": "Skjæring",
+            "Objekttype": [
+              "SkjæringBerg",
+              "SkjæringJord"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -264,6 +401,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -271,6 +409,12 @@
         {
           "conditions": {
             "Objektklasse": "Sideområde",
+            "Objekttype": [
+              "Terrengforming",
+              "Deponi",
+              "Grøft",
+              "Fyllingsskråning"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -305,7 +449,6 @@
               "Spillvannskum",
               "Stake-/Spylekum",
               "Vannkum",
-              "Inntakskum",
               "Inntakskum"
             ],
             "Underdisiplinkode": "VAA"
@@ -315,6 +458,7 @@
         {
           "conditions": {
             "Objektklasse": "Grunnarbeid, terreng",
+            "Objekttype": "Tunnelløp",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -341,6 +485,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -355,6 +500,7 @@
         {
           "conditions": {
             "Objektklasse": "Bygg",
+            "Objekttype": "Bygg",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -362,6 +508,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -369,6 +516,7 @@
         {
           "conditions": {
             "Objektklasse": "Eksisterende",
+            "Objekttype": "Eksiterende-objekter",
             "Underdisiplinkode": "GMT"
           },
           "requirement": "required"
@@ -376,6 +524,7 @@
         {
           "conditions": {
             "Objektklasse": "Terreng",
+            "Objekttype": "Terrengoverflatemodell",
             "Underdisiplinkode": "GMT"
           },
           "requirement": "required"
@@ -391,6 +540,10 @@
         {
           "conditions": {
             "Objektklasse": "Forurenset-grunn",
+            "Objekttype": [
+              "Masser",
+              "Prøver"
+            ],
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -398,6 +551,7 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
+            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -405,6 +559,7 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
+            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -424,6 +579,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -431,6 +587,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -438,6 +595,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Jordpåslag",
+              "Tilbakefylling",
+              "Motfylling"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -453,6 +615,16 @@
         {
           "conditions": {
             "Objektklasse": "Møblering",
+            "Objekttype": [
+              "Holdeplassutrustning",
+              "Lekeaparat",
+              "Utemøbler",
+              "Bilettautomat",
+              "Sykkelstativ",
+              "Sykkelskur",
+              "Utsmykningsobjekt",
+              "Flaggstang"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -460,6 +632,15 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Betongrekkverk",
+              "Rekkverkspanel",
+              "Overgangsrekkverk",
+              "Rekkverksskinne",
+              "Rekkverksstolpe",
+              "Natursteinsblokk",
+              "Støttekonstruksjon"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -467,6 +648,17 @@
         {
           "conditions": {
             "Objektklasse": "Terrengforming",
+            "Objekttype": [
+              "Matjord",
+              "Plastring bekk",
+              "Plastring erosjonssikring",
+              "Revegetering",
+              "Tilsåing",
+              "Grasdekker",
+              "Steinmaterialer",
+              "SidearealTunnel",
+              "Voll"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -486,6 +678,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -524,6 +717,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -618,6 +812,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -633,6 +828,7 @@
         {
           "conditions": {
             "Objektklasse": "Bygg",
+            "Objekttype": "Bygg",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "optional"
@@ -648,6 +844,7 @@
         {
           "conditions": {
             "Objektklasse": "Eksisterende",
+            "Objekttype": "Eksiterende-objekter",
             "Underdisiplinkode": "GMT"
           },
           "requirement": "optional"
@@ -663,6 +860,10 @@
         {
           "conditions": {
             "Objektklasse": "Grunnforhold",
+            "Objekttype": [
+              "Grunnforholdsmodell",
+              "Grunnundersøkelse"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -670,6 +871,14 @@
         {
           "conditions": {
             "Objektklasse": "Støttevegg",
+            "Objekttype": [
+              "Rørvegg",
+              "Spunt",
+              "Stag",
+              "Stiver",
+              "Pute",
+              "Frontkledning"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -677,6 +886,10 @@
         {
           "conditions": {
             "Objektklasse": "Tørrmur",
+            "Objekttype": [
+              "Natursteinsmur",
+              "Betongmur"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -699,6 +912,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "optional"
@@ -714,6 +928,7 @@
         {
           "conditions": {
             "Objektklasse": "Terreng",
+            "Objekttype": "Bergmodell",
             "Underdisiplinkode": "IGG"
           },
           "requirement": "optional"
@@ -732,6 +947,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Jordpåslag",
+              "Tilbakefylling",
+              "Motfylling"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -739,6 +959,11 @@
         {
           "conditions": {
             "Objektklasse": "Gjerde",
+            "Objekttype": [
+              "Gjerde",
+              "Viltgjerde",
+              "Anleggsgjerde"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -746,6 +971,16 @@
         {
           "conditions": {
             "Objektklasse": "Møblering",
+            "Objekttype": [
+              "Holdeplassutrustning",
+              "Lekeaparat",
+              "Utemøbler",
+              "Bilettautomat",
+              "Sykkelstativ",
+              "Sykkelskur",
+              "Utsmykningsobjekt",
+              "Flaggstang"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -753,6 +988,15 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Betongrekkverk",
+              "Rekkverkspanel",
+              "Overgangsrekkverk",
+              "Rekkverksskinne",
+              "Rekkverksstolpe",
+              "Natursteinsblokk",
+              "Støttekonstruksjon"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -760,6 +1004,17 @@
         {
           "conditions": {
             "Objektklasse": "Terrengforming",
+            "Objekttype": [
+              "Matjord",
+              "Plastring bekk",
+              "Plastring erosjonssikring",
+              "Revegetering",
+              "Tilsåing",
+              "Grasdekker",
+              "Steinmaterialer",
+              "SidearealTunnel",
+              "Voll"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -779,6 +1034,10 @@
         {
           "conditions": {
             "Objektklasse": "Forurenset-grunn",
+            "Objekttype": [
+              "Masser",
+              "Prøver"
+            ],
             "Underdisiplinkode": "MIL"
           },
           "requirement": "optional"
@@ -802,6 +1061,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Stengebom",
+              "Ledebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -809,6 +1073,12 @@
         {
           "conditions": {
             "Objektklasse": "Oppmerking",
+            "Objekttype": [
+              "OppmerkingForsterket",
+              "OppmerkingLangs",
+              "OppmerkingTverr",
+              "Signalhode"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -816,6 +1086,13 @@
         {
           "conditions": {
             "Objektklasse": "Skilt",
+            "Objekttype": [
+              "Skilt",
+              "Skiltfundament",
+              "Skiltmast",
+              "Skiltoppheng",
+              "VariabeltSkilt"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -823,6 +1100,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -842,6 +1120,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -849,6 +1128,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -856,6 +1136,11 @@
         {
           "conditions": {
             "Objektklasse": "Festeelement",
+            "Objekttype": [
+              "Bjelke",
+              "Festebolt",
+              "Mutter"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -863,6 +1148,7 @@
         {
           "conditions": {
             "Objektklasse": "Grunnarbeid, terreng",
+            "Objekttype": "Tunnelløp",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -870,6 +1156,7 @@
         {
           "conditions": {
             "Objektklasse": "Jordingssystem",
+            "Objekttype": "Jordelektrode/spyd",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -877,6 +1164,7 @@
         {
           "conditions": {
             "Objektklasse": "Kabelføringssystem",
+            "Objekttype": "Trekkekum",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -884,6 +1172,17 @@
         {
           "conditions": {
             "Objektklasse": "Tunneloverbygning",
+            "Objekttype": [
+              "Bankett",
+              "Brannsikring",
+              "Betongavretting",
+              "Betongelement",
+              "Bunnplate",
+              "Dekke",
+              "Filterlag",
+              "Fylling",
+              "Rist"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -891,6 +1190,10 @@
         {
           "conditions": {
             "Objektklasse": "Vann- og fuktforebyggende system",
+            "Objekttype": [
+              "Membran",
+              "Sprøytebetong"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -912,6 +1215,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -919,6 +1229,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -926,6 +1243,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -933,6 +1251,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -940,6 +1259,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Ledebom",
+              "Stengebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -947,6 +1271,17 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": [
+              "Bindlag",
+              "Bærelag",
+              "Nedre bærelag",
+              "Øvre bærelag",
+              "Fiberduk",
+              "Filterlag",
+              "Forsterkningslag",
+              "Slitelag",
+              "Grusskulder"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -954,6 +1289,16 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
+            "Objekttype": [
+              "Frostsikringslag",
+              "Avrettingslag",
+              "Oppfylling",
+              "LavesteGravenivå",
+              "PlanumBerg",
+              "PlanumJord",
+              "PlanumFylling",
+              "Planum"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -961,6 +1306,10 @@
         {
           "conditions": {
             "Objektklasse": "Skjæring",
+            "Objekttype": [
+              "SkjæringBerg",
+              "SkjæringJord"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -968,6 +1317,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -1011,6 +1361,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -1026,6 +1377,7 @@
         {
           "conditions": {
             "Objektklasse": "Terreng",
+            "Objekttype": "Bergmodell",
             "Underdisiplinkode": "IGG"
           },
           "requirement": "required"
@@ -1089,6 +1441,7 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
+            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -1112,6 +1465,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -1135,6 +1489,10 @@
         {
           "conditions": {
             "Objektklasse": "Grunnforhold",
+            "Objekttype": [
+              "Grunnforholdsmodell",
+              "Grunnundersøkelse"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -1142,6 +1500,14 @@
         {
           "conditions": {
             "Objektklasse": "Støttevegg",
+            "Objekttype": [
+              "Rørvegg",
+              "Spunt",
+              "Stag",
+              "Stiver",
+              "Pute",
+              "Frontkledning"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -1149,6 +1515,10 @@
         {
           "conditions": {
             "Objektklasse": "Tørrmur",
+            "Objekttype": [
+              "Natursteinsmur",
+              "Betongmur"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -1276,6 +1646,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Jordpåslag",
+              "Tilbakefylling",
+              "Motfylling"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -1291,6 +1666,16 @@
         {
           "conditions": {
             "Objektklasse": "Møblering",
+            "Objekttype": [
+              "Holdeplassutrustning",
+              "Lekeaparat",
+              "Utemøbler",
+              "Bilettautomat",
+              "Sykkelstativ",
+              "Sykkelskur",
+              "Utsmykningsobjekt",
+              "Flaggstang"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -1298,6 +1683,15 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Betongrekkverk",
+              "Rekkverkspanel",
+              "Overgangsrekkverk",
+              "Rekkverksskinne",
+              "Rekkverksstolpe",
+              "Natursteinsblokk",
+              "Støttekonstruksjon"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -1305,6 +1699,17 @@
         {
           "conditions": {
             "Objektklasse": "Terrengforming",
+            "Objekttype": [
+              "Matjord",
+              "Plastring bekk",
+              "Plastring erosjonssikring",
+              "Revegetering",
+              "Tilsåing",
+              "Grasdekker",
+              "Steinmaterialer",
+              "SidearealTunnel",
+              "Voll"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -1350,6 +1755,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -1357,6 +1763,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -1454,7 +1861,6 @@
               "Spillvannskum",
               "Stake-/Spylekum",
               "Vannkum",
-              "Inntakskum",
               "Inntakskum"
             ],
             "Underdisiplinkode": "VAA"
@@ -1505,6 +1911,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -1512,6 +1919,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -1570,6 +1978,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -1577,6 +1986,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -1584,6 +2000,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -1591,6 +2014,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -1770,6 +2194,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -1777,6 +2202,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Stengebom",
+              "Ledebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -1784,6 +2214,12 @@
         {
           "conditions": {
             "Objektklasse": "Oppmerking",
+            "Objekttype": [
+              "OppmerkingForsterket",
+              "OppmerkingLangs",
+              "OppmerkingTverr",
+              "Signalhode"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -1799,6 +2235,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -1822,6 +2259,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -1829,6 +2273,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -1836,6 +2287,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -1843,6 +2295,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -1850,6 +2303,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Ledebom",
+              "Stengebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -1857,6 +2315,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -1882,6 +2341,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -1905,6 +2365,7 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
+            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -1912,6 +2373,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Jordpåslag",
+              "Tilbakefylling",
+              "Motfylling"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -1927,6 +2393,16 @@
         {
           "conditions": {
             "Objektklasse": "Møblering",
+            "Objekttype": [
+              "Holdeplassutrustning",
+              "Lekeaparat",
+              "Utemøbler",
+              "Bilettautomat",
+              "Sykkelstativ",
+              "Sykkelskur",
+              "Utsmykningsobjekt",
+              "Flaggstang"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -1934,6 +2410,15 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Betongrekkverk",
+              "Rekkverkspanel",
+              "Overgangsrekkverk",
+              "Rekkverksskinne",
+              "Rekkverksstolpe",
+              "Natursteinsblokk",
+              "Støttekonstruksjon"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -1941,6 +2426,17 @@
         {
           "conditions": {
             "Objektklasse": "Terrengforming",
+            "Objekttype": [
+              "Matjord",
+              "Plastring bekk",
+              "Plastring erosjonssikring",
+              "Revegetering",
+              "Tilsåing",
+              "Grasdekker",
+              "Steinmaterialer",
+              "SidearealTunnel",
+              "Voll"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -1967,6 +2463,7 @@
         {
           "conditions": {
             "Objektklasse": "Bygg",
+            "Objekttype": "Bygg",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -1989,6 +2486,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -2016,6 +2514,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -2023,6 +2522,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -2041,6 +2541,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -2048,6 +2549,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2055,6 +2563,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2062,6 +2577,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2076,6 +2592,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -2083,6 +2600,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -2107,6 +2625,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -2114,6 +2633,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2121,6 +2647,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2128,6 +2661,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2240,6 +2774,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -2263,6 +2798,7 @@
         {
           "conditions": {
             "Objektklasse": "Bygg",
+            "Objekttype": "Bygg",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "optional"
@@ -2278,6 +2814,10 @@
         {
           "conditions": {
             "Objektklasse": "Grunnforhold",
+            "Objekttype": [
+              "Grunnforholdsmodell",
+              "Grunnundersøkelse"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -2285,6 +2825,14 @@
         {
           "conditions": {
             "Objektklasse": "Støttevegg",
+            "Objekttype": [
+              "Rørvegg",
+              "Spunt",
+              "Stag",
+              "Stiver",
+              "Pute",
+              "Frontkledning"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -2292,6 +2840,10 @@
         {
           "conditions": {
             "Objektklasse": "Tørrmur",
+            "Objekttype": [
+              "Natursteinsmur",
+              "Betongmur"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -2314,6 +2866,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "optional"
@@ -2329,6 +2882,7 @@
         {
           "conditions": {
             "Objektklasse": "Terreng",
+            "Objekttype": "Bergmodell",
             "Underdisiplinkode": "IGG"
           },
           "requirement": "optional"
@@ -2336,6 +2890,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Jordpåslag",
+              "Tilbakefylling",
+              "Motfylling"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2343,6 +2902,11 @@
         {
           "conditions": {
             "Objektklasse": "Gjerde",
+            "Objekttype": [
+              "Gjerde",
+              "Viltgjerde",
+              "Anleggsgjerde"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2350,6 +2914,16 @@
         {
           "conditions": {
             "Objektklasse": "Møblering",
+            "Objekttype": [
+              "Holdeplassutrustning",
+              "Lekeaparat",
+              "Utemøbler",
+              "Bilettautomat",
+              "Sykkelstativ",
+              "Sykkelskur",
+              "Utsmykningsobjekt",
+              "Flaggstang"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2357,6 +2931,15 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Betongrekkverk",
+              "Rekkverkspanel",
+              "Overgangsrekkverk",
+              "Rekkverksskinne",
+              "Rekkverksstolpe",
+              "Natursteinsblokk",
+              "Støttekonstruksjon"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2364,6 +2947,17 @@
         {
           "conditions": {
             "Objektklasse": "Terrengforming",
+            "Objekttype": [
+              "Matjord",
+              "Plastring bekk",
+              "Plastring erosjonssikring",
+              "Revegetering",
+              "Tilsåing",
+              "Grasdekker",
+              "Steinmaterialer",
+              "SidearealTunnel",
+              "Voll"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2383,6 +2977,10 @@
         {
           "conditions": {
             "Objektklasse": "Forurenset-grunn",
+            "Objekttype": [
+              "Masser",
+              "Prøver"
+            ],
             "Underdisiplinkode": "MIL"
           },
           "requirement": "optional"
@@ -2406,6 +3004,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Stengebom",
+              "Ledebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -2413,6 +3016,12 @@
         {
           "conditions": {
             "Objektklasse": "Oppmerking",
+            "Objekttype": [
+              "OppmerkingForsterket",
+              "OppmerkingLangs",
+              "OppmerkingTverr",
+              "Signalhode"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -2420,6 +3029,13 @@
         {
           "conditions": {
             "Objektklasse": "Skilt",
+            "Objekttype": [
+              "Skilt",
+              "Skiltfundament",
+              "Skiltmast",
+              "Skiltoppheng",
+              "VariabeltSkilt"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -2427,6 +3043,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -2446,6 +3063,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2453,6 +3071,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2460,6 +3079,11 @@
         {
           "conditions": {
             "Objektklasse": "Festeelement",
+            "Objekttype": [
+              "Bjelke",
+              "Festebolt",
+              "Mutter"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2467,6 +3091,7 @@
         {
           "conditions": {
             "Objektklasse": "Grunnarbeid, terreng",
+            "Objekttype": "Tunnelløp",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2474,6 +3099,7 @@
         {
           "conditions": {
             "Objektklasse": "Jordingssystem",
+            "Objekttype": "Jordelektrode/spyd",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2481,6 +3107,7 @@
         {
           "conditions": {
             "Objektklasse": "Kabelføringssystem",
+            "Objekttype": "Trekkekum",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2488,6 +3115,17 @@
         {
           "conditions": {
             "Objektklasse": "Tunneloverbygning",
+            "Objekttype": [
+              "Bankett",
+              "Brannsikring",
+              "Betongavretting",
+              "Betongelement",
+              "Bunnplate",
+              "Dekke",
+              "Filterlag",
+              "Fylling",
+              "Rist"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2495,6 +3133,10 @@
         {
           "conditions": {
             "Objektklasse": "Vann- og fuktforebyggende system",
+            "Objekttype": [
+              "Membran",
+              "Sprøytebetong"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2516,6 +3158,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2523,6 +3172,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2530,6 +3186,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2537,6 +3194,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2544,6 +3202,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Ledebom",
+              "Stengebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2551,6 +3214,17 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": [
+              "Bindlag",
+              "Bærelag",
+              "Nedre bærelag",
+              "Øvre bærelag",
+              "Fiberduk",
+              "Filterlag",
+              "Forsterkningslag",
+              "Slitelag",
+              "Grusskulder"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -2558,6 +3232,16 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
+            "Objekttype": [
+              "Frostsikringslag",
+              "Avrettingslag",
+              "Oppfylling",
+              "LavesteGravenivå",
+              "PlanumBerg",
+              "PlanumJord",
+              "PlanumFylling",
+              "Planum"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -2565,6 +3249,10 @@
         {
           "conditions": {
             "Objektklasse": "Skjæring",
+            "Objekttype": [
+              "SkjæringBerg",
+              "SkjæringJord"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -2572,6 +3260,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -2592,6 +3281,21 @@
         {
           "conditions": {
             "Objektklasse": "Rørledning",
+            "Objekttype": [
+              "Stikkrenne",
+              "Graveflate",
+              "Drensledning",
+              "GrøftÅpen",
+              "Isolasjon",
+              "Overvannsledning",
+              "Spillvannsledning",
+              "Trekkerør",
+              "Vannledning",
+              "Varerør",
+              "Vaskevannsledning",
+              "Nedføringsrenne",
+              "Infiltrasjonsledning"
+            ],
             "Underdisiplinkode": "VAA"
           },
           "requirement": "optional"
@@ -2599,6 +3303,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VAA"
           },
           "requirement": "optional"
@@ -2637,6 +3342,10 @@
         {
           "conditions": {
             "Objektklasse": "Grunnforhold",
+            "Objekttype": [
+              "Grunnforholdsmodell",
+              "Grunnundersøkelse"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "required"
@@ -2739,6 +3448,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -2762,6 +3472,7 @@
         {
           "conditions": {
             "Objektklasse": "Bygg",
+            "Objekttype": "Bygg",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "optional"
@@ -2777,6 +3488,7 @@
         {
           "conditions": {
             "Objektklasse": "Eksisterende",
+            "Objekttype": "Eksiterende-objekter",
             "Underdisiplinkode": "GMT"
           },
           "requirement": "optional"
@@ -2792,6 +3504,10 @@
         {
           "conditions": {
             "Objektklasse": "Grunnforhold",
+            "Objekttype": [
+              "Grunnforholdsmodell",
+              "Grunnundersøkelse"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -2799,6 +3515,14 @@
         {
           "conditions": {
             "Objektklasse": "Støttevegg",
+            "Objekttype": [
+              "Rørvegg",
+              "Spunt",
+              "Stag",
+              "Stiver",
+              "Pute",
+              "Frontkledning"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -2806,6 +3530,10 @@
         {
           "conditions": {
             "Objektklasse": "Tørrmur",
+            "Objekttype": [
+              "Natursteinsmur",
+              "Betongmur"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -2828,6 +3556,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "optional"
@@ -2843,6 +3572,7 @@
         {
           "conditions": {
             "Objektklasse": "Terreng",
+            "Objekttype": "Bergmodell",
             "Underdisiplinkode": "IGG"
           },
           "requirement": "optional"
@@ -2850,6 +3580,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Jordpåslag",
+              "Tilbakefylling",
+              "Motfylling"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2857,6 +3592,11 @@
         {
           "conditions": {
             "Objektklasse": "Gjerde",
+            "Objekttype": [
+              "Gjerde",
+              "Viltgjerde",
+              "Anleggsgjerde"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2864,6 +3604,16 @@
         {
           "conditions": {
             "Objektklasse": "Møblering",
+            "Objekttype": [
+              "Holdeplassutrustning",
+              "Lekeaparat",
+              "Utemøbler",
+              "Bilettautomat",
+              "Sykkelstativ",
+              "Sykkelskur",
+              "Utsmykningsobjekt",
+              "Flaggstang"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2871,6 +3621,15 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Betongrekkverk",
+              "Rekkverkspanel",
+              "Overgangsrekkverk",
+              "Rekkverksskinne",
+              "Rekkverksstolpe",
+              "Natursteinsblokk",
+              "Støttekonstruksjon"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2878,6 +3637,17 @@
         {
           "conditions": {
             "Objektklasse": "Terrengforming",
+            "Objekttype": [
+              "Matjord",
+              "Plastring bekk",
+              "Plastring erosjonssikring",
+              "Revegetering",
+              "Tilsåing",
+              "Grasdekker",
+              "Steinmaterialer",
+              "SidearealTunnel",
+              "Voll"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -2897,6 +3667,10 @@
         {
           "conditions": {
             "Objektklasse": "Forurenset-grunn",
+            "Objekttype": [
+              "Masser",
+              "Prøver"
+            ],
             "Underdisiplinkode": "MIL"
           },
           "requirement": "optional"
@@ -2920,6 +3694,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Stengebom",
+              "Ledebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -2927,6 +3706,12 @@
         {
           "conditions": {
             "Objektklasse": "Oppmerking",
+            "Objekttype": [
+              "OppmerkingForsterket",
+              "OppmerkingLangs",
+              "OppmerkingTverr",
+              "Signalhode"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -2934,6 +3719,13 @@
         {
           "conditions": {
             "Objektklasse": "Skilt",
+            "Objekttype": [
+              "Skilt",
+              "Skiltfundament",
+              "Skiltmast",
+              "Skiltoppheng",
+              "VariabeltSkilt"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -2941,6 +3733,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -2960,6 +3753,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2967,6 +3761,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2974,6 +3769,11 @@
         {
           "conditions": {
             "Objektklasse": "Festeelement",
+            "Objekttype": [
+              "Bjelke",
+              "Festebolt",
+              "Mutter"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2981,6 +3781,7 @@
         {
           "conditions": {
             "Objektklasse": "Grunnarbeid, terreng",
+            "Objekttype": "Tunnelløp",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2988,6 +3789,7 @@
         {
           "conditions": {
             "Objektklasse": "Jordingssystem",
+            "Objekttype": "Jordelektrode/spyd",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -2995,6 +3797,7 @@
         {
           "conditions": {
             "Objektklasse": "Kabelføringssystem",
+            "Objekttype": "Trekkekum",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3002,6 +3805,17 @@
         {
           "conditions": {
             "Objektklasse": "Tunneloverbygning",
+            "Objekttype": [
+              "Bankett",
+              "Brannsikring",
+              "Betongavretting",
+              "Betongelement",
+              "Bunnplate",
+              "Dekke",
+              "Filterlag",
+              "Fylling",
+              "Rist"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3009,6 +3823,10 @@
         {
           "conditions": {
             "Objektklasse": "Vann- og fuktforebyggende system",
+            "Objekttype": [
+              "Membran",
+              "Sprøytebetong"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3030,6 +3848,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3037,6 +3862,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3044,6 +3876,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3051,6 +3884,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3058,6 +3892,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Ledebom",
+              "Stengebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3065,6 +3904,17 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": [
+              "Bindlag",
+              "Bærelag",
+              "Nedre bærelag",
+              "Øvre bærelag",
+              "Fiberduk",
+              "Filterlag",
+              "Forsterkningslag",
+              "Slitelag",
+              "Grusskulder"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3072,6 +3922,16 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
+            "Objekttype": [
+              "Frostsikringslag",
+              "Avrettingslag",
+              "Oppfylling",
+              "LavesteGravenivå",
+              "PlanumBerg",
+              "PlanumJord",
+              "PlanumFylling",
+              "Planum"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3079,6 +3939,10 @@
         {
           "conditions": {
             "Objektklasse": "Skjæring",
+            "Objekttype": [
+              "SkjæringBerg",
+              "SkjæringJord"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3086,6 +3950,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3106,6 +3971,21 @@
         {
           "conditions": {
             "Objektklasse": "Rørledning",
+            "Objekttype": [
+              "Stikkrenne",
+              "Graveflate",
+              "Drensledning",
+              "GrøftÅpen",
+              "Isolasjon",
+              "Overvannsledning",
+              "Spillvannsledning",
+              "Trekkerør",
+              "Vannledning",
+              "Varerør",
+              "Vaskevannsledning",
+              "Nedføringsrenne",
+              "Infiltrasjonsledning"
+            ],
             "Underdisiplinkode": "VAA"
           },
           "requirement": "optional"
@@ -3113,6 +3993,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VAA"
           },
           "requirement": "optional"
@@ -3174,6 +4055,10 @@
         {
           "conditions": {
             "Objektklasse": "Tørrmur",
+            "Objekttype": [
+              "Natursteinsmur",
+              "Betongmur"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "required"
@@ -3196,6 +4081,10 @@
         {
           "conditions": {
             "Objektklasse": "Tørrmur",
+            "Objekttype": [
+              "Natursteinsmur",
+              "Betongmur"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "required"
@@ -3226,7 +4115,6 @@
               "Frostsikringslag",
               "Avrettingslag",
               "Omfylling",
-              "LavesteGravenivå",
               "LavesteGravenivå"
             ],
             "Underdisiplinkode": "GTK"
@@ -3244,6 +4132,17 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": [
+              "Bindlag",
+              "Bærelag",
+              "Nedre bærelag",
+              "Øvre bærelag",
+              "Fiberduk",
+              "Filterlag",
+              "Forsterkningslag",
+              "Slitelag",
+              "Grusskulder"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3251,6 +4150,16 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
+            "Objekttype": [
+              "Frostsikringslag",
+              "Avrettingslag",
+              "Oppfylling",
+              "LavesteGravenivå",
+              "PlanumBerg",
+              "PlanumJord",
+              "PlanumFylling",
+              "Planum"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3258,6 +4167,10 @@
         {
           "conditions": {
             "Objektklasse": "Skjæring",
+            "Objekttype": [
+              "SkjæringBerg",
+              "SkjæringJord"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3265,6 +4178,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3328,10 +4242,7 @@
         {
           "conditions": {
             "Objektklasse": "Veggsystem",
-            "Objekttype": [
-              "Vegg",
-              "Vegg"
-            ],
+            "Objekttype": "Vegg",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -3355,6 +4266,7 @@
         {
           "conditions": {
             "Objektklasse": "Kabelføringssystem",
+            "Objekttype": "Trekkekum",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3390,6 +4302,17 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": [
+              "Bindlag",
+              "Bærelag",
+              "Nedre bærelag",
+              "Øvre bærelag",
+              "Fiberduk",
+              "Filterlag",
+              "Forsterkningslag",
+              "Slitelag",
+              "Grusskulder"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3397,6 +4320,16 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
+            "Objekttype": [
+              "Frostsikringslag",
+              "Avrettingslag",
+              "Oppfylling",
+              "LavesteGravenivå",
+              "PlanumBerg",
+              "PlanumJord",
+              "PlanumFylling",
+              "Planum"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3404,6 +4337,10 @@
         {
           "conditions": {
             "Objektklasse": "Skjæring",
+            "Objekttype": [
+              "SkjæringBerg",
+              "SkjæringJord"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3411,6 +4348,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3440,7 +4378,6 @@
             "Objektklasse": "Underbygning",
             "Objekttype": [
               "Omfylling",
-              "LavesteGravenivå",
               "LavesteGravenivå"
             ],
             "Underdisiplinkode": "GTK"
@@ -3483,6 +4420,21 @@
         {
           "conditions": {
             "Objektklasse": "Rørledning",
+            "Objekttype": [
+              "Stikkrenne",
+              "Graveflate",
+              "Drensledning",
+              "GrøftÅpen",
+              "Isolasjon",
+              "Overvannsledning",
+              "Spillvannsledning",
+              "Trekkerør",
+              "Vannledning",
+              "Varerør",
+              "Vaskevannsledning",
+              "Nedføringsrenne",
+              "Infiltrasjonsledning"
+            ],
             "Underdisiplinkode": "VAA"
           },
           "requirement": "optional"
@@ -3490,6 +4442,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VAA"
           },
           "requirement": "optional"
@@ -3608,6 +4561,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -3623,6 +4577,7 @@
         {
           "conditions": {
             "Objektklasse": "Bygg",
+            "Objekttype": "Bygg",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "optional"
@@ -3638,6 +4593,7 @@
         {
           "conditions": {
             "Objektklasse": "Eksisterende",
+            "Objekttype": "Eksiterende-objekter",
             "Underdisiplinkode": "GMT"
           },
           "requirement": "optional"
@@ -3653,6 +4609,10 @@
         {
           "conditions": {
             "Objektklasse": "Grunnforhold",
+            "Objekttype": [
+              "Grunnforholdsmodell",
+              "Grunnundersøkelse"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -3660,6 +4620,14 @@
         {
           "conditions": {
             "Objektklasse": "Støttevegg",
+            "Objekttype": [
+              "Rørvegg",
+              "Spunt",
+              "Stag",
+              "Stiver",
+              "Pute",
+              "Frontkledning"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -3667,6 +4635,10 @@
         {
           "conditions": {
             "Objektklasse": "Tørrmur",
+            "Objekttype": [
+              "Natursteinsmur",
+              "Betongmur"
+            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "optional"
@@ -3689,6 +4661,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "optional"
@@ -3704,6 +4677,7 @@
         {
           "conditions": {
             "Objektklasse": "Terreng",
+            "Objekttype": "Bergmodell",
             "Underdisiplinkode": "IGG"
           },
           "requirement": "optional"
@@ -3711,6 +4685,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Jordpåslag",
+              "Tilbakefylling",
+              "Motfylling"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -3718,6 +4697,11 @@
         {
           "conditions": {
             "Objektklasse": "Gjerde",
+            "Objekttype": [
+              "Gjerde",
+              "Viltgjerde",
+              "Anleggsgjerde"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -3725,6 +4709,16 @@
         {
           "conditions": {
             "Objektklasse": "Møblering",
+            "Objekttype": [
+              "Holdeplassutrustning",
+              "Lekeaparat",
+              "Utemøbler",
+              "Bilettautomat",
+              "Sykkelstativ",
+              "Sykkelskur",
+              "Utsmykningsobjekt",
+              "Flaggstang"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -3732,6 +4726,15 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Betongrekkverk",
+              "Rekkverkspanel",
+              "Overgangsrekkverk",
+              "Rekkverksskinne",
+              "Rekkverksstolpe",
+              "Natursteinsblokk",
+              "Støttekonstruksjon"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -3739,6 +4742,17 @@
         {
           "conditions": {
             "Objektklasse": "Terrengforming",
+            "Objekttype": [
+              "Matjord",
+              "Plastring bekk",
+              "Plastring erosjonssikring",
+              "Revegetering",
+              "Tilsåing",
+              "Grasdekker",
+              "Steinmaterialer",
+              "SidearealTunnel",
+              "Voll"
+            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "optional"
@@ -3758,6 +4772,10 @@
         {
           "conditions": {
             "Objektklasse": "Forurenset-grunn",
+            "Objekttype": [
+              "Masser",
+              "Prøver"
+            ],
             "Underdisiplinkode": "MIL"
           },
           "requirement": "optional"
@@ -3781,6 +4799,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Stengebom",
+              "Ledebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -3788,6 +4811,12 @@
         {
           "conditions": {
             "Objektklasse": "Oppmerking",
+            "Objekttype": [
+              "OppmerkingForsterket",
+              "OppmerkingLangs",
+              "OppmerkingTverr",
+              "Signalhode"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -3795,6 +4824,13 @@
         {
           "conditions": {
             "Objektklasse": "Skilt",
+            "Objekttype": [
+              "Skilt",
+              "Skiltfundament",
+              "Skiltmast",
+              "Skiltoppheng",
+              "VariabeltSkilt"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -3802,6 +4838,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -3821,6 +4858,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3828,6 +4866,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3835,6 +4874,11 @@
         {
           "conditions": {
             "Objektklasse": "Festeelement",
+            "Objekttype": [
+              "Bjelke",
+              "Festebolt",
+              "Mutter"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3842,6 +4886,7 @@
         {
           "conditions": {
             "Objektklasse": "Grunnarbeid, terreng",
+            "Objekttype": "Tunnelløp",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3849,6 +4894,7 @@
         {
           "conditions": {
             "Objektklasse": "Jordingssystem",
+            "Objekttype": "Jordelektrode/spyd",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3856,6 +4902,7 @@
         {
           "conditions": {
             "Objektklasse": "Kabelføringssystem",
+            "Objekttype": "Trekkekum",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3863,6 +4910,17 @@
         {
           "conditions": {
             "Objektklasse": "Tunneloverbygning",
+            "Objekttype": [
+              "Bankett",
+              "Brannsikring",
+              "Betongavretting",
+              "Betongelement",
+              "Bunnplate",
+              "Dekke",
+              "Filterlag",
+              "Fylling",
+              "Rist"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3870,6 +4928,10 @@
         {
           "conditions": {
             "Objektklasse": "Vann- og fuktforebyggende system",
+            "Objekttype": [
+              "Membran",
+              "Sprøytebetong"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3891,6 +4953,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3898,6 +4967,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3905,6 +4981,7 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
+            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3912,6 +4989,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3919,6 +4997,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Ledebom",
+              "Stengebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -3926,6 +5009,17 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": [
+              "Bindlag",
+              "Bærelag",
+              "Nedre bærelag",
+              "Øvre bærelag",
+              "Fiberduk",
+              "Filterlag",
+              "Forsterkningslag",
+              "Slitelag",
+              "Grusskulder"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3933,6 +5027,16 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
+            "Objekttype": [
+              "Frostsikringslag",
+              "Avrettingslag",
+              "Oppfylling",
+              "LavesteGravenivå",
+              "PlanumBerg",
+              "PlanumJord",
+              "PlanumFylling",
+              "Planum"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3940,6 +5044,10 @@
         {
           "conditions": {
             "Objektklasse": "Skjæring",
+            "Objekttype": [
+              "SkjæringBerg",
+              "SkjæringJord"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3947,6 +5055,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VEI"
           },
           "requirement": "optional"
@@ -3974,6 +5083,7 @@
         {
           "conditions": {
             "Objektklasse": "Tetthetskrav",
+            "Objekttype": "Tetthetskrav",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -3988,6 +5098,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -4018,6 +5129,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "optional"
@@ -4032,6 +5144,7 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
+            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -4046,6 +5159,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -4105,6 +5219,7 @@
         {
           "conditions": {
             "Objektklasse": "Kantstein",
+            "Objekttype": "Kantstein",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -4112,6 +5227,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -4131,6 +5247,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -4149,6 +5266,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -4156,6 +5280,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -4178,6 +5309,7 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
+            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -4218,6 +5350,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -4240,6 +5373,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -4270,6 +5404,7 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
+            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -4277,6 +5412,11 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": [
+              "Stengebom",
+              "Ledebom",
+              "Vegbomfundament"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -4309,6 +5449,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -4316,6 +5457,11 @@
         {
           "conditions": {
             "Objektklasse": "Skiltportal",
+            "Objekttype": [
+              "Helportal",
+              "Halvportal",
+              "Skiltportalfundament"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -4331,6 +5477,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -4409,6 +5556,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -4449,6 +5597,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -4456,6 +5605,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Rekkverksstolpe",
+              "Overgangsrekkverk",
+              "Konfliktvolum",
+              "Betongrekkverk",
+              "Rekkverkskinne"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -4463,6 +5619,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -4504,6 +5667,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -4551,6 +5715,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -4577,6 +5742,13 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverksende",
+            "Objekttype": [
+              "Endeterminal",
+              "Ettergivende rekkverksende",
+              "Nedføring",
+              "Utføring",
+              "Støtpute"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -4584,6 +5756,7 @@
         {
           "conditions": {
             "Objektklasse": "Vegbom",
+            "Objekttype": "Vegbomfundament",
             "Underdisiplinkode": "UTS"
           },
           "requirement": "required"
@@ -4630,6 +5803,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -4660,6 +5834,7 @@
         {
           "conditions": {
             "Objektklasse": "6",
+            "Objekttype": "Skiltplate",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "optional"
@@ -4674,6 +5849,17 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": [
+              "Bindlag",
+              "Bærelag",
+              "Nedre bærelag",
+              "Øvre bærelag",
+              "Fiberduk",
+              "Filterlag",
+              "Forsterkningslag",
+              "Slitelag",
+              "Grusskulder"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -4681,6 +5867,16 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
+            "Objekttype": [
+              "Frostsikringslag",
+              "Avrettingslag",
+              "Oppfylling",
+              "LavesteGravenivå",
+              "PlanumBerg",
+              "PlanumJord",
+              "PlanumFylling",
+              "Planum"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -4688,6 +5884,10 @@
         {
           "conditions": {
             "Objektklasse": "Skjæring",
+            "Objekttype": [
+              "SkjæringBerg",
+              "SkjæringJord"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -4695,6 +5895,7 @@
         {
           "conditions": {
             "Objektklasse": "Stikningsobjekt",
+            "Objekttype": "Stikningsobjekt",
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -4702,6 +5903,12 @@
         {
           "conditions": {
             "Objektklasse": "Sideområde",
+            "Objekttype": [
+              "Terrengforming",
+              "Deponi",
+              "Grøft",
+              "Fyllingsskråning"
+            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -4716,6 +5923,10 @@
         {
           "conditions": {
             "Objektklasse": "Forurenset-grunn",
+            "Objekttype": [
+              "Masser",
+              "Prøver"
+            ],
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -4723,6 +5934,7 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
+            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -4753,10 +5965,7 @@
         {
           "conditions": {
             "Objektklasse": "Skiltportal",
-            "Objekttype": [
-              "Skiltportalfundament",
-              "Skiltportalfundament"
-            ],
+            "Objekttype": "Skiltportalfundament",
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -4779,6 +5988,7 @@
         {
           "conditions": {
             "Objektklasse": "Hammerhull",
+            "Objekttype": "Hammerhull",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -4813,6 +6023,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -4900,10 +6111,7 @@
         {
           "conditions": {
             "Objektklasse": "Sikring",
-            "Objekttype": [
-              "Bolt",
-              "Bolt"
-            ],
+            "Objekttype": "Bolt",
             "Underdisiplinkode": "IGG"
           },
           "requirement": "required"
@@ -4967,6 +6175,7 @@
         {
           "conditions": {
             "Objektklasse": "Kabelføringssystem",
+            "Objekttype": "Trekkekum",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -4987,10 +6196,7 @@
         {
           "conditions": {
             "Objektklasse": "Veggsystem",
-            "Objekttype": [
-              "Vegg",
-              "Vegg"
-            ],
+            "Objekttype": "Vegg",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5040,6 +6246,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5058,6 +6265,7 @@
         {
           "conditions": {
             "Objektklasse": "Jordingssystem",
+            "Objekttype": "Jordelektrode/spyd",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5065,6 +6273,7 @@
         {
           "conditions": {
             "Objektklasse": "Kabelføringssystem",
+            "Objekttype": "Trekkekum",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5086,10 +6295,7 @@
         {
           "conditions": {
             "Objektklasse": "Veggsystem",
-            "Objekttype": [
-              "Vegg",
-              "Vegg"
-            ],
+            "Objekttype": "Vegg",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5097,6 +6303,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -5146,6 +6353,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5164,6 +6372,7 @@
         {
           "conditions": {
             "Objektklasse": "Jordingssystem",
+            "Objekttype": "Jordelektrode/spyd",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5187,6 +6396,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -5228,6 +6438,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5246,6 +6457,7 @@
         {
           "conditions": {
             "Objektklasse": "Jordingssystem",
+            "Objekttype": "Jordelektrode/spyd",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5269,6 +6481,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -5310,6 +6523,7 @@
         {
           "conditions": {
             "Objektklasse": "Brannslokkesystem",
+            "Objekttype": "Skap",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -5340,6 +6554,12 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": [
+              "Armeringsjern",
+              "Krympeplast",
+              "Muffeskjøter",
+              "Skjøtekobling"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5347,6 +6567,12 @@
         {
           "conditions": {
             "Objektklasse": "Avretting",
+            "Objekttype": [
+              "Fraksjon 0/32",
+              "Fraksjon 20/125 forkilt med 0/22",
+              "Betongavretting B30",
+              "Understøp"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5354,6 +6580,30 @@
         {
           "conditions": {
             "Objektklasse": "Betongelement",
+            "Objekttype": [
+              "Brem",
+              "Brudekke",
+              "Friksjonsplate",
+              "Fugeseng",
+              "Fundament",
+              "Hvelv",
+              "Kantbjelke",
+              "Kasse",
+              "Knevegg",
+              "Konsoll",
+              "Kontaktstøp",
+              "Murkrage",
+              "Overgangsplate",
+              "Skjørt",
+              "Søyle",
+              "Takplate",
+              "Tverrbjelke",
+              "Tverrprofil",
+              "Tverrskott",
+              "Vegg",
+              "Vinge",
+              "Vingemur"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5361,6 +6611,13 @@
         {
           "conditions": {
             "Objektklasse": "Drenering",
+            "Objekttype": [
+              "Drensrenne",
+              "Innstøpt stålrør",
+              "Sluk",
+              "Steinsatt renne",
+              "Knotteplate"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5368,6 +6625,11 @@
         {
           "conditions": {
             "Objektklasse": "Dør",
+            "Objekttype": [
+              "Dør",
+              "Karm",
+              "Luke"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5375,6 +6637,10 @@
         {
           "conditions": {
             "Objektklasse": "Festeelement",
+            "Objekttype": [
+              "Forlenget gjengestag",
+              "Brakett"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5382,6 +6648,14 @@
         {
           "conditions": {
             "Objektklasse": "Festemiddel",
+            "Objekttype": [
+              "Heftesveis",
+              "Liming",
+              "Kilsveis",
+              "Buttsveis",
+              "Mørtel",
+              "Sveis"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5389,6 +6663,7 @@
         {
           "conditions": {
             "Objektklasse": "Fiberduk",
+            "Objekttype": "Fiberduk",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5396,6 +6671,11 @@
         {
           "conditions": {
             "Objektklasse": "Forskaling",
+            "Objekttype": [
+              "Forskaling",
+              "Fortanning",
+              "Trekantprofil"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5403,6 +6683,12 @@
         {
           "conditions": {
             "Objektklasse": "Fuge",
+            "Objekttype": [
+              "Fuge i betong",
+              "Fugeinnlegg",
+              "Fugeterskel",
+              "Mekanisk fuge"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5410,6 +6696,17 @@
         {
           "conditions": {
             "Objektklasse": "Fuktisolering",
+            "Objekttype": [
+              "Asfaltmembran",
+              "Fuktisolering",
+              "Hulkil",
+              "Tetningstiltak",
+              "Klemlist",
+              "Membran",
+              "Membranbeskyttelse",
+              "Plastmembran type I",
+              "Plastmembran type II"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5417,6 +6714,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Oppfylling fraksjon 22/125",
+              "Lettklinker",
+              "Tilbakefylling fraksjon 22/125"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5424,6 +6726,7 @@
         {
           "conditions": {
             "Objektklasse": "Føringsvei",
+            "Objekttype": "Trekkerør",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5431,6 +6734,25 @@
         {
           "conditions": {
             "Objektklasse": "Informasjonsobjekt",
+            "Objekttype": [
+              "Endelig posisjon",
+              "Stikningsobjekt lager",
+              "Stikningsobjekt nivelleringsbolter",
+              "Stikningsobjekt overhøyde",
+              "Stikningsobjekt sikringsgjerde",
+              "Stikningsobjekt rekkverk",
+              "Metadataobjekt",
+              "Kjøreboks",
+              "Stikningsobjekt lysmast",
+              "Akse",
+              "Stikningsobjekt trekkerør",
+              "Stikningsobjekt VA-rør",
+              "Stikningsobjekt høyspent",
+              "Stikningsobjekt peler",
+              "Stikningsobjekt kabelbru",
+              "Stikningsobjekt",
+              "Stikningsobjekt støyskjerm"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5438,6 +6760,18 @@
         {
           "conditions": {
             "Objektklasse": "Innstøpningsgods",
+            "Objekttype": [
+              "Boltegruppe",
+              "Dybler",
+              "Hylse",
+              "Hylsegruppe med bolter",
+              "Innstøpningsgods",
+              "Innstøpt gjengestag",
+              "Kjemisk anker",
+              "Murkrage",
+              "Nivelleringsbolt",
+              "Lufterør"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5445,6 +6779,7 @@
         {
           "conditions": {
             "Objektklasse": "Isolasjon",
+            "Objekttype": "XPS",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5452,6 +6787,7 @@
         {
           "conditions": {
             "Objektklasse": "Jording",
+            "Objekttype": "Jording",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5459,6 +6795,12 @@
         {
           "conditions": {
             "Objektklasse": "Lager",
+            "Objekttype": [
+              "Lager",
+              "Uarmert gummibånd",
+              "Jekkepunkt",
+              "Lager konsoll"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5466,6 +6808,7 @@
         {
           "conditions": {
             "Objektklasse": "Masseuttak",
+            "Objekttype": "Utgravde masser",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5473,6 +6816,7 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": "Bindlag",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5480,6 +6824,10 @@
         {
           "conditions": {
             "Objektklasse": "Overflatebehandling",
+            "Objekttype": [
+              "Avretting og pussing",
+              "Herdetiltak"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5487,6 +6835,20 @@
         {
           "conditions": {
             "Objektklasse": "Pel",
+            "Objekttype": [
+              "Avstandsklosser",
+              "Boring i berg",
+              "Foringsrør",
+              "Inspeksjonsrør",
+              "Kappnivå",
+              "Mørtel",
+              "Pel",
+              "Stiver",
+              "Styrering",
+              "Stålkjernepel",
+              "Stålrør",
+              "Topplate"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5494,6 +6856,7 @@
         {
           "conditions": {
             "Objektklasse": "Plastring",
+            "Objekttype": "Plastring",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5501,6 +6864,10 @@
         {
           "conditions": {
             "Objektklasse": "Plate",
+            "Objekttype": [
+              "Stålplate",
+              "Metadataobjekt"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5508,6 +6875,16 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Brøytetette paneler",
+              "Midtdeler",
+              "Betongrekkverk",
+              "Rekkverksavslutter",
+              "Rekkverkskinne",
+              "Rekkverksstolpe",
+              "Sikringsgjerde",
+              "Støyskjerm"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5515,6 +6892,15 @@
         {
           "conditions": {
             "Objektklasse": "Spennarmering",
+            "Objekttype": [
+              "Drensslange",
+              "Forankring",
+              "Injiseringsslange",
+              "Lufteslange",
+              "Skjøtekobling",
+              "Spennkabel",
+              "Spiralarmering"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5522,6 +6908,7 @@
         {
           "conditions": {
             "Objektklasse": "Stålbjelke",
+            "Objekttype": "HUP",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5529,6 +6916,7 @@
         {
           "conditions": {
             "Objektklasse": "Trapp",
+            "Objekttype": "Trapp",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5536,6 +6924,10 @@
         {
           "conditions": {
             "Objektklasse": "Heftbryter",
+            "Objekttype": [
+              "Polyetylenfolie",
+              "Asfaltmembran"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5561,6 +6953,12 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": [
+              "Armeringsjern",
+              "Krympeplast",
+              "Muffeskjøter",
+              "Skjøtekobling"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5568,6 +6966,12 @@
         {
           "conditions": {
             "Objektklasse": "Avretting",
+            "Objekttype": [
+              "Fraksjon 0/32",
+              "Fraksjon 20/125 forkilt med 0/22",
+              "Betongavretting B30",
+              "Understøp"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5575,6 +6979,30 @@
         {
           "conditions": {
             "Objektklasse": "Betongelement",
+            "Objekttype": [
+              "Brem",
+              "Brudekke",
+              "Friksjonsplate",
+              "Fugeseng",
+              "Fundament",
+              "Hvelv",
+              "Kantbjelke",
+              "Kasse",
+              "Knevegg",
+              "Konsoll",
+              "Kontaktstøp",
+              "Murkrage",
+              "Overgangsplate",
+              "Skjørt",
+              "Søyle",
+              "Takplate",
+              "Tverrbjelke",
+              "Tverrprofil",
+              "Tverrskott",
+              "Vegg",
+              "Vinge",
+              "Vingemur"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5582,6 +7010,13 @@
         {
           "conditions": {
             "Objektklasse": "Drenering",
+            "Objekttype": [
+              "Drensrenne",
+              "Innstøpt stålrør",
+              "Sluk",
+              "Steinsatt renne",
+              "Knotteplate"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5589,6 +7024,11 @@
         {
           "conditions": {
             "Objektklasse": "Dør",
+            "Objekttype": [
+              "Dør",
+              "Karm",
+              "Luke"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5596,6 +7036,10 @@
         {
           "conditions": {
             "Objektklasse": "Festeelement",
+            "Objekttype": [
+              "Forlenget gjengestag",
+              "Brakett"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5603,6 +7047,14 @@
         {
           "conditions": {
             "Objektklasse": "Festemiddel",
+            "Objekttype": [
+              "Heftesveis",
+              "Liming",
+              "Kilsveis",
+              "Buttsveis",
+              "Mørtel",
+              "Sveis"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5610,6 +7062,7 @@
         {
           "conditions": {
             "Objektklasse": "Fiberduk",
+            "Objekttype": "Fiberduk",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5617,6 +7070,11 @@
         {
           "conditions": {
             "Objektklasse": "Forskaling",
+            "Objekttype": [
+              "Forskaling",
+              "Fortanning",
+              "Trekantprofil"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5624,6 +7082,12 @@
         {
           "conditions": {
             "Objektklasse": "Fuge",
+            "Objekttype": [
+              "Fuge i betong",
+              "Fugeinnlegg",
+              "Fugeterskel",
+              "Mekanisk fuge"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5631,6 +7095,17 @@
         {
           "conditions": {
             "Objektklasse": "Fuktisolering",
+            "Objekttype": [
+              "Asfaltmembran",
+              "Fuktisolering",
+              "Hulkil",
+              "Tetningstiltak",
+              "Klemlist",
+              "Membran",
+              "Membranbeskyttelse",
+              "Plastmembran type I",
+              "Plastmembran type II"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5638,6 +7113,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Oppfylling fraksjon 22/125",
+              "Lettklinker",
+              "Tilbakefylling fraksjon 22/125"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5645,6 +7125,7 @@
         {
           "conditions": {
             "Objektklasse": "Føringsvei",
+            "Objekttype": "Trekkerør",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5677,6 +7158,18 @@
         {
           "conditions": {
             "Objektklasse": "Innstøpningsgods",
+            "Objekttype": [
+              "Boltegruppe",
+              "Dybler",
+              "Hylse",
+              "Hylsegruppe med bolter",
+              "Innstøpningsgods",
+              "Innstøpt gjengestag",
+              "Kjemisk anker",
+              "Murkrage",
+              "Nivelleringsbolt",
+              "Lufterør"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5684,6 +7177,7 @@
         {
           "conditions": {
             "Objektklasse": "Isolasjon",
+            "Objekttype": "XPS",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5691,6 +7185,7 @@
         {
           "conditions": {
             "Objektklasse": "Jording",
+            "Objekttype": "Jording",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5698,6 +7193,12 @@
         {
           "conditions": {
             "Objektklasse": "Lager",
+            "Objekttype": [
+              "Lager",
+              "Uarmert gummibånd",
+              "Jekkepunkt",
+              "Lager konsoll"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5705,6 +7206,7 @@
         {
           "conditions": {
             "Objektklasse": "Masseuttak",
+            "Objekttype": "Utgravde masser",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5712,6 +7214,7 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": "Bindlag",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5719,6 +7222,10 @@
         {
           "conditions": {
             "Objektklasse": "Overflatebehandling",
+            "Objekttype": [
+              "Avretting og pussing",
+              "Herdetiltak"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5726,6 +7233,20 @@
         {
           "conditions": {
             "Objektklasse": "Pel",
+            "Objekttype": [
+              "Avstandsklosser",
+              "Boring i berg",
+              "Foringsrør",
+              "Inspeksjonsrør",
+              "Kappnivå",
+              "Mørtel",
+              "Pel",
+              "Stiver",
+              "Styrering",
+              "Stålkjernepel",
+              "Stålrør",
+              "Topplate"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5733,6 +7254,7 @@
         {
           "conditions": {
             "Objektklasse": "Plastring",
+            "Objekttype": "Plastring",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5740,6 +7262,10 @@
         {
           "conditions": {
             "Objektklasse": "Plate",
+            "Objekttype": [
+              "Stålplate",
+              "Metadataobjekt"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5747,6 +7273,16 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Brøytetette paneler",
+              "Midtdeler",
+              "Betongrekkverk",
+              "Rekkverksavslutter",
+              "Rekkverkskinne",
+              "Rekkverksstolpe",
+              "Sikringsgjerde",
+              "Støyskjerm"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5754,6 +7290,15 @@
         {
           "conditions": {
             "Objektklasse": "Spennarmering",
+            "Objekttype": [
+              "Drensslange",
+              "Forankring",
+              "Injiseringsslange",
+              "Lufteslange",
+              "Skjøtekobling",
+              "Spennkabel",
+              "Spiralarmering"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5761,6 +7306,7 @@
         {
           "conditions": {
             "Objektklasse": "Stålbjelke",
+            "Objekttype": "HUP",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5768,6 +7314,7 @@
         {
           "conditions": {
             "Objektklasse": "Trapp",
+            "Objekttype": "Trapp",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5775,6 +7322,10 @@
         {
           "conditions": {
             "Objektklasse": "Heftbryter",
+            "Objekttype": [
+              "Polyetylenfolie",
+              "Asfaltmembran"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5782,6 +7333,10 @@
         {
           "conditions": {
             "Objektklasse": "Støpeskjøt",
+            "Objekttype": [
+              "Injiseringsslange",
+              "Svellebånd"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
@@ -5853,6 +7408,12 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": [
+              "Armeringsjern",
+              "Krympeplast",
+              "Muffeskjøter",
+              "Skjøtekobling"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5860,6 +7421,12 @@
         {
           "conditions": {
             "Objektklasse": "Avretting",
+            "Objekttype": [
+              "Fraksjon 0/32",
+              "Fraksjon 20/125 forkilt med 0/22",
+              "Betongavretting B30",
+              "Understøp"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5867,6 +7434,30 @@
         {
           "conditions": {
             "Objektklasse": "Betongelement",
+            "Objekttype": [
+              "Brem",
+              "Brudekke",
+              "Friksjonsplate",
+              "Fugeseng",
+              "Fundament",
+              "Hvelv",
+              "Kantbjelke",
+              "Kasse",
+              "Knevegg",
+              "Konsoll",
+              "Kontaktstøp",
+              "Murkrage",
+              "Overgangsplate",
+              "Skjørt",
+              "Søyle",
+              "Takplate",
+              "Tverrbjelke",
+              "Tverrprofil",
+              "Tverrskott",
+              "Vegg",
+              "Vinge",
+              "Vingemur"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5874,6 +7465,13 @@
         {
           "conditions": {
             "Objektklasse": "Drenering",
+            "Objekttype": [
+              "Drensrenne",
+              "Innstøpt stålrør",
+              "Sluk",
+              "Steinsatt renne",
+              "Knotteplate"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5881,6 +7479,11 @@
         {
           "conditions": {
             "Objektklasse": "Dør",
+            "Objekttype": [
+              "Dør",
+              "Karm",
+              "Luke"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5888,6 +7491,10 @@
         {
           "conditions": {
             "Objektklasse": "Festeelement",
+            "Objekttype": [
+              "Forlenget gjengestag",
+              "Brakett"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5895,6 +7502,14 @@
         {
           "conditions": {
             "Objektklasse": "Festemiddel",
+            "Objekttype": [
+              "Heftesveis",
+              "Liming",
+              "Kilsveis",
+              "Buttsveis",
+              "Mørtel",
+              "Sveis"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5902,6 +7517,7 @@
         {
           "conditions": {
             "Objektklasse": "Fiberduk",
+            "Objekttype": "Fiberduk",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5909,6 +7525,11 @@
         {
           "conditions": {
             "Objektklasse": "Forskaling",
+            "Objekttype": [
+              "Forskaling",
+              "Fortanning",
+              "Trekantprofil"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5916,6 +7537,12 @@
         {
           "conditions": {
             "Objektklasse": "Fuge",
+            "Objekttype": [
+              "Fuge i betong",
+              "Fugeinnlegg",
+              "Fugeterskel",
+              "Mekanisk fuge"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5923,6 +7550,17 @@
         {
           "conditions": {
             "Objektklasse": "Fuktisolering",
+            "Objekttype": [
+              "Asfaltmembran",
+              "Fuktisolering",
+              "Hulkil",
+              "Tetningstiltak",
+              "Klemlist",
+              "Membran",
+              "Membranbeskyttelse",
+              "Plastmembran type I",
+              "Plastmembran type II"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5930,6 +7568,11 @@
         {
           "conditions": {
             "Objektklasse": "Fylling",
+            "Objekttype": [
+              "Oppfylling fraksjon 22/125",
+              "Lettklinker",
+              "Tilbakefylling fraksjon 22/125"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5937,6 +7580,7 @@
         {
           "conditions": {
             "Objektklasse": "Føringsvei",
+            "Objekttype": "Trekkerør",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5969,6 +7613,18 @@
         {
           "conditions": {
             "Objektklasse": "Innstøpningsgods",
+            "Objekttype": [
+              "Boltegruppe",
+              "Dybler",
+              "Hylse",
+              "Hylsegruppe med bolter",
+              "Innstøpningsgods",
+              "Innstøpt gjengestag",
+              "Kjemisk anker",
+              "Murkrage",
+              "Nivelleringsbolt",
+              "Lufterør"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5976,6 +7632,7 @@
         {
           "conditions": {
             "Objektklasse": "Isolasjon",
+            "Objekttype": "XPS",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5983,6 +7640,7 @@
         {
           "conditions": {
             "Objektklasse": "Jording",
+            "Objekttype": "Jording",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5990,6 +7648,12 @@
         {
           "conditions": {
             "Objektklasse": "Lager",
+            "Objekttype": [
+              "Lager",
+              "Uarmert gummibånd",
+              "Jekkepunkt",
+              "Lager konsoll"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -5997,6 +7661,7 @@
         {
           "conditions": {
             "Objektklasse": "Masseuttak",
+            "Objekttype": "Utgravde masser",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6004,6 +7669,7 @@
         {
           "conditions": {
             "Objektklasse": "Overbygning",
+            "Objekttype": "Bindlag",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6011,6 +7677,10 @@
         {
           "conditions": {
             "Objektklasse": "Overflatebehandling",
+            "Objekttype": [
+              "Avretting og pussing",
+              "Herdetiltak"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6018,6 +7688,20 @@
         {
           "conditions": {
             "Objektklasse": "Pel",
+            "Objekttype": [
+              "Avstandsklosser",
+              "Boring i berg",
+              "Foringsrør",
+              "Inspeksjonsrør",
+              "Kappnivå",
+              "Mørtel",
+              "Pel",
+              "Stiver",
+              "Styrering",
+              "Stålkjernepel",
+              "Stålrør",
+              "Topplate"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6025,6 +7709,7 @@
         {
           "conditions": {
             "Objektklasse": "Plastring",
+            "Objekttype": "Plastring",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6032,6 +7717,10 @@
         {
           "conditions": {
             "Objektklasse": "Plate",
+            "Objekttype": [
+              "Stålplate",
+              "Metadataobjekt"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6039,6 +7728,16 @@
         {
           "conditions": {
             "Objektklasse": "Rekkverk",
+            "Objekttype": [
+              "Brøytetette paneler",
+              "Midtdeler",
+              "Betongrekkverk",
+              "Rekkverksavslutter",
+              "Rekkverkskinne",
+              "Rekkverksstolpe",
+              "Sikringsgjerde",
+              "Støyskjerm"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6046,6 +7745,15 @@
         {
           "conditions": {
             "Objektklasse": "Spennarmering",
+            "Objekttype": [
+              "Drensslange",
+              "Forankring",
+              "Injiseringsslange",
+              "Lufteslange",
+              "Skjøtekobling",
+              "Spennkabel",
+              "Spiralarmering"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6053,6 +7761,7 @@
         {
           "conditions": {
             "Objektklasse": "Stålbjelke",
+            "Objekttype": "HUP",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6060,6 +7769,7 @@
         {
           "conditions": {
             "Objektklasse": "Trapp",
+            "Objekttype": "Trapp",
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6067,6 +7777,10 @@
         {
           "conditions": {
             "Objektklasse": "Heftbryter",
+            "Objekttype": [
+              "Polyetylenfolie",
+              "Asfaltmembran"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
@@ -6116,6 +7830,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -6154,6 +7869,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -6200,6 +7916,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -6339,6 +8056,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -6388,6 +8106,7 @@
         {
           "conditions": {
             "Objektklasse": "Armering",
+            "Objekttype": "Armeringsjern",
             "Underdisiplinkode": "TNL"
           },
           "requirement": "optional"
@@ -6467,6 +8186,20 @@
         {
           "conditions": {
             "Objektklasse": "Pel",
+            "Objekttype": [
+              "Avstandsklosser",
+              "Boring i berg",
+              "Foringsrør",
+              "Inspeksjonsrør",
+              "Kappnivå",
+              "Mørtel",
+              "Pel",
+              "Stiver",
+              "Styrering",
+              "Stålkjernepel",
+              "Stålrør",
+              "Topplate"
+            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "optional"
