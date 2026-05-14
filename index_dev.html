@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v3.07</title>
+  <title>Egenskapsvalidering v3.08</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -75,12 +75,11 @@
     .card .label { font-size: 10px; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; }
     .card .value { font-size: 28px; font-weight: 800; line-height: 1.1; margin-top: 4px; }
     .card .sub { font-size: 10px; color: var(--muted); font-family: var(--mono); margin-top: 3px; }
-    .card.green  { border-color: #1e4028; }
     .card.green .value { color: var(--green); }
-    .card.red    { border-color: #3a1212; }
     .card.red .value { color: var(--red); }
-    .card.blue   { border-color: #0d2044; }
     .card.blue .value { color: var(--blue); }
+    .card.gray .value { color: var(--muted); }
+    .card.gray { border-color: #30363d; }
 
     .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
     .panel-header { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
@@ -130,8 +129,8 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v3.07</h1>
-    <p>Markering, knapper og "Ikke påkrevd" er gjenopprettet!</p>
+    <h1>Egenskapsvalidering v3.08</h1>
+    <p>Filter for IFC-systemnoder (Project, Site, Building) gjenopprettet</p>
   </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
@@ -169,12 +168,27 @@ let API = null;
 let allModels = [];
 let validationRows = [];
 let currentRelevantFields = [];
+let skippedCount = 0;
 
+// Filter for mapper og systemnoder som ikke er ekte objekter
 const IGNORE = new Set(['IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE','IFCZONE','IFCGROUP','IFCSYSTEM']);
+
 const $ = id => document.getElementById(id);
 const setStatus = (m, c='') => { $('statusBar').textContent = m; $('statusBar').className = c; };
 const lastPathPart = (v) => (v || '').split('/').pop().split('\\').pop();
 const esc = (v) => (v ?? '').toString().replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]));
+
+function getIfcType(obj){
+    const s = (obj.class || obj.className || obj.type || obj.ifcType || obj.ifcEntity || '').toString().trim().toUpperCase();
+    if (s && s.startsWith('IFC')) return s;
+    for (const ps of (obj.properties || [])) {
+        for (const p of (ps.properties || [])) {
+            const v = (p.value || '').toString().trim().toUpperCase();
+            if (v.startsWith('IFC')) return v;
+        }
+    }
+    return '';
+}
 
 async function connect(){
   try {
@@ -263,7 +277,6 @@ function runValidation(objProps, fullRules) {
          fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; return;
       }
 
-      // Her setter vi "Ikke påkrevd" hvis feltet er valgfritt og tomt
       if (strVal === "") {
          fields[propName] = { status: 'opt', value: 'Ikke påkrevd', msg: 'Valgfri' }; return;
       }
@@ -336,12 +349,20 @@ async function validate(){
 
     const model = allModels.find(m => m.id === mid);
     validationRows = [];
+    skippedCount = 0;
     const CHUNK = 200;
 
     for (let i = 0; i < model.objectIds.length; i += CHUNK) {
       const propsArr = await API.viewer.getObjectProperties(mid, model.objectIds.slice(i, i + CHUNK));
       
       propsArr.forEach(o => {
+        // FILTER: Ignorerer Systemnoder/Mapper (IfcProject, IfcBuilding etc)
+        const ifcType = getIfcType(o);
+        if (IGNORE.has(ifcType)) {
+            skippedCount++;
+            return;
+        }
+
         const flat = {};
         (o.properties || []).forEach(g => (g.properties || []).forEach(p => flat[p.name] = p.value));
         
@@ -389,6 +410,7 @@ function renderDashboard(relevantFields){
       <div class="card blue"><div class="label">Analysert</div><div class="value">${total}</div><div class="sub">objekter</div></div>
       <div class="card green"><div class="label">OK</div><div class="value">${perfect}</div><div class="sub">uten feil</div></div>
       <div class="card red"><div class="label">Avvik</div><div class="value">${issues}</div><div class="sub">objekter med feil</div></div>
+      <div class="card gray"><div class="label">Ignorert</div><div class="value">${skippedCount}</div><div class="sub">systemnoder (Project/Site/Building)</div></div>
     </div>
 
     <div class="grid-2col anim" style="animation-delay:.05s">
@@ -460,7 +482,6 @@ function renderTable(relevantFields){
     </tr>
   `).join('');
 
-  // KLIKK-FUNKSJONALITET ER TILBAKE!
   $('tableBody').querySelectorAll('tr[data-rid]').forEach(tr => {
     tr.addEventListener('click', async () => {
       const mid = tr.dataset.mid;
