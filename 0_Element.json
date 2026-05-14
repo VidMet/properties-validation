@@ -217,7 +217,7 @@
           "Armering", "Brannslokkesystem", "Festeelement", "Grunnarbeid, terreng", "Jordingssystem", "Kabelføringssystem", "Tunneloverbygning",
           "Vann- og fuktforebyggende system", "Veggsystem"
         ],
-        "UTS": ["Rekkverk", "Rekkverksende", "Kantstein", "Vegbom"],
+        "UTS": ["Rekkverk", "Rekkverksende", "Skjerm", "Kantstein", "Vegbom"],
         "VEI": ["Overbygning", "Underbygning", "Skjæring", "Stikningsobjekt", "Sideområde"],
         "VAA": ["Rørledning", "Kum", "Stikningsobjekt"]
       },
@@ -326,6 +326,7 @@
         "UTS": {
           "Rekkverk": ["Rekkverksstolpe", "Overgangsrekkverk", "Konfliktvolum", "Betongrekkverk", "Rekkverksskinne"],
           "Rekkverksende": ["Endeterminal", "Ettergivende rekkverksende", "Nedføring", "Utføring", "Støtpute"],
+          "Skjerm": ["Støyskjerm"],
           "Kantstein": ["Kantstein"],
           "Vegbom": ["Ledebom", "Stengebom"]
         },
