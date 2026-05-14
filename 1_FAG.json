@@ -21,7 +21,6 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
-            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -50,14 +49,6 @@
         {
           "conditions": {
             "Objektklasse": "Underbygning",
-            "Objekttype": [
-              "Fiberduk",
-              "Isolasjon",
-              "Frostsikringslag",
-              "Avrettingslag",
-              "Omfylling",
-              "LavesteGravenivå"
-            ],
             "Underdisiplinkode": "GTK"
           },
           "requirement": "required"
@@ -72,7 +63,6 @@
         {
           "conditions": {
             "Objektklasse": "Tetthetskrav",
-            "Objekttype": "Tetthetskrav",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -87,10 +77,6 @@
         {
           "conditions": {
             "Objektklasse": "Sikring",
-            "Objekttype": [
-              "Selvborende stag",
-              "Bolt"
-            ],
             "Underdisiplinkode": "IGG"
           },
           "requirement": "required"
@@ -133,11 +119,6 @@
         {
           "conditions": {
             "Objektklasse": "Vegetasjon",
-            "Objekttype": [
-              "Tre",
-              "Blomsterbeplantning",
-              "Busk"
-            ],
             "Underdisiplinkode": "LAN"
           },
           "requirement": "required"
@@ -152,7 +133,6 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
-            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -160,7 +140,6 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
-            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -220,6 +199,7 @@
             "Objektklasse": "Veggsystem",
             "Objekttype": [
               "Betongelement",
+              "Vegg",
               "Vegg"
             ],
             "Underdisiplinkode": "TNL"
@@ -291,12 +271,6 @@
         {
           "conditions": {
             "Objektklasse": "Sideområde",
-            "Objekttype": [
-              "Terrengforming",
-              "Deponi",
-              "Grøft",
-              "Fyllingsskråning"
-            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -331,6 +305,7 @@
               "Spillvannskum",
               "Stake-/Spylekum",
               "Vannkum",
+              "Inntakskum",
               "Inntakskum"
             ],
             "Underdisiplinkode": "VAA"
@@ -387,7 +362,6 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
-            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -402,7 +376,6 @@
         {
           "conditions": {
             "Objektklasse": "Terreng",
-            "Objekttype": "Terrengoverflatemodell",
             "Underdisiplinkode": "GMT"
           },
           "requirement": "required"
@@ -425,7 +398,6 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
-            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -433,7 +405,6 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
-            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -1118,7 +1089,6 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
-            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -1484,6 +1454,7 @@
               "Spillvannskum",
               "Stake-/Spylekum",
               "Vannkum",
+              "Inntakskum",
               "Inntakskum"
             ],
             "Underdisiplinkode": "VAA"
@@ -1534,7 +1505,6 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
-            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -1800,7 +1770,6 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
-            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -1936,7 +1905,6 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
-            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -2021,7 +1989,6 @@
         {
           "conditions": {
             "Objektklasse": "Skjerm",
-            "Objekttype": "Støyskjerm",
             "Underdisiplinkode": "AKU"
           },
           "requirement": "required"
@@ -3259,6 +3226,7 @@
               "Frostsikringslag",
               "Avrettingslag",
               "Omfylling",
+              "LavesteGravenivå",
               "LavesteGravenivå"
             ],
             "Underdisiplinkode": "GTK"
@@ -3360,7 +3328,10 @@
         {
           "conditions": {
             "Objektklasse": "Veggsystem",
-            "Objekttype": "Vegg",
+            "Objekttype": [
+              "Vegg",
+              "Vegg"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -3469,6 +3440,7 @@
             "Objektklasse": "Underbygning",
             "Objekttype": [
               "Omfylling",
+              "LavesteGravenivå",
               "LavesteGravenivå"
             ],
             "Underdisiplinkode": "GTK"
@@ -4002,7 +3974,6 @@
         {
           "conditions": {
             "Objektklasse": "Tetthetskrav",
-            "Objekttype": "Tetthetskrav",
             "Underdisiplinkode": "HYG"
           },
           "requirement": "required"
@@ -4061,7 +4032,6 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
-            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -4208,7 +4178,6 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
-            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -4301,7 +4270,6 @@
         {
           "conditions": {
             "Objektklasse": "Symbol",
-            "Objekttype": "Symbol",
             "Underdisiplinkode": "SHA"
           },
           "requirement": "required"
@@ -4348,11 +4316,6 @@
         {
           "conditions": {
             "Objektklasse": "Skiltportal",
-            "Objekttype": [
-              "Helportal",
-              "Halvportal",
-              "Skiltportalfundament"
-            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -4739,12 +4702,6 @@
         {
           "conditions": {
             "Objektklasse": "Sideområde",
-            "Objekttype": [
-              "Terrengforming",
-              "Deponi",
-              "Grøft",
-              "Fyllingsskråning"
-            ],
             "Underdisiplinkode": "VEI"
           },
           "requirement": "required"
@@ -4766,7 +4723,6 @@
         {
           "conditions": {
             "Objektklasse": "Kulturminner",
-            "Objekttype": "Kulturminner",
             "Underdisiplinkode": "MIL"
           },
           "requirement": "required"
@@ -4797,7 +4753,10 @@
         {
           "conditions": {
             "Objektklasse": "Skiltportal",
-            "Objekttype": "Skiltportalfundament",
+            "Objekttype": [
+              "Skiltportalfundament",
+              "Skiltportalfundament"
+            ],
             "Underdisiplinkode": "SKO"
           },
           "requirement": "required"
@@ -4941,7 +4900,10 @@
         {
           "conditions": {
             "Objektklasse": "Sikring",
-            "Objekttype": "Bolt",
+            "Objekttype": [
+              "Bolt",
+              "Bolt"
+            ],
             "Underdisiplinkode": "IGG"
           },
           "requirement": "required"
@@ -5025,7 +4987,10 @@
         {
           "conditions": {
             "Objektklasse": "Veggsystem",
-            "Objekttype": "Vegg",
+            "Objekttype": [
+              "Vegg",
+              "Vegg"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5121,7 +5086,10 @@
         {
           "conditions": {
             "Objektklasse": "Veggsystem",
-            "Objekttype": "Vegg",
+            "Objekttype": [
+              "Vegg",
+              "Vegg"
+            ],
             "Underdisiplinkode": "TNL"
           },
           "requirement": "required"
@@ -5814,10 +5782,6 @@
         {
           "conditions": {
             "Objektklasse": "Støpeskjøt",
-            "Objekttype": [
-              "Injiseringsslange",
-              "Svellebånd"
-            ],
             "Underdisiplinkode": "KNS"
           },
           "requirement": "required"
