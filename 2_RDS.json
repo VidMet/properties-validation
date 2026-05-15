@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.0",
   "type": "RDS_RULESET",
   "allowExtraProperties": false,
   "properties": {
@@ -6200,6 +6200,2195 @@
         "EEEn_navn": "Øvre bærelag overbygning"
       }
     },
-    "FFF": {}
+    "FFF": {
+      "ARMERING B500NC, Ø10": {
+        "FFFn": "UMA109",
+        "FFFn_navn": "Armering, Armering B500NC, Ø10"
+      },
+      "ARMERING B500NC, Ø12": {
+        "FFFn": "UMA101",
+        "FFFn_navn": "Armering, Armering B500NC, Ø12"
+      },
+      "ARMERING B500NC, Ø16": {
+        "FFFn": "UMA102",
+        "FFFn_navn": "Armering, Armering B500NC, Ø16"
+      },
+      "ARMERING B500NC, Ø20": {
+        "FFFn": "UMA103",
+        "FFFn_navn": "Armering, Armering B500NC, Ø20"
+      },
+      "ARMERING B500NC, Ø25": {
+        "FFFn": "UMA104",
+        "FFFn_navn": "Armering, Armering B500NC, Ø25"
+      },
+      "ARMERING B500NC, Ø32": {
+        "FFFn": "UMA105",
+        "FFFn_navn": "Armering, Armering B500NC, Ø32"
+      },
+      "ARMERINGSLENGDE INNTIL 3 M": {
+        "FFFn": "UMA108",
+        "FFFn_navn": "Armering, Armeringslengde inntil 3 m"
+      },
+      "ARMERINGSLENGDE 3 M TIL 6 M": {
+        "FFFn": "UMA112",
+        "FFFn_navn": "Armering, Armeringslengde 3 m til 6 m"
+      },
+      "ARMERINGSLENGDE 6 M TIL 9 M": {
+        "FFFn": "UMA110",
+        "FFFn_navn": "Armering, Armeringslengde 6 m til 9 m"
+      },
+      "ARMERINGSLENGDE 9 M TIL 12 M": {
+        "FFFn": "UMA111",
+        "FFFn_navn": "Armering, Armeringslengde 9 m til 12 m"
+      },
+      "KRYMPESTRØMPE": {
+        "FFFn": "UMA107",
+        "FFFn_navn": "Armering, Krympestrømpe"
+      },
+      "RUSTFRI ARMERING B500NCR, Ø12": {
+        "FFFn": "UMA106",
+        "FFFn_navn": "Armering, Rustfri armering B500NCR, Ø12"
+      },
+      "AB11": {
+        "FFFn": "ULA1",
+        "FFFn_navn": "Asfaltbetong, Ab11"
+      },
+      "AB16": {
+        "FFFn": "ULA146",
+        "FFFn_navn": "Asfaltbetong, Ab16"
+      },
+      "AG16": {
+        "FFFn": "ULA21",
+        "FFFn_navn": "Asfaltgrus, Ag16"
+      },
+      "AG22": {
+        "FFFn": "ULA19",
+        "FFFn_navn": "Asfaltgrus, Ag22"
+      },
+      "AGB11": {
+        "FFFn": "ULA2",
+        "FFFn_navn": "Asfaltgrusbetong, Agb11"
+      },
+      "ASFALTMEMBRAN": {
+        "FFFn": "NCA1",
+        "FFFn_navn": "Asfaltmembran, Asfaltmembran"
+      },
+      "ASFALTPAPP": {
+        "FFFn": "UPC1",
+        "FFFn_navn": "Asfaltpapp, Asfaltpapp"
+      },
+      "AVRETTINGSLAG OVER VANN": {
+        "FFFn": "ULM101",
+        "FFFn_navn": "Avretting, Avrettingslag over vann"
+      },
+      "BETONGAVRETTING PÅ LØSMASSER": {
+        "FFFn": "ULA109",
+        "FFFn_navn": "Fuktisolering, Betongavretting på løsmasser"
+      },
+      "UNDERSTØP AV STÅLPLATER ETC.": {
+        "FFFn": "ULM103",
+        "FFFn_navn": "Avretting, Understøp av stålplater etc."
+      },
+      "UNDERVANNSSTØP MED B35 M40 AUV-BETONG": {
+        "FFFn": "ULM107",
+        "FFFn_navn": "Avretting, Undervannsstøp med B35 M40 AUV-betong"
+      },
+      "BETONGSTØP I VANN, UNDERVANNSSTØP": {
+        "FFFn": "ULM108",
+        "FFFn_navn": "Avretting, Betongstøp i vann, undervannsstøp"
+      },
+      "BETONGSKULDER": {
+        "FFFn": "ULA4",
+        "FFFn_navn": "Bankett, Betongskulder"
+      },
+      "VM_1000_BTG": {
+        "FFFn": "UCA27",
+        "FFFn_navn": "Bekkeinntak, VM_1000_BTG"
+      },
+      "VM_1200_BTG": {
+        "FFFn": "UCA2",
+        "FFFn_navn": "Bekkeinntak, VM_1200_BTG"
+      },
+      "VM_1400_BTG": {
+        "FFFn": "UCA1",
+        "FFFn_navn": "Bekkeinntak, VM_1400_BTG"
+      },
+      "VM_1600_BTG": {
+        "FFFn": "UCA3",
+        "FFFn_navn": "Bekkeinntak, VM_1600_BTG"
+      },
+      "VM_1800_BTG": {
+        "FFFn": "UCA30",
+        "FFFn_navn": "Bekkeinntak, VM_1800_BTG"
+      },
+      "VM_2000_BTG": {
+        "FFFn": "UCA29",
+        "FFFn_navn": "Bekkeinntak, VM_2000_BTG"
+      },
+      "VM_2200_STEIN": {
+        "FFFn": "UCA31",
+        "FFFn_navn": "Bekkeinntak, VM_2200_STEIN"
+      },
+      "VM_600_BTG": {
+        "FFFn": "UCA4",
+        "FFFn_navn": "Bekkeinntak, VM_600_BTG"
+      },
+      "VM_800_BTG": {
+        "FFFn": "UCA32",
+        "FFFn_navn": "Bekkeinntak, VM_800_BTG"
+      },
+      "GRESS": {
+        "FFFn": "NCG4",
+        "FFFn_navn": "Beplantning, Gress"
+      },
+      "REVEGETERING": {
+        "FFFn": "NCG5",
+        "FFFn_navn": "Beplantning, Revegetering"
+      },
+      "BERG": {
+        "FFFn": "NCG1",
+        "FFFn_navn": "Berg, Berg"
+      },
+      "B45 SV-STANDARD": {
+        "FFFn": "ULM1",
+        "FFFn_navn": "Betong, B45 SV-standard"
+      },
+      "BETONG": {
+        "FFFn": "ULM7",
+        "FFFn_navn": "Betong"
+      },
+      "C25/30": {
+        "FFFn": "ULM2",
+        "FFFn_navn": "Betong, C25/30"
+      },
+      "C35/45 STANDARD": {
+        "FFFn": "ULM3",
+        "FFFn_navn": "Betong, C35/45 Standard"
+      },
+      "C35/45 STANDARD MED PP FIBER": {
+        "FFFn": "ULM4",
+        "FFFn_navn": "Betong, C35/45 Standard med PP fiber"
+      },
+      "C35/45 SV-STANDARD MED SIGS TILSLAG": {
+        "FFFn": "ULM5",
+        "FFFn_navn": "Betong, C35/45 SV-Standard med SiGS tilslag"
+      },
+      "C45": {
+        "FFFn": "ULM6",
+        "FFFn_navn": "Betong, C45"
+      },
+      "BETONG B45 SV-STANDARD": {
+        "FFFn": "ULE101",
+        "FFFn_navn": "Lager, Betong B45 SV-Standard"
+      },
+      "KULVERTELEMENTER": {
+        "FFFn": "ULM105",
+        "FFFn_navn": "Betongelement, Kulvertelementer"
+      },
+      "MONTERINGSFERDIGE BETONGELEMENTER": {
+        "FFFn": "ULM106",
+        "FFFn_navn": "Betongelement, Monteringsferdige betongelementer"
+      },
+      "PERMANENT KORROSJONSBESKYTTELSE AV FORANKRINGER": {
+        "FFFn": "ULM109",
+        "FFFn_navn": "Betongelement, Permanent korrosjonsbeskyttelse av forankringer"
+      },
+      "PLASSTØPT BETONGREKKVERK": {
+        "FFFn": "FQD46",
+        "FFFn_navn": "Rekkverk, Plasstøpt betongrekkverk"
+      },
+      "BINDLAGKULVERT": {
+        "FFFn": "NCA5",
+        "FFFn_navn": "Bindlag kulvert, BindlagKulvert"
+      },
+      "HEB 300": {
+        "FFFn": "ULE201",
+        "FFFn_navn": "Bjelke, HEB 300"
+      },
+      "HEB 400": {
+        "FFFn": "ULE202",
+        "FFFn_navn": "Bjelke, HEB 400"
+      },
+      "HEB100 MED PÅSVEISET UPE100 S355J2": {
+        "FFFn": "ULE2",
+        "FFFn_navn": "Bjelke, HEB100 med påsveiset UPE100 S355J2"
+      },
+      "L-PROFIL 100X100X10 S355J2": {
+        "FFFn": "ULE3",
+        "FFFn_navn": "Bjelke, L-profil 100x100x10 S355J2"
+      },
+      "UNP240": {
+        "FFFn": "ULE203",
+        "FFFn_navn": "Bjelke, UNP240"
+      },
+      "BETONGBAKSTØP B35": {
+        "FFFn": "ULE4",
+        "FFFn_navn": "Bjelke, Betongbakstøp B35"
+      },
+      "BETONGFUNDAMENT B35": {
+        "FFFn": "ULE5",
+        "FFFn_navn": "Bjelke, Betongfundament B35"
+      },
+      "BJELKEINNFESTING UPE220 S355J2": {
+        "FFFn": "ULE6",
+        "FFFn_navn": "Bjelke, Bjelkeinnfesting UPE220 S355J2"
+      },
+      "UPE 220 S355J2": {
+        "FFFn": "ULE7",
+        "FFFn_navn": "Bjelke, UPE 220 S355J2"
+      },
+      "HEB 340": {
+        "FFFn": "ULE204",
+        "FFFn_navn": "Bjelke, HEB 340"
+      },
+      "IMPREGNERT TREVIRKE (C24/C30)": {
+        "FFFn": "ULD5",
+        "FFFn_navn": "Bjelkestengsel, Impregnert trevirke (C24/C30)"
+      },
+      "INNSTØPT PLATE S235 J0. BOLTER, SKIVER OG MUTTERE A4-80 IHT. NS-EN ISO 3506": {
+        "FFFn": "ULA3",
+        "FFFn_navn": "Boltegruppe, Innstøpt plate S235 J0. Bolter, skiver og muttere A4-80 iht. NS-EN ISO 3506"
+      },
+      "BH_100_SJG": {
+        "FFFn": "UCA33",
+        "FFFn_navn": "Brannhydrant, BH_100_SJG"
+      },
+      "BRANNSPERRE TUNNEL": {
+        "FFFn": "ULA16",
+        "FFFn_navn": "Brannsikring, Brannsperre tunnel"
+      },
+      "BRANNVANNSUTTAK": {
+        "FFFn": "WPA116",
+        "FFFn_navn": "Brannvannsuttak, Brannvannsuttak"
+      },
+      "BETONGDEKKE B35": {
+        "FFFn": "NCA12",
+        "FFFn_navn": "Dekke, Betongdekke B35"
+      },
+      "DØRKEPLATE": {
+        "FFFn": "NCA11",
+        "FFFn_navn": "Dekke, Dørkeplate"
+      },
+      "DRENERENDE KNOTTEPLATE PÅ VEGGER OVER GRUNNVANNSTANDEN": {
+        "FFFn": "UCA101",
+        "FFFn_navn": "Drenering, Drenerende knotteplate på vegger over grunnvannstanden"
+      },
+      "INNSTØPNINGSGODS": {
+        "FFFn": "ULA117",
+        "FFFn_navn": "Innstøpningsgods, Innstøpningsgods"
+      },
+      "JUSTERBART SLUK": {
+        "FFFn": "ULA137",
+        "FFFn_navn": "Fuktisolering, Justerbart sluk"
+      },
+      "RUSTFRIE STÅLRØR UNDER SLUK": {
+        "FFFn": "UCA104",
+        "FFFn_navn": "Drenering, Rustfrie stålrør under sluk"
+      },
+      "ENKLE SLUK FOR DRENERING AV INNVENDIG LUKKEDE ROM": {
+        "FFFn": "UCA105",
+        "FFFn_navn": "Drenering, Enkle sluk for drenering av innvendig lukkede rom"
+      },
+      "SPRENGT STEIN TIL STØYVOLL, LEDEVOLL, OPPFYLLING MOT BERGSKJÆRING, EROSJONSSIKRING, MV.": {
+        "FFFn": "UCA106",
+        "FFFn_navn": "Drenering, Sprengt stein til støyvoll, ledevoll, oppfylling mot bergskjæring, erosjonssikring, mv."
+      },
+      "SYSTEM FOR VANNAVRENNING I FUGEENDE": {
+        "FFFn": "UCA107",
+        "FFFn_navn": "Drenering, System for vannavrenning i fugeende"
+      },
+      "DR_110_PPDV OD": {
+        "FFFn": "WPA2",
+        "FFFn_navn": "Drensledning, DR_110_PPDV OD"
+      },
+      "DR_160_PPDV OD": {
+        "FFFn": "WPA3",
+        "FFFn_navn": "Drensledning, DR_160_PPDV OD"
+      },
+      "DR_200_PPDV OD": {
+        "FFFn": "WPA4",
+        "FFFn_navn": "Drensledning, DR_200_PPDV OD"
+      },
+      "DR_250_PPDV OD": {
+        "FFFn": "WPA5",
+        "FFFn_navn": "Drensledning, DR_250_PPDV OD"
+      },
+      "DR_75_PPDV OD": {
+        "FFFn": "WPA1",
+        "FFFn_navn": "Drensledning, DR_75_PPDV OD"
+      },
+      "A4-80": {
+        "FFFn": "ULK1",
+        "FFFn_navn": "Dybler, A4-80"
+      },
+      "DØR TEKNISK BYGG": {
+        "FFFn": "ULM11",
+        "FFFn_navn": "Dør, Dør teknisk bygg"
+      },
+      "DØR TIL BERGROM": {
+        "FFFn": "ULM10",
+        "FFFn_navn": "Dør, Dør til bergrom"
+      },
+      "NØDKIOSKDØR": {
+        "FFFn": "ULM12",
+        "FFFn_navn": "Dør, Nødkioskdør"
+      },
+      "RØMNINGSDØR": {
+        "FFFn": "ULM8",
+        "FFFn_navn": "Dør, Rømningsdør"
+      },
+      "TRAFODØR": {
+        "FFFn": "ULM9",
+        "FFFn_navn": "Dør, Trafodør"
+      },
+      "UTSPARING DØR": {
+        "FFFn": "ULM13",
+        "FFFn_navn": "Dør, Utsparing dør"
+      },
+      "DØRER": {
+        "FFFn": "ULM111",
+        "FFFn_navn": "Dør, Dører"
+      },
+      "LEVERING AV VALSET STÅL OG TILSETTMATERIALER FOR SVEISING": {
+        "FFFn": "ULA140",
+        "FFFn_navn": "Innstøpningsgods, Levering av valset stål og tilsettmaterialer for sveising"
+      },
+      "LUKER": {
+        "FFFn": "ULM113",
+        "FFFn_navn": "Dør, Luker"
+      },
+      "BERGBOLT M24 A4-80": {
+        "FFFn": "UQA4",
+        "FFFn_navn": "Festebolt, Bergbolt M24 A4-80"
+      },
+      "BERGBOLT M33 A4-80": {
+        "FFFn": "UQA5",
+        "FFFn_navn": "Festebolt, Bergbolt M33 A4-80"
+      },
+      "M33 8.8 IHT. NS-EN ISO 898-1": {
+        "FFFn": "UQA7",
+        "FFFn_navn": "Festebolt, M33 8.8 iht. NS-EN ISO 898-1"
+      },
+      "M30 8.8 IHT. NS-EN ISO 898-1": {
+        "FFFn": "UQA8",
+        "FFFn_navn": "Festebolt, M30 8.8 iht. NS-EN ISO 898-1"
+      },
+      "BERGBOLT Ø25 B500NC": {
+        "FFFn": "UQA9",
+        "FFFn_navn": "Festebolt, Bergbolt Ø25 B500NC"
+      },
+      "M12 8.8 IHT. NS-EN ISO 898-1": {
+        "FFFn": "UQA3",
+        "FFFn_navn": "Festebolt, M12 8.8 iht. NS-EN ISO 898-1"
+      },
+      "TREKKEKROK A4-80 BETONG": {
+        "FFFn": "UQA2",
+        "FFFn_navn": "Festebolt, Trekkekrok A4-80 betong"
+      },
+      "TREKKEKROK M20 A4-80": {
+        "FFFn": "UQA1",
+        "FFFn_navn": "Festebolt, Trekkekrok M20 A4-80"
+      },
+      "ANNET UTSTYR": {
+        "FFFn": "ULA121",
+        "FFFn_navn": "Plate, Annet utstyr"
+      },
+      "TRAPPER": {
+        "FFFn": "XSB101",
+        "FFFn_navn": "Trapp, Trapper"
+      },
+      "INJISERING AV SPENNKABELKANAL": {
+        "FFFn": "ULA102",
+        "FFFn_navn": "Festemiddel, Injisering av spennkabelkanal"
+      },
+      "INNSTØPING I UTSPARINGER, UNDERSTØPING ETC": {
+        "FFFn": "ULA103",
+        "FFFn_navn": "Festemiddel, Innstøping i utsparinger, understøping etc"
+      },
+      "INNSTØPING/FASTSTØPING AV BOLTER I UTSPARINGER": {
+        "FFFn": "ULA104",
+        "FFFn_navn": "Festemiddel, Innstøping/faststøping av bolter i utsparinger"
+      },
+      "KONSTRUKTIV LIMING AV FERSK BETONG TIL HERDNET BETONG": {
+        "FFFn": "ULA149",
+        "FFFn_navn": "Festemiddel, Konstruktiv liming av fersk betong til herdnet betong"
+      },
+      "PELEHODE FOR TRYKKPEL - MED RIBBER": {
+        "FFFn": "ULC111",
+        "FFFn_navn": "Pel, Pelehode for trykkpel - med ribber"
+      },
+      "PELEHODE FOR TRYKKPEL - MED STYRERING": {
+        "FFFn": "ULC112",
+        "FFFn_navn": "Pel, Pelehode for trykkpel - med styrering"
+      },
+      "BRUKSKLASSE 3": {
+        "FFFn": "RQB2",
+        "FFFn_navn": "Fiberduk, Bruksklasse 3"
+      },
+      "BRUKSKLASSE 4": {
+        "FFFn": "RQB1",
+        "FFFn_navn": "Fiberduk, Bruksklasse 4"
+      },
+      "FIBERDUK BRUKSKLASSE 4": {
+        "FFFn": "RQB101",
+        "FFFn_navn": "Fiberduk, Fiberduk bruksklasse 4"
+      },
+      "DIFFUSJONSSPERRE": {
+        "FFFn": "FRB1",
+        "FFFn_navn": "Filterlag, Diffusjonssperre"
+      },
+      "TREKANTPROFIL UNDER OVERGANGSPLATE": {
+        "FFFn": "ULA123",
+        "FFFn_navn": "Forskaling, Trekantprofil under overgangsplate"
+      },
+      "NEDFREST SINUSRILLER": {
+        "FFFn": "PHE1",
+        "FFFn_navn": "Forsterket oppmerking, Nedfrest sinusriller"
+      },
+      "SINUSRILLER": {
+        "FFFn": "PHE2",
+        "FFFn_navn": "Forsterket oppmerking, Sinusriller"
+      },
+      "PLANT SPOR": {
+        "FFFn": "PHE20",
+        "FFFn_navn": "Forsterket oppmerking, Plant spor"
+      },
+      "FUGEINNLEGG": {
+        "FFFn": "ULA126",
+        "FFFn_navn": "Fuge, Fugeinnlegg"
+      },
+      "ETABLERING AV FUGE": {
+        "FFFn": "ULA134",
+        "FFFn_navn": "Fuge, Etablering av fuge"
+      },
+      "FINGERFUGE": {
+        "FFFn": "ULA135",
+        "FFFn_navn": "Fuge, Fingerfuge"
+      },
+      "FUGETERSKLER AV STØPEASFALT MOT FUGEKONSTRUKSJONER": {
+        "FFFn": "ULA136",
+        "FFFn_navn": "Fuge, Fugeterskler av støpeasfalt mot fugekonstruksjoner"
+      },
+      "ASFALTMEMBRAN MELLOM OVERGANGSPLATE OG OPPLEGG": {
+        "FFFn": "ULA26",
+        "FFFn_navn": "Heftbryter, Asfaltmembran mellom overgangsplate og opplegg"
+      },
+      "AVSLUTNING AV BELEGNING I BRUENDER VED FUGEFRI LØSNING": {
+        "FFFn": "ULA106",
+        "FFFn_navn": "Fuktisolering, Avslutning av belegning i bruender ved fugefri løsning"
+      },
+      "BELEGNINGSKLASSE A3 FULL FUKTISOLERING": {
+        "FFFn": "ULA107",
+        "FFFn_navn": "Fuktisolering, Belegningsklasse A3 Full fuktisolering"
+      },
+      "BESKYTTELSESLAG MOT MEMBRAN OVER VANN": {
+        "FFFn": "ULA108",
+        "FFFn_navn": "Fuktisolering, Beskyttelseslag mot membran over vann"
+      },
+      "BETONG B35 SV-STANDARD": {
+        "FFFn": "ULA129",
+        "FFFn_navn": "Fuktisolering, Betong B35 SV-Standard"
+      },
+      "C60BP2": {
+        "FFFn": "ULA5",
+        "FFFn_navn": "Fuktisolering, C60BP2"
+      },
+      "FUKTISOLERING TYPE A3-2 MED PREFABRIKKERT MEMBRAN OG BESKYTTELSESLAG": {
+        "FFFn": "ULA110",
+        "FFFn_navn": "Fuktisolering, Fuktisolering type A3-2 med prefabrikkert membran og beskyttelseslag"
+      },
+      "FUKTISOLERING TYPE A3-4 MED C60BP2 OG TOPEKA 4S": {
+        "FFFn": "ULA111",
+        "FFFn_navn": "Fuktisolering, Fuktisolering type A3-4 med C60BP2 og Topeka 4S"
+      },
+      "MEMBRAN OVER GRUNNVANNSTAND PÅ KONSTRUKSJONER I FYLLING": {
+        "FFFn": "ULA23",
+        "FFFn_navn": "Heftbryter, Membran over grunnvannstand på konstruksjoner i fylling"
+      },
+      "TETTEMIDLER FOR STØPESKJØTER": {
+        "FFFn": "ULA112",
+        "FFFn_navn": "Fuktisolering, Tettemidler for støpeskjøter"
+      },
+      "TILSLUTNINGER": {
+        "FFFn": "ULA118",
+        "FFFn_navn": "Innstøpningsgods, Tilslutninger"
+      },
+      "TOPEKA 4 S": {
+        "FFFn": "ULA6",
+        "FFFn_navn": "Fuktisolering, Topeka 4 S"
+      },
+      "FYLLING MED KNUSTE MASSER INNTIL KONSTRUKSJONER OVER VANN": {
+        "FFFn": "UTA101",
+        "FFFn_navn": "Fylling, Fylling med knuste masser inntil konstruksjoner over vann"
+      },
+      "OPPFYLLING OVER VANN": {
+        "FFFn": "UTA102",
+        "FFFn_navn": "Fylling, Oppfylling over vann"
+      },
+      "OPPFYLLINGSMASSER FK 0/32": {
+        "FFFn": "UTA2",
+        "FFFn_navn": "Fylling, Oppfyllingsmasser Fk 0/32"
+      },
+      "OPPFYLLINGSMASSER FK 22/120": {
+        "FFFn": "UTA3",
+        "FFFn_navn": "Fylling, Oppfyllingsmasser Fk 22/120"
+      },
+      "OPPFYLLINGSMASSER FK 22/63 FORKILT MED FK 0/22": {
+        "FFFn": "UTA4",
+        "FFFn_navn": "Fylling, Oppfyllingsmasser Fk 22/63 forkilt med Fk 0/22"
+      },
+      "OPPFYLLINGSMASSER SAND": {
+        "FFFn": "UTA5",
+        "FFFn_navn": "Fylling, Oppfyllingsmasser sand"
+      },
+      "FYLLING MED LETTKLINKER (EKSPANDERT LEIRE)": {
+        "FFFn": "ULA138",
+        "FFFn_navn": "Fylling, Fylling med lettklinker (ekspandert leire)"
+      },
+      "SPRENGT STEIN FRA SKJÆRING TIL FYLLING I LINJEN": {
+        "FFFn": "ULA139",
+        "FFFn_navn": "Fylling, Sprengt stein fra skjæring til fylling i linjen"
+      },
+      "TREKKERØR Ø110": {
+        "FFFn": "WPA101",
+        "FFFn_navn": "Føringsvei, Trekkerør ø110"
+      },
+      "TREKKERØR Ø160": {
+        "FFFn": "WPA102",
+        "FFFn_navn": "Føringsvei, Trekkerør ø160"
+      },
+      "TREKKERØR Ø40": {
+        "FFFn": "WPA107",
+        "FFFn_navn": "Føringsvei, Trekkerør ø40"
+      },
+      "TREKKERØR Ø50": {
+        "FFFn": "WPA104",
+        "FFFn_navn": "Føringsvei, Trekkerør ø50"
+      },
+      "TREKKERØR Ø75": {
+        "FFFn": "WPA103",
+        "FFFn_navn": "Føringsvei, Trekkerør ø75"
+      },
+      "TREKKERØR": {
+        "FFFn": "WPA114",
+        "FFFn_navn": "Føringsvei, Trekkerør"
+      },
+      "TREKKERØR Ø125": {
+        "FFFn": "WPA115",
+        "FFFn_navn": "Føringsvei, Trekkerør ø125"
+      },
+      "RUSTFRITT STÅL - A4-80 IHT. NS-EN ISO 3506": {
+        "FFFn": "ULA8",
+        "FFFn_navn": "Gjengestag, Rustfritt stål - A4-80 iht. NS-EN ISO 3506"
+      },
+      "GJERDEPORT": {
+        "FFFn": "RUA1",
+        "FFFn_navn": "Gjerde, Gjerdeport"
+      },
+      "SIKRINGSGJERDE": {
+        "FFFn": "RUA3",
+        "FFFn_navn": "Gjerde, Sikringsgjerde"
+      },
+      "VILTGJERDE": {
+        "FFFn": "RUA2",
+        "FFFn_navn": "Gjerde, Viltgjerde"
+      },
+      "GF_1_GF": {
+        "FFFn": "WPA98",
+        "FFFn_navn": "Graveflate, GF_1_GF"
+      },
+      "POLYETYLENFOLIE": {
+        "FFFn": "ULA15",
+        "FFFn_navn": "Membran, Polyetylenfolie"
+      },
+      "HS_650": {
+        "FFFn": "UCA5",
+        "FFFn_navn": "Hjelpesluk, HS_650"
+      },
+      "HS_650_BTG": {
+        "FFFn": "UCA6",
+        "FFFn_navn": "Hjelpesluk, HS_650_BTG"
+      },
+      "BRANNHYDRANT_H4_M-DROPDOWN": {
+        "FFFn": "UCA7",
+        "FFFn_navn": "Hydrant, Brannhydrant_H4_m-DropDown"
+      },
+      "HY_100_PP": {
+        "FFFn": "UCA8",
+        "FFFn_navn": "Hydrant, HY_100_PP"
+      },
+      "PLAST": {
+        "FFFn": "ULA7",
+        "FFFn_navn": "Hylse, Plast"
+      },
+      "IF_32_PE100": {
+        "FFFn": "WPA6",
+        "FFFn_navn": "Infiltrasjonsledning, IF_32_PE100"
+      },
+      "BOLTER FOR NIVELLERING": {
+        "FFFn": "ULA114",
+        "FFFn_navn": "Innstøpningsgods, Bolter for nivellering"
+      },
+      "DIAMETER 200 MM": {
+        "FFFn": "ULA24",
+        "FFFn_navn": "Innstøpningsgods, Diameter 200 mm"
+      },
+      "DYBLER": {
+        "FFFn": "ULA128",
+        "FFFn_navn": "Innstøpningsgods, Dybler"
+      },
+      "GRUPPER AV BOLTER ELLER GJENGESTENGER I IKKE-FORSKALTE FLATER": {
+        "FFFn": "FQD107",
+        "FFFn_navn": "Rekkverk, Grupper av bolter eller gjengestenger i ikke-forskalte flater"
+      },
+      "GRUPPER AV BOLTER ELLER GJENGESTENGER MED SKJØTEHYLSER MOT FORSKALTE FLATER": {
+        "FFFn": "ULA116",
+        "FFFn_navn": "Innstøpningsgods, Grupper av bolter eller gjengestenger med skjøtehylser mot forskalte flater"
+      },
+      "INN- OG UTLØPSKONSTRUKSJONER": {
+        "FFFn": "ULA130",
+        "FFFn_navn": "Innstøpningsgods, INN- OG UTLØPSKONSTRUKSJONER"
+      },
+      "LEVERING OG MONTERING AV BESLAG OVER KANTBJELKE VED FUGE": {
+        "FFFn": "ULA145",
+        "FFFn_navn": "Plate, Levering og montering av beslag over kantbjelke ved fuge"
+      },
+      "RUSTFRIE STÅLRØR MED MURKRAGE OG FLENSER": {
+        "FFFn": "ULA142",
+        "FFFn_navn": "Innstøpningsgods, Rustfrie stålrør med murkrage og flenser"
+      },
+      "IK_1000_BTG": {
+        "FFFn": "WPA87",
+        "FFFn_navn": "Inntakskum, IK_1000_BTG"
+      },
+      "IK_1200_BTG": {
+        "FFFn": "WPA88",
+        "FFFn_navn": "Inntakskum, IK_1200_BTG"
+      },
+      "IK_1400_BTG": {
+        "FFFn": "WPA89",
+        "FFFn_navn": "Inntakskum, IK_1400_BTG"
+      },
+      "EPS_500": {
+        "FFFn": "ULA27",
+        "FFFn_navn": "Isolasjon, EPS_500"
+      },
+      "FROSTSIKRING MED PLATER AV EKSTRUDERT POLYSTYREN (XPS)": {
+        "FFFn": "ULA119",
+        "FFFn_navn": "Isolasjon, Frostsikring med plater av ekstrudert polystyren (XPS)"
+      },
+      "LECA": {
+        "FFFn": "ULA9",
+        "FFFn_navn": "Isolasjon, Leca"
+      },
+      "MU_50": {
+        "FFFn": "ULA147",
+        "FFFn_navn": "Isolasjon, MU_50"
+      },
+      "XPS_100": {
+        "FFFn": "ULA20",
+        "FFFn_navn": "Isolasjon, XPS_100"
+      },
+      "XPS_50": {
+        "FFFn": "ULA10",
+        "FFFn_navn": "Isolasjon, XPS_50"
+      },
+      "XPS_80": {
+        "FFFn": "ULA17",
+        "FFFn_navn": "Isolasjon, XPS_80"
+      },
+      "XPS_600": {
+        "FFFn": "ULA152",
+        "FFFn_navn": "Isolasjon, XPS_600"
+      },
+      "INNSTØPT JORDINGSPUNKT": {
+        "FFFn": "XEE1",
+        "FFFn_navn": "Jordelektrode/spyd, Innstøpt jordingspunkt"
+      },
+      "JORDINGSPUNKT": {
+        "FFFn": "ULA120",
+        "FFFn_navn": "Jording, Jordingspunkt"
+      },
+      "MESSING": {
+        "FFFn": "ULA11",
+        "FFFn_navn": "Jording, Messing"
+      },
+      "RUSTFRITT STÅL - NR. 1.4404 IHT. NS-EN 10088": {
+        "FFFn": "ULA12",
+        "FFFn_navn": "Klemlist, Rustfritt stål - nr. 1.4404 iht. NS-EN 10088"
+      },
+      "FK 0/1000": {
+        "FFFn": "NCA15",
+        "FFFn_navn": "Knust stein, Fk 0/1000"
+      },
+      "FK 0/11": {
+        "FFFn": "NCA2",
+        "FFFn_navn": "Knust stein, Fk 0/11"
+      },
+      "FK 0/250": {
+        "FFFn": "NCA13",
+        "FFFn_navn": "Knust stein, Fk 0/250"
+      },
+      "FK 0/32": {
+        "FFFn": "NCA6",
+        "FFFn_navn": "Knust stein, Fk 0/32"
+      },
+      "FK 0/8": {
+        "FFFn": "NCA7",
+        "FFFn_navn": "Knust stein, Fk 0/8"
+      },
+      "FK 0/800": {
+        "FFFn": "NCA14",
+        "FFFn_navn": "Knust stein, Fk 0/800"
+      },
+      "FK 1200-1700": {
+        "FFFn": "NCA20",
+        "FFFn_navn": "Knust stein, Fk 1200-1700"
+      },
+      "FK 150/500": {
+        "FFFn": "NCA16",
+        "FFFn_navn": "Knust stein, Fk 150/500"
+      },
+      "FK 22/120": {
+        "FFFn": "NCA8",
+        "FFFn_navn": "Knust stein, Fk 22/120"
+      },
+      "FK 22/120 FORKILT MED 0/22": {
+        "FFFn": "NCA9",
+        "FFFn_navn": "Knust stein, Fk 22/120 forkilt med 0/22"
+      },
+      "FK 22/125": {
+        "FFFn": "NCA10",
+        "FFFn_navn": "Knust stein, Fk 22/125"
+      },
+      "FK 350/800": {
+        "FFFn": "NCA17",
+        "FFFn_navn": "Knust stein, Fk 350/800"
+      },
+      "FK 400-1000": {
+        "FFFn": "NCA18",
+        "FFFn_navn": "Knust stein, Fk 400-1000"
+      },
+      "FK 600-1400": {
+        "FFFn": "NCA19",
+        "FFFn_navn": "Knust stein, Fk 600-1400"
+      },
+      "KNUST STEIN": {
+        "FFFn": "UTA1",
+        "FFFn_navn": "Knust stein, Knust stein"
+      },
+      "DEFORMASJONSLAGRE (BLOKKLAGRE)": {
+        "FFFn": "ULE102",
+        "FFFn_navn": "Lager, Deformasjonslagre (blokklagre)"
+      },
+      "GLIDELAGRE MED SIDESTYRING": {
+        "FFFn": "ULE103",
+        "FFFn_navn": "Lager, Glidelagre med sidestyring"
+      },
+      "GLIDELAGRE, ALLSIDIG BEVEGELIG": {
+        "FFFn": "ULE104",
+        "FFFn_navn": "Lager, Glidelagre, allsidig bevegelig"
+      },
+      "FASTLAGRE": {
+        "FFFn": "ULE106",
+        "FFFn_navn": "Lager, Fastlagre"
+      },
+      "DOBBEL SPERRELINJE": {
+        "FFFn": "PHE3",
+        "FFFn_navn": "Langsgående oppmerking, Dobbel sperrelinje"
+      },
+      "HELTRUKKEN KANTLINJE": {
+        "FFFn": "PHE4",
+        "FFFn_navn": "Langsgående oppmerking, Heltrukken kantlinje"
+      },
+      "HELTRUKKEN KANTLINJE (MOTORVEG KL. A)": {
+        "FFFn": "PHE5",
+        "FFFn_navn": "Langsgående oppmerking, Heltrukken kantlinje (Motorveg kl. A)"
+      },
+      "KJØREFELTLINJE": {
+        "FFFn": "PHE6",
+        "FFFn_navn": "Langsgående oppmerking, Kjørefeltlinje"
+      },
+      "KJØREFELTLINJE/VARSELLINJE": {
+        "FFFn": "PHE16",
+        "FFFn_navn": "Langsgående oppmerking, Kjørefeltlinje/Varsellinje"
+      },
+      "REFERENCELINE": {
+        "FFFn": "PHE7",
+        "FFFn_navn": "Langsgående oppmerking, ReferenceLine"
+      },
+      "SKILLELINJE": {
+        "FFFn": "PHE8",
+        "FFFn_navn": "Langsgående oppmerking, Skillelinje"
+      },
+      "SPERRELINJE": {
+        "FFFn": "PHE9",
+        "FFFn_navn": "Langsgående oppmerking, Sperrelinje"
+      },
+      "SPERREOMRÅDE": {
+        "FFFn": "PHE10",
+        "FFFn_navn": "Langsgående oppmerking, Sperreområde"
+      },
+      "STIPLET KANTLINJE": {
+        "FFFn": "PHE11",
+        "FFFn_navn": "Langsgående oppmerking, Stiplet kantlinje"
+      },
+      "VARSELLINJE": {
+        "FFFn": "PHE12",
+        "FFFn_navn": "Langsgående oppmerking, Varsellinje"
+      },
+      "LEDELINJE": {
+        "FFFn": "PHE19",
+        "FFFn_navn": "Langsgående oppmerking, Ledelinje"
+      },
+      "LEHUS": {
+        "FFFn": "ULB1",
+        "FFFn_navn": "Lehus, Lehus"
+      },
+      "BRANNVANNSLUKE": {
+        "FFFn": "ULM14",
+        "FFFn_navn": "Luke, Brannvannsluke"
+      },
+      "INSPEKSJONSLUKE": {
+        "FFFn": "ULM15",
+        "FFFn_navn": "Luke, Inspeksjonsluke"
+      },
+      "UTSPARING LUKE": {
+        "FFFn": "ULM16",
+        "FFFn_navn": "Luke, Utsparing luke"
+      },
+      "BUNNSUBSTRAT": {
+        "FFFn": "NCG6",
+        "FFFn_navn": "Masser, Bunnsubstrat"
+      },
+      "JORDMASSER": {
+        "FFFn": "NCG2",
+        "FFFn_navn": "Masser, Jordmasser"
+      },
+      "LØSMASSER": {
+        "FFFn": "NCG3",
+        "FFFn_navn": "Masser, Løsmasser"
+      },
+      "SPRENGT STEIN": {
+        "FFFn": "NCG7",
+        "FFFn_navn": "Masser, Sprengt stein"
+      },
+      "FJERNING AV FORBELASTNING": {
+        "FFFn": "NCG103",
+        "FFFn_navn": "Masseuttak, Fjerning av forbelastning"
+      },
+      "GRAVEARBEIDER OVER VANN": {
+        "FFFn": "NCG101",
+        "FFFn_navn": "Masseuttak, Gravearbeider over vann"
+      },
+      "LAVESTE GRAVENIVÅ": {
+        "FFFn": "NCG102",
+        "FFFn_navn": "Masseuttak, Laveste gravenivå"
+      },
+      "MEMBRAN TYPE I IHT. N500": {
+        "FFFn": "WPA72",
+        "FFFn_navn": "Membran, Membran type I iht. N500"
+      },
+      "MEMBRAN TYPE II IHT. N500": {
+        "FFFn": "WPA117",
+        "FFFn_navn": "Membran, Membran type II iht. N500"
+      },
+      "OVERGANGSFOLIE IHT. N500": {
+        "FFFn": "ULA14",
+        "FFFn_navn": "Membran, Overgangsfolie iht. N500"
+      },
+      "PE-SKUM": {
+        "FFFn": "WPA69",
+        "FFFn_navn": "Membran, PE-skum"
+      },
+      "PVC-FOLIE": {
+        "FFFn": "ULA13",
+        "FFFn_navn": "Membran, PVC-Folie"
+      },
+      "VANNSIKRING LYS": {
+        "FFFn": "WPA70",
+        "FFFn_navn": "Membran, Vannsikring lys"
+      },
+      "M12 8.8 IHT. NS-EN ISO 4032": {
+        "FFFn": "UQA6",
+        "FFFn_navn": "Mutter, M12 8.8 iht. NS-EN ISO 4032"
+      },
+      "M30 8.8 IHT. NS-EN ISO 4032": {
+        "FFFn": "UQA10",
+        "FFFn_navn": "Mutter, M30 8.8 iht. NS-EN ISO 4032"
+      },
+      "M33 8.8 IHT. NS-EN ISO 4032": {
+        "FFFn": "UQA11",
+        "FFFn_navn": "Mutter, M33 8.8 iht. NS-EN ISO 4032"
+      },
+      "EKSPANDERENDE MØRTEL B45": {
+        "FFFn": "ULA18",
+        "FFFn_navn": "Mørtel, Ekspanderende mørtel B45"
+      },
+      "UTGRAVD NIVÅ": {
+        "FFFn": "UTB1",
+        "FFFn_navn": "Utgravd nivå"
+      },
+      "H1 STÅLSKINNE TIL L2 STÅLSKINNE": {
+        "FFFn": "FQD2",
+        "FFFn_navn": "Overgangsrekkverk, H1 stålskinne til L2 stålskinne"
+      },
+      "H2 STÅLSKINNE TIL L2 STÅLSKINNE": {
+        "FFFn": "FQD31",
+        "FFFn_navn": "Overgangsrekkverk, H2 stålskinne til L2 stålskinne"
+      },
+      "H2 STÅLSKINNE TIL STØTPUTE": {
+        "FFFn": "FQD35",
+        "FFFn_navn": "Overgangsrekkverk, H2 stålskinne til støtpute"
+      },
+      "H2 STÅLSKINNE TIL L2 BETONG": {
+        "FFFn": "FQD50",
+        "FFFn_navn": "Overgangsrekkverk, H2 stålskinne til L2 betong"
+      },
+      "L2 STÅLSKINNE TIL BRUREKKVERK": {
+        "FFFn": "FQD36",
+        "FFFn_navn": "Overgangsrekkverk, L2 stålskinne til brurekkverk"
+      },
+      "L2 STÅLSKINNE TIL L2 BETONG": {
+        "FFFn": "FQD33",
+        "FFFn_navn": "Overgangsrekkverk, L2 stålskinne til L2 betong"
+      },
+      "L2 STÅLSKINNE TIL STØTPUTE": {
+        "FFFn": "FQD32",
+        "FFFn_navn": "Overgangsrekkverk, L2 stålskinne til støtpute"
+      },
+      "N2 STÅLSKINNE TIL H2 BETONG": {
+        "FFFn": "FQD34",
+        "FFFn_navn": "Overgangsrekkverk, N2 stålskinne til H2 betong"
+      },
+      "N2 STÅLSKINNE TIL H2 STÅLSKINNE": {
+        "FFFn": "FQD3",
+        "FFFn_navn": "Overgangsrekkverk, N2 stålskinne til H2 stålskinne"
+      },
+      "N2 STÅLSKINNE TIL L2 BETONG": {
+        "FFFn": "FQD4",
+        "FFFn_navn": "Overgangsrekkverk, N2 stålskinne til L2 betong"
+      },
+      "N2 STÅLSKINNE TIL L2 STÅLSKINNE": {
+        "FFFn": "FQD5",
+        "FFFn_navn": "Overgangsrekkverk, N2 stålskinne til L2 stålskinne"
+      },
+      "N2 STÅLSKINNE TIL STØTPUTE": {
+        "FFFn": "FQD48",
+        "FFFn_navn": "Overgangsrekkverk, N2 stålskinne til støtpute"
+      },
+      "N2 STÅLSKINNE TIL ETTERGIVENDE REKKVERKSENDE": {
+        "FFFn": "FQD51",
+        "FFFn_navn": "Overgangsrekkverk, N2 stålskinne til ettergivende rekkverksende"
+      },
+      "H2 STÅLSKINNE TIL ETTERGIVENDE REKKVERKSENDE": {
+        "FFFn": "FQD52",
+        "FFFn_navn": "Overgangsrekkverk, H2 stålskinne til ettergivende rekkverksende"
+      },
+      "L2 STÅLSKINNE TIL ETTERGIVENDE REKKVERKSENDE": {
+        "FFFn": "FQD53",
+        "FFFn_navn": "Overgangsrekkverk, L2 stålskinne til ettergivende rekkverksende"
+      },
+      "H2 BETONG TIL ETTERGIVENDE REKKVERKSENDE": {
+        "FFFn": "FQD54",
+        "FFFn_navn": "Overgangsrekkverk, H2 betong til ettergivende rekkverksende"
+      },
+      "OK_1000_BTG": {
+        "FFFn": "WPA8",
+        "FFFn_navn": "Overvannskum, OK_1000_BTG"
+      },
+      "OK_1200_BTG": {
+        "FFFn": "WPA9",
+        "FFFn_navn": "Overvannskum, OK_1200_BTG"
+      },
+      "OK_1400_BTG": {
+        "FFFn": "WPA10",
+        "FFFn_navn": "Overvannskum, OK_1400_BTG"
+      },
+      "OK_1600_BTG": {
+        "FFFn": "WPA11",
+        "FFFn_navn": "Overvannskum, OK_1600_BTG"
+      },
+      "OK_2000_BTG": {
+        "FFFn": "WPA12",
+        "FFFn_navn": "Overvannskum, OK_2000_BTG"
+      },
+      "OK_400_PP": {
+        "FFFn": "WPA13",
+        "FFFn_navn": "Overvannskum, OK_400_PP"
+      },
+      "OK_630_PP": {
+        "FFFn": "WPA14",
+        "FFFn_navn": "Overvannskum, OK_630_PP"
+      },
+      "OK_650_BTG": {
+        "FFFn": "WPA15",
+        "FFFn_navn": "Overvannskum, OK_650_BTG"
+      },
+      "OV_110_PPDV OD": {
+        "FFFn": "WPA16",
+        "FFFn_navn": "Overvannsledning, OV_110_PPDV OD"
+      },
+      "OV_160_PPDV OD": {
+        "FFFn": "WPA21",
+        "FFFn_navn": "Overvannsledning, OV_160_PPDV OD"
+      },
+      "OV_160_PVC": {
+        "FFFn": "WPA22",
+        "FFFn_navn": "Overvannsledning, OV_160_PVC"
+      },
+      "OV_200_PPDV ID": {
+        "FFFn": "WPA25",
+        "FFFn_navn": "Overvannsledning, OV_200_PPDV ID"
+      },
+      "OV_200_PPDV OD": {
+        "FFFn": "WPA26",
+        "FFFn_navn": "Overvannsledning, OV_200_PPDV OD"
+      },
+      "OV_200_PVC-ISO": {
+        "FFFn": "WPA28",
+        "FFFn_navn": "Overvannsledning, OV_200_PVC-iso"
+      },
+      "OV_225_PVC": {
+        "FFFn": "WPA29",
+        "FFFn_navn": "Overvannsledning, OV_225_PVC"
+      },
+      "OV_225_PVC-ISO": {
+        "FFFn": "WPA30",
+        "FFFn_navn": "Overvannsledning, OV_225_PVC-iso"
+      },
+      "OV_250_STJ": {
+        "FFFn": "WPA121",
+        "FFFn_navn": "Overvannsledning, OV_250_STJ"
+      },
+      "OV_250_PPDV ID": {
+        "FFFn": "WPA31",
+        "FFFn_navn": "Overvannsledning, OV_250_PPDV ID"
+      },
+      "OV_250_PPDV OD": {
+        "FFFn": "WPA32",
+        "FFFn_navn": "Overvannsledning, OV_250_PPDV OD"
+      },
+      "OV_300_PPDV ID": {
+        "FFFn": "WPA33",
+        "FFFn_navn": "Overvannsledning, OV_300_PPDV ID"
+      },
+      "OV_315_PPDV OD": {
+        "FFFn": "WPA105",
+        "FFFn_navn": "Overvannsledning, OV_315_PPDV OD"
+      },
+      "OV_400_PPDV ID": {
+        "FFFn": "WPA34",
+        "FFFn_navn": "Overvannsledning, OV_400_PPDV ID"
+      },
+      "OV_500_BTG": {
+        "FFFn": "WPA7",
+        "FFFn_navn": "Overvannsledning, OV_500_BTG"
+      },
+      "OV_500_PPDV ID": {
+        "FFFn": "WPA35",
+        "FFFn_navn": "Overvannsledning, OV_500_PPDV ID"
+      },
+      "OV_630_PE 100": {
+        "FFFn": "WPA120",
+        "FFFn_navn": "Overvannsledning, OV_630_PE 100"
+      },
+      "OV_710_PE 100": {
+        "FFFn": "WPA91",
+        "FFFn_navn": "Overvannsledning, OV_710_PE 100"
+      },
+      "BORING UNDER FÔRINGSRØR I BERG, Ø457 MM": {
+        "FFFn": "ULC101",
+        "FFFn_navn": "Pel, Boring under fôringsrør i berg, Ø457 mm"
+      },
+      "BORING UNDER FÔRINGSRØR I BERG, Ø508 MM": {
+        "FFFn": "ULC102",
+        "FFFn_navn": "Pel, Boring under fôringsrør i berg, Ø508 mm"
+      },
+      "ETABLERING AV EKSTRA YTTERRØR OG UTTAK AV MASSER I ØVRE DEL AV PILAR": {
+        "FFFn": "ULC103",
+        "FFFn_navn": "Pel, Etablering av ekstra ytterrør og uttak av masser i øvre del av pilar"
+      },
+      "FÔRINGSRØR FOR KJERNEBORING/KONTROLL/INSPEKSJON": {
+        "FFFn": "ULC104",
+        "FFFn_navn": "Pel, Fôringsrør for kjerneboring/kontroll/inspeksjon"
+      },
+      "FORINGSRØR Ø323,9 MM, S355": {
+        "FFFn": "ULC105",
+        "FFFn_navn": "Pel, Foringsrør Ø323,9 mm, S355"
+      },
+      "FORINGSRØR Ø457 MM, S460": {
+        "FFFn": "ULC106",
+        "FFFn_navn": "Pel, Foringsrør Ø457 mm, S460"
+      },
+      "FORINGSRØR Ø508 MM, S460": {
+        "FFFn": "ULC107",
+        "FFFn_navn": "Pel, Foringsrør Ø508 mm, S460"
+      },
+      "LEVERING AV STÅLKJERNER INKLUSIVE SKJØT": {
+        "FFFn": "ULC108",
+        "FFFn_navn": "Pel, Levering av stålkjerner inklusive skjøt"
+      },
+      "MONTERING AV STÅLKJERNER I FORINGSRØR Ø323,9 MM OG Ø457 MM": {
+        "FFFn": "ULC109",
+        "FFFn_navn": "Pel, Montering av stålkjerner i foringsrør Ø323,9 mm og Ø457 mm"
+      },
+      "MONTERING AV STÅLKJERNER I FORINGSRØR Ø508 MM": {
+        "FFFn": "ULC110",
+        "FFFn_navn": "Pel, Montering av stålkjerner i foringsrør Ø508 mm"
+      },
+      "STØPING AV BETONG I BORERØR": {
+        "FFFn": "ULC113",
+        "FFFn_navn": "Pel, Støping av betong i borerør"
+      },
+      "STÅLRØR FOR BORET PILAR Ø1500 MM": {
+        "FFFn": "ULC114",
+        "FFFn_navn": "Pel, Stålrør for boret pilar Ø1500 mm"
+      },
+      "STÅLRØR FOR BORET PILAR Ø1800 MM": {
+        "FFFn": "ULC115",
+        "FFFn_navn": "Pel, Stålrør for boret pilar Ø1800 mm"
+      },
+      "ENDEAVSLUTNING I BETONGREKKVERK OG DEKSEL OVER FUGESPALTE": {
+        "FFFn": "ULA122",
+        "FFFn_navn": "Plate, Endeavslutning i betongrekkverk og deksel over fugespalte"
+      },
+      "ENDEAVSLUTNINGER I FØRINGSKANT/KANTDRAGER OG DEKSEL OVER FUGESPALTE": {
+        "FFFn": "ULA150",
+        "FFFn_navn": "Plate, Endeavslutninger i føringskant/kantdrager og deksel over fugespalte"
+      },
+      "GJENSTÅENDE FORSKALING AV RUSTFRITT STÅL UNDER FUGE": {
+        "FFFn": "ULA143",
+        "FFFn_navn": "Plate, Gjenstående forskaling av rustfritt stål under fuge"
+      },
+      "LEVERING AV STÅLMATERIALER": {
+        "FFFn": "ULE105",
+        "FFFn_navn": "Stålbjelke, Levering av stålmaterialer"
+      },
+      "BETONGREKKVERK H2": {
+        "FFFn": "FQD45",
+        "FFFn_navn": "Rekkverk, Betongrekkverk H2"
+      },
+      "BETONGREKKVERK L2": {
+        "FFFn": "FQD44",
+        "FFFn_navn": "Rekkverk, Betongrekkverk L2"
+      },
+      "DILATASJONSSKJØTER": {
+        "FFFn": "FQD101",
+        "FFFn_navn": "Rekkverk, Dilatasjonsskjøter"
+      },
+      "ENDEAVSLUTNING": {
+        "FFFn": "FQD102",
+        "FFFn_navn": "Rekkverk, Endeavslutning"
+      },
+      "GS-REKKVERK": {
+        "FFFn": "FQD49",
+        "FFFn_navn": "Rekkverk, GS-rekkverk"
+      },
+      "REKKVERK AV PLASSTØPT BETONG": {
+        "FFFn": "FQD47",
+        "FFFn_navn": "Rekkverk, Rekkverk av plasstøpt betong"
+      },
+      "SIKRINGSGJERDER": {
+        "FFFn": "FQD103",
+        "FFFn_navn": "Rekkverk, Sikringsgjerder"
+      },
+      "STØYSKJERMER": {
+        "FFFn": "FQD106",
+        "FFFn_navn": "Rekkverk, Støyskjermer"
+      },
+      "TOPPREKKVERK I STÅL PÅ BETONGREKKVERK": {
+        "FFFn": "FQD105",
+        "FFFn_navn": "Rekkverk, Topprekkverk i stål på betongrekkverk"
+      },
+      "YTTERREKKVERK": {
+        "FFFn": "FQD104",
+        "FFFn_navn": "Rekkverk, Ytterrekkverk"
+      },
+      "STYRKEKLASSE: H2": {
+        "FFFn": "FQD29",
+        "FFFn_navn": "Rekkverksende nedføring, Styrkeklasse: H2"
+      },
+      "STYRKEKLASSE: N2": {
+        "FFFn": "FQD1",
+        "FFFn_navn": "Rekkverksende nedføring, Styrkeklasse: N2"
+      },
+      "H1": {
+        "FFFn": "FQD6",
+        "FFFn_navn": "Rekkverkskinne, H1"
+      },
+      "H1 STÅLSKINNE TIL ETTERGIVENDE REKKVERKSENDE": {
+        "FFFn": "FQD7",
+        "FFFn_navn": "Rekkverkskinne, H1 stålskinne til ettergivende rekkverksende"
+      },
+      "H1W2": {
+        "FFFn": "FQD8",
+        "FFFn_navn": "Rekkverkskinne, H1W2"
+      },
+      "H2": {
+        "FFFn": "FQD24",
+        "FFFn_navn": "Rekkverkskinne, H2"
+      },
+      "HÅNDLØPER I STÅL": {
+        "FFFn": "FQD30",
+        "FFFn_navn": "Rekkverkskinne, Håndløper i stål"
+      },
+      "KATASTROFEÅPNING, L2": {
+        "FFFn": "FQD28",
+        "FFFn_navn": "Rekkverkskinne, Katastrofeåpning, L2"
+      },
+      "L2": {
+        "FFFn": "FQD9",
+        "FFFn_navn": "Rekkverkskinne, L2"
+      },
+      "N2": {
+        "FFFn": "FQD10",
+        "FFFn_navn": "Rekkverkskinne, N2"
+      },
+      "TOPPREKKVERK I STÅL": {
+        "FFFn": "FQD11",
+        "FFFn_navn": "Rekkverkskinne, Topprekkverk i stål"
+      },
+      "SIKKERHETSKLASSE 110 KM/T": {
+        "FFFn": "FQD19",
+        "FFFn_navn": "Rekkverksstolpe, Sikkerhetsklasse 110 km/t"
+      },
+      "STYRKEKLASSE H1": {
+        "FFFn": "FQD21",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse H1"
+      },
+      "STYRKEKLASSE H2": {
+        "FFFn": "FQD22",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse H2"
+      },
+      "STYRKEKLASSE H2, ETTERGIVENDE REKKVERKSENDE": {
+        "FFFn": "FQD43",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse H2, Ettergivende rekkverksende"
+      },
+      "STYRKEKLASSE L2": {
+        "FFFn": "FQD23",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse L2"
+      },
+      "STYRKEKLASSE L2, ETTERGIVENDE REKKVERKSENDE": {
+        "FFFn": "FQD20",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse L2, Ettergivende rekkverksende"
+      },
+      "STYRKEKLASSE N2": {
+        "FFFn": "FQD12",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse N2"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK H1 STÅLSKINNE TIL ETTERGIVENDE REKKVERKSENDE": {
+        "FFFn": "FQD13",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk H1 stålskinne til ettergivende rekkverksende"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK H1 STÅLSKINNE TIL L2 STÅLSKINNE": {
+        "FFFn": "FQD14",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk H1 stålskinne til L2 stålskinne"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK H2 STÅLSKINNE TIL L2 STÅLSKINNE": {
+        "FFFn": "FQD42",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk H2 stålskinne til L2 stålskinne"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK H2 STÅLSKINNE TIL STØTPUTE": {
+        "FFFn": "FQD39",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk H2 stålskinne til støtpute"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK L2 STÅLSKINNE TIL BRUREKKVERK": {
+        "FFFn": "FQD40",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk L2 stålskinne til brurekkverk"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK L2 STÅLSKINNE TIL L2 BETONG": {
+        "FFFn": "FQD37",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk L2 stålskinne til L2 betong"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK L2 STÅLSKINNE TIL STØTPUTE": {
+        "FFFn": "FQD38",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk L2 stålskinne til støtpute"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK N2 STÅLSKINNE TIL H2 BETONG": {
+        "FFFn": "FQD41",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk N2 stålskinne til H2 betong"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK N2 STÅLSKINNE TIL H2 STÅLSKINNE": {
+        "FFFn": "FQD15",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk N2 stålskinne til H2 stålskinne"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK N2 STÅLSKINNE TIL L2 BETONG": {
+        "FFFn": "FQD16",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk N2 stålskinne til L2 betong"
+      },
+      "STYRKEKLASSE OVERGANGSREKKVERK N2 STÅLSKINNE TIL L2 STÅLSKINNE": {
+        "FFFn": "FQD17",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse Overgangsrekkverk N2 stålskinne til L2 stålskinne"
+      },
+      "STYRKEKLASSE P2": {
+        "FFFn": "FQD25",
+        "FFFn_navn": "Rekkverksstolpe, Styrkeklasse P2"
+      },
+      "STÅLSTOLPE": {
+        "FFFn": "FQD26",
+        "FFFn_navn": "Rekkverksstolpe, Stålstolpe"
+      },
+      "SIKKERHETSRIST": {
+        "FFFn": "ULA124",
+        "FFFn_navn": "Rist, Sikkerhetsrist"
+      },
+      "VENTILASJONSRIST": {
+        "FFFn": "ULA125",
+        "FFFn_navn": "Rist, Ventilasjonsrist"
+      },
+      "273 X 6.3": {
+        "FFFn": "ULR202",
+        "FFFn_navn": "Rørvegg, 273 x 6.3"
+      },
+      "323.9 X 8": {
+        "FFFn": "ULR201",
+        "FFFn_navn": "Rørvegg, 323.9 x 8"
+      },
+      "SFG_1000_BTG": {
+        "FFFn": "UCA10",
+        "FFFn_navn": "Sandfang, SFG_1000_BTG"
+      },
+      "SFG_650_BTG": {
+        "FFFn": "UCA9",
+        "FFFn_navn": "Sandfang, SFG_650_BTG"
+      },
+      "SFI_1000_BTG": {
+        "FFFn": "UCA41",
+        "FFFn_navn": "Sandfang, SFI_1000_BTG"
+      },
+      "SFI_650_BTG": {
+        "FFFn": "UCA40",
+        "FFFn_navn": "Sandfang, SFI_650_BTG"
+      },
+      "SFK_1000_BTG": {
+        "FFFn": "UCA12",
+        "FFFn_navn": "Sandfang, SFK_1000_BTG"
+      },
+      "SFK_650_BTG": {
+        "FFFn": "UCA11",
+        "FFFn_navn": "Sandfang, SFK_650_BTG"
+      },
+      "SFR_1000_BTG": {
+        "FFFn": "UCA14",
+        "FFFn_navn": "Sandfang, SFR_1000_BTG"
+      },
+      "SFR_650_BTG": {
+        "FFFn": "UCA13",
+        "FFFn_navn": "Sandfang, SFR_650_BTG"
+      },
+      "1090": {
+        "FFFn": "EAA3",
+        "FFFn_navn": "Signalhode, 1090"
+      },
+      "1094": {
+        "FFFn": "EAA2",
+        "FFFn_navn": "Signalhode, 1094"
+      },
+      "1098": {
+        "FFFn": "EAA1",
+        "FFFn_navn": "Signalhode, 1098"
+      },
+      "BRANNVANNSSKAP": {
+        "FFFn": "UCA28",
+        "FFFn_navn": "Skap, Brannvannsskap"
+      },
+      "9X_BETONGFUNDAMENT_SH5T 800KG_11050_40": {
+        "FFFn": "PHD43",
+        "FFFn_navn": "Skiltfundament, 9x_Betongfundament_SH5T 800kg_11050_40"
+      },
+      "9720093 SKILTFUNDAMENT BGS MED SKRUELÅS": {
+        "FFFn": "PHD1",
+        "FFFn_navn": "Skiltfundament, 9720093 Skiltfundament BGS med skruelås"
+      },
+      "9720094 SKILTFUNDAMENT BGL MED PLASTKILELÅS": {
+        "FFFn": "PHD30",
+        "FFFn_navn": "Skiltfundament, 9720094 skiltfundament BGL med plastkilelås"
+      },
+      "9720124_BETONGFUNDAMENT_FOR_4425_1300KG_MTREKKERØR11040": {
+        "FFFn": "PHD35",
+        "FFFn_navn": "Skiltfundament, 9720124_Betongfundament_for_4425_1300kg_mtrekkerør11040"
+      },
+      "9720125_BETONGFUNDAMENT_4430T_11050_40": {
+        "FFFn": "PHD36",
+        "FFFn_navn": "Skiltfundament, 9720125_Betongfundament_4430T_11050_40"
+      },
+      "9720547_BETONGFUNDAMENT_SH5 800KG_KPL": {
+        "FFFn": "PHD37",
+        "FFFn_navn": "Skiltfundament, 9720547_Betongfundament_SH5 800kg_kpl"
+      },
+      "9720548_LATTIX 4425": {
+        "FFFn": "PHD2",
+        "FFFn_navn": "Skiltfundament, 9720548_Lattix 4425"
+      },
+      "9720973 FUNDAMENT SH4 T": {
+        "FFFn": "PHD3",
+        "FFFn_navn": "Skiltfundament, 9720973 Fundament SH4 T"
+      },
+      "9720974 FUNDAMENT SH4": {
+        "FFFn": "PHD4",
+        "FFFn_navn": "Skiltfundament, 9720974 Fundament SH4"
+      },
+      "9720975 FUNDAMENT SH3 T": {
+        "FFFn": "PHD5",
+        "FFFn_navn": "Skiltfundament, 9720975 Fundament SH3 T"
+      },
+      "9720976 FUNDAMENT SH3": {
+        "FFFn": "PHD39",
+        "FFFn_navn": "Skiltfundament, 9720976 Fundament SH3"
+      },
+      "9720977 FUNDAMENT SH2 T": {
+        "FFFn": "PHD6",
+        "FFFn_navn": "Skiltfundament, 9720977 Fundament SH2 T"
+      },
+      "9720978 FUNDAMENT SH2": {
+        "FFFn": "PHD31",
+        "FFFn_navn": "Skiltfundament, 9720978 Fundament SH2"
+      },
+      "9720979 FUNDAMENT SH1 T": {
+        "FFFn": "PHD7",
+        "FFFn_navn": "Skiltfundament, 9720979 Fundament SH1 T"
+      },
+      "9720981 FUNDAMENT SH1": {
+        "FFFn": "PHD32",
+        "FFFn_navn": "Skiltfundament, 9720981 Fundament SH1"
+      },
+      "9720981 FUNDAMENT SH1 CC120X120 M20": {
+        "FFFn": "PHD8",
+        "FFFn_navn": "Skiltfundament, 9720981 Fundament SH1 cc120x120 M20"
+      },
+      "9X_BETONGFUNDAMENT_SH6T 1300KG_11050_40": {
+        "FFFn": "PHD44",
+        "FFFn_navn": "Skiltfundament, 9x_Betongfundament_SH6T 1300kg_11050_40"
+      },
+      "LATTIX MED TREKKERØR": {
+        "FFFn": "PHD9",
+        "FFFn_navn": "Skiltfundament, LATTIX med trekkerør"
+      },
+      "LATTIX UTEN TREKKERØR": {
+        "FFFn": "PHD10",
+        "FFFn_navn": "Skiltfundament, LATTIX uten trekkerør"
+      },
+      "NORSAFE F-NM120 15L H700MM": {
+        "FFFn": "PHD11",
+        "FFFn_navn": "Skiltfundament, Norsafe F-NM120 15L H700mm"
+      },
+      "NORSAFE F-NM89-7.5L H700MM": {
+        "FFFn": "PHD12",
+        "FFFn_navn": "Skiltfundament, Norsafe F-NM89-7.5L H700mm"
+      },
+      "SAFE HIT MED TREKKERØR": {
+        "FFFn": "PHD13",
+        "FFFn_navn": "Skiltfundament, SAFE HIT med trekkerør"
+      },
+      "SAFE HIT UTEN TREKKERØR": {
+        "FFFn": "PHD14",
+        "FFFn_navn": "Skiltfundament, SAFE HIT uten trekkerør"
+      },
+      "SKILTFUNDAMENT": {
+        "FFFn": "PHD15",
+        "FFFn_navn": "Skiltfundament, Skiltfundament"
+      },
+      "SKILTFUNDAMENT Ø60 MM": {
+        "FFFn": "PHD18",
+        "FFFn_navn": "Skiltfundament, Skiltfundament Ø60 mm"
+      },
+      "SKILTFUNDAMENT Ø89 MM": {
+        "FFFn": "PHD19",
+        "FFFn_navn": "Skiltfundament, Skiltfundament Ø89 mm"
+      },
+      "STANDARD BETONGFUNDAMENT H=500MM": {
+        "FFFn": "PHD16",
+        "FFFn_navn": "Skiltfundament, Standard betongfundament H=500mm"
+      },
+      "STANDARD BETONGFUNDAMENT H=650MM": {
+        "FFFn": "PHD17",
+        "FFFn_navn": "Skiltfundament, Standard betongfundament H=650mm"
+      },
+      "GITTERMAST (520MM)": {
+        "FFFn": "PHD40",
+        "FFFn_navn": "Skiltmast, Gittermast (520mm)"
+      },
+      "LATTIX - 4430 (300MM)": {
+        "FFFn": "PHD38",
+        "FFFn_navn": "Skiltmast, Lattix - 4430 (300mm)"
+      },
+      "LATTIX LARGE - 4425 (250MM)": {
+        "FFFn": "PHD20",
+        "FFFn_navn": "Skiltmast, Lattix Large - 4425 (250mm)"
+      },
+      "SKILTMAST Ø60 MM": {
+        "FFFn": "PHD28",
+        "FFFn_navn": "Skiltmast, Skiltmast Ø60 mm"
+      },
+      "SKILTMAST Ø89 MM": {
+        "FFFn": "PHD29",
+        "FFFn_navn": "Skiltmast, Skiltmast Ø89 mm"
+      },
+      "SKILTMAST, NORSAFE NM120-15 (120MM)": {
+        "FFFn": "PHD21",
+        "FFFn_navn": "Skiltmast, Skiltmast, Norsafe NM120-15 (120mm)"
+      },
+      "SKILTMAST, NORSAFE NM89-7.5 (89MM)": {
+        "FFFn": "PHD22",
+        "FFFn_navn": "Skiltmast, Skiltmast, Norsafe NM89-7.5 (89mm)"
+      },
+      "SKILTMAST, SKILTSTOLPE Ø60MM": {
+        "FFFn": "PHD23",
+        "FFFn_navn": "Skiltmast, Skiltmast, Skiltstolpe ø60mm"
+      },
+      "SKILTSTOLPE Ø60MM": {
+        "FFFn": "PHD33",
+        "FFFn_navn": "Skiltmast, Skiltstolpe ø60mm"
+      },
+      "SKILTSTOLPE Ø89MM": {
+        "FFFn": "PHD34",
+        "FFFn_navn": "Skiltmast, Skiltstolpe ø89mm"
+      },
+      "TRAFTECH SAFEHIT SH1 NE MAST (90MM)": {
+        "FFFn": "PHD24",
+        "FFFn_navn": "Skiltmast, Traftech SafeHit SH1 NE mast (90mm)"
+      },
+      "TRAFTECH SAFEHIT SH2 NE MAST (145MM)": {
+        "FFFn": "PHD25",
+        "FFFn_navn": "Skiltmast, Traftech SafeHit SH2 NE mast (145mm)"
+      },
+      "TRAFTECH SAFEHIT SH3 NE MAST (155MM)": {
+        "FFFn": "PHD26",
+        "FFFn_navn": "Skiltmast, Traftech SafeHit SH3 NE mast (155mm)"
+      },
+      "TRAFTECH SAFEHIT SH4 NE MAST (165MM)": {
+        "FFFn": "PHD27",
+        "FFFn_navn": "Skiltmast, Traftech SafeHit SH4 NE mast (165mm)"
+      },
+      "TRAFTECH SAFEHIT SH5 NE MAST (180MM)": {
+        "FFFn": "PHD42",
+        "FFFn_navn": "Skiltmast, Traftech SafeHit SH5 NE mast (180mm)"
+      },
+      "TRAFTECH SAFEHIT SH6 NE MAST (230MM)": {
+        "FFFn": "PHD41",
+        "FFFn_navn": "Skiltmast, Traftech SafeHit SH6 NE mast (230mm)"
+      },
+      "NORSAFE NM89-7.5 (89MM)": {
+        "FFFn": "PHD45",
+        "FFFn_navn": "Skiltmast, Norsafe NM89-7.5 (89mm)"
+      },
+      "9717749_K115_B": {
+        "FFFn": "UBF1",
+        "FFFn_navn": "Skiltportalfundament, 9717749_K115_B"
+      },
+      "9717749_K115_F": {
+        "FFFn": "UBF2",
+        "FFFn_navn": "Skiltportalfundament, 9717749_K115_F"
+      },
+      "9717752_K117_B": {
+        "FFFn": "UBF3",
+        "FFFn_navn": "Skiltportalfundament, 9717752_K117_B"
+      },
+      "9717752_K117_F": {
+        "FFFn": "UBF12",
+        "FFFn_navn": "Skiltportalfundament, 9717752_K117_F"
+      },
+      "9721432_K130_B": {
+        "FFFn": "UBF4",
+        "FFFn_navn": "Skiltportalfundament, 9721432_K130_B"
+      },
+      "FUNDAMENT_SÅLE_L_1_2M_TR_RØR_3X110_40_B": {
+        "FFFn": "UBF13",
+        "FFFn_navn": "Skiltportalfundament, Fundament_såle_L_1_2m_Tr_rør_3x110_40_B"
+      },
+      "FUNDAMENT_SÅLE_L_1_2M_TR_RØR_3X110_40_F": {
+        "FFFn": "UBF14",
+        "FFFn_navn": "Skiltportalfundament, Fundament_såle_L_1_2m_Tr_rør_3x110_40_F"
+      },
+      "FUNDAMENT_SÅLE_K_1_2M_TR_RØR_3X110_40_H": {
+        "FFFn": "UBF15",
+        "FFFn_navn": "Skiltportalfundament, Fundament_såle_K_1_2m_Tr_rør_3x110_40_H"
+      },
+      "K115_TELIA": {
+        "FFFn": "UBF5",
+        "FFFn_navn": "Skiltportalfundament, K115_Telia"
+      },
+      "K135_B": {
+        "FFFn": "UBF6",
+        "FFFn_navn": "Skiltportalfundament, K135_B"
+      },
+      "K137_B": {
+        "FFFn": "UBF7",
+        "FFFn_navn": "Skiltportalfundament, K137_B"
+      },
+      "K137_B_2": {
+        "FFFn": "UBF8",
+        "FFFn_navn": "Skiltportalfundament, K137_B_2"
+      },
+      "K137_F": {
+        "FFFn": "UBF9",
+        "FFFn_navn": "Skiltportalfundament, K137_F"
+      },
+      "PINNEFUNDAMENTER": {
+        "FFFn": "UBF10",
+        "FFFn_navn": "Skiltportalfundament, Pinnefundamenter"
+      },
+      "SÅLEFUNDAMENTER": {
+        "FFFn": "UBF11",
+        "FFFn_navn": "Skiltportalfundament, Sålefundamenter"
+      },
+      "K115_HØYRE_TELIA": {
+        "FFFn": "UBF16",
+        "FFFn_navn": "Skiltportalfundament, K115_Høyre_Telia"
+      },
+      "9717751_K116_B": {
+        "FFFn": "UBF17",
+        "FFFn_navn": "Skiltportalfundament, 9717751_K116_B"
+      },
+      "SKA16": {
+        "FFFn": "NCA3",
+        "FFFn_navn": "Skjelettasfalt, Ska16"
+      },
+      "SLITELAGKULVERT": {
+        "FFFn": "NCA4",
+        "FFFn_navn": "Slitelag kulvert, SlitelagKulvert"
+      },
+      "SK_1400_BTG": {
+        "FFFn": "UCA15",
+        "FFFn_navn": "Spillvannskum, SK_1400_BTG"
+      },
+      "SP_90_PE 100": {
+        "FFFn": "WPA112",
+        "FFFn_navn": "Spillvannsledning, SP_90_PE 100"
+      },
+      "SP_125_PE 100": {
+        "FFFn": "WPA113",
+        "FFFn_navn": "Spillvannsledning, SP_125_PE 100"
+      },
+      "SP_110_PVC": {
+        "FFFn": "WPA86",
+        "FFFn_navn": "Spillvannsledning, SP_110_PVC"
+      },
+      "SP_125_PVC": {
+        "FFFn": "WPA93",
+        "FFFn_navn": "Spillvannsledning, SP_125_PVC"
+      },
+      "SP_160_PVC": {
+        "FFFn": "WPA39",
+        "FFFn_navn": "Spillvannsledning, SP_160_PVC"
+      },
+      "SP_250_PVC": {
+        "FFFn": "WPA40",
+        "FFFn_navn": "Spillvannsledning, SP_250_PVC"
+      },
+      "SP_315_PVC": {
+        "FFFn": "WPA41",
+        "FFFn_navn": "Spillvannsledning, SP_315_PVC"
+      },
+      "B35 MED PP FIBER": {
+        "FFFn": "WPA71",
+        "FFFn_navn": "Sprøytebetong, B35 med PP fiber"
+      },
+      "SPRØYTEBETONG": {
+        "FFFn": "ULK201",
+        "FFFn_navn": "Sprøytebetong, Sprøytebetong"
+      },
+      "WX > 1700 CM3/M": {
+        "FFFn": "ULS202",
+        "FFFn_navn": "Spunt, Wx > 1700 cm3/m"
+      },
+      "WX > 2800 CM3/M": {
+        "FFFn": "ULS201",
+        "FFFn_navn": "Spunt, Wx > 2800 cm3/m"
+      },
+      "STANGSTAG": {
+        "FFFn": "ULL201",
+        "FFFn_navn": "Stag, Stangstag"
+      },
+      "ST_200_DV": {
+        "FFFn": "UCA16",
+        "FFFn_navn": "Stake-/Spylekum, ST_200_DV"
+      },
+      "ST_400_DV": {
+        "FFFn": "UCA17",
+        "FFFn_navn": "Stake-/Spylekum, ST_400_DV"
+      },
+      "ST_630_DV": {
+        "FFFn": "UCA18",
+        "FFFn_navn": "Stake-/Spylekum, ST_630_DV"
+      },
+      "ST_630_PP": {
+        "FFFn": "UCA19",
+        "FFFn_navn": "Stake-/Spylekum, ST_630_PP"
+      },
+      "ST_200_PP": {
+        "FFFn": "UCA20",
+        "FFFn_navn": "Stake-/Spylekum, ST_200_PP"
+      },
+      "ST_400": {
+        "FFFn": "UCA21",
+        "FFFn_navn": "Stake-/Spylekum, ST_400"
+      },
+      "ST_400_PP": {
+        "FFFn": "UCA22",
+        "FFFn_navn": "Stake-/Spylekum, ST_400_PP"
+      },
+      "ST_425_PP": {
+        "FFFn": "UCA42",
+        "FFFn_navn": "Stake-/Spylekum, ST_425_PP"
+      },
+      "GRANITT": {
+        "FFFn": "NDA1",
+        "FFFn_navn": "Stein, Granitt"
+      },
+      "NATURSTEIN": {
+        "FFFn": "NDA2",
+        "FFFn_navn": "Stein, Naturstein"
+      },
+      "OV_1000_BTG": {
+        "FFFn": "WPA17",
+        "FFFn_navn": "Stikkrenne, OV_1000_BTG"
+      },
+      "OV_1000_PPDV ID": {
+        "FFFn": "WPA60",
+        "FFFn_navn": "Stikkrenne, OV_1000_PPDV ID"
+      },
+      "OV_1016_STL": {
+        "FFFn": "WPA85",
+        "FFFn_navn": "Stikkrenne, OV_1016_STL"
+      },
+      "OV_1200_BTG": {
+        "FFFn": "WPA18",
+        "FFFn_navn": "Stikkrenne, OV_1200_BTG"
+      },
+      "OV_1200_PPDV ID": {
+        "FFFn": "WPA68",
+        "FFFn_navn": "Stikkrenne, OV_1200_PPDV ID"
+      },
+      "OV_1400_BTG": {
+        "FFFn": "WPA19",
+        "FFFn_navn": "Stikkrenne, OV_1400_BTG"
+      },
+      "OV_1400_PPDV ID": {
+        "FFFn": "WPA73",
+        "FFFn_navn": "Stikkrenne, OV_1400_PPDV ID"
+      },
+      "OV_1500_PPDV ID": {
+        "FFFn": "WPA106",
+        "FFFn_navn": "Stikkrenne, OV_1500_PPDV ID"
+      },
+      "OV_1600_BTG": {
+        "FFFn": "WPA23",
+        "FFFn_navn": "Stikkrenne, OV_1600_BTG"
+      },
+      "OV_1600_PE100": {
+        "FFFn": "WPA97",
+        "FFFn_navn": "Stikkrenne, OV_1600_PE100"
+      },
+      "OV_1600_PPDV ID": {
+        "FFFn": "WPA74",
+        "FFFn_navn": "Stikkrenne, OV_1600_PPDV ID"
+      },
+      "OV_1800_BTG": {
+        "FFFn": "WPA79",
+        "FFFn_navn": "Stikkrenne, OV_1800_BTG"
+      },
+      "OV_1800_PPDV ID": {
+        "FFFn": "WPA75",
+        "FFFn_navn": "Stikkrenne, OV_1800_PPDV ID"
+      },
+      "OV_2000_BTG": {
+        "FFFn": "WPA80",
+        "FFFn_navn": "Stikkrenne, OV_2000_BTG"
+      },
+      "OV_2000_PPDV ID": {
+        "FFFn": "WPA76",
+        "FFFn_navn": "Stikkrenne, OV_2000_PPDV ID"
+      },
+      "OV_2200_PPDV ID": {
+        "FFFn": "WPA77",
+        "FFFn_navn": "Stikkrenne, OV_2200_PPDV ID"
+      },
+      "OV_2400_BTG": {
+        "FFFn": "WPA81",
+        "FFFn_navn": "Stikkrenne, OV_2400_BTG"
+      },
+      "OV_600_BTG": {
+        "FFFn": "WPA78",
+        "FFFn_navn": "Stikkrenne, OV_600_BTG"
+      },
+      "OV_600_PPDV ID": {
+        "FFFn": "WPA36",
+        "FFFn_navn": "Stikkrenne, OV_600_PPDV ID"
+      },
+      "OV_610_STL": {
+        "FFFn": "WPA82",
+        "FFFn_navn": "Stikkrenne, OV_610_STL"
+      },
+      "OV_660_STL": {
+        "FFFn": "WPA83",
+        "FFFn_navn": "Stikkrenne, OV_660_STL"
+      },
+      "OV_800_BTG": {
+        "FFFn": "WPA38",
+        "FFFn_navn": "Stikkrenne, OV_800_BTG"
+      },
+      "OV_800_PPDV ID": {
+        "FFFn": "WPA37",
+        "FFFn_navn": "Stikkrenne, OV_800_PPDV ID"
+      },
+      "OV_813_STL": {
+        "FFFn": "WPA84",
+        "FFFn_navn": "Stikkrenne, OV_813_STL"
+      },
+      "STIKNINGSOBJEKT": {
+        "FFFn": "BGA1",
+        "FFFn_navn": "Stikningsobjekt, Stikningsobjekt"
+      },
+      "INJISERINGSSLANGE": {
+        "FFFn": "ULA131",
+        "FFFn_navn": "Støpeskjøt, Injiseringsslange"
+      },
+      "SVELLEBÅND": {
+        "FFFn": "ULA127",
+        "FFFn_navn": "Støpeskjøt, Svellebånd"
+      },
+      "STØTPUTE": {
+        "FFFn": "FQD27",
+        "FFFn_navn": "Støtpute, Støtpute"
+      },
+      "DIM 1000,200,150000": {
+        "FFFn": "RQC1",
+        "FFFn_navn": "Støyskjerm, Dim 1000,200,150000"
+      },
+      "DIM 1000,200,8000": {
+        "FFFn": "RQC2",
+        "FFFn_navn": "Støyskjerm, Dim 1000,200,8000"
+      },
+      "HØYDE 2000": {
+        "FFFn": "RQC4",
+        "FFFn_navn": "Støyskjerm, Høyde 2000"
+      },
+      "HØYDE 2500": {
+        "FFFn": "RQC5",
+        "FFFn_navn": "Støyskjerm, Høyde 2500"
+      },
+      "HØYDE 3000": {
+        "FFFn": "RQC6",
+        "FFFn_navn": "Støyskjerm, Høyde 3000"
+      },
+      "STØYSKJERM PÅ REKKVERK": {
+        "FFFn": "RQC3",
+        "FFFn_navn": "Støyskjerm, Støyskjerm på rekkverk"
+      },
+      "STÅLBJELKE TILPASSET TOPP RØRVEGG": {
+        "FFFn": "ULD6",
+        "FFFn_navn": "Stålbjelke, Stålbjelke tilpasset topp rørvegg"
+      },
+      "STÅLBJELKE TIL PUTE MED MED STEGAVSTIVERE, MINIMUM S355J2H": {
+        "FFFn": "ULD3",
+        "FFFn_navn": "Stålbjelke HEB, Stålbjelke til pute med med stegavstivere, minimum S355J2H"
+      },
+      "S355J2H": {
+        "FFFn": "ULE1",
+        "FFFn_navn": "Stålbjelke HUP, S355J2H"
+      },
+      "MINIMUM S355J2H, DIAMETER 273 MM GODSTYKKELSE 6,3 MM": {
+        "FFFn": "ULD4",
+        "FFFn_navn": "Stålrør Ø273 t6,3, Minimum S355J2H, diameter 273 mm godstykkelse 6,3 mm"
+      },
+      "MINIMUM S355J2H, DIAMETER 323,9 MM GODSTYKKELSE 6,3 MM": {
+        "FFFn": "ULD1",
+        "FFFn_navn": "Stålrør Ø323,9 t6,3, Minimum S355J2H, diameter 323,9 mm godstykkelse 6,3 mm"
+      },
+      "MINIMUM S355J2H, DIAMETER 323,9 MM GODSTYKKELSE 8 MM": {
+        "FFFn": "ULD2",
+        "FFFn_navn": "Stålrør Ø323,9 t8, Minimum S355J2H, diameter 323,9 mm godstykkelse 8 mm"
+      },
+      "OPPMERKSOMHETSFELT": {
+        "FFFn": "PHF2",
+        "FFFn_navn": "Taktil merking, Oppmerksomhetsfelt"
+      },
+      "VARSELFELT": {
+        "FFFn": "PHF1",
+        "FFFn_navn": "Taktil merking, Varselfelt"
+      },
+      "SPESIALKUM TVERRSLAG": {
+        "FFFn": "WDB1",
+        "FFFn_navn": "Trekkekum, Spesialkum tverrslag"
+      },
+      "TREKKEKUM I NØDKIOSK": {
+        "FFFn": "WDB2",
+        "FFFn_navn": "Trekkekum, Trekkekum i nødkiosk"
+      },
+      "TREKKERØR 110MM ORANSJE": {
+        "FFFn": "WPA43",
+        "FFFn_navn": "Trekkerør 110mm oransje"
+      },
+      "TREKKERØR 110MM ORANSJE FLEKSIBELT": {
+        "FFFn": "WPA44",
+        "FFFn_navn": "Trekkerør 110mm oransje fleksibelt"
+      },
+      "TREKKERØR 110MM RØD NETTEIER": {
+        "FFFn": "WPA45",
+        "FFFn_navn": "Trekkerør 110mm rød netteier"
+      },
+      "TREKKERØR 110MM RØD NETTEIER FLEKSIBELT": {
+        "FFFn": "WPA46",
+        "FFFn_navn": "Trekkerør 110mm rød netteier fleksibelt"
+      },
+      "TREKKERØR 160MM RØD NETTEIER": {
+        "FFFn": "WPA47",
+        "FFFn_navn": "Trekkerør 160mm rød netteier"
+      },
+      "TREKKERØR 40MM ORANSJE": {
+        "FFFn": "WPA48",
+        "FFFn_navn": "Trekkerør 40mm oransje"
+      },
+      "TREKKERØR 4X20MM TELEAKTØR": {
+        "FFFn": "WPA49",
+        "FFFn_navn": "Trekkerør 4x20mm teleaktør"
+      },
+      "TREKKERØR 50MM ORANSJE FLEKSIBELT": {
+        "FFFn": "WPA50",
+        "FFFn_navn": "Trekkerør 50mm oransje fleksibelt"
+      },
+      "TREKKERØR 75MM ORANSJE": {
+        "FFFn": "WPA51",
+        "FFFn_navn": "Trekkerør 75mm oransje"
+      },
+      "TREKKERØR 75MM ORANSJE FLEKSIBELT": {
+        "FFFn": "WPA52",
+        "FFFn_navn": "Trekkerør 75mm oransje fleksibelt"
+      },
+      "TREKKERØR 75MM RØD NETTEIER": {
+        "FFFn": "WPA53",
+        "FFFn_navn": "Trekkerør 75mm rød netteier"
+      },
+      "TREKKERØR 75MM RØD NETTEIER FLEKSIBELT": {
+        "FFFn": "WPA54",
+        "FFFn_navn": "Trekkerør 75mm rød netteier fleksibelt"
+      },
+      "TREKKERØR 7MM TELEAKTØR": {
+        "FFFn": "WPA55",
+        "FFFn_navn": "Trekkerør 7mm teleaktør"
+      },
+      "KOMBIKRYSS_200/300_M-SPINDELFORLENGER": {
+        "FFFn": "WPA42",
+        "FFFn_navn": "Trekkerør, rørledning, Kombikryss_200/300_m-Spindelforlenger"
+      },
+      "BERGTUNNEL": {
+        "FFFn": "ULP1",
+        "FFFn_navn": "Tunnelløp, Bergtunnel"
+      },
+      "BUSS": {
+        "FFFn": "PHE15",
+        "FFFn_navn": "Tverrgående oppmerking, BUSS"
+      },
+      "KJØRERETNING (1034.1R)": {
+        "FFFn": "PHE13",
+        "FFFn_navn": "Tverrgående oppmerking, Kjøreretning (1034.1R)"
+      },
+      "VIKELINJE": {
+        "FFFn": "PHE14",
+        "FFFn_navn": "Tverrgående oppmerking, Vikelinje"
+      },
+      "FARTSHUMP": {
+        "FFFn": "PHE17",
+        "FFFn_navn": "Tverrgående oppmerking, Fartshump"
+      },
+      "KJØRERETNING (1034.1RH)": {
+        "FFFn": "PHE21",
+        "FFFn_navn": "Tverrgående oppmerking, Kjøreretning (1034.1RH)"
+      },
+      "KJØRERETNING (1034.1V)": {
+        "FFFn": "PHE22",
+        "FFFn_navn": "Tverrgående oppmerking, Kjøreretning (1034.1V)"
+      },
+      "GANGFELT": {
+        "FFFn": "PHE18",
+        "FFFn_navn": "Tverrgående oppmerking, Gangfelt"
+      },
+      "TK1 - RETT LOKK": {
+        "FFFn": "UBA1",
+        "FFFn_navn": "VA Trekkekum, TK1 - Rett lokk"
+      },
+      "TK2 - RETT LOKK": {
+        "FFFn": "UBA2",
+        "FFFn_navn": "VA Trekkekum, TK2 - Rett lokk"
+      },
+      "TK2 - SKRÅ LOKK": {
+        "FFFn": "UBA3",
+        "FFFn_navn": "VA Trekkekum, TK2 - Skrå lokk"
+      },
+      "TK2_FLYTENDE RAMME": {
+        "FFFn": "UBA4",
+        "FFFn_navn": "VA Trekkekum, TK2_Flytende ramme"
+      },
+      "TK2_SKRÅ LOKK EKSTERN AKTØR": {
+        "FFFn": "UBA5",
+        "FFFn_navn": "VA Trekkekum, TK2_Skrå lokk ekstern aktør"
+      },
+      "TK2_SKRÅ_SPES. UTSPARING": {
+        "FFFn": "UBA6",
+        "FFFn_navn": "VA Trekkekum, TK2_Skrå_Spes. Utsparing"
+      },
+      "TK2_SPES. UTSPARING": {
+        "FFFn": "UBA7",
+        "FFFn_navn": "VA Trekkekum, TK2_Spes. Utsparing"
+      },
+      "TK3_H": {
+        "FFFn": "UBA8",
+        "FFFn_navn": "VA Trekkekum, TK3_H"
+      },
+      "TK3_L": {
+        "FFFn": "UBA9",
+        "FFFn_navn": "VA Trekkekum, TK3_L"
+      },
+      "TREKKEKUM Ø315": {
+        "FFFn": "UBA10",
+        "FFFn_navn": "VA Trekkekum, Trekkekum Ø315"
+      },
+      "VK_1600_BTG": {
+        "FFFn": "UCA23",
+        "FFFn_navn": "Vannkum, VK_1600_BTG"
+      },
+      "VK_2000_BTG": {
+        "FFFn": "UCA24",
+        "FFFn_navn": "Vannkum, VK_2000_BTG"
+      },
+      "VK_2400_BTG": {
+        "FFFn": "UCA25",
+        "FFFn_navn": "Vannkum, VK_2400_BTG"
+      },
+      "VK_650_BTG": {
+        "FFFn": "UCA26",
+        "FFFn_navn": "Vannkum, VK_650_BTG"
+      },
+      "VL_110_PE 100": {
+        "FFFn": "WPA56",
+        "FFFn_navn": "Vannledning, VL_110_PE 100"
+      },
+      "VL_110_PVC": {
+        "FFFn": "WPA57",
+        "FFFn_navn": "Vannledning, VL_110_PVC"
+      },
+      "VL_140_PE 100": {
+        "FFFn": "WPA99",
+        "FFFn_navn": "Vannledning, VL_140_PE 100"
+      },
+      "VL_160_PE 100": {
+        "FFFn": "WPA58",
+        "FFFn_navn": "Vannledning, VL_160_PE 100"
+      },
+      "VL_200_PE 100": {
+        "FFFn": "WPA59",
+        "FFFn_navn": "Vannledning, VL_200_PE 100"
+      },
+      "VL_250_PE100 ISO": {
+        "FFFn": "WPA61",
+        "FFFn_navn": "Vannledning, VL_250_PE100 ISO"
+      },
+      "VL_250_SJK": {
+        "FFFn": "WPA62",
+        "FFFn_navn": "Vannledning, VL_250_SJK"
+      },
+      "VL_280_PE100 RC": {
+        "FFFn": "WPA63",
+        "FFFn_navn": "Vannledning, VL_280_PE100 RC"
+      },
+      "VL_280_PE100 RC PP": {
+        "FFFn": "WPA64",
+        "FFFn_navn": "Vannledning, VL_280_PE100 RC PP"
+      },
+      "VL_315_PE100 RC": {
+        "FFFn": "WPA65",
+        "FFFn_navn": "Vannledning, VL_315_PE100 RC"
+      },
+      "VL_32_PE 100": {
+        "FFFn": "WPA95",
+        "FFFn_navn": "Vannledning, VL_32_PE 100"
+      },
+      "VL_63_PE 100": {
+        "FFFn": "WPA94",
+        "FFFn_navn": "Vannledning, VL_63_PE 100"
+      },
+      "VR_100_PPDV ID": {
+        "FFFn": "WPA108",
+        "FFFn_navn": "Varerør, VR_100_PPDV ID"
+      },
+      "VR_200_PPDV OD": {
+        "FFFn": "WPA111",
+        "FFFn_navn": "Varerør, VR_200_PPDV OD"
+      },
+      "VR_200_PPDV ID": {
+        "FFFn": "WPA109",
+        "FFFn_navn": "Varerør, VR_200_PPDV ID"
+      },
+      "VR_300_PPDV ID": {
+        "FFFn": "WPA110",
+        "FFFn_navn": "Varerør, VR_300_PPDV ID"
+      },
+      "VR_315_PPDV OD": {
+        "FFFn": "WPA92",
+        "FFFn_navn": "Varerør, VR_315_PPDV OD"
+      },
+      "VR_400_PPDV ID": {
+        "FFFn": "WPA118",
+        "FFFn_navn": "Varerør, VR_400_PPDV ID"
+      },
+      "VR_355_PE 100": {
+        "FFFn": "WPA66",
+        "FFFn_navn": "Varerør, VR_355_PE 100"
+      },
+      "VR_500_PPDV ID": {
+        "FFFn": "WPA119",
+        "FFFn_navn": "Varerør, VR_500_PPDV ID"
+      },
+      "VR_813_STL": {
+        "FFFn": "WPA90",
+        "FFFn_navn": "Varerør, VR_813_STL"
+      },
+      "FULLGRAFISK": {
+        "FFFn": "PHA1",
+        "FFFn_navn": "Variabelt skilt, Fullgrafisk"
+      },
+      "LED VARIABELT": {
+        "FFFn": "PHA2",
+        "FFFn_navn": "Variabelt skilt, LED variabelt"
+      },
+      "MEKANISK": {
+        "FFFn": "PHA3",
+        "FFFn_navn": "Variabelt skilt, Mekanisk"
+      },
+      "VS_200_PPDV ID": {
+        "FFFn": "WPA96",
+        "FFFn_navn": "Vaskevannsledning, VS_200_PPDV ID"
+      },
+      "VS_200_PPDV OD": {
+        "FFFn": "WPA67",
+        "FFFn_navn": "Vaskevannsledning, VS_200_PPDV OD"
+      },
+      "BRANNVEGG": {
+        "FFFn": "ULM18",
+        "FFFn_navn": "Vegg, Brannvegg"
+      },
+      "MELLOMGANG": {
+        "FFFn": "ULM19",
+        "FFFn_navn": "Vegg, Mellomgang"
+      },
+      "NØDKIOSKTOPP": {
+        "FFFn": "ULM17",
+        "FFFn_navn": "Vegg, Nødkiosktopp"
+      },
+      "VEIBOM MCS58N-MAX": {
+        "FFFn": "RUB10",
+        "FFFn_navn": "Veibom, VEIBOM MCS58N-MAX"
+      },
+      "FUNDAMENT BAM MCS 51/58/61": {
+        "FFFn": "RUB1",
+        "FFFn_navn": "Veibomfundament, FUNDAMENT BAM MCS 51/58/61"
+      },
+      "ÅPEN GRØFT": {
+        "FFFn": "ULM114",
+        "FFFn_navn": "ÅpenUtsparing, Åpen grøft"
+      }
+    }
   }
 }
