@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v4.01</title>
+  <title>Egenskapsvalidering v4.02</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -31,16 +31,9 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: var(--bg); color: var(--ink); font-family: var(--sans);
-      min-height: 100vh; display: flex; flex-direction: column; overflow: hidden;
-    }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); min-height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
-    header {
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
-    }
-
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
     .header-title { flex: 1; }
     .header-title h1 { font-size: 16px; font-weight: 800; letter-spacing: -.3px; color: var(--ink); }
     .header-title p { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 1px; }
@@ -129,8 +122,8 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v4.01</h1>
-    <p>Grafikk, fargeleggingsknapper og filter gjenopprettet + Ny RDS-motor</p>
+    <h1>Egenskapsvalidering v4.02</h1>
+    <p>Skuddsikker sammenligning for tallverdier og fiks for Prosesskoder</p>
   </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
@@ -171,7 +164,6 @@ let validationRows = [];
 let currentRelevantFields = [];
 let skippedCount = 0;
 
-// Filter for mapper og systemnoder som ikke er ekte objekter
 const IGNORE = new Set(['IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE','IFCZONE','IFCGROUP','IFCSYSTEM']);
 
 const $ = id => document.getElementById(id);
@@ -265,8 +257,7 @@ function runValidation(objProps, fullRules) {
         req = 'optional';
       }
 
-      let isFormatError = false;
-      let errMsg = '';
+      let isFormatError = false, errMsg = '';
       const strVal = val.toString().trim();
 
       if (req === 'notallowed') {
@@ -274,66 +265,40 @@ function runValidation(objProps, fullRules) {
         else { fields[propName] = { status: 'na', value: '-', msg: 'Ikke tillatt' }; }
         return; 
       }
+      if (req === 'required' && strVal === "") { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; return; }
+      if (strVal === "") { fields[propName] = { status: 'opt', value: 'Ikke påkrevd', msg: 'Valgfri' }; return; }
 
-      if (req === 'required' && strVal === "") {
-         fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; return;
-      }
-
-      if (strVal === "") {
-         fields[propName] = { status: 'opt', value: 'Ikke påkrevd', msg: 'Valgfri' }; return;
-      }
-
-      if (rule.format && !(new RegExp(rule.format).test(val))) { 
-         isFormatError = true; errMsg = 'Feil format'; 
-      }
-
+      if (rule.format && !(new RegExp(rule.format).test(val))) { isFormatError = true; errMsg = 'Feil format'; }
       if (!isFormatError && rule.disallowedValues) {
         const disallowed = Array.isArray(rule.disallowedValues) ? rule.disallowedValues : [rule.disallowedValues];
-        if (disallowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
-          isFormatError = true; errMsg = `Ugyldig verdi '${val}'`;
-        }
+        if (disallowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = `Ugyldig verdi '${val}'`; }
       }
-
       if (!isFormatError && rule.allowedValues) {
         if (Array.isArray(rule.allowedValues)) {
-            const allowed = rule.allowedValues;
-            if (!allowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
-              isFormatError = true; errMsg = 'Verdi ikke i liste';
-            }
+            if (!rule.allowedValues.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = 'Verdi ikke i liste'; }
         } else if (typeof rule.allowedValues === 'object') {
             const fagKey = Object.keys(rule.allowedValues).find(k => k.toUpperCase() === disc.toUpperCase());
             if (fagKey) {
                 const allowedForFag = rule.allowedValues[fagKey];
-                
                 if (Array.isArray(allowedForFag)) {
-                    if (!allowedForFag.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
-                        isFormatError = true; errMsg = `Ugyldig for ${disc}`;
-                    }
+                    if (!allowedForFag.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = `Ugyldig for ${disc}`; }
                 } else if (typeof allowedForFag === 'object') {
                     const klasse = String(props["Objektklasse"] || '').trim();
                     const klasseKey = Object.keys(allowedForFag).find(k => k.toUpperCase() === klasse.toUpperCase());
-                    
                     if (klasseKey) {
                         const validTypes = allowedForFag[klasseKey];
-                        if (Array.isArray(validTypes) && !validTypes.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
-                            isFormatError = true; errMsg = `Ugyldig for ${klasse}`;
-                        }
-                    } else if (klasse) {
-                        isFormatError = true; errMsg = `Ukjent klasse ${klasse}`;
-                    }
+                        if (Array.isArray(validTypes) && !validTypes.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = `Ugyldig for ${klasse}`; }
+                    } else if (klasse) { isFormatError = true; errMsg = `Ukjent klasse ${klasse}`; }
                 }
             }
         }
       }
-
       if (isFormatError) { fields[propName] = { status: 'warn', value: val, msg: errMsg }; warn++; } 
       else { fields[propName] = { status: 'ok', value: val, msg: 'OK' }; ok++; }
     });
   }
-
   const totalReq = ok + miss + warn;
-  const score = totalReq > 0 ? Math.round((ok / totalReq) * 100) : 100;
-  return { fields, score, miss, warn };
+  return { fields, score: totalReq > 0 ? Math.round((ok / totalReq) * 100) : 100, miss, warn };
 }
 
 // --- DEDIKERT RDS KRYSSREFERANSE-MOTOR ---
@@ -362,8 +327,20 @@ function runRdsValidation(objProps, rules) {
       }
       return;
     }
+    
+    // v4.02: Forlåtende sammenligning (godtar "01" mot "1" eller "74.0" mot "74")
+    let actComp = actualVal.toUpperCase();
+    let expComp = expectedVal.toUpperCase();
+    
+    if (!isNaN(actComp) && !isNaN(expComp) && actComp !== "" && expComp !== "") {
+        if (Number(actComp) === Number(expComp)) {
+            actComp = Number(actComp).toString();
+            expComp = Number(expComp).toString();
+        }
+    }
+
     if (actualVal === "") { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
-    else if (actualVal.toUpperCase() !== expectedVal.toUpperCase()) { fields[propName] = { status: 'warn', value: actualVal, msg: `Forventet: ${expectedVal}` }; warn++; } 
+    else if (actComp !== expComp) { fields[propName] = { status: 'warn', value: actualVal, msg: `Forventet: ${expectedVal}` }; warn++; } 
     else { fields[propName] = { status: 'ok', value: actualVal, msg: 'OK' }; ok++; }
   };
 
@@ -443,7 +420,6 @@ async function validate(){
       const propsArr = await API.viewer.getObjectProperties(mid, model.objectIds.slice(i, i + CHUNK));
       
       propsArr.forEach(o => {
-        // FILTER: Ignorerer Systemnoder/Mapper (IfcProject, IfcBuilding etc)
         const ifcType = getIfcType(o);
         if (IGNORE.has(ifcType)) {
             skippedCount++;
@@ -453,7 +429,6 @@ async function validate(){
         const flat = {};
         (o.properties || []).forEach(g => (g.properties || []).forEach(p => flat[p.name] = p.value));
         
-        // Ruter automatisk til riktig valideringsmotor
         const result = validationRules.type === 'RDS_RULESET' 
             ? runRdsValidation({flat}, validationRules) 
             : runValidation({flat}, validationRules);
