@@ -1,0 +1,6205 @@
+{
+  "version": "1.0",
+  "type": "RDS_RULESET",
+  "allowExtraProperties": false,
+  "properties": {
+    "01. RDS-tag": {},
+    "02. AAAA_AA": {},
+    "03. Bn": {},
+    "04. Bn navn": {},
+    "05. Cn": {},
+    "06. Cn navn": {},
+    "07. DDn": {},
+    "08. DDn navn": {},
+    "09. EEEn": {},
+    "10. EEEn navn": {},
+    "11. FFFn": {},
+    "12. FFFn navn": {},
+    "13. GGGn": {},
+    "14. GGGn navn": {},
+    "15. Informasjon om RDS i prosjektet": {}
+  },
+  "mappings": {
+    "Hovedsystem": {
+      "P3.1.1.1": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A1",
+        "Cn_navn": "P3, Roterud - Strandengen nordgående Pel 9030-13100"
+      },
+      "P3.1.1.2": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A2",
+        "Cn_navn": "P3, Strandengen til Vingrom nordgående Pel 13100 - 19300"
+      },
+      "P3.1.1.3": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A3",
+        "Cn_navn": "P3, Vingrom - Øyresvika Pel 19300 - 24300"
+      },
+      "P3.1.1.4": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A4",
+        "Cn_navn": "P3, Roterud - Vingrom sørgående Pel 9030 - 18400"
+      },
+      "P3.1.2.27": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A1",
+        "Cn_navn": "P3, Fv. 2538 Paul A Owrens veg (23000) inkl. GS vei (74100)"
+      },
+      "P3.1.2.34": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A2",
+        "Cn_navn": "P3, Kv. 7122 Burmavegen"
+      },
+      "P3.1.2.35": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A3",
+        "Cn_navn": "P3, Fv. 2518 Døsvegen (23100)"
+      },
+      "P3.1.2.36": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A4",
+        "Cn_navn": "P3, Fv. 2540 Vingromsveien Pel 0 - 865 (23200) inkl. GS vei (74400)"
+      },
+      "P3.1.2.44": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A5",
+        "Cn_navn": "P3, Tursti fra Vingrom til Øyresvika (73300)"
+      },
+      "P3.1.2.52": {
+        "Bn": "D1",
+        "Bn_navn": "Vingnestunnelen",
+        "Cn": "C1",
+        "Cn_navn": "P3, Rensebasseng Øyresvika (K4223)"
+      },
+      "P3.1.2.53": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A7",
+        "Cn_navn": "P3, Fv.2540 Øyresvika Pel 0-910 (23400)"
+      },
+      "P3.1.2.54": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A8",
+        "Cn_navn": "P3, Diverse veier, plasser, dammer, avkjørsler langs E6"
+      },
+      "P3.2.1.1": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C3202",
+        "Cn_navn": "Roterudbrua sørgående (K3202)"
+      },
+      "P3.2.1.10": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3205",
+        "Cn_navn": "Grythe kulvert (K3205)"
+      },
+      "P3.2.1.11": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3206",
+        "Cn_navn": "Oppsahl kluvert (K3206)"
+      },
+      "P3.2.1.12": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3207",
+        "Cn_navn": "Rogne kulvert nordgående (K3207)"
+      },
+      "P3.2.1.13": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3216",
+        "Cn_navn": "Myhre kulvert (K3216)"
+      },
+      "P3.2.1.14": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3217",
+        "Cn_navn": "Feiring kulvert (K3217)"
+      },
+      "P3.2.1.15": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C3235",
+        "Cn_navn": "Svea bruer (K3235)"
+      },
+      "P3.2.1.16": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3236",
+        "Cn_navn": "Bakke kulvert nordgående (K3236)"
+      },
+      "P3.2.1.17": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3245",
+        "Cn_navn": "Vingromdammen kulvert (K3245)"
+      },
+      "P3.2.1.18": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3256",
+        "Cn_navn": "Røine Kulvert (K3256)"
+      },
+      "P3.2.1.19": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3257",
+        "Cn_navn": "Hov kulvert (K3257)"
+      },
+      "P3.2.1.2": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C3209",
+        "Cn_navn": "Huskelhusbrua sørgeående (K3209)"
+      },
+      "P3.2.1.20": {
+        "Bn": "B1",
+        "Bn_navn": "Støttemur",
+        "Cn": "C3258",
+        "Cn_navn": "Støttemur (K3258)"
+      },
+      "P3.2.1.3": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C3212",
+        "Cn_navn": "Strandengbrua sørgående (K3212)"
+      },
+      "P3.2.1.4": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3225",
+        "Cn_navn": "Bjørnstad kulvert (K3225)"
+      },
+      "P3.2.1.5": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3233",
+        "Cn_navn": "Stranda Kulvert (K3233)"
+      },
+      "P3.2.1.6": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C3251",
+        "Cn_navn": "Vingrom overgangsbru (K3251)"
+      },
+      "P3.2.1.7": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C3242",
+        "Cn_navn": "Vingromsbrua nordgående (K3242)"
+      },
+      "P3.2.1.8": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C3262",
+        "Cn_navn": "Øyresvikkrysset bru sørgående (K3262)"
+      },
+      "P3.2.1.9": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C3203",
+        "Cn_navn": "Mæhlum kulvert (K3203)"
+      },
+      "P3.3.1.1": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A5",
+        "Cn_navn": "P3, Vingrom sørgående ramper"
+      },
+      "P3.3.1.2": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A6",
+        "Cn_navn": "P3, Vingrom nordgående ramper"
+      },
+      "P3.3.2.1": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A7",
+        "Cn_navn": "P3, Øyresvika sørgående rampe"
+      },
+      "P3.3.2.2": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A8",
+        "Cn_navn": "P3, Øyresvika norgående rampe"
+      },
+      "P4.1.1.1": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A9",
+        "Cn_navn": "P4, Forskjæring Øyresvika Pel 24 300 - 24588"
+      },
+      "P4.1.1.2": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A10",
+        "Cn_navn": "P4, Forskjæring Trosset Pel 28 820 - 28850"
+      },
+      "P4.1.2.1": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A9",
+        "Cn_navn": "P4, Tilkomstvei rensebasseng Øyresvika"
+      },
+      "P4.1.2.2": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A10",
+        "Cn_navn": "P4, Tilkomstvei rensebasseng Trosset"
+      },
+      "P4.1.2.3": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A11",
+        "Cn_navn": "P4, Hovsliveien"
+      },
+      "P4.1.2.4": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A12",
+        "Cn_navn": "P4, Anleggsvei fra Trosset og sydover"
+      },
+      "P4.2.1.1": {
+        "Bn": "D1",
+        "Bn_navn": "Vingnestunnelen",
+        "Cn": "C4222",
+        "Cn_navn": "Portaler Øyresvika nordgående (K4222)"
+      },
+      "P4.2.1.2": {
+        "Bn": "D1",
+        "Bn_navn": "Vingnestunnelen",
+        "Cn": "C4232",
+        "Cn_navn": "Portaler Trosset nordgående (K4232)"
+      },
+      "P4.2.1.3": {
+        "Bn": "C2",
+        "Bn_navn": "Kulverter",
+        "Cn": "C2511",
+        "Cn_navn": "Jørstadmoveien kulvert (K2511)"
+      },
+      "P4.4.1": {
+        "Bn": "D1",
+        "Bn_navn": "Vingnestunnelen",
+        "Cn": "D19",
+        "Cn_navn": "Tverrforbindelse (TF19)"
+      },
+      "P5.1.1.1": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A11",
+        "Cn_navn": "P5, Trosset bru, vei og tilbakefylling"
+      },
+      "P5.1.1.2": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A12",
+        "Cn_navn": "P5, Hovemoen bru, vei og tilbakefylling"
+      },
+      "P5.1.2.1": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A13",
+        "Cn_navn": "P5, Fv. 253 Jørstadmovegen, (27100)"
+      },
+      "P5.1.2.2": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A14",
+        "Cn_navn": "P5, Gårdsvei Hovemoen Gård (67100)"
+      },
+      "P5.1.2.3": {
+        "Bn": "D1",
+        "Bn_navn": "Vingnestunnelen",
+        "Cn": "C2",
+        "Cn_navn": "P5, Rensebasseng Trosset (K4233)"
+      },
+      "P5.2.1.1": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C5221",
+        "Cn_navn": "Lågen bru (K5221)"
+      },
+      "P5.2.2.7": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C5221",
+        "Cn_navn": "Lågen bru (K5221)"
+      },
+      "P6.1.1.1": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A13",
+        "Cn_navn": "P6, Hovemoen - Lillehammer kryss Pel 29 500 - 30 850"
+      },
+      "P6.1.1.2": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A14",
+        "Cn_navn": "P6, Lillehammer kryss - Storhove Pel 30 850 - 31 618"
+      },
+      "P6.1.2.1": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A16",
+        "Cn_navn": "P6, Vei Hovemoen Bru (69000)"
+      },
+      "P6.1.2.2": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A17",
+        "Cn_navn": "P6, Veier Hovemoen Gård"
+      },
+      "P6.1.2.3": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A18",
+        "Cn_navn": "P6, Veier til rensebassenger ved Hovemoen og Storhove"
+      },
+      "P6.1.2.4": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A19",
+        "Cn_navn": "P6, Gausdalsvegen"
+      },
+      "P6.1.2.5": {
+        "Bn": "A2",
+        "Bn_navn": "Øvrige veier, plasser, planering etc",
+        "Cn": "A20",
+        "Cn_navn": "P6, Diverse veier, plasser, dammer, avkjørsler langs E6"
+      },
+      "P6.2.1.1": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C6211",
+        "Cn_navn": "Hovemoen overgangsbru (K6211)"
+      },
+      "P6.2.1.2": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C6222",
+        "Cn_navn": "Lillehammer krysset bru sørgående (K6222)"
+      },
+      "P6.2.1.3": {
+        "Bn": "C1",
+        "Bn_navn": "Bruer",
+        "Cn": "C6232",
+        "Cn_navn": "Gausdalsarmen bru sørgående (K6232)"
+      },
+      "P6.3.1.1": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A15",
+        "Cn_navn": "P6, Lillehammerkrysset sørgående ramper"
+      },
+      "P6.3.1.2": {
+        "Bn": "A1",
+        "Bn_navn": "Dagsone E6",
+        "Cn": "A16",
+        "Cn_navn": "P6, Lillehammerkrysset nordgående ramper"
+      }
+    },
+    "TekniskSystem": {
+      "B": {
+        "DDn": "BA1",
+        "DDn_navn": "B GRUNNEN"
+      },
+      "C": {
+        "DDn": "BB1",
+        "DDn_navn": "C UNDERBYGNING"
+      },
+      "D": {
+        "DDn": "BC1",
+        "DDn_navn": "D OVERBYGNING"
+      },
+      "E": {
+        "DDn": "BF1",
+        "DDn_navn": "E BRUDEKKE/SLITELAG"
+      },
+      "F": {
+        "DDn": "BB2",
+        "DDn_navn": "F KONSTRUKSJONER I FYLLING"
+      },
+      "G": {
+        "DDn": "BD1",
+        "DDn_navn": "G STØTTEKONSTRUKSJON"
+      },
+      "H": {
+        "DDn": "RB1",
+        "DDn_navn": "H UTSTYR"
+      },
+      "I": {
+        "DDn": "",
+        "DDn_navn": "I SPESIELT KAIUTSTYR"
+      },
+      "J": {
+        "DDn": "RB2",
+        "DDn_navn": "J SPESIELLE INSTALLASJONER"
+      },
+      "K": {
+        "DDn": "",
+        "DDn_navn": "K ANNET ELEMENT"
+      },
+      "1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "11.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "12.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "13.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "13.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "13.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "13.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "13.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "13.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "13.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "14.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "15.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "16.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21": {
+        "DDn": "CF1",
+        "DDn_navn": "Vegetasjon, matjord, bergrensk"
+      },
+      "21.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "21.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "22": {
+        "DDn": "AB1",
+        "DDn_navn": "Sprengning i dagen"
+      },
+      "22.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "22.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "22.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "22.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "22.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "22.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "22.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23": {
+        "DDn": "AD1",
+        "DDn_navn": "Rensk og sikring i dagen"
+      },
+      "23.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "23.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24": {
+        "DDn": "CJ1",
+        "DDn_navn": "Grunnforsterkning"
+      },
+      "24.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.65": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.74": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.75": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.76": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "24.77": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "25.1": {
+        "DDn": "CA1",
+        "DDn_navn": "Fylling i linjen"
+      },
+      "25.2": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "25.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "25.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "25.3": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "25.4": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "25.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "25.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "25.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "25.5": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "25.6": {
+        "DDn": "CA2",
+        "DDn_navn": "Fylling"
+      },
+      "25.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "25.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "25.7": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "26.1": {
+        "DDn": "CA2",
+        "DDn_navn": "Fylling"
+      },
+      "26.2": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "26.3": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "26.4": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "26.5": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "26.6": {
+        "DDn": "CA2",
+        "DDn_navn": "Fylling"
+      },
+      "26.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "26.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "26.7": {
+        "DDn": "CA2",
+        "DDn_navn": "Fylling"
+      },
+      "26.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "26.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.73": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.74": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.75": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "27.77": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31": {
+        "DDn": "AE1",
+        "DDn_navn": "Tunneldriving"
+      },
+      "31.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "31.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32": {
+        "DDn": "AE1",
+        "DDn_navn": "Tunneldriving"
+      },
+      "32.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "32.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33": {
+        "DDn": "AE1",
+        "DDn_navn": "Tunneldriving"
+      },
+      "33.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.16": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.17": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.28": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.56": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.57": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "33.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34": {
+        "DDn": "AE2",
+        "DDn_navn": "Vann- og frostsikring"
+      },
+      "34.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.3": {
+        "DDn": "",
+        "DDn_navn": "Sprøytebetong/brannsikring"
+      },
+      "34.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.4": {
+        "DDn": "",
+        "DDn_navn": "Veggelementer"
+      },
+      "34.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "34.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.5": {
+        "DDn": "RB3",
+        "DDn_navn": "Tekniske bygninger, nødutganger og kiosk for nødstasjon"
+      },
+      "35.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "35.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.1": {
+        "DDn": "RB4",
+        "DDn_navn": "Fellesanlegg for installasjonene"
+      },
+      "36.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.2": {
+        "DDn": "HH1",
+        "DDn_navn": "Belysning"
+      },
+      "36.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.3": {
+        "DDn": "JJ1",
+        "DDn_navn": "Ventilasjon"
+      },
+      "36.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.4": {
+        "DDn": "MA1",
+        "DDn_navn": "Sikkerhetsutrustning"
+      },
+      "36.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.5": {
+        "DDn": "MC1",
+        "DDn_navn": "Trafikkregulering/overvåking"
+      },
+      "36.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.56": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.57": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.6": {
+        "DDn": "KC1",
+        "DDn_navn": "Renseanlegg"
+      },
+      "36.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "36.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41": {
+        "DDn": "CG2",
+        "DDn_navn": "Åpne grøfter"
+      },
+      "41.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "41.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42": {
+        "DDn": "CH1",
+        "DDn_navn": "Lukkede rørgrøfter"
+      },
+      "42.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.16": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.17": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.37": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.45": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.46": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.47": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.56": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.57": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.58": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.65": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.73": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.74": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "42.75": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.1": {
+        "DDn": "JD1",
+        "DDn_navn": "Dren- og overvannsledning"
+      },
+      "43.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.2": {
+        "DDn": "JD1",
+        "DDn_navn": "Dren- og overvannsledning"
+      },
+      "43.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.28": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.3": {
+        "DDn": "JD2",
+        "DDn_navn": "Spillvannsledning (avløp)"
+      },
+      "43.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.37": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.38": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.4": {
+        "DDn": "HB1",
+        "DDn_navn": "Vannledning"
+      },
+      "43.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.45": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "43.48": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44": {
+        "DDn": "BH1",
+        "DDn_navn": "Kabler og ledninger"
+      },
+      "44.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.45": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.46": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.47": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "44.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45": {
+        "DDn": "JD3",
+        "DDn_navn": "Stikkrenner"
+      },
+      "45.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.16": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.17": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.18": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.28": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "45.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46": {
+        "DDn": "CG1",
+        "DDn_navn": "Kummer"
+      },
+      "47": {
+        "DDn": "AB2",
+        "DDn_navn": "Forsterkning av grøfter og elve- og bekkereguleringer"
+      },
+      "5": {
+        "DDn": "CB1",
+        "DDn_navn": "Vegfundament"
+      },
+      "6": {
+        "DDn": "CB2",
+        "DDn_navn": "Vegdekke"
+      },
+      "71": {
+        "DDn": "CJ2",
+        "DDn_navn": "Murer"
+      },
+      "72.1": {
+        "DDn": "CL1",
+        "DDn_navn": "Støyskjermer"
+      },
+      "72.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "72.3": {
+        "DDn": "RB5",
+        "DDn_navn": "Toaletter"
+      },
+      "72.4": {
+        "DDn": "RB6",
+        "DDn_navn": "Leskur"
+      },
+      "72.5": {
+        "DDn": "RB7",
+        "DDn_navn": "Servicebygg"
+      },
+      "72.6": {
+        "DDn": "RB8",
+        "DDn_navn": "Bomstasjoner"
+      },
+      "74": {
+        "DDn": "RA1",
+        "DDn_navn": "Sideterreng"
+      },
+      "75.1": {
+        "DDn": "CC1",
+        "DDn_navn": "Kantstein"
+      },
+      "75.2": {
+        "DDn": "CD1",
+        "DDn_navn": "Rekkverk"
+      },
+      "75.3": {
+        "DDn": "CL2",
+        "DDn_navn": "Gjerder"
+      },
+      "75.4": {
+        "DDn": "CL3",
+        "DDn_navn": "Viltgjerde"
+      },
+      "75.5": {
+        "DDn": "CJ3",
+        "DDn_navn": "Snøsamleskjerm"
+      },
+      "75.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.7": {
+        "DDn": "CJ4",
+        "DDn_navn": "Steinspranggjerde"
+      },
+      "76.1": {
+        "DDn": "HJ1",
+        "DDn_navn": "Signalanlegg"
+      },
+      "76.2": {
+        "DDn": "LF1",
+        "DDn_navn": "Styring og overvåkingssystemer"
+      },
+      "76.3": {
+        "DDn": "HH1",
+        "DDn_navn": "Belysning"
+      },
+      "77.11": {
+        "DDn": "CJ5",
+        "DDn_navn": "Skiltfundament"
+      },
+      "77.12": {
+        "DDn": "ME1",
+        "DDn_navn": "Skilt"
+      },
+      "77.13": {
+        "DDn": "ME1",
+        "DDn_navn": "Skilt"
+      },
+      "77.14": {
+        "DDn": "ME1",
+        "DDn_navn": "Skilt"
+      },
+      "77.15": {
+        "DDn": "ME1",
+        "DDn_navn": "Skilt"
+      },
+      "77.16": {
+        "DDn": "ME1",
+        "DDn_navn": "Skilt"
+      },
+      "77.17": {
+        "DDn": "ME1",
+        "DDn_navn": "Skilt"
+      },
+      "77.18": {
+        "DDn": "ME1",
+        "DDn_navn": "Skilt"
+      },
+      "77.2": {
+        "DDn": "ME2",
+        "DDn_navn": "Vegmerking"
+      },
+      "77.3": {
+        "DDn": "ME2",
+        "DDn_navn": "Vegmerking"
+      },
+      "77.4": {
+        "DDn": "ME2",
+        "DDn_navn": "Vegmerking"
+      },
+      "77.5": {
+        "DDn": "ME2",
+        "DDn_navn": "Vegmerking"
+      },
+      "78": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81": {
+        "DDn": "BA2",
+        "DDn_navn": "Løsmasser"
+      },
+      "82": {
+        "DDn": "AB3",
+        "DDn_navn": "Berg"
+      },
+      "83": {
+        "DDn": "CJ5",
+        "DDn_navn": "Konstruksjoner i grunnen (Peler, støttevegger etc.)"
+      },
+      "84": {
+        "DDn": "BC2",
+        "DDn_navn": "Betong"
+      },
+      "85": {
+        "DDn": "BC3",
+        "DDn_navn": "Stål"
+      },
+      "86": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.1": {
+        "DDn": "AE2",
+        "DDn_navn": "Vann- og frostsikring"
+      },
+      "87.2": {
+        "DDn": "CD1",
+        "DDn_navn": "Rekkverk"
+      },
+      "87.3": {
+        "DDn": "BC4",
+        "DDn_navn": "Brulagre"
+      },
+      "87.4": {
+        "DDn": "AE3",
+        "DDn_navn": "Fugekonstruksjoner"
+      },
+      "87.5": {
+        "DDn": "JD1",
+        "DDn_navn": "Dren- og overvannsledning"
+      },
+      "87.61": {
+        "DDn": "BH2",
+        "DDn_navn": "Føringsveger"
+      },
+      "87.62": {
+        "DDn": "RB4",
+        "DDn_navn": "Fellesanlegg for installasjonene"
+      },
+      "87.63": {
+        "DDn": "HH1",
+        "DDn_navn": "Belysning"
+      },
+      "87.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.65": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.66": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.67": {
+        "DDn": "MC1",
+        "DDn_navn": "Trafikkregulering/overvåking"
+      },
+      "87.68": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.8": {
+        "DDn": "RB1",
+        "DDn_navn": "Annet utstyr"
+      },
+      "88": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "92.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "46.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.73": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.74": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.75": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "47.76": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51": {
+        "DDn": "",
+        "DDn_navn": "Vegdundament"
+      },
+      "51.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "51.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52": {
+        "DDn": "",
+        "DDn_navn": "Vegdundament"
+      },
+      "52.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "52.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53": {
+        "DDn": "",
+        "DDn_navn": "Vegdundament"
+      },
+      "53.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "53.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54": {
+        "DDn": "",
+        "DDn_navn": "Vegdundament"
+      },
+      "54.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "54.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "55": {
+        "DDn": "",
+        "DDn_navn": "Asfalt"
+      },
+      "55.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "55.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "55.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "55.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "55.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "55.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "55.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "55.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "55.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "56": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "56.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "61.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "63.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "64.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65": {
+        "DDn": "",
+        "DDn_navn": "Asfalt"
+      },
+      "65.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.17": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "65.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "66.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "67.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.16": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.17": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.18": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.28": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.37": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.38": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.56": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.57": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.58": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "71.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "72.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "72.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "72.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "72.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.65": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.66": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.67": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.68": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "74.73": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.45": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.46": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.47": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "75.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "76": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "76.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "76.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "76.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "76.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "76.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "76.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "77.45": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "8": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.45": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.65": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "81.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "82.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.16": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.17": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.28": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.37": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.38": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.45": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.46": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.47": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.48": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.56": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.57": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.65": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.66": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.67": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.68": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.73": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.74": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.75": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.76": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.8": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.81": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.82": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.83": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.84": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.85": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.86": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "83.87": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.37": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.45": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.46": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.56": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.57": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.65": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.66": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.67": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.73": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.74": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.8": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.81": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.82": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.83": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.84": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.85": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.86": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "84.87": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.37": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.7": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.73": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.74": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.75": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.76": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "85.8": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.16": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.17": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "86.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.16": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.17": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.37": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.44": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.45": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.46": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.47": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.48": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.71": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.72": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.73": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.74": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.75": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.81": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.82": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.83": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.84": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.85": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.86": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.87": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "87.88": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.1": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.11": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.12": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.13": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.14": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.15": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.16": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.17": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.2": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.21": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.22": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.23": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.24": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.25": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.26": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.27": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.28": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.3": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.31": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.32": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.33": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.34": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.35": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.36": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.37": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.38": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.4": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.41": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.42": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.43": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.5": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.51": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.52": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.53": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.54": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.55": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.56": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.6": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.61": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.62": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.63": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.64": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.65": {
+        "DDn": "",
+        "DDn_navn": ""
+      },
+      "88.66": {
+        "DDn": "",
+        "DDn_navn": ""
+      }
+    },
+    "EEE": {
+      "INFORMASJONSOBJEKT|AKSE": {
+        "EEEn": "ULA72",
+        "EEEn_navn": "Akse"
+      },
+      "GJERDE|ANLEGGSGJERDE": {
+        "EEEn": "RUA3",
+        "EEEn_navn": "Anleggsgjerde"
+      },
+      "ARMERING|ARMERINGSJERN": {
+        "EEEn": "UMA11",
+        "EEEn_navn": "Armeringsjern"
+      },
+      "FUKTISOLERING|ASFALTMEMBRAN": {
+        "EEEn": "NCA23",
+        "EEEn_navn": "Asfaltmembran fuktisolering"
+      },
+      "HEFTBRYTER|ASFALTMEMBRAN": {
+        "EEEn": "NCA26",
+        "EEEn_navn": "Asfaltmembran"
+      },
+      "OVERFLATEBEHANDLING|AVRETTING OG PUSSING": {
+        "EEEn": "ULA76",
+        "EEEn_navn": "Avretting og pussing"
+      },
+      "UNDERBYGNING|AVRETTINGSLAG": {
+        "EEEn": "UTA5",
+        "EEEn_navn": "Avrettingslag i underbygning"
+      },
+      "PEL|AVSTANDSKLOSSER": {
+        "EEEn": "ULC1",
+        "EEEn_navn": "Avstandsklosser"
+      },
+      "TUNNELOVERBYGNING|BANKETT": {
+        "EEEn": "ULA98",
+        "EEEn_navn": "Bankett i tunnel"
+      },
+      "KUM|BEKKEINNTAK": {
+        "EEEn": "UCA36",
+        "EEEn_navn": "Bekkeinntak"
+      },
+      "TERRENG|BERGMODELL": {
+        "EEEn": "ULP1",
+        "EEEn_navn": "Bergmodell"
+      },
+      "TUNNELOVERBYGNING|BETONGAVRETTING": {
+        "EEEn": "ULA100",
+        "EEEn_navn": "Betongavretting i tunnel"
+      },
+      "AVRETTING|BETONGAVRETTING B30": {
+        "EEEn": "ULK1",
+        "EEEn_navn": "Betongavretting av overflate"
+      },
+      "TUNNELOVERBYGNING|BETONGELEMENT": {
+        "EEEn": "ULA101",
+        "EEEn_navn": "Betongelement i tunnel"
+      },
+      "VEGGSYSTEM|BETONGELEMENT": {
+        "EEEn": "ULM3",
+        "EEEn_navn": "Betongelement i veggsystem"
+      },
+      "TØRRMUR|BETONGMUR": {
+        "EEEn": "ULM2",
+        "EEEn_navn": "Betongmur"
+      },
+      "REKKVERK|BETONGREKKVERK": {
+        "EEEn": "FQD4",
+        "EEEn_navn": "Betongrekkverk"
+      },
+      "MØBLERING|BILETTAUTOMAT": {
+        "EEEn": "CLC4",
+        "EEEn_navn": "Bilettautomat"
+      },
+      "OVERBYGNING|BINDLAG": {
+        "EEEn": "ULA103",
+        "EEEn_navn": "Bindlag overbygning"
+      },
+      "FESTEELEMENT|BJELKE": {
+        "EEEn": "ULE2",
+        "EEEn_navn": "Bjelke"
+      },
+      "VEGETASJON|BLOMSTERBEPLANTNING": {
+        "EEEn": "TRD1",
+        "EEEn_navn": "Blomsterbeplantning"
+      },
+      "SIKRING|BOLT": {
+        "EEEn": "ULA43",
+        "EEEn_navn": "Bolt"
+      },
+      "INNSTØPNINGSGODS|BOLTEGRUPPE": {
+        "EEEn": "ULA66",
+        "EEEn_navn": "Boltegruppe"
+      },
+      "PEL|BORING I BERG": {
+        "EEEn": "ULP2",
+        "EEEn_navn": "Boring i berg"
+      },
+      "FESTEELEMENT|BRAKETT": {
+        "EEEn": "ULA30",
+        "EEEn_navn": "Brakett festeelement"
+      },
+      "KUM|BRANNHYDRANT": {
+        "EEEn": "UCA37",
+        "EEEn_navn": "Brannhydrant"
+      },
+      "TUNNELOVERBYGNING|BRANNSIKRING": {
+        "EEEn": "ULA99",
+        "EEEn_navn": "Brannsikring i tunnel"
+      },
+      "KUM|BRANNVANNSUTTAK": {
+        "EEEn": "WPA44",
+        "EEEn_navn": "Brannvannsuttak"
+      },
+      "BETONGELEMENT|BREM": {
+        "EEEn": "ULG1",
+        "EEEn_navn": "Brem"
+      },
+      "BETONGELEMENT|BRUDEKKE": {
+        "EEEn": "ULG2",
+        "EEEn_navn": "Brudekke betong"
+      },
+      "REKKVERK|BRØYTETETTE PANELER": {
+        "EEEn": "FQD16",
+        "EEEn_navn": "Brøytetette paneler i rekkverk"
+      },
+      "TUNNELOVERBYGNING|BUNNPLATE": {
+        "EEEn": "ULK6",
+        "EEEn_navn": "Bunnplate i tunnel"
+      },
+      "VEGETASJON|BUSK": {
+        "EEEn": "TRD2",
+        "EEEn_navn": "Busk"
+      },
+      "FESTEMIDDEL|BUTTSVEIS": {
+        "EEEn": "ULA89",
+        "EEEn_navn": "Buttsveis"
+      },
+      "BYGG|BYGG": {
+        "EEEn": "ULA33",
+        "EEEn_navn": "Bygningskonstruksjon"
+      },
+      "OVERBYGNING|BÆRELAG": {
+        "EEEn": "ULA1",
+        "EEEn_navn": "Bærelag overbygning"
+      },
+      "TUNNELOVERBYGNING|DEKKE": {
+        "EEEn": "NCA24",
+        "EEEn_navn": "Dekke i tunnel"
+      },
+      "SIDEOMRÅDE|DEPONI": {
+        "EEEn": "ULA105",
+        "EEEn_navn": "Deponi"
+      },
+      "RØRLEDNING|DRENSLEDNING": {
+        "EEEn": "WPA5",
+        "EEEn_navn": "Drensledning"
+      },
+      "DRENERING|DRENSRENNE": {
+        "EEEn": "WPA31",
+        "EEEn_navn": "Drensrenne"
+      },
+      "SPENNARMERING|DRENSSLANGE": {
+        "EEEn": "UMM1",
+        "EEEn_navn": "Drensslange spennarmering"
+      },
+      "INNSTØPNINGSGODS|DYBLER": {
+        "EEEn": "ULK2",
+        "EEEn_navn": "Dybler"
+      },
+      "DØR|DØR": {
+        "EEEn": "QQC2",
+        "EEEn_navn": "Dør"
+      },
+      "VEGGSYSTEM|DØR": {
+        "EEEn": "ULM4",
+        "EEEn_navn": "Dør i vegg"
+      },
+      "EKSISTERENDE|EKSITERENDE-OBJEKTER": {
+        "EEEn": "ULA34",
+        "EEEn_navn": "Eksisterende objekter"
+      },
+      "INFORMASJONSOBJEKT|ENDELIG POSISJON": {
+        "EEEn": "ULA62",
+        "EEEn_navn": "Endelig posisjon"
+      },
+      "REKKVERKSENDE|ENDETERMINAL": {
+        "EEEn": "FQD14",
+        "EEEn_navn": "Rekkverksende endeterminal"
+      },
+      "REKKVERKSENDE|ETTERGIVENDE REKKVERKSENDE": {
+        "EEEn": "FQD10",
+        "EEEn_navn": "Ettergivende rekkverksende"
+      },
+      "FESTEELEMENT|FESTEBOLT": {
+        "EEEn": "UQA32",
+        "EEEn_navn": "Festebolt"
+      },
+      "FIBERDUK|FIBERDUK": {
+        "EEEn": "ULA49",
+        "EEEn_navn": "Fiberduk"
+      },
+      "OVERBYGNING|FIBERDUK": {
+        "EEEn": "RQB1",
+        "EEEn_navn": "Fiberduk overbygning"
+      },
+      "UNDERBYGNING|FIBERDUK": {
+        "EEEn": "ULA38",
+        "EEEn_navn": "Fiberduk underbygning"
+      },
+      "OVERBYGNING|FILTERLAG": {
+        "EEEn": "FRB2",
+        "EEEn_navn": "Filterlag overbygning"
+      },
+      "TUNNELOVERBYGNING|FILTERLAG": {
+        "EEEn": "FRB1",
+        "EEEn_navn": "Filterlag i tunnel"
+      },
+      "MØBLERING|FLAGGSTANG": {
+        "EEEn": "CLC8",
+        "EEEn_navn": "Flaggstang"
+      },
+      "SPENNARMERING|FORANKRING": {
+        "EEEn": "UMM2",
+        "EEEn_navn": "Forankring spennarmering"
+      },
+      "PEL|FORINGSRØR": {
+        "EEEn": "ULC2",
+        "EEEn_navn": "Foringsrør"
+      },
+      "FESTEELEMENT|FORLENGET GJENGESTAG": {
+        "EEEn": "UQA34",
+        "EEEn_navn": "Forlenget gjengestag"
+      },
+      "FORSKALING|FORSKALING": {
+        "EEEn": "ULA50",
+        "EEEn_navn": "Forskaling"
+      },
+      "OVERBYGNING|FORSTERKNINGSLAG": {
+        "EEEn": "UTA1",
+        "EEEn_navn": "Forsterkningslag overbygning"
+      },
+      "FORSKALING|FORTANNING": {
+        "EEEn": "ULA51",
+        "EEEn_navn": "Fortanning"
+      },
+      "AVRETTING|FRAKSJON 0/32": {
+        "EEEn": "UTA12",
+        "EEEn_navn": "Avretting av overflate"
+      },
+      "AVRETTING|FRAKSJON 20/125 FORKILT MED 0/22": {
+        "EEEn": "UTA21",
+        "EEEn_navn": "Avretting av overflate"
+      },
+      "BETONGELEMENT|FRIKSJONSPLATE": {
+        "EEEn": "ULG3",
+        "EEEn_navn": "Friksjonsplate betong"
+      },
+      "STØTTEVEGG|FRONTKLEDNING": {
+        "EEEn": "WDB31",
+        "EEEn_navn": "Frontkledning støttevegg"
+      },
+      "UNDERBYGNING|FROSTSIKRINGSLAG": {
+        "EEEn": "UTA10",
+        "EEEn_navn": "Frostsikringslag i underbygning"
+      },
+      "FUGE|FUGE I BETONG": {
+        "EEEn": "UPC1",
+        "EEEn_navn": "Fuge i betong"
+      },
+      "FUGE|FUGEINNLEGG": {
+        "EEEn": "ULA52",
+        "EEEn_navn": "Fugeinnlegg"
+      },
+      "BETONGELEMENT|FUGESENG": {
+        "EEEn": "ULG22",
+        "EEEn_navn": "Fugeseng betong"
+      },
+      "FUGE|FUGETERSKEL": {
+        "EEEn": "ULA54",
+        "EEEn_navn": "Fugeterskel"
+      },
+      "FUKTISOLERING|FUKTISOLERING": {
+        "EEEn": "ULA56",
+        "EEEn_navn": "Fuktisolering"
+      },
+      "BETONGELEMENT|FUNDAMENT": {
+        "EEEn": "ULG4",
+        "EEEn_navn": "Fundament betong"
+      },
+      "TUNNELOVERBYGNING|FYLLING": {
+        "EEEn": "UTA16",
+        "EEEn_navn": "Fylling i tunnel"
+      },
+      "SIDEOMRÅDE|FYLLINGSSKRÅNING": {
+        "EEEn": "UTA18",
+        "EEEn_navn": "Fyllingsskråning"
+      },
+      "GJERDE|GJERDE": {
+        "EEEn": "RUA1",
+        "EEEn_navn": "Gjerde"
+      },
+      "TERRENGFORMING|GRASDEKKER": {
+        "EEEn": "NCG1",
+        "EEEn_navn": "Grasdekke"
+      },
+      "KUM|GRAVEFLATE": {
+        "EEEn": "UCA38",
+        "EEEn_navn": "Graveflate"
+      },
+      "RØRLEDNING|GRAVEFLATE": {
+        "EEEn": "WPA46",
+        "EEEn_navn": "Graveflate"
+      },
+      "GRUNNFORHOLD|GRUNNFORHOLDSMODELL": {
+        "EEEn": "UAA1",
+        "EEEn_navn": "Grunnforholdsmodell"
+      },
+      "GRUNNFORHOLD|GRUNNUNDERSØKELSE": {
+        "EEEn": "UAA2",
+        "EEEn_navn": "Grunnundersøkelse"
+      },
+      "OVERBYGNING|GRUSSKULDER": {
+        "EEEn": "ULA107",
+        "EEEn_navn": "Grusskulder"
+      },
+      "SIDEOMRÅDE|GRØFT": {
+        "EEEn": "ULA106",
+        "EEEn_navn": "Grøft"
+      },
+      "RØRLEDNING|GRØFTÅPEN": {
+        "EEEn": "WPA38",
+        "EEEn_navn": "Åpen grøft"
+      },
+      "SKILTPORTAL|HALVPORTAL": {
+        "EEEn": "UBF4",
+        "EEEn_navn": "Skiltportal halv"
+      },
+      "HAMMERHULL|HAMMERHULL": {
+        "EEEn": "ULA40",
+        "EEEn_navn": "Hammerhull"
+      },
+      "FESTEMIDDEL|HEFTSVEIS": {
+        "EEEn": "ULA45",
+        "EEEn_navn": "Heftsveis"
+      },
+      "SKILTPORTAL|HELPORTAL": {
+        "EEEn": "UBF3",
+        "EEEn_navn": "Skiltportal hel"
+      },
+      "OVERFLATEBEHANDLING|HERDETILTAK": {
+        "EEEn": "ULA77",
+        "EEEn_navn": "Herdetiltak"
+      },
+      "KUM|HJELPESLUK": {
+        "EEEn": "UCA3",
+        "EEEn_navn": "Hjelpesluk"
+      },
+      "MØBLERING|HOLDEPLASSUTRUSTNING": {
+        "EEEn": "CLC1",
+        "EEEn_navn": "Holdeplassutrustning"
+      },
+      "FUKTISOLERING|HULKIL": {
+        "EEEn": "ULA57",
+        "EEEn_navn": "Hulkil"
+      },
+      "STÅLBJELKE|HUP": {
+        "EEEn": "ULG88",
+        "EEEn_navn": "HUP"
+      },
+      "BETONGELEMENT|HVELV": {
+        "EEEn": "ULG5",
+        "EEEn_navn": "Hvelv betong"
+      },
+      "KUM|HYDRANT": {
+        "EEEn": "UCA39",
+        "EEEn_navn": "Hydrant"
+      },
+      "INNSTØPNINGSGODS|HYLSE": {
+        "EEEn": "ULA67",
+        "EEEn_navn": "Hylse"
+      },
+      "INNSTØPNINGSGODS|HYLSEGRUPPE MED BOLTER": {
+        "EEEn": "ULA68",
+        "EEEn_navn": "Hylsegruppe med bolter"
+      },
+      "RØRLEDNING|INFILTRASJONSLEDNING": {
+        "EEEn": "WPA47",
+        "EEEn_navn": "Infiltrasjonsledning"
+      },
+      "SPENNARMERING|INJISERINGSSLANGE": {
+        "EEEn": "UMM3",
+        "EEEn_navn": "Injiseringsslange spennarmering"
+      },
+      "STØPESKJØT|INJISERINGSSLANGE": {
+        "EEEn": "ULA92",
+        "EEEn_navn": "Injiseringsslange"
+      },
+      "INNSTØPNINGSGODS|INNSTØPNINGSGODS": {
+        "EEEn": "ULA69",
+        "EEEn_navn": "Innstøpningsgods"
+      },
+      "INNSTØPNINGSGODS|INNSTØPT GJENGESTAG": {
+        "EEEn": "ULA70",
+        "EEEn_navn": "Innstøpt gjengestag"
+      },
+      "DRENERING|INNSTØPT STÅLRØR": {
+        "EEEn": "WPA32",
+        "EEEn_navn": "Innstøpt stålrør"
+      },
+      "KUM|INNTAKSKUM": {
+        "EEEn": "UCA44",
+        "EEEn_navn": "Inntakskum"
+      },
+      "PEL|INSPEKSJONSRØR": {
+        "EEEn": "ULC3",
+        "EEEn_navn": "Inspeksjonsrør"
+      },
+      "RØRLEDNING|ISOLASJON": {
+        "EEEn": "WPA39",
+        "EEEn_navn": "Rørisolasjon"
+      },
+      "UNDERBYGNING|ISOLASJON": {
+        "EEEn": "ULA39",
+        "EEEn_navn": "Isolasjon underbygning"
+      },
+      "LAGER|JEKKEPUNKT": {
+        "EEEn": "ULA78",
+        "EEEn_navn": "Lager jekkepunkt"
+      },
+      "JORDINGSSYSTEM|JORDELEKTRODE/SPYD": {
+        "EEEn": "XEE2",
+        "EEEn_navn": "Jordelektrode/spyd"
+      },
+      "JORDING|JORDING": {
+        "EEEn": "XEE1",
+        "EEEn_navn": "Jording"
+      },
+      "FYLLING|JORDPÅSLAG": {
+        "EEEn": "UTA4",
+        "EEEn_navn": "Jordpåslag"
+      },
+      "BETONGELEMENT|KANTBJELKE": {
+        "EEEn": "ULG6",
+        "EEEn_navn": "Kantbjelke betong"
+      },
+      "KANTSTEIN|KANTSTEIN": {
+        "EEEn": "ULM8",
+        "EEEn_navn": "Kantstein"
+      },
+      "PEL|KAPPNIVÅ": {
+        "EEEn": "ULC4",
+        "EEEn_navn": "Kappnivå"
+      },
+      "DØR|KARM": {
+        "EEEn": "QQC3",
+        "EEEn_navn": "Dørkarm"
+      },
+      "BETONGELEMENT|KASSE": {
+        "EEEn": "ULG7",
+        "EEEn_navn": "Kasse betong"
+      },
+      "FESTEMIDDEL|KILSVEIS": {
+        "EEEn": "ULA88",
+        "EEEn_navn": "Kilsveis"
+      },
+      "INNSTØPNINGSGODS|KJEMISK ANKER": {
+        "EEEn": "HXA1",
+        "EEEn_navn": "Kjemisk anker"
+      },
+      "INFORMASJONSOBJEKT|KJØREBOKS": {
+        "EEEn": "ULA120",
+        "EEEn_navn": "Kjøreboks"
+      },
+      "FUKTISOLERING|KLEMLIST": {
+        "EEEn": "ULA58",
+        "EEEn_navn": "Klemlist"
+      },
+      "BETONGELEMENT|KNEVEGG": {
+        "EEEn": "ULG8",
+        "EEEn_navn": "Knevegg betong"
+      },
+      "DRENERING|KNOTTEPLATE": {
+        "EEEn": "WPA70",
+        "EEEn_navn": "Knotteplate"
+      },
+      "REKKVERK|KONFLIKTVOLUM": {
+        "EEEn": "XXX2",
+        "EEEn_navn": "Placeholder, ikke i bruk"
+      },
+      "BETONGELEMENT|KONSOLL": {
+        "EEEn": "ULG9",
+        "EEEn_navn": "Betongelement konsoll"
+      },
+      "BETONGELEMENT|KONTAKTSTØP": {
+        "EEEn": "ULG10",
+        "EEEn_navn": "Kontaktstøp betong"
+      },
+      "ARMERING|KRYMPEPLAST": {
+        "EEEn": "UMA12",
+        "EEEn_navn": "Krympeplast armering"
+      },
+      "KULTURMINNER|KULTURMINNER": {
+        "EEEn": "ULA96",
+        "EEEn_navn": "Kulturminner"
+      },
+      "KUM|KUMLOKK": {
+        "EEEn": "UCA40",
+        "EEEn_navn": "Kumlokk"
+      },
+      "LAGER|LAGER": {
+        "EEEn": "ULA73",
+        "EEEn_navn": "Lager"
+      },
+      "LAGER|LAGER KONSOLL": {
+        "EEEn": "ULA74",
+        "EEEn_navn": "Lager konsoll"
+      },
+      "UNDERBYGNING|LAVESTEGRAVENIVÅ": {
+        "EEEn": "UTB1",
+        "EEEn_navn": "Laveste gravenivå i underbygning"
+      },
+      "VEGBOM|LEDEBOM": {
+        "EEEn": "RUB1",
+        "EEEn_navn": "Ledebom"
+      },
+      "MØBLERING|LEKEAPARAT": {
+        "EEEn": "CLC3",
+        "EEEn_navn": "Lekeaparat"
+      },
+      "FYLLING|LETTKLINKER": {
+        "EEEn": "UTS23",
+        "EEEn_navn": "Lettklinker"
+      },
+      "FESTEELEMENT|LIMANKER": {
+        "EEEn": "UQA31",
+        "EEEn_navn": "Limanker"
+      },
+      "FESTEMIDDEL|LIMING": {
+        "EEEn": "ULA46",
+        "EEEn_navn": "Liming"
+      },
+      "INNSTØPNINGSGODS|LUFTERØR": {
+        "EEEn": "ULA91",
+        "EEEn_navn": "Lufterør"
+      },
+      "SPENNARMERING|LUFTESLANGE": {
+        "EEEn": "UMM4",
+        "EEEn_navn": "Lufteslange spennarmering"
+      },
+      "DØR|LUKE": {
+        "EEEn": "QQC1",
+        "EEEn_navn": "Luke"
+      },
+      "VEGGSYSTEM|LUKE": {
+        "EEEn": "ULM5",
+        "EEEn_navn": "Luke i vegg"
+      },
+      "FORURENSET-GRUNN|MASSER": {
+        "EEEn": "ULA94",
+        "EEEn_navn": "Masser i forurenset-grunn"
+      },
+      "TERRENGFORMING|MATJORD": {
+        "EEEn": "FSD3",
+        "EEEn_navn": "Matjord"
+      },
+      "FUGE|MEKANISK FUGE": {
+        "EEEn": "ULA55",
+        "EEEn_navn": "Mekanisk fuge"
+      },
+      "FUKTISOLERING|MEMBRAN": {
+        "EEEn": "ULA59",
+        "EEEn_navn": "Membran"
+      },
+      "VANN- OG FUKTFOREBYGGENDE SYSTEM|MEMBRAN": {
+        "EEEn": "WPA35",
+        "EEEn_navn": "Membran i vann- og fuktforebyggende system"
+      },
+      "FUKTISOLERING|MEMBRANBESKYTTELSE": {
+        "EEEn": "ULA60",
+        "EEEn_navn": "Membranbeskyttelse"
+      },
+      "PLATE|METADATAOBJEKT": {
+        "EEEn": "ULK5",
+        "EEEn_navn": "Metadataobjekt"
+      },
+      "REKKVERK|MIDTDELER": {
+        "EEEn": "FQD17",
+        "EEEn_navn": "Midtdeler i rekkverk"
+      },
+      "FYLLING|MOTFYLLING": {
+        "EEEn": "UTA14",
+        "EEEn_navn": "Motfylling"
+      },
+      "ARMERING|MUFFESKJØTER": {
+        "EEEn": "UCA33",
+        "EEEn_navn": "Muffeskjøter armering"
+      },
+      "BETONGELEMENT|MURKRAGE": {
+        "EEEn": "ULG11",
+        "EEEn_navn": "Murkrage betong"
+      },
+      "INNSTØPNINGSGODS|MURKRAGE": {
+        "EEEn": "ULA97",
+        "EEEn_navn": "Murkrage"
+      },
+      "FESTEELEMENT|MUTTER": {
+        "EEEn": "UQA33",
+        "EEEn_navn": "Mutter"
+      },
+      "FESTEMIDDEL|MØRTEL": {
+        "EEEn": "ULA47",
+        "EEEn_navn": "Mørtel"
+      },
+      "PEL|MØRTEL": {
+        "EEEn": "ULA10",
+        "EEEn_navn": "Mørtel"
+      },
+      "REKKVERK|NATURSTEINSBLOKK": {
+        "EEEn": "FQD22",
+        "EEEn_navn": "Natursteinsblokk"
+      },
+      "TØRRMUR|NATURSTEINSMUR": {
+        "EEEn": "ULM1",
+        "EEEn_navn": "Natursteinsmur"
+      },
+      "REKKVERKSENDE|NEDFØRING": {
+        "EEEn": "FQD11",
+        "EEEn_navn": "Rekkverksende nedføring"
+      },
+      "RØRLEDNING|NEDFØRINGSRENNE": {
+        "EEEn": "WPA43",
+        "EEEn_navn": "Nedføringsrenne"
+      },
+      "OVERBYGNING|NEDRE BÆRELAG": {
+        "EEEn": "ULA22",
+        "EEEn_navn": "Nedre bærelag overbygning"
+      },
+      "INNSTØPNINGSGODS|NIVELLERINGSBOLT": {
+        "EEEn": "ULA71",
+        "EEEn_navn": "Nivelleringsbolt"
+      },
+      "UNDERBYGNING|OMFYLLING": {
+        "EEEn": "UTA11",
+        "EEEn_navn": "Omfylling i underbygning"
+      },
+      "UNDERBYGNING|OPPFYLLING": {
+        "EEEn": "UTA2",
+        "EEEn_navn": "Oppfylling i underbygning"
+      },
+      "FYLLING|OPPFYLLING FRAKSJON 22/125": {
+        "EEEn": "UTA13",
+        "EEEn_navn": "Oppfylling"
+      },
+      "OPPMERKING|OPPMERKINGFORSTERKET": {
+        "EEEn": "PKB1",
+        "EEEn_navn": "Forsterket oppmerking"
+      },
+      "OPPMERKING|OPPMERKINGLANGS": {
+        "EEEn": "PHE2",
+        "EEEn_navn": "Langsgående oppmerking"
+      },
+      "OPPMERKING|OPPMERKINGTVERR": {
+        "EEEn": "PHE1",
+        "EEEn_navn": "Tverrgående oppmerking"
+      },
+      "BETONGELEMENT|OVERGANGSPLATE": {
+        "EEEn": "ULG12",
+        "EEEn_navn": "Overgangsplate betong"
+      },
+      "REKKVERK|OVERGANGSREKKVERK": {
+        "EEEn": "FQD5",
+        "EEEn_navn": "Overgangsrekkverk"
+      },
+      "KUM|OVERVANNSKUM": {
+        "EEEn": "WPA45",
+        "EEEn_navn": "Overvannskum"
+      },
+      "RØRLEDNING|OVERVANNSLEDNING": {
+        "EEEn": "WPA3",
+        "EEEn_navn": "Overvannsledning"
+      },
+      "PEL|PEL": {
+        "EEEn": "ULC5",
+        "EEEn_navn": "Pel"
+      },
+      "UNDERBYGNING|PLANUM": {
+        "EEEn": "UTA19",
+        "EEEn_navn": "Planum"
+      },
+      "UNDERBYGNING|PLANUMBERG": {
+        "EEEn": "UTA7",
+        "EEEn_navn": "Planum berg"
+      },
+      "UNDERBYGNING|PLANUMFYLLING": {
+        "EEEn": "UTA9",
+        "EEEn_navn": "Planum fylling"
+      },
+      "UNDERBYGNING|PLANUMJORD": {
+        "EEEn": "UTA8",
+        "EEEn_navn": "Planum jord"
+      },
+      "UNDERBYGNING|PLANUMTUNNEL": {
+        "EEEn": "UTA20",
+        "EEEn_navn": "Planum tunnel"
+      },
+      "FUKTISOLERING|PLASTMEMBRAN TYPE I": {
+        "EEEn": "ULA61",
+        "EEEn_navn": "Plastmembran type I"
+      },
+      "FUKTISOLERING|PLASTMEMBRAN TYPE II": {
+        "EEEn": "ULA79",
+        "EEEn_navn": "Plastmembran type II"
+      },
+      "PLASTRING|PLASTRING": {
+        "EEEn": "ULA87",
+        "EEEn_navn": "Plastring"
+      },
+      "TERRENGFORMING|PLASTRING BEKK": {
+        "EEEn": "FSD4",
+        "EEEn_navn": "Plastring bekk"
+      },
+      "TERRENGFORMING|PLASTRING EROSJONSSIKRING": {
+        "EEEn": "FSD5",
+        "EEEn_navn": "Plastring erosjonssikring"
+      },
+      "HEFTBRYTER|POLYETYLENFOLIE": {
+        "EEEn": "NCA25",
+        "EEEn_navn": "Polyetylenfolie"
+      },
+      "FORURENSET-GRUNN|PRØVER": {
+        "EEEn": "ULA95",
+        "EEEn_navn": "Prøver i forurenset-grunn"
+      },
+      "STØTTEVEGG|PUTE": {
+        "EEEn": "ULD5",
+        "EEEn_navn": "Pute støttekonstruksjon"
+      },
+      "REKKVERK|REKKVERKSAVSLUTTER": {
+        "EEEn": "FQD18",
+        "EEEn_navn": "Rekkverksavslutter"
+      },
+      "REKKVERK|REKKVERKSKINNE": {
+        "EEEn": "FQD2",
+        "EEEn_navn": "Rekkverkskinne"
+      },
+      "REKKVERK|REKKVERKSPANEL": {
+        "EEEn": "FQD21",
+        "EEEn_navn": "Rekkverkspanel"
+      },
+      "REKKVERK|REKKVERKSSTOLPE": {
+        "EEEn": "FQD1",
+        "EEEn_navn": "Rekkverksstolpe"
+      },
+      "TERRENGFORMING|REVEGETERING": {
+        "EEEn": "FSD6",
+        "EEEn_navn": "Revegetering"
+      },
+      "TUNNELOVERBYGNING|RIST": {
+        "EEEn": "ULA102",
+        "EEEn_navn": "Rist i tunnel"
+      },
+      "STØTTEVEGG|RØRVEGG": {
+        "EEEn": "ULD1",
+        "EEEn_navn": "Rørvegg støttekonstruksjon"
+      },
+      "KUM|SANDFANG": {
+        "EEEn": "UCA41",
+        "EEEn_navn": "Sandfang"
+      },
+      "SIKRING|SELVBORENDE STAG": {
+        "EEEn": "ULA42",
+        "EEEn_navn": "Selvborende stag"
+      },
+      "TERRENGFORMING|SIDEAREALTUNNEL": {
+        "EEEn": "NDA6",
+        "EEEn_navn": "Sideareal tunnel"
+      },
+      "SKILT|SIGNALHODE": {
+        "EEEn": "EAA33",
+        "EEEn_navn": "Signalhode på skilt"
+      },
+      "REKKVERK|SIKRINGSGJERDE": {
+        "EEEn": "FQD24",
+        "EEEn_navn": "Sikringsgjerde"
+      },
+      "BRANNSLOKKESYSTEM|SKAP": {
+        "EEEn": "UCA35",
+        "EEEn_navn": "Skap brannslokkesystem"
+      },
+      "SKILT|SKILT": {
+        "EEEn": "EAA34",
+        "EEEn_navn": "Skilt"
+      },
+      "SKILT|SKILTFUNDAMENT": {
+        "EEEn": "PHD10",
+        "EEEn_navn": "Skiltfundament"
+      },
+      "SKILT|SKILTMAST": {
+        "EEEn": "PHD5",
+        "EEEn_navn": "Skiltmast"
+      },
+      "SKILT|SKILTOPPHENG": {
+        "EEEn": "EAA35",
+        "EEEn_navn": "Skiltoppheng på skilt"
+      },
+      "SKILT|SKILTPLATE": {
+        "EEEn": "PHD20",
+        "EEEn_navn": "Skiltplate"
+      },
+      "SKILTPORTAL|SKILTPORTALFUNDAMENT": {
+        "EEEn": "UBF6",
+        "EEEn_navn": "Skiltportalfundament"
+      },
+      "SKJÆRING|SKJÆRINGBERG": {
+        "EEEn": "NCG2",
+        "EEEn_navn": "Skjæring i berg"
+      },
+      "SKJÆRING|SKJÆRINGJORD": {
+        "EEEn": "NCG3",
+        "EEEn_navn": "Skjæring i jord"
+      },
+      "BETONGELEMENT|SKJØRT": {
+        "EEEn": "ULG13",
+        "EEEn_navn": "Skjørt betong"
+      },
+      "ARMERING|SKJØTEKOBLING": {
+        "EEEn": "UCA34",
+        "EEEn_navn": "Skjøtekobling i armering"
+      },
+      "SPENNARMERING|SKJØTEKOBLING": {
+        "EEEn": "UMM5",
+        "EEEn_navn": "Skjøtekobling spennarmering"
+      },
+      "OVERBYGNING|SLITELAG": {
+        "EEEn": "NCA2",
+        "EEEn_navn": "Slitelag overbygning"
+      },
+      "DRENERING|SLUK": {
+        "EEEn": "WPA33",
+        "EEEn_navn": "Sluk"
+      },
+      "SPENNARMERING|SPENNKABEL": {
+        "EEEn": "UMM6",
+        "EEEn_navn": "Spennkabel spennarmering"
+      },
+      "KUM|SPILLVANNSKUM": {
+        "EEEn": "UCA4",
+        "EEEn_navn": "Spillvannskum"
+      },
+      "RØRLEDNING|SPILLVANNSLEDNING": {
+        "EEEn": "WPA2",
+        "EEEn_navn": "Spillvannsledning"
+      },
+      "SPENNARMERING|SPIRALARMERING": {
+        "EEEn": "UMM7",
+        "EEEn_navn": "Spiralarmering spennarmering"
+      },
+      "VANN- OG FUKTFOREBYGGENDE SYSTEM|SPRØYTEBETONG": {
+        "EEEn": "WPA36",
+        "EEEn_navn": "Sprøytebetong i vann- og fuktforebyggende system"
+      },
+      "STØTTEVEGG|SPUNT": {
+        "EEEn": "ULD2",
+        "EEEn_navn": "Spuntkonstruksjon"
+      },
+      "STØTTEVEGG|STAG": {
+        "EEEn": "ULD3",
+        "EEEn_navn": "Stag"
+      },
+      "KUM|STAKE-/SPYLEKUM": {
+        "EEEn": "UCA6",
+        "EEEn_navn": "Stake-/Spylekum"
+      },
+      "TERRENGFORMING|STEINMATERIALER": {
+        "EEEn": "WMB1",
+        "EEEn_navn": "Steinmaterialer"
+      },
+      "DRENERING|STEINSATT RENNE": {
+        "EEEn": "WPA34",
+        "EEEn_navn": "Steinsatt renne"
+      },
+      "VEGBOM|STENGEBOM": {
+        "EEEn": "RUB2",
+        "EEEn_navn": "Stengebom"
+      },
+      "KUM|STENGEVENTIL": {
+        "EEEn": "UCA42",
+        "EEEn_navn": "Stengeventil"
+      },
+      "RØRLEDNING|STIKKRENNE": {
+        "EEEn": "WPA37",
+        "EEEn_navn": "Kulvert"
+      },
+      "STIKNINGSOBJEKT|STIKNINGSOBJEKT": {
+        "EEEn": "BGA34",
+        "EEEn_navn": "Stikningsobjekt"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT HØYSPENT": {
+        "EEEn": "",
+        "EEEn_navn": "Stikningsobjekt høyspent"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT KABELBRU": {
+        "EEEn": "ULA83",
+        "EEEn_navn": "Stikningsobjekt kabelbru"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT LAGER": {
+        "EEEn": "ULA63",
+        "EEEn_navn": "Stikningsobjekt lager"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT LYSMAST": {
+        "EEEn": "ULA81",
+        "EEEn_navn": "Stikningsobjekt lysmast"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT NIVELLERINGSBOLTER": {
+        "EEEn": "ULA64",
+        "EEEn_navn": "Stikningsobjekt nivelleringsbolter"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT OVERHØYDE": {
+        "EEEn": "ULA65",
+        "EEEn_navn": "Stikningsobjekt overhøyde"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT PELER": {
+        "EEEn": "",
+        "EEEn_navn": "Stikningsobjekt peler"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT REKKVERK": {
+        "EEEn": "FQD15",
+        "EEEn_navn": "Stikningsobjekt rekkverk informasjonsobjekt"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT SIKRINGSGJERDE": {
+        "EEEn": "ULA82",
+        "EEEn_navn": "Stikningsobjekt sikringsgjerde"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT STØYSKJERM": {
+        "EEEn": "",
+        "EEEn_navn": "Stikningsobjekt støyskjerm"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT TREKKERØR": {
+        "EEEn": "ULA80",
+        "EEEn_navn": "Stikningsobjekt trekkerør"
+      },
+      "INFORMASJONSOBJEKT|STIKNINGSOBJEKT VA-RØR": {
+        "EEEn": "",
+        "EEEn_navn": "Stikningsobjekt VA-rør"
+      },
+      "PEL|STIVER": {
+        "EEEn": "ULC6",
+        "EEEn_navn": "Stiver"
+      },
+      "STØTTEVEGG|STIVER": {
+        "EEEn": "ULD4",
+        "EEEn_navn": "Stiver"
+      },
+      "PEL|STYRERING": {
+        "EEEn": "ULC7",
+        "EEEn_navn": "Styrering"
+      },
+      "REKKVERKSENDE|STØTPUTE": {
+        "EEEn": "RLB1",
+        "EEEn_navn": "Støtpute i rekkverksende"
+      },
+      "REKKVERK|STØTTEKONSTRUKSJON": {
+        "EEEn": "FQD23",
+        "EEEn_navn": "Støttekonstruksjon"
+      },
+      "REKKVERK|STØYSKJERM": {
+        "EEEn": "FQD20",
+        "EEEn_navn": "Støyskjerm i rekkverk"
+      },
+      "SKJERM|STØYSKJERM": {
+        "EEEn": "RQC1",
+        "EEEn_navn": "Støyskjerm"
+      },
+      "PEL|STÅLKJERNEPEL": {
+        "EEEn": "ULC8",
+        "EEEn_navn": "Stålkjernepel"
+      },
+      "PLATE|STÅLPLATE": {
+        "EEEn": "ULK4",
+        "EEEn_navn": "Stålplate"
+      },
+      "PEL|STÅLRØR": {
+        "EEEn": "ULC9",
+        "EEEn_navn": "Stålrør"
+      },
+      "FESTEMIDDEL|SVEIS": {
+        "EEEn": "ULA48",
+        "EEEn_navn": "Sveis"
+      },
+      "STØPESKJØT|SVELLEBÅND": {
+        "EEEn": "ULA93",
+        "EEEn_navn": "Svellebånd"
+      },
+      "MØBLERING|SYKKELSKUR": {
+        "EEEn": "CLC6",
+        "EEEn_navn": "Sykkelskur"
+      },
+      "MØBLERING|SYKKELSTATIV": {
+        "EEEn": "CLC5",
+        "EEEn_navn": "Sykkelstativ"
+      },
+      "SYMBOL|SYMBOL": {
+        "EEEn": "XXX1",
+        "EEEn_navn": "Placeholder, ikke i bruk"
+      },
+      "BETONGELEMENT|SØYLE": {
+        "EEEn": "ULG14",
+        "EEEn_navn": "Betongsøyle"
+      },
+      "BETONGELEMENT|TAKPLATE": {
+        "EEEn": "ULG15",
+        "EEEn_navn": "Takplate betongelement"
+      },
+      "KUM|TANK": {
+        "EEEn": "UCA43",
+        "EEEn_navn": "Tank"
+      },
+      "SIDEOMRÅDE|TERRENGFORMING": {
+        "EEEn": "ULA104",
+        "EEEn_navn": "Terrengforming"
+      },
+      "TERRENG|TERRENGOVERFLATEMODELL": {
+        "EEEn": "ULA35",
+        "EEEn_navn": "Terrengoverflatemodell"
+      },
+      "FUKTISOLERING|TETNINGSTILTAK": {
+        "EEEn": "ULA85",
+        "EEEn_navn": "Tetningstiltak"
+      },
+      "TETTHETSKRAV|TETTHETSKRAV": {
+        "EEEn": "ULA41",
+        "EEEn_navn": "Tetthetskrav"
+      },
+      "FYLLING|TILBAKEFYLLING": {
+        "EEEn": "UTA22",
+        "EEEn_navn": "Tilbakefylling"
+      },
+      "FYLLING|TILBAKEFYLLING FRAKSJON 22/125": {
+        "EEEn": "UTA3",
+        "EEEn_navn": "Tilbakefylling"
+      },
+      "TERRENGFORMING|TILSÅING": {
+        "EEEn": "FSD2",
+        "EEEn_navn": "Tilsåing"
+      },
+      "PEL|TOPPLATE": {
+        "EEEn": "ULK3",
+        "EEEn_navn": "Topplate"
+      },
+      "TRAPP|TRAPP": {
+        "EEEn": "XSB1",
+        "EEEn_navn": "Trapp"
+      },
+      "VEGETASJON|TRE": {
+        "EEEn": "TRA1",
+        "EEEn_navn": "Tre"
+      },
+      "FORSKALING|TREKANTPROFIL": {
+        "EEEn": "NDA5",
+        "EEEn_navn": "Trekantprofil forskaling"
+      },
+      "KABELFØRINGSSYSTEM|TREKKEKUM": {
+        "EEEn": "WDB32",
+        "EEEn_navn": "Trekkekum"
+      },
+      "FØRINGSVEI|TREKKERØR": {
+        "EEEn": "WPA30",
+        "EEEn_navn": "Trekkerør"
+      },
+      "RØRLEDNING|TREKKERØR": {
+        "EEEn": "WPA40",
+        "EEEn_navn": "Trekkerør, rørledning"
+      },
+      "GRUNNARBEID, TERRENG|TUNNELLØP": {
+        "EEEn": "ULP3",
+        "EEEn_navn": "Tunnelløp"
+      },
+      "BETONGELEMENT|TVERRBJELKE": {
+        "EEEn": "ULG16",
+        "EEEn_navn": "Tverrbjelke betong"
+      },
+      "BETONGELEMENT|TVERRPROFIL": {
+        "EEEn": "ULG17",
+        "EEEn_navn": "Tverrprofil betong"
+      },
+      "BETONGELEMENT|TVERRSKOTT": {
+        "EEEn": "ULG18",
+        "EEEn_navn": "Tverrskott betong"
+      },
+      "LAGER|UARMERT GUMMIBÅND": {
+        "EEEn": "ULA86",
+        "EEEn_navn": "Uarmert gummibånd"
+      },
+      "AVRETTING|UNDERSTØP": {
+        "EEEn": "ULA44",
+        "EEEn_navn": "Avretting av overflate"
+      },
+      "MØBLERING|UTEMØBLER": {
+        "EEEn": "CLC2",
+        "EEEn_navn": "Utemøbler"
+      },
+      "REKKVERKSENDE|UTFØRING": {
+        "EEEn": "FQD12",
+        "EEEn_navn": "Rekkverksende utførende"
+      },
+      "MASSEUTTAK|UTGRAVDE MASSER": {
+        "EEEn": "ULA75",
+        "EEEn_navn": "Utgravde masser i masseuttak"
+      },
+      "MØBLERING|UTSMYKNINGSOBJEKT": {
+        "EEEn": "CLC7",
+        "EEEn_navn": "Utsmykningsobjekt"
+      },
+      "ÅPENUTSPARING|UTSPARING": {
+        "EEEn": "ULM9",
+        "EEEn_navn": "Utsparing"
+      },
+      "VEGGSYSTEM|UTSPARRING": {
+        "EEEn": "ULM6",
+        "EEEn_navn": "Utsparring i vegg"
+      },
+      "KUM|VANNKUM": {
+        "EEEn": "UCA5",
+        "EEEn_navn": "Vannkum"
+      },
+      "RØRLEDNING|VANNLEDNING": {
+        "EEEn": "WPA1",
+        "EEEn_navn": "Vannledning"
+      },
+      "RØRLEDNING|VARERØR": {
+        "EEEn": "WPA41",
+        "EEEn_navn": "Varerør, rørledning"
+      },
+      "SKILT|VARIABELTSKILT": {
+        "EEEn": "PHA1",
+        "EEEn_navn": "Variabelt skilt"
+      },
+      "RØRLEDNING|VASKEVANNSLEDNING": {
+        "EEEn": "WPA42",
+        "EEEn_navn": "Vaskevannsledning"
+      },
+      "VEGBOM|VEGBOMFUNDAMENT": {
+        "EEEn": "RUB31",
+        "EEEn_navn": "Vegbomfundament"
+      },
+      "BETONGELEMENT|VEGG": {
+        "EEEn": "ULG19",
+        "EEEn_navn": "Vegg betong"
+      },
+      "VEGGSYSTEM|VEGG": {
+        "EEEn": "ULM7",
+        "EEEn_navn": "Vegg"
+      },
+      "GJERDE|VILTGJERDE": {
+        "EEEn": "RUA2",
+        "EEEn_navn": "Viltgjerde"
+      },
+      "BETONGELEMENT|VINGEMUR": {
+        "EEEn": "ULG21",
+        "EEEn_navn": "Vingemur"
+      },
+      "TERRENGFORMING|VOLL": {
+        "EEEn": "UTA15",
+        "EEEn_navn": "Voll"
+      },
+      "ISOLASJON|XPS": {
+        "EEEn": "ULA90",
+        "EEEn_navn": "XPS"
+      },
+      "OVERBYGNING|ØVRE BÆRELAG": {
+        "EEEn": "ULA11",
+        "EEEn_navn": "Øvre bærelag overbygning"
+      }
+    },
+    "FFF": {}
+  }
+}
