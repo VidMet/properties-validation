@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v4.05</title>
+  <title>Egenskapsvalidering v4.06</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -122,7 +122,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v4.05</h1>
+    <h1>Egenskapsvalidering v4.06</h1>
     <p>Cache-Buster aktivert og robust Prosesskode-kutter</p>
   </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
@@ -141,8 +141,8 @@
     <label>Regelsett:</label>
     <select id="ruleSelect">
       <option value="0_Element.json">0_Element</option>
-      <option value="1_FAG.json">1_FAG (Dynamisk)</option>
-      <option value="2_RDS.json">2_RDS (Intelligent)</option>
+      <option value="1_FAG.json">1_FAG</option>
+      <option value="2_RDS.json">2_RDS</option>
       <option value="3_Beskrivelse.json">3_Beskrivelse</option>
     </select>
   </div>
@@ -382,7 +382,7 @@ function runRdsValidation(objProps, rules) {
   checkExpected("05. Cn", hoved ? hoved.Cn : null, "Feil Cn", true, pnsKode);
   checkExpected("06. Cn navn", hoved ? hoved.Cn_navn : null, "Feil Cn navn", true, pnsKode);
 
-  // 2. Teknisk system (v4.05: Idiot-sikker kutter med rensing av usynlige tegn)
+  // 2. Teknisk system (v4.06: Idiot-sikker kutter med rensing av usynlige tegn)
   let tek = null;
   let pk = prosesskode.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').toUpperCase();
 
