@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v3.08</title>
+  <title>Egenskapsvalidering v4.01</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -129,8 +129,8 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v3.08</h1>
-    <p>Filter for IFC-systemnoder (Project, Site, Building) gjenopprettet</p>
+    <h1>Egenskapsvalidering v4.01</h1>
+    <p>Grafikk, fargeleggingsknapper og filter gjenopprettet + Ny RDS-motor</p>
   </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
@@ -149,6 +149,7 @@
     <select id="ruleSelect">
       <option value="0_Element.json">0_Element</option>
       <option value="1_FAG.json">1_FAG (Dynamisk)</option>
+      <option value="2_RDS.json">2_RDS (Intelligent)</option>
       <option value="3_Beskrivelse.json">3_Beskrivelse</option>
     </select>
   </div>
@@ -234,6 +235,7 @@ async function loadModels(){
   } catch(e) { setStatus('❌ Feil ved henting: ' + e.message, 'error'); }
 }
 
+// --- STANDARD VALIDERINGS-MOTOR ---
 function runValidation(objProps, fullRules) {
   let fields = {}, ok = 0, miss = 0, warn = 0;
   const props = objProps.flat;
@@ -334,6 +336,91 @@ function runValidation(objProps, fullRules) {
   return { fields, score, miss, warn };
 }
 
+// --- DEDIKERT RDS KRYSSREFERANSE-MOTOR ---
+function runRdsValidation(objProps, rules) {
+  let fields = {}, ok = 0, miss = 0, warn = 0;
+  const props = objProps.flat;
+  const m = rules.mappings;
+
+  const getProp = (name) => (props[name] || '').toString().trim();
+  
+  const pnsKode = getProp("PNS Kode");
+  const prosesskode = getProp("Prosesskode");
+  const objektklasse = getProp("Objektklasse");
+  const objekttype = getProp("Objekttype");
+  const produkttype = getProp("Produkttype");
+
+  const checkExpected = (propName, expectedVal, errorMsg, allowMissingExpected = false) => {
+    const actualVal = getProp(propName);
+    if (!expectedVal) {
+      if (allowMissingExpected) {
+         if (actualVal) { fields[propName] = { status: 'warn', value: actualVal, msg: 'Finner ikke i matrise' }; warn++; }
+         else { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; }
+      } else {
+         if (actualVal) { fields[propName] = { status: 'warn', value: actualVal, msg: 'Forventet blank' }; warn++; }
+         else { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; }
+      }
+      return;
+    }
+    if (actualVal === "") { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
+    else if (actualVal.toUpperCase() !== expectedVal.toUpperCase()) { fields[propName] = { status: 'warn', value: actualVal, msg: `Forventet: ${expectedVal}` }; warn++; } 
+    else { fields[propName] = { status: 'ok', value: actualVal, msg: 'OK' }; ok++; }
+  };
+
+  // 1. Hovedsystem
+  const hoved = m.Hovedsystem[pnsKode] || null;
+  checkExpected("03. Bn", hoved ? hoved.Bn : null, "Feil Bn", true);
+  checkExpected("04. Bn navn", hoved ? hoved.Bn_navn : null, "Feil Bn navn", true);
+  checkExpected("05. Cn", hoved ? hoved.Cn : null, "Feil Cn", true);
+  checkExpected("06. Cn navn", hoved ? hoved.Cn_navn : null, "Feil Cn navn", true);
+
+  // 2. Teknisk system
+  let tek = null, pk = prosesskode;
+  while (pk.length > 0 && !tek) {
+    if (m.TekniskSystem[pk]) { tek = m.TekniskSystem[pk]; break; }
+    pk = pk.substring(0, pk.length - 1);
+    if (pk.endsWith('.')) pk = pk.substring(0, pk.length - 1);
+  }
+  checkExpected("07. DDn", tek ? tek.DDn : null, "Feil DDn", true);
+  checkExpected("08. DDn navn", tek ? tek.DDn_navn : null, "Feil DDn navn", true);
+
+  // 3. EEE
+  const eee = m.EEE[`${objektklasse}|${objekttype}`.toUpperCase()] || null;
+  checkExpected("09. EEEn", eee ? eee.EEEn : null, "Feil EEEn", true);
+  checkExpected("10. EEEn navn", eee ? eee.EEEn_navn : null, "Feil EEEn navn", true);
+
+  // 4. FFF
+  const fff = m.FFF[produkttype.toUpperCase()] || null;
+  checkExpected("11. FFFn", fff ? fff.FFFn : null, "Feil FFFn", true);
+  checkExpected("12. FFFn navn", fff ? fff.FFFn_navn : null, "Feil FFFn navn", true);
+
+  // 5. GGGn & GGGn navn
+  const ggg = getProp("13. GGGn"), gggNavn = getProp("14. GGGn navn"), fffn_expected = fff ? fff.FFFn : null;
+  if (!ggg) { fields["13. GGGn"] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
+  else {
+    const fffPrefix = fffn_expected ? fffn_expected.substring(0,3).toUpperCase() : '...';
+    if (new RegExp('^' + (fffn_expected ? fffn_expected.substring(0,3) : '[A-Z]{3}') + '\\d+$', 'i').test(ggg)) {
+      fields["13. GGGn"] = { status: 'ok', value: ggg, msg: 'OK' }; ok++;
+    } else { fields["13. GGGn"] = { status: 'warn', value: ggg, msg: `Format: ${fffPrefix} + tall` }; warn++; }
+  }
+  if (!gggNavn) { fields["14. GGGn navn"] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; }
+  else { fields["14. GGGn navn"] = { status: 'ok', value: gggNavn, msg: 'OK' }; ok++; }
+
+  // 6 & 7. Låste strenger
+  checkExpected("15. Informasjon om RDS i prosjektet", 'Se dokument "Plan for bruk av RDS.pdf"', "Feil tekst");
+  checkExpected("02. AAAA_AA", "<E6RS_01>", "Feil tekst");
+
+  // 8. 01. RDS-tag (Sammensetning)
+  const actualTag = getProp("01. RDS-tag");
+  const expectedTag = `${getProp("02. AAAA_AA")}-${getProp("03. Bn")}.${getProp("05. Cn")}.${getProp("07. DDn")}.${getProp("09. EEEn")}.${getProp("11. FFFn")}.${ggg}`;
+  if (!actualTag) { fields["01. RDS-tag"] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
+  else if (actualTag.toUpperCase() !== expectedTag.toUpperCase()) { fields["01. RDS-tag"] = { status: 'warn', value: actualTag, msg: `Må matche strukturen` }; warn++; } 
+  else { fields["01. RDS-tag"] = { status: 'ok', value: actualTag, msg: 'OK' }; ok++; }
+
+  const totalReq = ok + miss + warn;
+  return { fields, score: totalReq > 0 ? Math.round((ok / totalReq) * 100) : 100, miss, warn };
+}
+
 async function validate(){
   const mid = $('modelSelect').value;
   if (!mid || !API) return;
@@ -366,7 +453,11 @@ async function validate(){
         const flat = {};
         (o.properties || []).forEach(g => (g.properties || []).forEach(p => flat[p.name] = p.value));
         
-        const result = runValidation({flat}, validationRules);
+        // Ruter automatisk til riktig valideringsmotor
+        const result = validationRules.type === 'RDS_RULESET' 
+            ? runRdsValidation({flat}, validationRules) 
+            : runValidation({flat}, validationRules);
+
         validationRows.push({
           name: o.name || 'Objekt',
           modelId: mid,
