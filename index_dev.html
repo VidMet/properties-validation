@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v4.04</title>
+  <title>Egenskapsvalidering v4.05</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -31,16 +31,9 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: var(--bg); color: var(--ink); font-family: var(--sans);
-      min-height: 100vh; display: flex; flex-direction: column; overflow: hidden;
-    }
+    body { background: var(--bg); color: var(--ink); font-family: var(--sans); min-height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
-    header {
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
-    }
-
+    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
     .header-title { flex: 1; }
     .header-title h1 { font-size: 16px; font-weight: 800; letter-spacing: -.3px; color: var(--ink); }
     .header-title p { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 1px; }
@@ -129,8 +122,8 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v4.04</h1>
-    <p>Skuddsikker Prosesskode-kutter for RDS-matrisen</p>
+    <h1>Egenskapsvalidering v4.05</h1>
+    <p>Cache-Buster aktivert og robust Prosesskode-kutter</p>
   </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
@@ -366,7 +359,6 @@ function runRdsValidation(objProps, rules) {
     let actComp = actualVal.toString().trim().toUpperCase();
     let expComp = expectedVal.toString().trim().toUpperCase();
 
-    // v4.04: Sikker numerisk sammenligning. ("01" vs "1" blir godkjent)
     if (!isNaN(actComp) && !isNaN(expComp) && actComp !== "" && expComp !== "") {
         if (Number(actComp) === Number(expComp)) {
             actComp = "MATCH";
@@ -390,18 +382,19 @@ function runRdsValidation(objProps, rules) {
   checkExpected("05. Cn", hoved ? hoved.Cn : null, "Feil Cn", true, pnsKode);
   checkExpected("06. Cn navn", hoved ? hoved.Cn_navn : null, "Feil Cn navn", true, pnsKode);
 
-  // 2. Teknisk system (v4.04: Den skuddsikre kutteren)
+  // 2. Teknisk system (v4.05: Idiot-sikker kutter med rensing av usynlige tegn)
   let tek = null;
-  let pk = prosesskode.trim().toUpperCase();
+  let pk = prosesskode.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').toUpperCase();
 
-  // Kutter ett og ett tegn helt til den finner en nøyaktig match i JSON-filen
   while (pk.length > 0 && !tek) {
-    const foundKey = Object.keys(m.TekniskSystem).find(k => k.trim().toUpperCase() === pk);
+    const foundKey = Object.keys(m.TekniskSystem).find(k => k.toString().replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').toUpperCase() === pk);
+    
     if (foundKey) {
       tek = m.TekniskSystem[foundKey];
       break;
     }
-    // Shaver av det aller siste tegnet uansett hva det er
+    
+    // Kutter nøyaktig ett tegn (f.eks. "74.412" -> "74.41" -> "74.4" -> "74." -> "74")
     pk = pk.slice(0, -1);
   }
 
@@ -461,7 +454,9 @@ async function validate(){
   $('btnReset').disabled = true; $('btnColorize').disabled = true; $('btnExport').disabled = true; $('btnUncolor').disabled = true;
   
   try {
-    const res = await fetch($('ruleSelect').value);
+    // v4.05: CACHE-BUSTER! Tvinger nettleseren til å alltid hente den nyeste filen fra GitHub
+    const url = $('ruleSelect').value + '?nocache=' + new Date().getTime();
+    const res = await fetch(url);
     const validationRules = await res.json();
     
     let ALL_FIELDS = [];
