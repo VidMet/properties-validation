@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v4.03</title>
+  <title>Egenskapsvalidering v4.04</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -129,7 +129,7 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v4.03</h1>
+    <h1>Egenskapsvalidering v4.04</h1>
     <p>Skuddsikker Prosesskode-kutter for RDS-matrisen</p>
   </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
@@ -171,7 +171,6 @@ let validationRows = [];
 let currentRelevantFields = [];
 let skippedCount = 0;
 
-// Filter for mapper og systemnoder som ikke er ekte objekter
 const IGNORE = new Set(['IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE','IFCZONE','IFCGROUP','IFCSYSTEM']);
 
 const $ = id => document.getElementById(id);
@@ -350,13 +349,12 @@ function runRdsValidation(objProps, rules) {
   const objekttype = getProp("Objekttype");
   const produkttype = getProp("Produkttype");
 
-  const checkExpected = (propName, expectedVal, errorMsg, allowMissingExpected = false) => {
+  const checkExpected = (propName, expectedVal, errorMsg, allowMissingExpected = false, lookupKey = "") => {
     const actualVal = getProp(propName);
     
-    // Håndter manglende treff i matrisen (expectedVal er null/undefined)
     if (expectedVal === null || expectedVal === undefined || expectedVal === "") {
       if (allowMissingExpected) {
-         if (actualVal) { fields[propName] = { status: 'warn', value: actualVal, msg: 'Finner ikke i matrise' }; warn++; }
+         if (actualVal) { fields[propName] = { status: 'warn', value: actualVal, msg: `Mangler oppslag for ${lookupKey || 'verdi'}` }; warn++; }
          else { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; }
       } else {
          if (actualVal) { fields[propName] = { status: 'warn', value: actualVal, msg: 'Forventet blank' }; warn++; }
@@ -368,7 +366,7 @@ function runRdsValidation(objProps, rules) {
     let actComp = actualVal.toString().trim().toUpperCase();
     let expComp = expectedVal.toString().trim().toUpperCase();
 
-    // v4.03: Sikker numerisk sammenligning. ("01" vs "1" blir godkjent)
+    // v4.04: Sikker numerisk sammenligning. ("01" vs "1" blir godkjent)
     if (!isNaN(actComp) && !isNaN(expComp) && actComp !== "" && expComp !== "") {
         if (Number(actComp) === Number(expComp)) {
             actComp = "MATCH";
@@ -387,35 +385,28 @@ function runRdsValidation(objProps, rules) {
       const pnsKey = Object.keys(m.Hovedsystem).find(k => k.trim().toUpperCase() === pnsKode.toUpperCase());
       if (pnsKey) hoved = m.Hovedsystem[pnsKey];
   }
-  checkExpected("03. Bn", hoved ? hoved.Bn : null, "Feil Bn", true);
-  checkExpected("04. Bn navn", hoved ? hoved.Bn_navn : null, "Feil Bn navn", true);
-  checkExpected("05. Cn", hoved ? hoved.Cn : null, "Feil Cn", true);
-  checkExpected("06. Cn navn", hoved ? hoved.Cn_navn : null, "Feil Cn navn", true);
+  checkExpected("03. Bn", hoved ? hoved.Bn : null, "Feil Bn", true, pnsKode);
+  checkExpected("04. Bn navn", hoved ? hoved.Bn_navn : null, "Feil Bn navn", true, pnsKode);
+  checkExpected("05. Cn", hoved ? hoved.Cn : null, "Feil Cn", true, pnsKode);
+  checkExpected("06. Cn navn", hoved ? hoved.Cn_navn : null, "Feil Cn navn", true, pnsKode);
 
-  // 2. Teknisk system (v4.03: Idiotsikker Prosesskode-fjerner)
+  // 2. Teknisk system (v4.04: Den skuddsikre kutteren)
   let tek = null;
-  let pk = prosesskode.toUpperCase();
+  let pk = prosesskode.trim().toUpperCase();
 
+  // Kutter ett og ett tegn helt til den finner en nøyaktig match i JSON-filen
   while (pk.length > 0 && !tek) {
-    // 1. Finn om den nåværende koden finnes eksakt
     const foundKey = Object.keys(m.TekniskSystem).find(k => k.trim().toUpperCase() === pk);
-    
     if (foundKey) {
       tek = m.TekniskSystem[foundKey];
       break;
     }
-    
-    // 2. Kutt siste tegn ("74.412" -> "74.41")
+    // Shaver av det aller siste tegnet uansett hva det er
     pk = pk.slice(0, -1);
-    
-    // 3. Slett alt "grums" på slutten før vi søker på nytt ("74." -> "74")
-    while (pk.length > 0 && (pk.endsWith('.') || pk.endsWith(' ') || pk.endsWith('-'))) {
-      pk = pk.slice(0, -1);
-    }
   }
 
-  checkExpected("07. DDn", tek ? tek.DDn : null, "Feil DDn", true);
-  checkExpected("08. DDn navn", tek ? tek.DDn_navn : null, "Feil DDn navn", true);
+  checkExpected("07. DDn", tek ? tek.DDn : null, "Feil DDn", true, prosesskode);
+  checkExpected("08. DDn navn", tek ? tek.DDn_navn : null, "Feil DDn navn", true, prosesskode);
 
   // 3. EEE
   let eee = null;
@@ -424,8 +415,8 @@ function runRdsValidation(objProps, rules) {
       const eeeKey = Object.keys(m.EEE).find(k => k.trim().toUpperCase() === eeeKeyStr);
       if (eeeKey) eee = m.EEE[eeeKey];
   }
-  checkExpected("09. EEEn", eee ? eee.EEEn : null, "Feil EEEn", true);
-  checkExpected("10. EEEn navn", eee ? eee.EEEn_navn : null, "Feil EEEn navn", true);
+  checkExpected("09. EEEn", eee ? eee.EEEn : null, "Feil EEEn", true, `${objektklasse}|${objekttype}`);
+  checkExpected("10. EEEn navn", eee ? eee.EEEn_navn : null, "Feil EEEn navn", true, `${objektklasse}|${objekttype}`);
 
   // 4. FFF
   let fff = null;
@@ -433,8 +424,8 @@ function runRdsValidation(objProps, rules) {
       const fffKey = Object.keys(m.FFF).find(k => k.trim().toUpperCase() === produkttype.toUpperCase());
       if (fffKey) fff = m.FFF[fffKey];
   }
-  checkExpected("11. FFFn", fff ? fff.FFFn : null, "Feil FFFn", true);
-  checkExpected("12. FFFn navn", fff ? fff.FFFn_navn : null, "Feil FFFn navn", true);
+  checkExpected("11. FFFn", fff ? fff.FFFn : null, "Feil FFFn", true, produkttype);
+  checkExpected("12. FFFn navn", fff ? fff.FFFn_navn : null, "Feil FFFn navn", true, produkttype);
 
   // 5. GGGn & GGGn navn
   const ggg = getProp("13. GGGn"), gggNavn = getProp("14. GGGn navn"), fffn_expected = fff ? fff.FFFn : null;
