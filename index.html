@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v4.06</title>
+  <title>Egenskapsvalidering v4.07</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -31,9 +31,16 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body { background: var(--bg); color: var(--ink); font-family: var(--sans); min-height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+    body {
+      background: var(--bg); color: var(--ink); font-family: var(--sans);
+      min-height: 100vh; display: flex; flex-direction: column; overflow: hidden;
+    }
 
-    header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    }
+
     .header-title { flex: 1; }
     .header-title h1 { font-size: 16px; font-weight: 800; letter-spacing: -.3px; color: var(--ink); }
     .header-title p { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 1px; }
@@ -60,6 +67,7 @@
     #modelBar label { font-size: 11px; color: var(--muted); font-family: var(--mono); white-space: nowrap; }
     select { font-family: var(--mono); font-size: 12px; background: var(--surface2); color: var(--ink); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; width: 100%; min-width: 0; }
     select:disabled { opacity: .4; }
+    optgroup { font-family: var(--sans); font-weight: 700; color: var(--muted); }
 
     main { flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 14px; }
 
@@ -122,8 +130,8 @@
 
 <header>
   <div class="header-title">
-    <h1>Egenskapsvalidering v4.06</h1>
-    <p>Cache-Buster aktivert og robust Prosesskode-kutter</p>
+    <h1>Egenskapsvalidering v4.07</h1>
+    <p>Nå med støtte for å validere på tvers av modeller og aktive utvalg</p>
   </div>
   <span class="badge" id="modelBadge">Frakoblet</span>
   <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
@@ -148,13 +156,13 @@
   </div>
   
   <div class="select-group">
-    <label>Modell:</label>
+    <label>Utvalg:</label>
     <select id="modelSelect" disabled><option value="">– Laster... –</option></select>
   </div>
 </div>
 
 <main id="mainContent">
-  <div class="empty anim">Velg et regelsett og en modell fra menyen, og trykk <strong>Valider</strong>.</div>
+  <div class="empty anim">Velg et regelsett og et utvalg fra menyen, og trykk <strong>Valider</strong>.</div>
 </main>
 
 <script>
@@ -195,7 +203,7 @@ async function connect(){
 
 async function loadModels(){
   if (!API) return;
-  setStatus('⏳ Leser modeller og filnavn...');
+  setStatus('⏳ Leser inn data fra vieweren...');
   try {
     const nameMap = new Map();
     const srcs = [() => API.models?.getModels(), () => API.viewer?.getModels()];
@@ -221,9 +229,16 @@ async function loadModels(){
       };
     }).filter(m => m.objectIds.length > 0);
 
-    $('modelSelect').innerHTML = allModels.map(m => `<option value="${m.id}">${esc(m.name)} (${m.objectIds.length} obj)</option>`).join('');
+    $('modelSelect').innerHTML = 
+      `<option value="">– Velg hva som skal valideres –</option>` +
+      `<option value="ALL">🌟 Valider alle modeller i vieweren</option>` +
+      `<option value="SELECTED">🎯 Valider kun markerte objekter</option>` +
+      `<optgroup label="Enkeltmodeller">` +
+      allModels.map(m => `<option value="${m.id}">${esc(m.name)} (${m.objectIds.length} obj)</option>`).join('') +
+      `</optgroup>`;
+      
     $('modelSelect').disabled = false;
-    setStatus('✅ Modeller hentet.', 'ok');
+    setStatus('✅ Vieweren er lest av.', 'ok');
   } catch(e) { setStatus('❌ Feil ved henting: ' + e.message, 'error'); }
 }
 
@@ -257,8 +272,7 @@ function runValidation(objProps, fullRules) {
         req = 'optional';
       }
 
-      let isFormatError = false;
-      let errMsg = '';
+      let isFormatError = false, errMsg = '';
       const strVal = val.toString().trim();
 
       if (req === 'notallowed') {
@@ -266,66 +280,40 @@ function runValidation(objProps, fullRules) {
         else { fields[propName] = { status: 'na', value: '-', msg: 'Ikke tillatt' }; }
         return; 
       }
+      if (req === 'required' && strVal === "") { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; return; }
+      if (strVal === "") { fields[propName] = { status: 'opt', value: 'Ikke påkrevd', msg: 'Valgfri' }; return; }
 
-      if (req === 'required' && strVal === "") {
-         fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; return;
-      }
-
-      if (strVal === "") {
-         fields[propName] = { status: 'opt', value: 'Ikke påkrevd', msg: 'Valgfri' }; return;
-      }
-
-      if (rule.format && !(new RegExp(rule.format).test(val))) { 
-         isFormatError = true; errMsg = 'Feil format'; 
-      }
-
+      if (rule.format && !(new RegExp(rule.format).test(val))) { isFormatError = true; errMsg = 'Feil format'; }
       if (!isFormatError && rule.disallowedValues) {
         const disallowed = Array.isArray(rule.disallowedValues) ? rule.disallowedValues : [rule.disallowedValues];
-        if (disallowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
-          isFormatError = true; errMsg = `Ugyldig verdi '${val}'`;
-        }
+        if (disallowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = `Ugyldig verdi '${val}'`; }
       }
-
       if (!isFormatError && rule.allowedValues) {
         if (Array.isArray(rule.allowedValues)) {
-            const allowed = rule.allowedValues;
-            if (!allowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
-              isFormatError = true; errMsg = 'Verdi ikke i liste';
-            }
+            if (!rule.allowedValues.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = 'Verdi ikke i liste'; }
         } else if (typeof rule.allowedValues === 'object') {
             const fagKey = Object.keys(rule.allowedValues).find(k => k.toUpperCase() === disc.toUpperCase());
             if (fagKey) {
                 const allowedForFag = rule.allowedValues[fagKey];
-                
                 if (Array.isArray(allowedForFag)) {
-                    if (!allowedForFag.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
-                        isFormatError = true; errMsg = `Ugyldig for ${disc}`;
-                    }
+                    if (!allowedForFag.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = `Ugyldig for ${disc}`; }
                 } else if (typeof allowedForFag === 'object') {
                     const klasse = String(props["Objektklasse"] || '').trim();
                     const klasseKey = Object.keys(allowedForFag).find(k => k.toUpperCase() === klasse.toUpperCase());
-                    
                     if (klasseKey) {
                         const validTypes = allowedForFag[klasseKey];
-                        if (Array.isArray(validTypes) && !validTypes.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) {
-                            isFormatError = true; errMsg = `Ugyldig for ${klasse}`;
-                        }
-                    } else if (klasse) {
-                        isFormatError = true; errMsg = `Ukjent klasse ${klasse}`;
-                    }
+                        if (Array.isArray(validTypes) && !validTypes.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = `Ugyldig for ${klasse}`; }
+                    } else if (klasse) { isFormatError = true; errMsg = `Ukjent klasse ${klasse}`; }
                 }
             }
         }
       }
-
       if (isFormatError) { fields[propName] = { status: 'warn', value: val, msg: errMsg }; warn++; } 
       else { fields[propName] = { status: 'ok', value: val, msg: 'OK' }; ok++; }
     });
   }
-
   const totalReq = ok + miss + warn;
-  const score = totalReq > 0 ? Math.round((ok / totalReq) * 100) : 100;
-  return { fields, score, miss, warn };
+  return { fields, score: totalReq > 0 ? Math.round((ok / totalReq) * 100) : 100, miss, warn };
 }
 
 // --- DEDIKERT RDS KRYSSREFERANSE-MOTOR ---
@@ -344,7 +332,6 @@ function runRdsValidation(objProps, rules) {
 
   const checkExpected = (propName, expectedVal, errorMsg, allowMissingExpected = false, lookupKey = "") => {
     const actualVal = getProp(propName);
-    
     if (expectedVal === null || expectedVal === undefined || expectedVal === "") {
       if (allowMissingExpected) {
          if (actualVal) { fields[propName] = { status: 'warn', value: actualVal, msg: `Mangler oppslag for ${lookupKey || 'verdi'}` }; warn++; }
@@ -360,10 +347,7 @@ function runRdsValidation(objProps, rules) {
     let expComp = expectedVal.toString().trim().toUpperCase();
 
     if (!isNaN(actComp) && !isNaN(expComp) && actComp !== "" && expComp !== "") {
-        if (Number(actComp) === Number(expComp)) {
-            actComp = "MATCH";
-            expComp = "MATCH";
-        }
+        if (Number(actComp) === Number(expComp)) { actComp = "MATCH"; expComp = "MATCH"; }
     }
 
     if (actualVal === "") { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
@@ -371,72 +355,47 @@ function runRdsValidation(objProps, rules) {
     else { fields[propName] = { status: 'ok', value: actualVal, msg: 'OK' }; ok++; }
   };
 
-  // 1. Hovedsystem
-  let hoved = null;
-  if (pnsKode) {
-      const pnsKey = Object.keys(m.Hovedsystem).find(k => k.trim().toUpperCase() === pnsKode.toUpperCase());
-      if (pnsKey) hoved = m.Hovedsystem[pnsKey];
-  }
-  checkExpected("03. Bn", hoved ? hoved.Bn : null, "Feil Bn", true, pnsKode);
-  checkExpected("04. Bn navn", hoved ? hoved.Bn_navn : null, "Feil Bn navn", true, pnsKode);
-  checkExpected("05. Cn", hoved ? hoved.Cn : null, "Feil Cn", true, pnsKode);
-  checkExpected("06. Cn navn", hoved ? hoved.Cn_navn : null, "Feil Cn navn", true, pnsKode);
+  const hoved = pnsKode ? m.Hovedsystem[Object.keys(m.Hovedsystem).find(k => k.trim().toUpperCase() === pnsKode.toUpperCase())] : null;
+  checkExpected("03. Bn", hoved?.Bn, "Feil Bn", true, pnsKode);
+  checkExpected("04. Bn navn", hoved?.Bn_navn, "Feil Bn navn", true, pnsKode);
+  checkExpected("05. Cn", hoved?.Cn, "Feil Cn", true, pnsKode);
+  checkExpected("06. Cn navn", hoved?.Cn_navn, "Feil Cn navn", true, pnsKode);
 
-  // 2. Teknisk system (v4.06: Idiot-sikker kutter med rensing av usynlige tegn)
-  let tek = null;
-  let pk = prosesskode.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').toUpperCase();
-
+  let tek = null, pk = prosesskode.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').toUpperCase();
   while (pk.length > 0 && !tek) {
     const foundKey = Object.keys(m.TekniskSystem).find(k => k.toString().replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').toUpperCase() === pk);
-    
-    if (foundKey) {
-      tek = m.TekniskSystem[foundKey];
-      break;
-    }
-    
-    // Kutter nøyaktig ett tegn (f.eks. "74.412" -> "74.41" -> "74.4" -> "74." -> "74")
+    if (foundKey) { tek = m.TekniskSystem[foundKey]; break; }
     pk = pk.slice(0, -1);
   }
+  checkExpected("07. DDn", tek?.DDn, "Feil DDn", true, prosesskode);
+  checkExpected("08. DDn navn", tek?.DDn_navn, "Feil DDn navn", true, prosesskode);
 
-  checkExpected("07. DDn", tek ? tek.DDn : null, "Feil DDn", true, prosesskode);
-  checkExpected("08. DDn navn", tek ? tek.DDn_navn : null, "Feil DDn navn", true, prosesskode);
-
-  // 3. EEE
   let eee = null;
   if (objektklasse && objekttype) {
       const eeeKeyStr = `${objektklasse}|${objekttype}`.toUpperCase();
-      const eeeKey = Object.keys(m.EEE).find(k => k.trim().toUpperCase() === eeeKeyStr);
-      if (eeeKey) eee = m.EEE[eeeKey];
+      eee = m.EEE[Object.keys(m.EEE).find(k => k.trim().toUpperCase() === eeeKeyStr)];
   }
-  checkExpected("09. EEEn", eee ? eee.EEEn : null, "Feil EEEn", true, `${objektklasse}|${objekttype}`);
-  checkExpected("10. EEEn navn", eee ? eee.EEEn_navn : null, "Feil EEEn navn", true, `${objektklasse}|${objekttype}`);
+  checkExpected("09. EEEn", eee?.EEEn, "Feil EEEn", true, `${objektklasse}|${objekttype}`);
+  checkExpected("10. EEEn navn", eee?.EEEn_navn, "Feil EEEn navn", true, `${objektklasse}|${objekttype}`);
 
-  // 4. FFF
   let fff = null;
-  if (produkttype) {
-      const fffKey = Object.keys(m.FFF).find(k => k.trim().toUpperCase() === produkttype.toUpperCase());
-      if (fffKey) fff = m.FFF[fffKey];
-  }
-  checkExpected("11. FFFn", fff ? fff.FFFn : null, "Feil FFFn", true, produkttype);
-  checkExpected("12. FFFn navn", fff ? fff.FFFn_navn : null, "Feil FFFn navn", true, produkttype);
+  if (produkttype) fff = m.FFF[Object.keys(m.FFF).find(k => k.trim().toUpperCase() === produkttype.toUpperCase())];
+  checkExpected("11. FFFn", fff?.FFFn, "Feil FFFn", true, produkttype);
+  checkExpected("12. FFFn navn", fff?.FFFn_navn, "Feil FFFn navn", true, produkttype);
 
-  // 5. GGGn & GGGn navn
-  const ggg = getProp("13. GGGn"), gggNavn = getProp("14. GGGn navn"), fffn_expected = fff ? fff.FFFn : null;
+  const ggg = getProp("13. GGGn"), gggNavn = getProp("14. GGGn navn"), fffn_expected = fff?.FFFn;
   if (!ggg) { fields["13. GGGn"] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
   else {
     const fffPrefix = fffn_expected ? fffn_expected.substring(0,3).toUpperCase() : '...';
-    if (new RegExp('^' + (fffn_expected ? fffn_expected.substring(0,3) : '[A-Z]{3}') + '\\d+$', 'i').test(ggg)) {
-      fields["13. GGGn"] = { status: 'ok', value: ggg, msg: 'OK' }; ok++;
-    } else { fields["13. GGGn"] = { status: 'warn', value: ggg, msg: `Format: ${fffPrefix} + tall` }; warn++; }
+    if (new RegExp('^' + (fffn_expected ? fffn_expected.substring(0,3) : '[A-Z]{3}') + '\\d+$', 'i').test(ggg)) { fields["13. GGGn"] = { status: 'ok', value: ggg, msg: 'OK' }; ok++; } 
+    else { fields["13. GGGn"] = { status: 'warn', value: ggg, msg: `Format: ${fffPrefix} + tall` }; warn++; }
   }
   if (!gggNavn) { fields["14. GGGn navn"] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; }
   else { fields["14. GGGn navn"] = { status: 'ok', value: gggNavn, msg: 'OK' }; ok++; }
 
-  // 6 & 7. Låste strenger
   checkExpected("15. Informasjon om RDS i prosjektet", 'Se dokument "Plan for bruk av RDS.pdf"', "Feil tekst");
   checkExpected("02. AAAA_AA", "<E6RS_01>", "Feil tekst");
 
-  // 8. 01. RDS-tag (Sammensetning)
   const actualTag = getProp("01. RDS-tag");
   const expectedTag = `${getProp("02. AAAA_AA")}-${getProp("03. Bn")}.${getProp("05. Cn")}.${getProp("07. DDn")}.${getProp("09. EEEn")}.${getProp("11. FFFn")}.${ggg}`;
   if (!actualTag) { fields["01. RDS-tag"] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
@@ -448,13 +407,16 @@ function runRdsValidation(objProps, rules) {
 }
 
 async function validate(){
-  const mid = $('modelSelect').value;
-  if (!mid || !API) return;
-  setStatus('⏳ Laster regler og validerer...');
+  const selVal = $('modelSelect').value;
+  if (!selVal || !API) {
+      setStatus('⚠️ Velg et utvalg/modell før du validerer.', 'error');
+      return;
+  }
+  
+  setStatus('⏳ Laster regler og forbereder validering...');
   $('btnReset').disabled = true; $('btnColorize').disabled = true; $('btnExport').disabled = true; $('btnUncolor').disabled = true;
   
   try {
-    // v4.05: CACHE-BUSTER! Tvinger nettleseren til å alltid hente den nyeste filen fra GitHub
     const url = $('ruleSelect').value + '?nocache=' + new Date().getTime();
     const res = await fetch(url);
     const validationRules = await res.json();
@@ -462,39 +424,65 @@ async function validate(){
     let ALL_FIELDS = [];
     Object.keys(validationRules?.properties || {}).forEach(k => k.split('|').forEach(n => ALL_FIELDS.push(n.trim())));
 
-    const model = allModels.find(m => m.id === mid);
+    // Bygger opp "targets" basert på hva brukeren valgte i nedtrekksmenyen
+    let targets = [];
+    if (selVal === 'SELECTED') {
+        const selection = await API.viewer.getSelection();
+        if (!selection || selection.length === 0 || selection.every(s => !(s.objectRuntimeIds?.length || s.objectIds?.length))) {
+            setStatus('⚠️ Ingen objekter er markert i 3D-vieweren.', 'error');
+            $('btnReset').disabled = false;
+            return;
+        }
+        targets = selection.map(s => ({
+            mid: s.modelId,
+            ids: s.objectRuntimeIds || s.objectIds || []
+        })).filter(t => t.ids.length > 0);
+    } else if (selVal === 'ALL') {
+        targets = allModels.map(m => ({ mid: m.id, ids: m.objectIds }));
+    } else {
+        const m = allModels.find(x => x.id === selVal);
+        if (m) targets = [{ mid: m.id, ids: m.objectIds }];
+    }
+
     validationRows = [];
     skippedCount = 0;
     const CHUNK = 200;
+    let totalProcessed = 0;
+    const totalObjects = targets.reduce((acc, t) => acc + t.ids.length, 0);
 
-    for (let i = 0; i < model.objectIds.length; i += CHUNK) {
-      const propsArr = await API.viewer.getObjectProperties(mid, model.objectIds.slice(i, i + CHUNK));
-      
-      propsArr.forEach(o => {
-        const ifcType = getIfcType(o);
-        if (IGNORE.has(ifcType)) {
-            skippedCount++;
-            return;
-        }
-
-        const flat = {};
-        (o.properties || []).forEach(g => (g.properties || []).forEach(p => flat[p.name] = p.value));
+    for (const target of targets) {
+      const mid = target.mid;
+      for (let i = 0; i < target.ids.length; i += CHUNK) {
+        const chunk = target.ids.slice(i, i + CHUNK);
+        const propsArr = await API.viewer.getObjectProperties(mid, chunk);
         
-        const result = validationRules.type === 'RDS_RULESET' 
-            ? runRdsValidation({flat}, validationRules) 
-            : runValidation({flat}, validationRules);
+        propsArr.forEach(o => {
+          const ifcType = getIfcType(o);
+          if (IGNORE.has(ifcType)) {
+              skippedCount++;
+              return;
+          }
 
-        validationRows.push({
-          name: o.name || 'Objekt',
-          modelId: mid,
-          runtimeId: o.id || o.objectRuntimeId,
-          fields: result.fields,
-          score: result.score,
-          missCount: result.miss,
-          warnCount: result.warn
+          const flat = {};
+          (o.properties || []).forEach(g => (g.properties || []).forEach(p => flat[p.name] = p.value));
+          
+          const result = validationRules.type === 'RDS_RULESET' 
+              ? runRdsValidation({flat}, validationRules) 
+              : runValidation({flat}, validationRules);
+
+          validationRows.push({
+            name: o.name || 'Objekt',
+            modelId: mid,
+            runtimeId: o.id || o.objectRuntimeId,
+            fields: result.fields,
+            score: result.score,
+            missCount: result.miss,
+            warnCount: result.warn
+          });
         });
-      });
-      setStatus(`⏳ Validerer... ${Math.min(i+CHUNK, model.objectIds.length)} / ${model.objectIds.length}`);
+        totalProcessed += chunk.length;
+        setStatus(`⏳ Validerer... ${Math.min(totalProcessed, totalObjects)} / ${totalObjects} objekter`);
+      }
     }
 
     currentRelevantFields = ALL_FIELDS.filter(f => {
@@ -527,7 +515,7 @@ function renderDashboard(relevantFields){
       <div class="card blue"><div class="label">Analysert</div><div class="value">${total}</div><div class="sub">objekter</div></div>
       <div class="card green"><div class="label">OK</div><div class="value">${perfect}</div><div class="sub">uten feil</div></div>
       <div class="card red"><div class="label">Avvik</div><div class="value">${issues}</div><div class="sub">objekter med feil</div></div>
-      <div class="card gray"><div class="label">Ignorert</div><div class="value">${skippedCount}</div><div class="sub">systemnoder (Project/Site/Building)</div></div>
+      <div class="card gray"><div class="label">Ignorert</div><div class="value">${skippedCount}</div><div class="sub">systemnoder</div></div>
     </div>
 
     <div class="grid-2col anim" style="animation-delay:.05s">
