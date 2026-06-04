@@ -1,350 +1,690 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="nb">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Egenskapsvalidering: Regel-tester</title>
+  <meta charset="UTF-8"/>
+  <title>Egenskapsvalidering v5.00</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
+  <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap');
+
+    :root {
+      --bg: #f3f4f6; 
+      --surface: #ffffff; 
+      --surface2: #e5e7eb; 
+      --border: #d1d5db; 
+      --ink: #111827; 
+      --muted: #6b7280; 
+      --blue: #1d4ed8; 
+      --blue-dim: #dbeafe;
+      --green: #166534; 
+      --green-dim: #dcfce7; 
+      --yellow: #ca8a04; 
+      --yellow-dim: #fef08a;
+      --red: #dc2626; 
+      --red-dim: #fee2e2;
+      --mono: 'JetBrains Mono', monospace; 
+      --sans: 'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { 
+      background: var(--bg); color: var(--ink); font-family: var(--sans); 
+      height: 100%; display: flex; flex-direction: column; overflow: hidden; 
+    }
+
+    header { 
+      background: var(--surface); border-bottom: 1px solid var(--border); 
+      padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; 
+    }
+
+    .header-info h1 { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; color: var(--ink); }
+    .header-info h1 .version { font-family: var(--mono); font-size: 11px; font-weight: normal; color: var(--muted); background: var(--bg); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); }
+    .header-info p { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 2px; }
+
+    .badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); color: var(--muted); white-space: nowrap; background: var(--bg); }
+
+    .toolbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; gap: 10px; align-items: center; flex-shrink: 0; flex-wrap: wrap; }
+    .toolbar select, .toolbar input, .btn { font-family: var(--sans); font-size: 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; cursor: pointer; }
     
-    <style>
-        /* Importerer fonter fra designet ditt */
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap');
+    .btn { font-weight: 600; background: var(--surface2); transition: background 0.2s; color: var(--ink); display: flex; align-items: center; gap: 6px; }
+    .btn:hover:not(:disabled) { background: var(--border); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: var(--blue); color: white; border: none; }
+    .btn-primary:hover:not(:disabled) { background: #1e40af; }
+    .btn-danger { color: var(--red); background: var(--red-dim); border-color: #fca5a5; }
+    .btn-danger:hover:not(:disabled) { background: #fecaca; }
 
-        /* Fargepalett fra designet ditt */
-        :root {
-            --bg:        #0d1117;
-            --surface:   #161b22;
-            --surface2:  #1f2937;
-            --border:    #30363d;
-            --ink:       #e6edf3;
-            --muted:     #7d8590;
-            --green:     #3fb950;
-            --green-dim: #1a3a22;
-            --red:       #f85149;
-            --red-dim:   #3a1212;
-            --blue:      #58a6ff;
-            --blue-dim:  #0d2044;
-            --mono:      'JetBrains Mono', monospace;
-            --sans:      'Syne', sans-serif;
-        }
+    #statusBar { font-family: var(--mono); font-size: 11px; padding: 6px 16px; background: var(--blue-dim); color: var(--blue); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    #statusBar.ok    { background: var(--green-dim); color: var(--green); border-color: #bbf7d0; }
+    #statusBar.error { background: var(--red-dim);   color: var(--red);   border-color: #fecaca; }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    main { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
 
-        body {
-            background: var(--bg); color: var(--ink); font-family: var(--sans);
-            min-height: 100vh; display: flex; flex-direction: column;
-        }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .card .label { font-size: 10px; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .card .value { font-size: 26px; font-weight: 800; line-height: 1.1; margin-top: 6px; color: var(--ink); }
+    .card .sub { font-size: 10px; color: var(--muted); font-family: var(--mono); margin-top: 4px; }
+    
+    .card.green { border-bottom: 3px solid var(--green); }
+    .card.green .value { color: var(--green); }
+    .card.red { border-bottom: 3px solid var(--red); }
+    .card.red .value { color: var(--red); }
+    .card.blue { border-bottom: 3px solid var(--blue); }
+    .card.blue .value { color: var(--blue); }
+    .card.gray { border-bottom: 3px solid var(--muted); }
 
-        /* Header og Status-bar */
-        header {
-            background: var(--surface); border-bottom: 1px solid var(--border);
-            padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
-        }
-        .header-title { flex: 1; }
-        .header-title h1 { font-size: 16px; font-weight: 800; letter-spacing: -.3px; color: var(--ink); }
-        .header-title p { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 1px; }
-        .badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); color: var(--muted); white-space: nowrap; }
+    .kategori-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .kategori-header { background: var(--surface2); padding: 10px 14px; font-weight: 600; font-size: 13px; color: var(--ink); border-bottom: 1px solid var(--border); }
 
-        .btn { font-family: var(--sans); font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 6px; border: none; cursor: pointer; transition: opacity .15s, transform .1s; white-space: nowrap; }
-        .btn-primary { background: var(--blue); color: #000; }
-        .btn:hover { opacity: .85; }
-        .btn:active { transform: scale(.97); }
+    #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 8px; height: 220px; overflow: auto; resize: vertical; }
+    .field-row { display: flex; align-items: center; gap: 10px; }
+    .field-name { font-family: var(--mono); font-size: 10px; color: var(--ink); width: 180px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+    .bar-track { flex: 1; height: 14px; background: var(--surface2); border-radius: 4px; overflow: hidden; display: flex; }
+    .bar-fill-ok { background: var(--green); height: 100%; transition: width .5s cubic-bezier(.4,0,.2,1); }
+    .bar-pct { font-family: var(--mono); font-size: 10px; width: 48px; text-align: right; flex-shrink: 0; color: var(--muted); }
 
-        #statusBar { font-family: var(--mono); font-size: 11px; padding: 6px 16px; background: var(--surface2); color: var(--muted); border-bottom: 1px solid var(--border); flex-shrink: 0; transition: all 0.2s; }
-        #statusBar.ok    { background: var(--green-dim); color: var(--green); border-color: #1a3a22; }
-        #statusBar.error { background: var(--red-dim);   color: var(--red);   border-color: #3a1212; }
+    .table-wrap { overflow: auto; height: 45vh; min-height: 200px; resize: vertical; }
+    table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    thead th { background: var(--surface2); color: var(--ink); font-family: var(--mono); font-size: 10px; text-transform: uppercase; padding: 10px; text-align: left; position: sticky; top: 0; z-index: 1; white-space: nowrap; border-bottom: 1px solid var(--border); }
+    tbody tr { border-bottom: 1px solid var(--surface2); cursor: pointer; transition: background 0.1s; }
+    tbody tr:hover td { background: #f9fafb; }
+    tbody td { padding: 8px 10px; vertical-align: middle; font-family: var(--mono); font-size: 10px; color: var(--ink); }
+    .obj-name { color: var(--blue); max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
 
-        /* Hovedinnhold */
-        main { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 20px; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .field-value { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 9px; font-family: var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; font-weight: 600; }
+    .field-value.ok { background: var(--green-dim); color: var(--green); border: 1px solid #bbf7d0; }
+    .field-value.warn { background: var(--yellow-dim); color: var(--yellow); border: 1px solid #fef08a; }
+    .field-value.miss { background: var(--red-dim); color: var(--red); border: 1px solid #fecaca; }
+    .field-value.opt { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+    .field-value.na { background: transparent; color: var(--muted); border: 1px dashed var(--border); }
 
-        /* Dashboard-kort */
-        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
-        .card .label { font-size: 10px; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; }
-        .card .value { font-size: 28px; font-weight: 800; line-height: 1.1; margin-top: 4px; }
-        .card .sub { font-size: 10px; color: var(--muted); font-family: var(--mono); margin-top: 3px; }
-        .card.green .value { color: var(--green); }
-        .card.red .value { color: var(--red); }
-        .card.blue .value { color: var(--blue); }
+    #donutWrap { display: flex; align-items: center; gap: 20px; padding: 20px; min-height: 220px; justify-content: center; }
+    #donutSvg  { flex-shrink: 0; }
+    .donut-legend { display: flex; flex-direction: column; gap: 8px; }
+    .legend-item  { display: flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--mono); color: var(--ink); }
+    .legend-dot   { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
 
-        /* Editor Grid */
-        .grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
-        .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
-        .panel-header { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
-        .panel-header h3 { font-size: 13px; font-weight: 700; flex: 1; }
-        
-        textarea { 
-            width: 100%; height: 350px; background: var(--bg); color: var(--ink); 
-            border: none; padding: 15px; font-family: var(--mono); font-size: 11px; 
-            resize: vertical; outline: none; white-space: pre; 
-        }
+    .empty { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
 
-        /* Resultatvisning */
-        .result-list { padding: 15px; display: flex; flex-direction: column; gap: 10px; font-family: var(--mono); font-size: 11px; }
-        .result-item { padding: 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg); display: flex; gap: 10px; align-items: start;}
-        .field-value { display: inline-block; padding: 3px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; white-space: nowrap; border: 1px solid transparent; }
-        .field-value.miss { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
-        .field-value.ok { background: var(--green-dim); color: var(--green); border-color: #1e4028; }
-    </style>
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(6px); }
+      to   { opacity:1; transform:none; }
+    }
+    .anim { animation: fadeUp .3s ease both; }
+    .grid-2col { display: grid; grid-template-columns: 1fr 1.5fr; gap: 14px; align-items: start; }
+  </style>
 </head>
 <body>
 
 <header>
-    <div class="header-title">
-        <h1>JSON Regel-Tester</h1>
-        <p>Lokalt testmiljø for Egenskapsdrevet Fagvalidering</p>
-    </div>
-    <span class="badge">Lokal modus</span>
-    <button class="btn btn-primary" onclick="validerObjekt()">▶ Kjør validering</button>
+  <div class="header-info">
+    <h1>Egenskapsvalidering <span class="version">v5.00</span></h1>
+    <p>Sanntidsvalidering av egenskaper og RDS mot prosjektkrav</p>
+  </div>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <span class="badge" id="modelBadge">Frakoblet</span>
+    <button class="btn btn-primary" id="btnLoad" disabled>🔄 Hent view</button>
+    <button class="btn btn-primary" id="btnValidate" style="background: var(--green); color: white;" disabled>▶ Valider utvalg</button>
+  </div>
 </header>
 
-<div id="statusBar">Klar for validering. Lim inn regler og testdata under.</div>
+<div class="toolbar">
+  <select id="ruleSelect" style="font-weight: 600; color: var(--blue);">
+    <option value="0_Element.json">0_Element</option>
+    <option value="1_FAG.json">1_FAG</option>
+    <option value="2_RDS.json">2_RDS</option>
+    <option value="3_Beskrivelse.json">3_Beskrivelse</option>
+  </select>
 
-<main>
-    <div class="cards">
-        <div class="card blue" id="cardFag">
-            <div class="label">Sjekker for fag</div>
-            <div class="value" id="fagVerdi">-</div>
-            <div class="sub">Hentet fra testobjekt</div>
-        </div>
-        <div class="card green" id="cardStatus">
-            <div class="label">Status</div>
-            <div class="value" id="statusVerdi">-</div>
-            <div class="sub">Resultat av validering</div>
-        </div>
-        <div class="card red">
-            <div class="label">Feil funnet</div>
-            <div class="value" id="feilVerdi">0</div>
-            <div class="sub">Avvik fra reglene</div>
-        </div>
-    </div>
+  <div style="border-left: 1px solid var(--border); height: 24px; margin: 0 5px;"></div>
+  
+  <select id="modelSelect" disabled style="min-width: 250px;">
+    <option value="">– Laster... –</option>
+  </select>
+  
+  <div style="border-left: 1px solid var(--border); height: 24px; margin: 0 5px;"></div>
 
-    <div class="grid-2col">
-        <div class="panel">
-            <div class="panel-header"><h3>1. JSON Valideringsregler</h3></div>
-            <textarea id="jsonRegler" spellcheck="false"></textarea>
-        </div>
-        <div class="panel">
-            <div class="panel-header"><h3>2. Testobjekt fra modell</h3></div>
-            <textarea id="testObjekt" spellcheck="false"></textarea>
-        </div>
-    </div>
+  <button class="btn" id="btnColorize" disabled>🎨 Fargelegg 3D</button>
+  <button class="btn" id="btnUncolor" disabled>⬜ Nullstill 3D</button>
+  <button class="btn" id="btnExport" disabled>⬇ Eksporter avvik</button>
+  <button class="btn btn-danger" id="btnReset" disabled>🗑️ Fjern resultat</button>
+</div>
 
-    <div class="panel" style="margin-bottom: 30px;">
-        <div class="panel-header"><h3>Valideringsresultat</h3></div>
-        <div class="result-list" id="resultat">Trykk "Kjør validering" i toppmenyen for å se resultatet her.</div>
-    </div>
+<div id="statusBar">Kobler til Trimble Connect...</div>
+
+<main id="mainContent">
+  <div class="empty anim">Velg et regelsett og et utvalg fra menyen, og trykk <strong>Valider utvalg</strong>.</div>
 </main>
 
 <script>
-    // STANDARDDATA VED LASTING (Samme logikk som vi bygget sist)
-    document.getElementById('jsonRegler').value = JSON.stringify({
+let API = null;
+let allModels = [];
+let validationRows = [];
+let currentRelevantFields = [];
+let skippedCount = 0;
 
-    "Valideringsregler": {
-        
-        "0_Generell": {
-          "Egenskaper": {
-            "Prosjekt": {
-              "Påkrevd": true,
-              "TillatteVerdier": ["RV22"]
-            },
-            "PNS": {
-              "Påkrevd": true,
-              "TillatteVerdier": ["PNS0", "PNS1", "PNS2", "PNS3", "PNS4", "PNS5", "PNS6", "PNS7", "PNS98", "PNS99"]
-            },
-            "Fagdisiplin": {
-              "Påkrevd": true,
-              "TillatteVerdier": ["ark", "aku", "ele", "lan", "voa", "sko", "veg", "kon"]
-            }
-          }
-        },
-        
-        "0_Element": {
-          "Egenskaper": {
-            "MMI": {
-              "Påkrevd": true, 
-              "TillatteVerdier": ["100", "125", "150", "175", "200", "225", "250", "275", "300", "325", "350", "375", "400", "425", "450", "475", "500"]
-            },
-            "Objekttype": {
-              "Påkrevd": true
-            },
-            "Utarbeidet av": {
-              "Påkrevd": true
-            },
-            "Kontrollert av": {
-              "Påkrevd": true
-            },
-            "Godkjent av": {
-              "Påkrevd": true
-            }
-            "Utarbeidet av": {
-              "Påkrevd": true
-            },
-            "Revisjon": {
-              "Påkrevd": true
-            },
-            "Revisjonsdato": {
-              "Påkrevd": true,
-              "RegEx": "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$"
-            },
-            "Revisjon gjelder": {
-              "Påkrevd": true
-            },
-            "Tag": {
-              "Påkrevd": true
-            },
-            "Revisjon gjelder": {
-              "Påkrevd": true
-            },
-            "Tag": {
-              "Påkrevd": true
-            },
-            "Faseplan": {
-              "Påkrevd": true
-            },
-            "Stikningsdata": {
-              "Påkrevd": true,
-              "TillatteVerdier": ["Ja", "Nei"]
-            },
-            "Bruksstatus": {
-              "Påkrevd": true
-            },
-            "Kommentarer": {
-              "Påkrevd": true
-            },
-            "Dokumentlink": {
-              "Påkrevd": true
-            },
-            "Eier": {
-              "Påkrevd": true,
-              "TillatteVerdier": ["SVV", "ØFK", "Sarpsborg Kommune", "Privat"]
-            }
-          }
+const IGNORE = new Set(['IFCPROJECT','IFCSITE','IFCBUILDING','IFCBUILDINGSTOREY','IFCSPACE','IFCZONE','IFCGROUP','IFCSYSTEM']);
+
+const $ = id => document.getElementById(id);
+const setStatus = (m, c='') => { $('statusBar').textContent = m; $('statusBar').className = c; };
+const lastPathPart = (v) => (v || '').split('/').pop().split('\\').pop();
+const esc = (v) => (v ?? '').toString().replace(/[&<>"]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]));
+
+function getIfcType(obj){
+    const s = (obj.class || obj.className || obj.type || obj.ifcType || obj.ifcEntity || '').toString().trim().toUpperCase();
+    if (s && s.startsWith('IFC')) return s;
+    for (const ps of (obj.properties || [])) {
+        for (const p of (ps.properties || [])) {
+            const v = (p.value || '').toString().trim().toUpperCase();
+            if (v.startsWith('IFC')) return v;
         }
-          }
-    }, null, 2);document.getElementById('testObjekt').value = JSON.stringify({
-      "Fagdisiplin": "ARK",
-      "0_Generell": {
-        "Prosjekt": "E6SØ"
-      },
-      "Pset_WallCommon": {
-        "Reference": "ARK-1234",
-        "ConcreteClass": "B30" // Feil: Dette faget (ARK) skal egentlig ikke trenge denne
+    }
+    return '';
+}
+
+async function connect(){
+  try {
+    API = await window.TrimbleConnectWorkspace.connect(window.parent);
+    $('btnLoad').disabled = false;
+    $('btnValidate').disabled = false;
+    setStatus('✅ Tilkoblet Trimble Connect.', 'ok');
+    $('modelBadge').textContent = 'Tilkoblet';
+  } catch(e) { setStatus('❌ Kunne ikke koble til API.', 'error'); }
+}
+
+async function loadModels(){
+  if (!API) return;
+  setStatus('⏳ Leser inn data fra vieweren...');
+  try {
+    const nameMap = new Map();
+    const srcs = [() => API.models?.getModels(), () => API.viewer?.getModels()];
+    for (const src of srcs) {
+      try {
+        const res = await src();
+        const list = Array.isArray(res) ? res : (res?.models || res?.items || []);
+        list.forEach(m => {
+          const id = m.id || m.modelId;
+          const fn = [m.name, m.fileName, m.filename].find(v => /\.ifc/i.test(v));
+          if (id && fn) nameMap.set(id, lastPathPart(fn));
+        });
+      } catch(e){}
+    }
+
+    const objs = await API.viewer.getObjects();
+    allModels = (objs || []).map(m => {
+      const mid = m.modelId || m.modelid;
+      return {
+        id: mid,
+        name: nameMap.get(mid) || m.name || 'Ukjent modell',
+        objectIds: (m.objects || []).map(o => o.id || o.objectRuntimeId).filter(id => id != null)
+      };
+    }).filter(m => m.objectIds.length > 0);
+
+    $('modelSelect').innerHTML = 
+      `<option value="">– Velg hva som skal valideres –</option>` +
+      `<option value="ALL">🌟 Valider alle modeller i vieweren</option>` +
+      `<option value="SELECTED">🎯 Valider kun markerte objekter</option>` +
+      `<optgroup label="Enkeltmodeller">` +
+      allModels.map(m => `<option value="${m.id}">${esc(m.name)} (${m.objectIds.length} obj)</option>`).join('') +
+      `</optgroup>`;
+      
+    $('modelSelect').disabled = false;
+    setStatus('✅ Vieweren er lest av.', 'ok');
+  } catch(e) { setStatus('❌ Feil ved henting: ' + e.message, 'error'); }
+}
+
+// --- STANDARD VALIDERINGS-MOTOR ---
+function runValidation(objProps, fullRules) {
+  let fields = {}, ok = 0, miss = 0, warn = 0;
+  const props = objProps.flat;
+  const disc = (props["Underdisiplinkode"] || "").toUpperCase();
+  const mmi = parseInt(props["MMI"]) || 0;
+
+  for (const [propKeys, rule] of Object.entries(fullRules?.properties || {})) {
+    propKeys.split('|').forEach(propName => {
+      propName = propName.trim();
+      if (!propName) return;
+
+      const val = props[propName] || '';
+      let req = rule.requirement || rule.defaultRequirement;
+
+      if (rule.overrides) {
+        const override = rule.overrides.find(o => {
+          if (!o.conditions) return false;
+          return Object.entries(o.conditions).every(([k, v]) => {
+            const objV = String(props[k] || '').trim().toUpperCase();
+            return Array.isArray(v) ? v.some(x => String(x).trim().toUpperCase() === objV) : String(v).trim().toUpperCase() === objV;
+          });
+        });
+        if (override) req = override.requirement;
       }
-    }, null, 2);
 
+      if (rule.minMMI && mmi > 0 && mmi < rule.minMMI && req === 'required') {
+        req = 'optional';
+      }
 
-    // HOVEDFUNKSJON
-    function validerObjekt() {
-        const resultatDiv = document.getElementById('resultat');
-        const statusBar = document.getElementById('statusBar');
-        const cardStatus = document.getElementById('cardStatus');
-        const statusVerdi = document.getElementById('statusVerdi');
-        const feilVerdi = document.getElementById('feilVerdi');
-        const fagVerdi = document.getElementById('fagVerdi');
+      let isFormatError = false, errMsg = '';
+      const strVal = val.toString().trim();
 
-        resultatDiv.innerHTML = ''; 
+      if (req === 'notallowed') {
+        if (strVal !== "") { fields[propName] = { status: 'warn', value: val, msg: 'Ikke tillatt' }; warn++; } 
+        else { fields[propName] = { status: 'na', value: '-', msg: 'Ikke tillatt' }; }
+        return; 
+      }
+      if (req === 'required' && strVal === "") { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; return; }
+      if (strVal === "") { fields[propName] = { status: 'opt', value: 'Ikke påkrevd', msg: 'Valgfri' }; return; }
 
-        try {
-            const regler = JSON.parse(document.getElementById('jsonRegler').value).Valideringsregler;
-            const objekt = JSON.parse(document.getElementById('testObjekt').value);
-            
-            let feilmeldinger = [];
-
-            // 1. Sjekk Fagdisiplin
-            if (!objekt.hasOwnProperty('Fagdisiplin')) {
-                fagVerdi.innerText = "MANGLER";
-                feilmeldinger.push("Testobjektet mangler egenskapen 'Fagdisiplin'. Kan ikke validere mot fagspesifikke krav.");
-                tegnResultat(feilmeldinger, resultatDiv, statusBar, cardStatus, statusVerdi, feilVerdi);
-                return; 
-            }
-
-            const aktueltFag = objekt.Fagdisiplin;
-            fagVerdi.innerText = aktueltFag;
-
-            // 2. Gå gjennom reglene
-            for (const settNavn in regler) {
-                const krevdeEgenskaper = regler[settNavn].Egenskaper;
-                const objektHarSett = objekt.hasOwnProperty(settNavn);
-                let manglendeSettVarslet = false; 
-
-                for (const egenskapNavn in krevdeEgenskaper) {
-                    const egenskapRegler = krevdeEgenskaper[egenskapNavn];
-                    const gjelderForFag = egenskapRegler.GjelderForFag;
-                    const gjelderDetteFaget = !gjelderForFag || gjelderForFag.includes(aktueltFag);
-
-                    if (gjelderDetteFaget) {
-                        const erEgenskapPåkrevd = egenskapRegler.Påkrevd;
-
-                        if (!objektHarSett) {
-                            if (erEgenskapPåkrevd && !manglendeSettVarslet) {
-                                feilmeldinger.push(`Mangler egenskapssettet '${settNavn}'. Dette kreves fordi faget er '${aktueltFag}'.`);
-                                manglendeSettVarslet = true;
-                            }
-                            continue; 
-                        }
-
-                        const objektEgenskaper = objekt[settNavn];
-                        
-                        if (!objektEgenskaper.hasOwnProperty(egenskapNavn)) {
-                            if (erEgenskapPåkrevd) {
-                                feilmeldinger.push(`I settet '${settNavn}' mangler den påkrevde egenskapen: '${egenskapNavn}'.`);
-                            }
-                            continue;
-                        }
-
-                        const faktiskVerdi = objektEgenskaper[egenskapNavn];
-
-                        if (egenskapRegler.TillatteVerdier && egenskapRegler.TillatteVerdier.length > 0) {
-                            if (!egenskapRegler.TillatteVerdier.includes(faktiskVerdi)) {
-                                feilmeldinger.push(`Ugyldig verdi for '${egenskapNavn}' i '${settNavn}'. Fikk '${faktiskVerdi}'.`);
-                            }
-                        }
-
-                        if (egenskapRegler.RegEx) {
-                            const regex = new RegExp(egenskapRegler.RegEx);
-                            if (!regex.test(faktiskVerdi)) {
-                                feilmeldinger.push(`Verdien '${faktiskVerdi}' for '${egenskapNavn}' følger ikke det påkrevde mønsteret.`);
-                            }
-                        }
-                    }
+      if (rule.format && !(new RegExp(rule.format).test(val))) { isFormatError = true; errMsg = 'Feil format'; }
+      if (!isFormatError && rule.disallowedValues) {
+        const disallowed = Array.isArray(rule.disallowedValues) ? rule.disallowedValues : [rule.disallowedValues];
+        if (disallowed.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = `Ugyldig verdi '${val}'`; }
+      }
+      if (!isFormatError && rule.allowedValues) {
+        if (Array.isArray(rule.allowedValues)) {
+            if (!rule.allowedValues.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = 'Verdi ikke i liste'; }
+        } else if (typeof rule.allowedValues === 'object') {
+            const fagKey = Object.keys(rule.allowedValues).find(k => k.toUpperCase() === disc.toUpperCase());
+            if (fagKey) {
+                const allowedForFag = rule.allowedValues[fagKey];
+                if (Array.isArray(allowedForFag)) {
+                    if (!allowedForFag.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = `Ugyldig for ${disc}`; }
+                } else if (typeof allowedForFag === 'object') {
+                    const klasse = String(props["Objektklasse"] || '').trim();
+                    const klasseKey = Object.keys(allowedForFag).find(k => k.toUpperCase() === klasse.toUpperCase());
+                    if (klasseKey) {
+                        const validTypes = allowedForFag[klasseKey];
+                        if (Array.isArray(validTypes) && !validTypes.some(v => String(v).trim().toUpperCase() === strVal.toUpperCase())) { isFormatError = true; errMsg = `Ugyldig for ${klasse}`; }
+                    } else if (klasse) { isFormatError = true; errMsg = `Ukjent klasse ${klasse}`; }
                 }
             }
-
-            tegnResultat(feilmeldinger, resultatDiv, statusBar, cardStatus, statusVerdi, feilVerdi);
-
-        } catch (error) {
-            fagVerdi.innerText = "-";
-            feilVerdi.innerText = "!";
-            statusVerdi.innerText = "KODEFEIL";
-            cardStatus.className = "card red";
-            statusBar.innerText = `Feil: Sjekk at JSON-formatet er gyldig. Mangler du et komma?`;
-            statusBar.className = "error";
-            resultatDiv.innerHTML = `<div class="result-item"><span class="field-value miss">KODEFEIL</span> Sjekk JSON-koden for syntaksfeil. ${error.message}</div>`;
         }
+      }
+      if (isFormatError) { fields[propName] = { status: 'warn', value: val, msg: errMsg }; warn++; } 
+      else { fields[propName] = { status: 'ok', value: val, msg: 'OK' }; ok++; }
+    });
+  }
+  const totalReq = ok + miss + warn;
+  return { fields, score: totalReq > 0 ? Math.round((ok / totalReq) * 100) : 100, miss, warn };
+}
+
+// --- DEDIKERT RDS KRYSSREFERANSE-MOTOR ---
+function runRdsValidation(objProps, rules) {
+  let fields = {}, ok = 0, miss = 0, warn = 0;
+  const props = objProps.flat;
+  const m = rules.mappings;
+
+  const getProp = (name) => (props[name] || '').toString().trim();
+  
+  const pnsKode = getProp("PNS Kode");
+  const prosesskode = getProp("Prosesskode");
+  const objektklasse = getProp("Objektklasse");
+  const objekttype = getProp("Objekttype");
+  const produkttype = getProp("Produkttype");
+
+  const checkExpected = (propName, expectedVal, errorMsg, allowMissingExpected = false, lookupKey = "") => {
+    const actualVal = getProp(propName);
+    if (expectedVal === null || expectedVal === undefined || expectedVal === "") {
+      if (allowMissingExpected) {
+         if (actualVal) { fields[propName] = { status: 'warn', value: actualVal, msg: `Mangler oppslag for ${lookupKey || 'verdi'}` }; warn++; }
+         else { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; }
+      } else {
+         if (actualVal) { fields[propName] = { status: 'warn', value: actualVal, msg: 'Forventet blank' }; warn++; }
+         else { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; }
+      }
+      return;
     }
 
-    // Hjelpefunksjon for å oppdatere UI basert på resultat
-    function tegnResultat(feilmeldinger, div, statusBar, cardStatus, statusVerdi, feilVerdi) {
-        feilVerdi.innerText = feilmeldinger.length;
+    let actComp = actualVal.toString().trim().toUpperCase();
+    let expComp = expectedVal.toString().trim().toUpperCase();
 
-        if (feilmeldinger.length > 0) {
-            statusVerdi.innerText = "AVVIK";
-            cardStatus.className = "card red";
-            statusBar.innerText = `Validering ferdig. Fant ${feilmeldinger.length} avvik.`;
-            statusBar.className = "error";
-            
-            div.innerHTML = feilmeldinger.map(feil => 
-                `<div class="result-item"><span class="field-value miss">FEIL</span> <div>${feil}</div></div>`
-            ).join('');
-        } else {
-            statusVerdi.innerText = "GODKJENT";
-            cardStatus.className = "card green";
-            statusBar.innerText = "Validering vellykket! Ingen feil funnet.";
-            statusBar.className = "ok";
-            
-            div.innerHTML = `<div class="result-item"><span class="field-value ok">OK</span> Objektet oppfyller alle krav for valgt fagdisiplin.</div>`;
-        }
+    if (!isNaN(actComp) && !isNaN(expComp) && actComp !== "" && expComp !== "") {
+        if (Number(actComp) === Number(expComp)) { actComp = "MATCH"; expComp = "MATCH"; }
     }
+
+    if (actualVal === "") { fields[propName] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
+    else if (actComp !== expComp) { fields[propName] = { status: 'warn', value: actualVal, msg: `Forventet: ${expectedVal}` }; warn++; } 
+    else { fields[propName] = { status: 'ok', value: actualVal, msg: 'OK' }; ok++; }
+  };
+
+  const hoved = pnsKode ? m.Hovedsystem[Object.keys(m.Hovedsystem).find(k => k.trim().toUpperCase() === pnsKode.toUpperCase())] : null;
+  checkExpected("03. Bn", hoved?.Bn, "Feil Bn", true, pnsKode);
+  checkExpected("04. Bn navn", hoved?.Bn_navn, "Feil Bn navn", true, pnsKode);
+  checkExpected("05. Cn", hoved?.Cn, "Feil Cn", true, pnsKode);
+  checkExpected("06. Cn navn", hoved?.Cn_navn, "Feil Cn navn", true, pnsKode);
+
+  let tek = null, pk = prosesskode.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').toUpperCase();
+  while (pk.length > 0 && !tek) {
+    const foundKey = Object.keys(m.TekniskSystem).find(k => k.toString().replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').toUpperCase() === pk);
+    if (foundKey) { tek = m.TekniskSystem[foundKey]; break; }
+    pk = pk.slice(0, -1);
+  }
+  checkExpected("07. DDn", tek?.DDn, "Feil DDn", true, prosesskode);
+  checkExpected("08. DDn navn", tek?.DDn_navn, "Feil DDn navn", true, prosesskode);
+
+  let eee = null;
+  if (objektklasse && objekttype) {
+      const eeeKeyStr = `${objektklasse}|${objekttype}`.toUpperCase();
+      eee = m.EEE[Object.keys(m.EEE).find(k => k.trim().toUpperCase() === eeeKeyStr)];
+  }
+  checkExpected("09. EEEn", eee?.EEEn, "Feil EEEn", true, `${objektklasse}|${objekttype}`);
+  checkExpected("10. EEEn navn", eee?.EEEn_navn, "Feil EEEn navn", true, `${objektklasse}|${objekttype}`);
+
+  let fff = null;
+  if (produkttype) fff = m.FFF[Object.keys(m.FFF).find(k => k.trim().toUpperCase() === produkttype.toUpperCase())];
+  checkExpected("11. FFFn", fff?.FFFn, "Feil FFFn", true, produkttype);
+  checkExpected("12. FFFn navn", fff?.FFFn_navn, "Feil FFFn navn", true, produkttype);
+
+  const ggg = getProp("13. GGGn"), gggNavn = getProp("14. GGGn navn"), fffn_expected = fff?.FFFn;
+  if (!ggg) { fields["13. GGGn"] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
+  else {
+    const fffPrefix = fffn_expected ? fffn_expected.substring(0,3).toUpperCase() : '...';
+    if (new RegExp('^' + (fffn_expected ? fffn_expected.substring(0,3) : '[A-Z]{3}') + '\\d+$', 'i').test(ggg)) { fields["13. GGGn"] = { status: 'ok', value: ggg, msg: 'OK' }; ok++; } 
+    else { fields["13. GGGn"] = { status: 'warn', value: ggg, msg: `Format: ${fffPrefix} + tall` }; warn++; }
+  }
+  if (!gggNavn) { fields["14. GGGn navn"] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; }
+  else { fields["14. GGGn navn"] = { status: 'ok', value: gggNavn, msg: 'OK' }; ok++; }
+
+  checkExpected("15. Informasjon om RDS i prosjektet", 'Se dokument "Plan for bruk av RDS.pdf"', "Feil tekst");
+  checkExpected("02. AAAA_AA", "<E6RS_01>", "Feil tekst");
+
+  const actualTag = getProp("01. RDS-tag");
+  const expectedTag = `${getProp("02. AAAA_AA")}-${getProp("03. Bn")}.${getProp("05. Cn")}.${getProp("07. DDn")}.${getProp("09. EEEn")}.${getProp("11. FFFn")}.${ggg}`;
+  if (!actualTag) { fields["01. RDS-tag"] = { status: 'miss', value: '', msg: 'Mangler' }; miss++; } 
+  else if (actualTag.toUpperCase() !== expectedTag.toUpperCase()) { fields["01. RDS-tag"] = { status: 'warn', value: actualTag, msg: `Samsvarer ikke med strukturen` }; warn++; } 
+  else { fields["01. RDS-tag"] = { status: 'ok', value: actualTag, msg: 'OK' }; ok++; }
+
+  const totalReq = ok + miss + warn;
+  return { fields, score: totalReq > 0 ? Math.round((ok / totalReq) * 100) : 100, miss, warn };
+}
+
+async function validate(){
+  const selVal = $('modelSelect').value;
+  if (!selVal || !API) {
+      setStatus('⚠️ Velg et utvalg/modell i toppmenyen før du validerer.', 'error');
+      return;
+  }
+  
+  setStatus('⏳ Laster regler og forbereder validering...');
+  $('btnReset').disabled = true; $('btnColorize').disabled = true; $('btnExport').disabled = true; $('btnUncolor').disabled = true;
+  
+  try {
+    const url = $('ruleSelect').value + '?nocache=' + new Date().getTime();
+    const res = await fetch(url);
+    const validationRules = await res.json();
+    
+    let ALL_FIELDS = [];
+    Object.keys(validationRules?.properties || {}).forEach(k => k.split('|').forEach(n => ALL_FIELDS.push(n.trim())));
+
+    let targets = [];
+    if (selVal === 'SELECTED') {
+        const selection = await API.viewer.getSelection();
+        if (!selection || selection.length === 0 || selection.every(s => !(s.objectRuntimeIds?.length || s.objectIds?.length))) {
+            setStatus('⚠️ Ingen objekter er markert i 3D-vieweren.', 'error');
+            $('btnReset').disabled = false;
+            return;
+        }
+        targets = selection.map(s => ({
+            mid: s.modelId,
+            ids: s.objectRuntimeIds || s.objectIds || []
+        })).filter(t => t.ids.length > 0);
+    } else if (selVal === 'ALL') {
+        targets = allModels.map(m => ({ mid: m.id, ids: m.objectIds }));
+    } else {
+        const m = allModels.find(x => x.id === selVal);
+        if (m) targets = [{ mid: m.id, ids: m.objectIds }];
+    }
+
+    validationRows = [];
+    skippedCount = 0;
+    const CHUNK = 200;
+    let totalProcessed = 0;
+    const totalObjects = targets.reduce((acc, t) => acc + t.ids.length, 0);
+
+    for (const target of targets) {
+      const mid = target.mid;
+      for (let i = 0; i < target.ids.length; i += CHUNK) {
+        const chunk = target.ids.slice(i, i + CHUNK);
+        const propsArr = await API.viewer.getObjectProperties(mid, chunk);
+        
+        propsArr.forEach(o => {
+          const ifcType = getIfcType(o);
+          if (IGNORE.has(ifcType)) {
+              skippedCount++;
+              return;
+          }
+
+          const flat = {};
+          (o.properties || []).forEach(g => (g.properties || []).forEach(p => flat[p.name] = p.value));
+          
+          const result = validationRules.type === 'RDS_RULESET' 
+              ? runRdsValidation({flat}, validationRules) 
+              : runValidation({flat}, validationRules);
+
+          validationRows.push({
+            name: o.name || 'Objekt',
+            modelId: mid,
+            runtimeId: o.id || o.objectRuntimeId,
+            fields: result.fields,
+            score: result.score,
+            missCount: result.miss,
+            warnCount: result.warn
+          });
+        });
+        totalProcessed += chunk.length;
+        setStatus(`⏳ Validerer... ${Math.min(totalProcessed, totalObjects)} / ${totalObjects} objekter`);
+      }
+    }
+
+    currentRelevantFields = ALL_FIELDS.filter(f => {
+       return validationRows.some(r => r.fields[f] && r.fields[f].status !== 'na');
+    });
+
+    renderDashboard(currentRelevantFields);
+    setStatus('✅ Validering fullført.', 'ok');
+    $('btnReset').disabled = false; $('btnColorize').disabled = false; $('btnExport').disabled = false;
+  } catch(e) { setStatus('❌ Feil: ' + e.message, 'error'); console.error(e); }
+}
+
+function renderDashboard(relevantFields){
+  const total = validationRows.length;
+  const perfect = validationRows.filter(r => r.missCount === 0 && r.warnCount === 0).length;
+  const issues = total - perfect;
+
+  const fieldStats = relevantFields.map(f => {
+    let ok = 0, applicable = 0;
+    validationRows.forEach(r => {
+      const st = r.fields[f]?.status;
+      if (st === 'ok') { ok++; applicable++; }
+      else if (st === 'miss' || st === 'warn') { applicable++; }
+    });
+    return { name: f, ok, applicable };
+  });
+
+  $('mainContent').innerHTML = `
+    <div class="cards anim">
+      <div class="card blue"><div class="label">Analysert</div><div class="value">${total}</div><div class="sub">objekter sjekket</div></div>
+      <div class="card green"><div class="label">Godkjent</div><div class="value">${perfect}</div><div class="sub">uten noen feil</div></div>
+      <div class="card red"><div class="label">Avvik</div><div class="value">${issues}</div><div class="sub">objekter med mangler</div></div>
+      <div class="card gray"><div class="label">Ignorert</div><div class="value">${skippedCount}</div><div class="sub">systemnoder frasortert</div></div>
+    </div>
+
+    <div class="grid-2col anim" style="animation-delay:.05s">
+      <div class="kategori-panel">
+        <div class="kategori-header">Statusfordeling</div>
+        <div id="donutWrap">
+          <svg id="donutSvg" width="140" height="140" viewBox="0 0 120 120"></svg>
+          <div class="donut-legend" id="donutLegend"></div>
+        </div>
+      </div>
+      <div class="kategori-panel">
+        <div class="kategori-header">Feltdekning (Kun relevante krav for utvalget)</div>
+        <div id="fieldChart"></div>
+      </div>
+    </div>
+
+    <div class="kategori-panel anim" style="animation-delay:.1s;">
+      <div class="kategori-header">Objektliste (Klikk på en rad for å markere i 3D)</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Score</th><th>Navn</th>${relevantFields.map(f => `<th>${f}</th>`).join('')}</tr></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  `;
+
+  renderDonut(total, perfect, issues);
+  renderFieldBars(fieldStats);
+  renderTable(relevantFields);
+}
+
+function renderDonut(total, ok, fail){
+  const slices = [{ label: 'OK (Godkjent)', count: ok, color: 'var(--green)' }, { label: 'Feil/Mangler', count: fail, color: 'var(--red)' }];
+  const svg = $('donutSvg');
+  const cx=60, cy=60, r=48;
+  let offset = 0, paths = '';
+  slices.forEach(s => {
+    const frac = total > 0 ? s.count / total : 0;
+    const len = frac * 2 * Math.PI * r;
+    paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="20" stroke-dasharray="${len} ${2*Math.PI*r}" stroke-dashoffset="${-offset}"></circle>`;
+    offset += len;
+  });
+  svg.innerHTML = paths + `<circle cx="${cx}" cy="${cy}" r="28" fill="var(--surface)"></circle><text x="${cx}" y="${cy+5}" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="var(--ink)" font-weight="800">${Math.round((ok/total)*100)}%</text>`;
+  $('donutLegend').innerHTML = slices.map(s => `<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div><span><strong>${s.count}</strong> ${s.label}</span></div>`).join('');
+}
+
+function renderFieldBars(stats){
+  $('fieldChart').innerHTML = stats.map(s => {
+    const okPct = s.applicable > 0 ? (s.ok / s.applicable) * 100 : 0;
+    return `
+      <div class="field-row">
+        <div class="field-name" title="${esc(s.name)}">${esc(s.name)}</div>
+        <div class="bar-track"><div class="bar-fill-ok" style="width:${okPct}%"></div></div>
+        <div class="bar-pct">${Math.round(okPct)}%</div>
+      </div>`;
+  }).join('');
+}
+
+function renderTable(relevantFields){
+  $('tableBody').innerHTML = validationRows.map(r => `
+    <tr data-mid="${esc(r.modelId)}" data-rid="${esc(r.runtimeId)}">
+      <td><span style="font-weight:700; color:${r.score === 100 ? 'var(--green)' : r.score > 50 ? 'var(--yellow)' : 'var(--red)'}">${r.score}%</span></td>
+      <td class="obj-name" title="${esc(r.name)}">${esc(r.name)}</td>
+      ${relevantFields.map(f => {
+        const d = r.fields[f] || {status:'na', value:'-'};
+        return `<td><span class="field-value ${d.status}" title="${esc(d.msg)}">${esc(d.value)}</span></td>`;
+      }).join('')}
+    </tr>
+  `).join('');
+
+  $('tableBody').querySelectorAll('tr[data-rid]').forEach(tr => {
+    tr.addEventListener('click', async () => {
+      const mid = tr.dataset.mid;
+      const rid = Number(tr.dataset.rid);
+      try {
+        if (API.viewer.setSelection) {
+            await API.viewer.setSelection({ modelObjectIds: [{ modelId: mid, objectRuntimeIds: [rid] }] }, 'set');
+        }
+      } catch(e) {}
+    });
+  });
+}
+
+async function colorizeModel(){
+  if (!API || !validationRows.length) return;
+  $('btnColorize').disabled = true;
+  setStatus('🎨 Fargelegger modell…');
+
+  try {
+    const greenMap = new Map(); const yellowMap = new Map(); const redMap = new Map();
+
+    for (const row of validationRows) {
+        const mid = row.modelId;
+        const rid = Number(row.runtimeId);
+        if (isNaN(rid)) continue;
+
+        const addTo = map => { if (!map.has(mid)) map.set(mid, []); map.get(mid).push(rid); };
+        if (row.missCount > 0) addTo(redMap);
+        else if (row.warnCount > 0) addTo(yellowMap);
+        else addTo(greenMap);
+    }
+
+    const toSel = map => Array.from(map.entries()).map(([modelId, objectRuntimeIds]) => ({ modelId, objectRuntimeIds }));
+    
+    try { await API.viewer.setObjectState(undefined, { color: 'reset' }); } catch(e){}
+
+    if (greenMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(greenMap) }, { color: { r: 22,  g: 101, b: 52,  a: 255 } }); // --green
+    if (yellowMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(yellowMap) }, { color: { r: 202, g: 138, b: 4,  a: 255 } }); // --yellow
+    if (redMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(redMap) }, { color: { r: 220, g: 38,  b: 38,  a: 255 } }); // --red
+
+    $('btnUncolor').disabled = false; $('btnColorize').disabled = false;
+    setStatus(`🎨 Fargelagt OK / Formatfeil / Mangler`, 'ok');
+  } catch (e) { setStatus('❌ Feil ved fargelegging: ' + e.message, 'error'); }
+}
+
+async function removeColors(){
+  if (!API) return;
+  try {
+    if (API.viewer.setObjectState) await API.viewer.setObjectState(undefined, { color: 'reset' });
+    $('btnUncolor').disabled = true;
+    setStatus('⬜ Modellfarger fjernet.', '');
+  } catch (e) {}
+}
+
+function exportCsv(){
+  const issueRows = validationRows.filter(r => r.missCount > 0 || r.warnCount > 0);
+  if (!issueRows.length) {
+    setStatus('✅ Ingen avvik å eksportere.', 'ok'); return;
+  }
+
+  const headers = ['Navn','ID','Score (%)','Mangler','Formatfeil', ...currentRelevantFields];
+  const csvEsc = v => { const s = (v ?? '').toString().replace(/"/g, '""'); return /[",\n]/.test(s) ? `"${s}"` : s; };
+
+  const lines = [headers.map(csvEsc).join(',')];
+  for (const r of issueRows) {
+    lines.push([
+      csvEsc(r.name), csvEsc(r.runtimeId), csvEsc(r.score), csvEsc(r.missCount), csvEsc(r.warnCount),
+      ...currentRelevantFields.map(f => {
+        const d = r.fields[f];
+        if (!d) return csvEsc('-');
+        if (d.status === 'ok') return csvEsc('OK');
+        if (d.status === 'na' || d.status === 'opt') return csvEsc(d.value);
+        return csvEsc(`Feil: ${d.value} (${d.msg})`);
+      })
+    ].join(','));
+  }
+
+  const bom = '\ufeff';
+  const blob = new Blob([bom + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Avviksrapport_Validering_' + new Date().toISOString().slice(0,10) + '.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(a.href);
+  setStatus(`⬇ Eksportert ${issueRows.length} objekter til CSV.`, 'ok');
+}
+
+function reset(){
+  validationRows = []; removeColors();
+  $('mainContent').innerHTML = '<div class="empty anim">Nullstilt. Klar for ny validering.</div>';
+  $('btnReset').disabled = true; $('btnColorize').disabled = true; $('btnExport').disabled = true;
+  setStatus('↺ Nullstilt.', '');
+}
+
+$('btnLoad').onclick = loadModels;
+$('btnValidate').onclick = validate;
+$('btnColorize').onclick = colorizeModel;
+$('btnUncolor').onclick = removeColors;
+$('btnExport').onclick = exportCsv;
+$('btnReset').onclick = reset;
+connect();
 </script>
 </body>
 </html>

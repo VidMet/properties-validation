@@ -2,7 +2,7 @@
 <html lang="nb">
 <head>
   <meta charset="UTF-8"/>
-  <title>Egenskapsvalidering v4.07</title>
+  <title>Egenskapsvalidering v5.00</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   
   <script src="https://components.connect.trimble.com/trimble-connect-workspace-api/index.js"></script>
@@ -11,112 +11,108 @@
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap');
 
     :root {
-      --bg:        #0d1117;
-      --surface:   #161b22;
-      --surface2:  #1f2937;
-      --border:    #30363d;
-      --ink:       #e6edf3;
-      --muted:     #7d8590;
-      --green:     #3fb950;
-      --green-dim: #1a3a22;
-      --yellow:    #d29922;
-      --yellow-dim:#2d2205;
-      --red:       #f85149;
-      --red-dim:   #3a1212;
-      --blue:      #58a6ff;
-      --blue-dim:  #0d2044;
-      --mono:      'JetBrains Mono', monospace;
-      --sans:      'Syne', sans-serif;
+      --bg: #f3f4f6; 
+      --surface: #ffffff; 
+      --surface2: #e5e7eb; 
+      --border: #d1d5db; 
+      --ink: #111827; 
+      --muted: #6b7280; 
+      --blue: #1d4ed8; 
+      --blue-dim: #dbeafe;
+      --green: #166534; 
+      --green-dim: #dcfce7; 
+      --yellow: #ca8a04; 
+      --yellow-dim: #fef08a;
+      --red: #dc2626; 
+      --red-dim: #fee2e2;
+      --mono: 'JetBrains Mono', monospace; 
+      --sans: 'Syne', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      background: var(--bg); color: var(--ink); font-family: var(--sans);
-      min-height: 100vh; display: flex; flex-direction: column; overflow: hidden;
+    html, body { 
+      background: var(--bg); color: var(--ink); font-family: var(--sans); 
+      height: 100%; display: flex; flex-direction: column; overflow: hidden; 
     }
 
-    header {
-      background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    header { 
+      background: var(--surface); border-bottom: 1px solid var(--border); 
+      padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; 
     }
 
-    .header-title { flex: 1; }
-    .header-title h1 { font-size: 16px; font-weight: 800; letter-spacing: -.3px; color: var(--ink); }
-    .header-title p { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 1px; }
+    .header-info h1 { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; color: var(--ink); }
+    .header-info h1 .version { font-family: var(--mono); font-size: 11px; font-weight: normal; color: var(--muted); background: var(--bg); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); }
+    .header-info p { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-top: 2px; }
 
-    .badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); color: var(--muted); white-space: nowrap; }
+    .badge { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); color: var(--muted); white-space: nowrap; background: var(--bg); }
 
-    .btn { font-family: var(--sans); font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 6px; border: none; cursor: pointer; transition: opacity .15s, transform .1s; white-space: nowrap; }
-    .btn:disabled { opacity: .4; cursor: not-allowed; }
-    .btn:not(:disabled):hover { opacity: .85; }
-    .btn:not(:disabled):active { transform: scale(.97); }
-    .btn-primary { background: var(--blue); color: #000; }
-    .btn-ghost   { background: var(--surface2); color: var(--ink); border: 1px solid var(--border); }
-    .btn-danger  { background: #21262d; color: var(--red); border: 1px solid #3a1c1c; }
-    .btn-colorize { background: #1a3a22; color: var(--green); border: 1px solid #2a5a32; }
-    .btn-unreset  { background: #1f2937; color: var(--muted); border: 1px solid var(--border); }
-    .btn-export   { background: #0d2044; color: var(--blue); border: 1px solid #1a3a6c; }
+    .toolbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; gap: 10px; align-items: center; flex-shrink: 0; flex-wrap: wrap; }
+    .toolbar select, .toolbar input, .btn { font-family: var(--sans); font-size: 12px; padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; cursor: pointer; }
+    
+    .btn { font-weight: 600; background: var(--surface2); transition: background 0.2s; color: var(--ink); display: flex; align-items: center; gap: 6px; }
+    .btn:hover:not(:disabled) { background: var(--border); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-primary { background: var(--blue); color: white; border: none; }
+    .btn-primary:hover:not(:disabled) { background: #1e40af; }
+    .btn-danger { color: var(--red); background: var(--red-dim); border-color: #fca5a5; }
+    .btn-danger:hover:not(:disabled) { background: #fecaca; }
 
-    #statusBar { font-family: var(--mono); font-size: 11px; padding: 6px 16px; background: var(--blue-dim); color: var(--blue); border-bottom: 1px solid #1a3a5c; flex-shrink: 0; }
-    #statusBar.ok    { background: var(--green-dim); color: var(--green); border-color: #1a3a22; }
-    #statusBar.error { background: var(--red-dim);   color: var(--red);   border-color: #3a1212; }
+    #statusBar { font-family: var(--mono); font-size: 11px; padding: 6px 16px; background: var(--blue-dim); color: var(--blue); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    #statusBar.ok    { background: var(--green-dim); color: var(--green); border-color: #bbf7d0; }
+    #statusBar.error { background: var(--red-dim);   color: var(--red);   border-color: #fecaca; }
 
-    #modelBar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; gap: 15px; align-items: center; flex-shrink: 0; }
-    .select-group { display: flex; align-items: center; gap: 8px; flex: 1; }
-    #modelBar label { font-size: 11px; color: var(--muted); font-family: var(--mono); white-space: nowrap; }
-    select { font-family: var(--mono); font-size: 12px; background: var(--surface2); color: var(--ink); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; width: 100%; min-width: 0; }
-    select:disabled { opacity: .4; }
-    optgroup { font-family: var(--sans); font-weight: 700; color: var(--muted); }
+    main { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
 
-    main { flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 14px; }
-
-    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
-    .card .label { font-size: 10px; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; }
-    .card .value { font-size: 28px; font-weight: 800; line-height: 1.1; margin-top: 4px; }
-    .card .sub { font-size: 10px; color: var(--muted); font-family: var(--mono); margin-top: 3px; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .card .label { font-size: 10px; color: var(--muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
+    .card .value { font-size: 26px; font-weight: 800; line-height: 1.1; margin-top: 6px; color: var(--ink); }
+    .card .sub { font-size: 10px; color: var(--muted); font-family: var(--mono); margin-top: 4px; }
+    
+    .card.green { border-bottom: 3px solid var(--green); }
     .card.green .value { color: var(--green); }
+    .card.red { border-bottom: 3px solid var(--red); }
     .card.red .value { color: var(--red); }
+    .card.blue { border-bottom: 3px solid var(--blue); }
     .card.blue .value { color: var(--blue); }
-    .card.gray .value { color: var(--muted); }
-    .card.gray { border-color: #30363d; }
+    .card.gray { border-bottom: 3px solid var(--muted); }
 
-    .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
-    .panel-header { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
-    .panel-header h3 { font-size: 13px; font-weight: 700; flex: 1; }
+    .kategori-panel { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+    .kategori-header { background: var(--surface2); padding: 10px 14px; font-weight: 600; font-size: 13px; color: var(--ink); border-bottom: 1px solid var(--border); }
 
-    #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 7px; height: 220px; overflow: auto; resize: vertical; }
+    #fieldChart { padding: 14px; display: flex; flex-direction: column; gap: 8px; height: 220px; overflow: auto; resize: vertical; }
     .field-row { display: flex; align-items: center; gap: 10px; }
-    .field-name { font-family: var(--mono); font-size: 10px; color: var(--muted); width: 180px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .bar-track { flex: 1; height: 16px; background: var(--surface2); border-radius: 4px; overflow: hidden; display: flex; }
-    .bar-fill-ok   { background: var(--green); height: 100%; transition: width .5s cubic-bezier(.4,0,.2,1); }
-    .bar-pct { font-family: var(--mono); font-size: 10px; width: 48px; text-align: right; flex-shrink: 0; color: var(--ink); }
+    .field-name { font-family: var(--mono); font-size: 10px; color: var(--ink); width: 180px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+    .bar-track { flex: 1; height: 14px; background: var(--surface2); border-radius: 4px; overflow: hidden; display: flex; }
+    .bar-fill-ok { background: var(--green); height: 100%; transition: width .5s cubic-bezier(.4,0,.2,1); }
+    .bar-pct { font-family: var(--mono); font-size: 10px; width: 48px; text-align: right; flex-shrink: 0; color: var(--muted); }
 
-    .table-wrap { overflow: auto; height: 45vh; min-height: 150px; resize: vertical; }
+    .table-wrap { overflow: auto; height: 45vh; min-height: 200px; resize: vertical; }
     table { width: 100%; border-collapse: collapse; font-size: 11px; }
-    thead th { background: var(--surface2); color: var(--muted); font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .4px; padding: 8px 10px; text-align: left; position: sticky; top: 0; z-index: 1; white-space: nowrap; }
-    tbody tr { border-bottom: 1px solid #1c2128; cursor: pointer; }
-    tbody tr:hover td { background: #1c2128; }
-    tbody td { padding: 6px 10px; vertical-align: middle; font-family: var(--mono); font-size: 10px; color: var(--ink); }
-    .obj-name { color: var(--blue); max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    thead th { background: var(--surface2); color: var(--ink); font-family: var(--mono); font-size: 10px; text-transform: uppercase; padding: 10px; text-align: left; position: sticky; top: 0; z-index: 1; white-space: nowrap; border-bottom: 1px solid var(--border); }
+    tbody tr { border-bottom: 1px solid var(--surface2); cursor: pointer; transition: background 0.1s; }
+    tbody tr:hover td { background: #f9fafb; }
+    tbody td { padding: 8px 10px; vertical-align: middle; font-family: var(--mono); font-size: 10px; color: var(--ink); }
+    .obj-name { color: var(--blue); max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
 
-    .field-value { display: inline-block; padding: 3px 6px; border-radius: 4px; font-size: 9px; font-family: var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; border: 1px solid transparent; }
-    .field-value.ok { background: var(--green-dim); color: var(--green); border-color: #1e4028; }
-    .field-value.warn { background: var(--yellow-dim); color: var(--yellow); border-color: #3a2d05; }
-    .field-value.miss { background: var(--red-dim); color: var(--red); border-color: #3a1212; }
-    .field-value.opt { background: #1a2027; color: var(--muted); border-color: #30363d; }
-    .field-value.na { background: #2a2f36; color: var(--muted); border-color: #30363d; }
+    .field-value { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 9px; font-family: var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; font-weight: 600; }
+    .field-value.ok { background: var(--green-dim); color: var(--green); border: 1px solid #bbf7d0; }
+    .field-value.warn { background: var(--yellow-dim); color: var(--yellow); border: 1px solid #fef08a; }
+    .field-value.miss { background: var(--red-dim); color: var(--red); border: 1px solid #fecaca; }
+    .field-value.opt { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+    .field-value.na { background: transparent; color: var(--muted); border: 1px dashed var(--border); }
 
-    #donutWrap { display: flex; align-items: center; gap: 20px; padding: 14px; min-height: 220px; }
+    #donutWrap { display: flex; align-items: center; gap: 20px; padding: 20px; min-height: 220px; justify-content: center; }
     #donutSvg  { flex-shrink: 0; }
-    .donut-legend { display: flex; flex-direction: column; gap: 6px; }
-    .legend-item  { display: flex; align-items: center; gap: 8px; font-size: 11px; }
-    .legend-dot   { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .donut-legend { display: flex; flex-direction: column; gap: 8px; }
+    .legend-item  { display: flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--mono); color: var(--ink); }
+    .legend-dot   { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
 
-    .empty { text-align: center; padding: 40px 20px; color: var(--muted); font-size: 13px; }
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    .empty { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 14px; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
 
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(6px); }
@@ -129,40 +125,43 @@
 <body>
 
 <header>
-  <div class="header-title">
-    <h1>Egenskapsvalidering v4.07</h1>
-    <p>Nå med støtte for å validere på tvers av modeller og aktive utvalg</p>
+  <div class="header-info">
+    <h1>Egenskapsvalidering <span class="version">v5.00</span></h1>
+    <p>Sanntidsvalidering av egenskaper og RDS mot prosjektkrav</p>
   </div>
-  <span class="badge" id="modelBadge">Frakoblet</span>
-  <button class="btn btn-ghost" id="btnLoad" disabled>Hent modeller</button>
-  <button class="btn btn-primary" id="btnValidate" disabled>▶ Valider</button>
-  <button class="btn btn-colorize" id="btnColorize" disabled>🎨 Fargelegg</button>
-  <button class="btn btn-unreset" id="btnUncolor" disabled>⬜ Fjern farger</button>
-  <button class="btn btn-export" id="btnExport" disabled>⬇ Eksporter CSV</button>
-  <button class="btn btn-danger" id="btnReset" disabled>↺ Nullstill</button>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <span class="badge" id="modelBadge">Frakoblet</span>
+    <button class="btn btn-primary" id="btnLoad" disabled>🔄 Hent view</button>
+    <button class="btn btn-primary" id="btnValidate" style="background: var(--green); color: white;" disabled>▶ Valider utvalg</button>
+  </div>
 </header>
+
+<div class="toolbar">
+  <select id="ruleSelect" style="font-weight: 600; color: var(--blue);">
+    <option value="0_Element.json">0_Element</option>
+    <option value="1_FAG.json">1_FAG</option>
+    <option value="2_RDS.json">2_RDS</option>
+    <option value="3_Beskrivelse.json">3_Beskrivelse</option>
+  </select>
+
+  <div style="border-left: 1px solid var(--border); height: 24px; margin: 0 5px;"></div>
+  
+  <select id="modelSelect" disabled style="min-width: 250px;">
+    <option value="">– Laster... –</option>
+  </select>
+  
+  <div style="border-left: 1px solid var(--border); height: 24px; margin: 0 5px;"></div>
+
+  <button class="btn" id="btnColorize" disabled>🎨 Fargelegg 3D</button>
+  <button class="btn" id="btnUncolor" disabled>⬜ Nullstill 3D</button>
+  <button class="btn" id="btnExport" disabled>⬇ Eksporter avvik</button>
+  <button class="btn btn-danger" id="btnReset" disabled>🗑️ Fjern resultat</button>
+</div>
 
 <div id="statusBar">Kobler til Trimble Connect...</div>
 
-<div id="modelBar">
-  <div class="select-group">
-    <label>Regelsett:</label>
-    <select id="ruleSelect">
-      <option value="0_Element.json">0_Element</option>
-      <option value="1_FAG.json">1_FAG</option>
-      <option value="2_RDS.json">2_RDS</option>
-      <option value="3_Beskrivelse.json">3_Beskrivelse</option>
-    </select>
-  </div>
-  
-  <div class="select-group">
-    <label>Utvalg:</label>
-    <select id="modelSelect" disabled><option value="">– Laster... –</option></select>
-  </div>
-</div>
-
 <main id="mainContent">
-  <div class="empty anim">Velg et regelsett og et utvalg fra menyen, og trykk <strong>Valider</strong>.</div>
+  <div class="empty anim">Velg et regelsett og et utvalg fra menyen, og trykk <strong>Valider utvalg</strong>.</div>
 </main>
 
 <script>
@@ -409,7 +408,7 @@ function runRdsValidation(objProps, rules) {
 async function validate(){
   const selVal = $('modelSelect').value;
   if (!selVal || !API) {
-      setStatus('⚠️ Velg et utvalg/modell før du validerer.', 'error');
+      setStatus('⚠️ Velg et utvalg/modell i toppmenyen før du validerer.', 'error');
       return;
   }
   
@@ -424,7 +423,6 @@ async function validate(){
     let ALL_FIELDS = [];
     Object.keys(validationRules?.properties || {}).forEach(k => k.split('|').forEach(n => ALL_FIELDS.push(n.trim())));
 
-    // Bygger opp "targets" basert på hva brukeren valgte i nedtrekksmenyen
     let targets = [];
     if (selVal === 'SELECTED') {
         const selection = await API.viewer.getSelection();
@@ -512,28 +510,28 @@ function renderDashboard(relevantFields){
 
   $('mainContent').innerHTML = `
     <div class="cards anim">
-      <div class="card blue"><div class="label">Analysert</div><div class="value">${total}</div><div class="sub">objekter</div></div>
-      <div class="card green"><div class="label">OK</div><div class="value">${perfect}</div><div class="sub">uten feil</div></div>
-      <div class="card red"><div class="label">Avvik</div><div class="value">${issues}</div><div class="sub">objekter med feil</div></div>
-      <div class="card gray"><div class="label">Ignorert</div><div class="value">${skippedCount}</div><div class="sub">systemnoder</div></div>
+      <div class="card blue"><div class="label">Analysert</div><div class="value">${total}</div><div class="sub">objekter sjekket</div></div>
+      <div class="card green"><div class="label">Godkjent</div><div class="value">${perfect}</div><div class="sub">uten noen feil</div></div>
+      <div class="card red"><div class="label">Avvik</div><div class="value">${issues}</div><div class="sub">objekter med mangler</div></div>
+      <div class="card gray"><div class="label">Ignorert</div><div class="value">${skippedCount}</div><div class="sub">systemnoder frasortert</div></div>
     </div>
 
     <div class="grid-2col anim" style="animation-delay:.05s">
-      <div class="panel">
-        <div class="panel-header"><h3>Statusfordeling</h3></div>
+      <div class="kategori-panel">
+        <div class="kategori-header">Statusfordeling</div>
         <div id="donutWrap">
-          <svg id="donutSvg" width="120" height="120" viewBox="0 0 120 120"></svg>
+          <svg id="donutSvg" width="140" height="140" viewBox="0 0 120 120"></svg>
           <div class="donut-legend" id="donutLegend"></div>
         </div>
       </div>
-      <div class="panel">
-        <div class="panel-header"><h3>Feltdekning (Kun relevante)</h3></div>
+      <div class="kategori-panel">
+        <div class="kategori-header">Feltdekning (Kun relevante krav for utvalget)</div>
         <div id="fieldChart"></div>
       </div>
     </div>
 
-    <div class="panel anim" style="animation-delay:.1s; margin-top:14px;">
-      <div class="panel-header"><h3>Objektliste (klikk for å markere i 3D)</h3></div>
+    <div class="kategori-panel anim" style="animation-delay:.1s;">
+      <div class="kategori-header">Objektliste (Klikk på en rad for å markere i 3D)</div>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Score</th><th>Navn</th>${relevantFields.map(f => `<th>${f}</th>`).join('')}</tr></thead>
@@ -549,18 +547,18 @@ function renderDashboard(relevantFields){
 }
 
 function renderDonut(total, ok, fail){
-  const slices = [{ label: 'OK', count: ok, color: '#3fb950' }, { label: 'Feil', count: fail, color: '#f85149' }];
+  const slices = [{ label: 'OK (Godkjent)', count: ok, color: 'var(--green)' }, { label: 'Feil/Mangler', count: fail, color: 'var(--red)' }];
   const svg = $('donutSvg');
   const cx=60, cy=60, r=48;
   let offset = 0, paths = '';
   slices.forEach(s => {
     const frac = total > 0 ? s.count / total : 0;
     const len = frac * 2 * Math.PI * r;
-    paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="18" stroke-dasharray="${len} ${2*Math.PI*r}" stroke-dashoffset="${-offset}"></circle>`;
+    paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="20" stroke-dasharray="${len} ${2*Math.PI*r}" stroke-dashoffset="${-offset}"></circle>`;
     offset += len;
   });
-  svg.innerHTML = paths + `<circle cx="${cx}" cy="${cy}" r="30" fill="var(--surface)"></circle><text x="${cx}" y="${cy+5}" text-anchor="middle" font-size="12" fill="var(--ink)" font-weight="800">${Math.round((ok/total)*100)}%</text>`;
-  $('donutLegend').innerHTML = slices.map(s => `<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div><span>${s.label}: ${s.count}</span></div>`).join('');
+  svg.innerHTML = paths + `<circle cx="${cx}" cy="${cy}" r="28" fill="var(--surface)"></circle><text x="${cx}" y="${cy+5}" text-anchor="middle" font-family="var(--sans)" font-size="14" fill="var(--ink)" font-weight="800">${Math.round((ok/total)*100)}%</text>`;
+  $('donutLegend').innerHTML = slices.map(s => `<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div><span><strong>${s.count}</strong> ${s.label}</span></div>`).join('');
 }
 
 function renderFieldBars(stats){
@@ -578,7 +576,7 @@ function renderFieldBars(stats){
 function renderTable(relevantFields){
   $('tableBody').innerHTML = validationRows.map(r => `
     <tr data-mid="${esc(r.modelId)}" data-rid="${esc(r.runtimeId)}">
-      <td>${r.score}%</td>
+      <td><span style="font-weight:700; color:${r.score === 100 ? 'var(--green)' : r.score > 50 ? 'var(--yellow)' : 'var(--red)'}">${r.score}%</span></td>
       <td class="obj-name" title="${esc(r.name)}">${esc(r.name)}</td>
       ${relevantFields.map(f => {
         const d = r.fields[f] || {status:'na', value:'-'};
@@ -623,9 +621,9 @@ async function colorizeModel(){
     
     try { await API.viewer.setObjectState(undefined, { color: 'reset' }); } catch(e){}
 
-    if (greenMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(greenMap) }, { color: { r: 39,  g: 174, b: 96,  a: 255 } });
-    if (yellowMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(yellowMap) }, { color: { r: 210, g: 153, b: 34,  a: 255 } });
-    if (redMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(redMap) }, { color: { r: 248, g: 81,  b: 73,  a: 255 } });
+    if (greenMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(greenMap) }, { color: { r: 22,  g: 101, b: 52,  a: 255 } }); // --green
+    if (yellowMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(yellowMap) }, { color: { r: 202, g: 138, b: 4,  a: 255 } }); // --yellow
+    if (redMap.size) await API.viewer.setObjectState({ modelObjectIds: toSel(redMap) }, { color: { r: 220, g: 38,  b: 38,  a: 255 } }); // --red
 
     $('btnUncolor').disabled = false; $('btnColorize').disabled = false;
     setStatus(`🎨 Fargelagt OK / Formatfeil / Mangler`, 'ok');
@@ -668,7 +666,7 @@ function exportCsv(){
   const blob = new Blob([bom + lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'BIM_Validering_Avvik_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.download = 'Avviksrapport_Validering_' + new Date().toISOString().slice(0,10) + '.csv';
   document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(a.href);
   setStatus(`⬇ Eksportert ${issueRows.length} objekter til CSV.`, 'ok');
 }
